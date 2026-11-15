@@ -15,6 +15,13 @@ public partial class App : Application
     {
         base.OnStartup(e);
         DispatcherUnhandledException += OnUnhandled;
+        // Errors on background threads: logged (type and frames only); tasks are always awaited, so these are rare.
+        AppDomain.CurrentDomain.UnhandledException += (_, args) => { if (args.ExceptionObject is Exception ex) LocalLog.Error(ex, "domain"); };
+        TaskScheduler.UnobservedTaskException += (_, args) =>
+        {
+            LocalLog.Error(args.Exception, "task");
+            args.SetObserved();
+        };
         AsyncRelayCommand.ErrorHandler = ex => Report(ex, "command");
 
         var dialogs = new WpfDialogService();

@@ -354,4 +354,7 @@ Confronta l'impronta con quella mostrata dal FortiGate (Sistema › Certificati)
   <data name="Lan.Sources" xml:space="preserve"><value>Endpoint /api/v2/monitor/system/config/backup: FortiOS Administration Guide ("Using APIs", "REST API administrator") e technical tip della Fortinet Community. Il riferimento API completo di Fortinet (FNDN) richiede un account, quindi il metodo HTTP è POST con ripiego su GET.</value></data>
   <data name="Lan.ForgetCertificates" xml:space="preserve"><value>Dimentica i certificati confermati</value></data>
   <data name="Lan.Confirmed" xml:space="preserve"><value>Certificati confermati:</value></data>
+  <data name="Error.FileTooLarge" xml:space="preserve"><value>"{0}" è di {1} MB: più dei {2} MB accettati per questo tipo di file. Verifica che sia il file giusto.</value></data>
+  <data name="Error.PathTooLong" xml:space="preserve"><value>Il percorso è troppo lungo per Windows. Sposta il file in una cartella con un percorso più corto.</value></data>
+  <data name="Error.Crypto" xml:space="preserve"><value>Errore di cifratura: il file è danneggiato oppure la password è errata.</value></data>
 </root>

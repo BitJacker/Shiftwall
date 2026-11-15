@@ -188,7 +188,7 @@ public sealed class MigrationWizardViewModel : ObservableObject
         IsBusy = true;
         try
         {
-            var bytes = await File.ReadAllBytesAsync(path);
+            var bytes = await InputFile.ReadAllBytesAsync(path);
             var inspection = await Task.Run(() => ConfigInspector.Inspect(bytes));
             _sourceInspection = inspection;
             _source = inspection.Kind == ConfigFileKind.FortiOsText && inspection.Document is not null ? SourceProfile.From(inspection) : null;
@@ -270,7 +270,7 @@ public sealed class MigrationWizardViewModel : ObservableObject
         MappingTemplate template;
         try
         {
-            template = MappingTemplate.FromJson(File.ReadAllText(path));
+            template = MappingTemplate.FromJson(InputFile.ReadAllText(path));
         }
         catch (Exception ex) when (ex is InvalidDataException or System.Text.Json.JsonException)
         {

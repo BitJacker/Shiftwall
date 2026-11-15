@@ -110,7 +110,7 @@ public sealed class BatchViewModel : ObservableObject
     {
         try
         {
-            _template = MappingTemplate.FromJson(File.ReadAllText(path));
+            _template = MappingTemplate.FromJson(Shiftwall.Core.Config.InputFile.ReadAllText(path));
             TemplatePath = path;
         }
         catch (Exception ex) when (ex is InvalidDataException or System.Text.Json.JsonException or IOException)

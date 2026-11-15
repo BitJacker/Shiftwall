@@ -66,7 +66,7 @@ public sealed class ConfigSlotViewModel : ObservableObject
 
     public async Task LoadAsync(string path)
     {
-        var bytes = await File.ReadAllBytesAsync(path);
+        var bytes = await InputFile.ReadAllBytesAsync(path);
         var inspection = await Task.Run(() => ConfigInspector.Inspect(bytes));
         _inspection = inspection;
         Path = path;

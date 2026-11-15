@@ -354,4 +354,7 @@ Compare the fingerprint with the one shown by the FortiGate (System › Certific
   <data name="Lan.Sources" xml:space="preserve"><value>Endpoint /api/v2/monitor/system/config/backup: FortiOS Administration Guide ("Using APIs", "REST API administrator") and Fortinet Community technical tips. Fortinet's full API reference (FNDN) requires an account, so the HTTP method is POST with a fallback to GET.</value></data>
   <data name="Lan.ForgetCertificates" xml:space="preserve"><value>Forget confirmed certificates</value></data>
   <data name="Lan.Confirmed" xml:space="preserve"><value>Confirmed certificates:</value></data>
+  <data name="Error.FileTooLarge" xml:space="preserve"><value>"{0}" is {1} MB: larger than the {2} MB accepted for this kind of file. Check that it is the right file.</value></data>
+  <data name="Error.PathTooLong" xml:space="preserve"><value>The path is too long for Windows. Move the file to a shorter folder path.</value></data>
+  <data name="Error.Crypto" xml:space="preserve"><value>Encryption error: the file is damaged or the password is wrong.</value></data>
 </root>

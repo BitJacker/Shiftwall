@@ -161,7 +161,7 @@ public sealed class ImportViewModel : ObservableObject
 
     public async Task LoadCsvAsync(string path)
     {
-        _csv = await File.ReadAllTextAsync(path);
+        _csv = await Shiftwall.Core.Config.InputFile.ReadAllTextAsync(path);
         CsvPath = path;
         Convert();
     }
@@ -382,7 +382,7 @@ public sealed class AnonymizeViewModel : ObservableObject
         AnonymizationMap map;
         try
         {
-            map = AnonymizationMap.FromJsonBytes(MapProtector.Decrypt(File.ReadAllBytes(_mapPath), _password));
+            map = AnonymizationMap.FromJsonBytes(MapProtector.Decrypt(Shiftwall.Core.Config.InputFile.ReadAllBytes(_mapPath, Shiftwall.Core.Config.InputFile.MaxSmallFileBytes), _password));
         }
         catch (Exception ex) when (ex is CryptographicException or InvalidDataException or System.Text.Json.JsonException)
         {

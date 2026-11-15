@@ -188,12 +188,5 @@ public static class LocalLog
     }
 
     /// <summary>User-facing text for an unexpected error: what happened and what to do, no stack trace.</summary>
-    public static string FriendlyMessage(Exception ex) => ex switch
-    {
-        FileNotFoundException or DirectoryNotFoundException => Loc.T("Error.FileNotFound"),
-        UnauthorizedAccessException => Loc.T("Error.AccessDenied"),
-        IOException => Loc.T("Error.FileInUse"),
-        OutOfMemoryException => Loc.T("Error.OutOfMemory"),
-        _ => Loc.F("Error.Unexpected", Directory),
-    };
+    public static string FriendlyMessage(Exception ex) => ErrorMessages.Friendly(ex, Directory);
 }

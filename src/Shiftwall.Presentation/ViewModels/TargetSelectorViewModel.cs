@@ -131,7 +131,7 @@ public sealed class TargetSelectorViewModel : ObservableObject
 
     public async Task LoadBackupAsync(string path)
     {
-        var bytes = await File.ReadAllBytesAsync(path);
+        var bytes = await InputFile.ReadAllBytesAsync(path);
         var inspection = await Task.Run(() => ConfigInspector.Inspect(bytes));
         _backup = inspection;
         BackupPath = path;
