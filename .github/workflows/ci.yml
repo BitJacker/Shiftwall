@@ -3,7 +3,9 @@ name: CI
 
 on:
   push:
+    branches: [main]
   pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -47,7 +49,9 @@ jobs:
             $p = Start-Process -FilePath publish\Shiftwall.exe -PassThru
             while ($p.MainWindowHandle -eq 0 -and $sw.Elapsed.TotalSeconds -lt 60) { Start-Sleep -Milliseconds 50; $p.Refresh() }
             if ($p.MainWindowHandle -eq 0) { throw "No main window ($label)" }
-            "$label start-up: $([int]$sw.Elapsed.TotalMilliseconds) ms" | Tee-Object -FilePath startup.txt -Append
+            $line = "$label start-up: $([int]$sw.Elapsed.TotalMilliseconds) ms"
+            Add-Content -Path startup.txt -Value $line
+            Write-Host $line
             return $p
           }
           $first = Start-Shiftwall "first run (extracts native runtime files)"
