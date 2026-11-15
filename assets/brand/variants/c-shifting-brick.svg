@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Shiftwall">
+  <!-- Variant C "Shifting brick": one brick slides out of the wall, i.e. config moving across -->
+  <rect width="64" height="64" rx="14" fill="#0A2530"/>
+  <rect x=".75" y=".75" width="62.5" height="62.5" rx="13.25" fill="none" stroke="#5EEAD4" stroke-opacity=".35" stroke-width="1.5"/>
+  <g fill="#1F6474">
+    <rect x="8"  y="12" width="23" height="11" rx="2"/>
+    <rect x="34" y="12" width="22" height="11" rx="2"/>
+    <rect x="8"  y="26.5" width="10" height="11" rx="2"/>
+    <rect x="8"  y="41" width="23" height="11" rx="2"/>
+    <rect x="34" y="41" width="22" height="11" rx="2"/>
+  </g>
+  <g fill="#2DD4BF">
+    <rect x="21" y="28.5" width="4" height="2.5" rx="1.25" opacity=".6"/>
+    <rect x="21" y="33" width="6" height="2.5" rx="1.25" opacity=".6"/>
+  </g>
+  <rect x="30" y="26.5" width="28" height="11" rx="2" fill="#5EEAD4"/>
+</svg>

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Shiftwall">
+  <!-- Variant A "Block slide": a config block slides through a breach in a brick column -->
+  <rect width="64" height="64" rx="14" fill="#0B3D4A"/>
+  <rect x=".75" y=".75" width="62.5" height="62.5" rx="13.25" fill="none" stroke="#5FD3E0" stroke-opacity=".35" stroke-width="1.5"/>
+  <g fill="#2BB3A3">
+    <rect x="36" y="7"  width="15" height="7" rx="1.5"/>
+    <rect x="36" y="16" width="6"  height="7" rx="1.5"/>
+    <rect x="44" y="16" width="7"  height="7" rx="1.5"/>
+    <rect x="36" y="41" width="6"  height="7" rx="1.5"/>
+    <rect x="44" y="41" width="7"  height="7" rx="1.5"/>
+    <rect x="36" y="50" width="15" height="7" rx="1.5"/>
+  </g>
+  <g fill="#67E8F9">
+    <rect x="22" y="26" width="34" height="12" rx="3"/>
+    <rect x="8"  y="28.5" width="10" height="2.5" rx="1.25" opacity=".55"/>
+    <rect x="11" y="33" width="7"  height="2.5" rx="1.25" opacity=".55"/>
+  </g>
+  <g fill="#0B3D4A">
+    <rect x="27" y="29.5" width="16" height="2" rx="1"/>
+    <rect x="27" y="33"   width="10" height="2" rx="1"/>
+  </g>
+</svg>
