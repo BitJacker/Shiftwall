@@ -37,6 +37,8 @@ jobs:
         run: dotnet test -c Release
       - name: Validate model database
         run: dotnet run --project tools/update-db -c Release -- validate
+      - name: Generated docs are up to date
+        run: dotnet run --project tools/update-db -c Release -- gen-docs --check
 
   windows:
     name: Build, test and smoke test (Windows)

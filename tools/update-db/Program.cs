@@ -19,7 +19,9 @@ const string Usage = """
                                        factory-default backup read from the local disk. The backup is never
                                        copied or committed: only the names go to models.json.
       check-links                      Check that every source URL still answers HTTP 200.
-      gen-docs                         Regenerate docs/SOURCES.md and docs/supported-models.md.
+      gen-docs [--check]               Regenerate docs/SOURCES.md, docs/supported-models.md and the model
+                                       tables in README.md and README.it.md. With --check, write nothing and
+                                       fail if any of them is out of date (used by CI).
       normalize                        Rewrite data/*.json in canonical formatting (after hand edits).
 
     Options:
@@ -77,12 +79,38 @@ try
             return 0;
 
         case "gen-docs":
+        {
             var db = ModelDatabase.LoadFromDirectory(dataDir);
+            var root = Path.GetDirectoryName(Path.GetFullPath(docsDir))!;
+            var outputs = new List<(string Path, string Text)>
+            {
+                (Path.Combine(docsDir, "SOURCES.md"), DocsGenerator.Sources(db)),
+                (Path.Combine(docsDir, "supported-models.md"), DocsGenerator.SupportedModels(db)),
+            };
+            foreach (var (name, italian) in new[] { ("README.md", false), ("README.it.md", true) })
+            {
+                var readme = Path.Combine(root, name);
+                if (!File.Exists(readme)) continue;
+                var table = DocsGenerator.ModelsTable(db, "docs/SOURCES.md", italian);
+                outputs.Add((readme, DocsGenerator.ReplaceTable(File.ReadAllText(readme), table)));
+            }
+
+            if (args.Contains("--check"))
+            {
+                var stale = outputs.Where(o => !File.Exists(o.Path) || File.ReadAllText(o.Path).ReplaceLineEndings() != o.Text.ReplaceLineEndings()).ToList();
+                foreach (var o in stale) Console.Error.WriteLine($"Out of date: {o.Path} (run gen-docs)");
+                return stale.Count == 0 ? 0 : 1;
+            }
+
             Directory.CreateDirectory(docsDir);
-            File.WriteAllText(Path.Combine(docsDir, "SOURCES.md"), DocsGenerator.Sources(db));
-            File.WriteAllText(Path.Combine(docsDir, "supported-models.md"), DocsGenerator.SupportedModels(db));
-            Console.WriteLine($"Wrote {Path.Combine(docsDir, "SOURCES.md")} and supported-models.md");
+            foreach (var o in outputs)
+            {
+                File.WriteAllText(o.Path, o.Text);
+                Console.WriteLine($"Wrote {o.Path}");
+            }
+
             return 0;
+        }
 
         default:
             Console.Error.WriteLine($"Unknown command '{args[0]}'.");
