@@ -1,0 +1,82 @@
+# Build, test and smoke-test Shiftwall. Actions are pinned to commit SHAs (tag in the comment).
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test-linux:
+    name: Tests (Linux)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-dotnet@0f4a354dd5547a28c70b7853dbd95d5b67886e73 # v6.1.0
+        with:
+          global-json-file: global.json
+      - name: Test
+        run: dotnet test -c Release
+      - name: Validate model database
+        run: dotnet run --project tools/update-db -c Release -- validate
+
+  windows:
+    name: Build, test and smoke test (Windows)
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-dotnet@0f4a354dd5547a28c70b7853dbd95d5b67886e73 # v6.1.0
+        with:
+          global-json-file: global.json
+      - name: Test
+        run: dotnet test -c Release
+      - name: Publish single-file exe
+        run: dotnet publish src/Shiftwall.App -c Release -o publish
+      - name: Smoke test (start-up time and screenshot)
+        shell: pwsh
+        run: |
+          Add-Type -AssemblyName System.Windows.Forms, System.Drawing
+          function Start-Shiftwall([string]$label) {
+            $sw = [Diagnostics.Stopwatch]::StartNew()
+            $p = Start-Process -FilePath publish\Shiftwall.exe -PassThru
+            while ($p.MainWindowHandle -eq 0 -and $sw.Elapsed.TotalSeconds -lt 60) { Start-Sleep -Milliseconds 50; $p.Refresh() }
+            if ($p.MainWindowHandle -eq 0) { throw "No main window ($label)" }
+            "$label start-up: $([int]$sw.Elapsed.TotalMilliseconds) ms" | Tee-Object -FilePath startup.txt -Append
+            return $p
+          }
+          $first = Start-Shiftwall "first run (extracts native runtime files)"
+          Start-Sleep -Seconds 2
+          Stop-Process $first
+          Start-Sleep -Seconds 2
+          $p = Start-Shiftwall "second run"
+          Start-Sleep -Seconds 3
+          if ($p.HasExited) { throw "Shiftwall exited unexpectedly" }
+          $b = [System.Windows.Forms.Screen]::PrimaryScreen.Bounds
+          $bmp = New-Object System.Drawing.Bitmap $b.Width, $b.Height
+          [System.Drawing.Graphics]::FromImage($bmp).CopyFromScreen($b.Location, [System.Drawing.Point]::Empty, $b.Size)
+          $bmp.Save("screenshot-main.png")
+          Stop-Process $p
+      - name: SHA256
+        shell: pwsh
+        run: (Get-FileHash publish\Shiftwall.exe -Algorithm SHA256).Hash + "  Shiftwall.exe" | Out-File -Encoding ascii publish\SHA256SUMS.txt
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: shiftwall-win-x64
+          path: |
+            publish/Shiftwall.exe
+            publish/SHA256SUMS.txt
+          retention-days: 14
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: smoke-test
+          path: |
+            screenshot-main.png
+            startup.txt
+          retention-days: 14
