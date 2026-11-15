@@ -3,10 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:l="clr-namespace:Shiftwall.App.Localization">
     <StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-            <RadioButton Content="{l:T Target.Mode.Backup}" IsChecked="{Binding IsBackupMode}" Margin="0,0,16,0" />
-            <RadioButton Content="{l:T Target.Mode.Database}" IsChecked="{Binding IsDatabaseMode}" />
-        </StackPanel>
+        <WrapPanel Orientation="Horizontal" Margin="0,0,0,8">
+            <RadioButton Content="{l:T Target.Mode.Backup}" IsChecked="{Binding IsBackupMode}" Margin="0,0,16,4" />
+            <RadioButton Content="{l:T Target.Mode.Database}" IsChecked="{Binding IsDatabaseMode}" Margin="0,0,0,4" />
+        </WrapPanel>
 
         <!-- Factory-default backup (recommended) -->
         <StackPanel Visibility="{Binding IsBackupMode, Converter={StaticResource BoolToVisibility}}">
