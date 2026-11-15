@@ -15,6 +15,16 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  secrets:
+    name: Secret scan (gitleaks)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - name: gitleaks
+        run: tools/build/gitleaks.sh
+
   test-linux:
     name: Tests (Linux)
     runs-on: ubuntu-latest
@@ -65,19 +75,6 @@ jobs:
             Stop-Process $q
             Start-Sleep -Seconds 1
           }
-      - name: Size and start-up of publish variants
-        shell: pwsh
-        run: |
-          $variants = @(
-            @{ Name = 'r2r'; Args = @('-p:PublishReadyToRun=true', '-p:EnableCompressionInSingleFile=false') },
-            @{ Name = 'r2r-compressed'; Args = @('-p:PublishReadyToRun=true', '-p:EnableCompressionInSingleFile=true') },
-            @{ Name = 'jit-compressed'; Args = @('-p:PublishReadyToRun=false', '-p:EnableCompressionInSingleFile=true') }
-          )
-          $results = foreach ($v in $variants) {
-            dotnet publish src/Shiftwall.App -c Release -o "variants/$($v.Name)" @($v.Args) | Out-Null
-            tools/build/measure-startup.ps1 -Exe "variants/$($v.Name)/Shiftwall.exe" -Runs 7 -Label $v.Name
-          }
-          $results | Format-Table -AutoSize | Out-String -Width 200 | Tee-Object -FilePath variants.txt
       - name: SHA256
         shell: pwsh
         run: (Get-FileHash publish\Shiftwall.exe -Algorithm SHA256).Hash.ToLowerInvariant() + "  Shiftwall.exe" | Out-File -Encoding ascii publish\SHA256SUMS.txt
@@ -100,5 +97,4 @@ jobs:
           path: |
             screenshot-*.png
             startup.txt
-            variants.txt
           retention-days: 14

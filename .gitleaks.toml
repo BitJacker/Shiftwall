@@ -1,0 +1,13 @@
+# gitleaks configuration for Shiftwall.
+# Docs: https://github.com/gitleaks/gitleaks#configuration
+[extend]
+useDefault = true
+
+# The parser and migration fixtures contain synthetic PEM blocks so the tests can check that
+# certificates and private keys are copied byte for byte. Their base64 body decodes to text such as
+# "MIICSyntheticKeyNotARealKeyForTestsOnly0123456789...": no real key material.
+# Only the private-key rule is relaxed, and only for golden fixtures (.fgtcfg) under tests/.
+[[allowlists]]
+description = "Synthetic PEM blocks in golden test fixtures"
+targetRules = ["private-key"]
+paths = ['''^tests/[^/]+/Golden/.+\.fgtcfg$''']
