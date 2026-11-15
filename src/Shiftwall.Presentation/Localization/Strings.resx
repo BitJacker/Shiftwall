@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="App.Tagline" xml:space="preserve"><value>Offline FortiGate migration</value></data>
+  <data name="App.Offline" xml:space="preserve"><value>Offline: no data leaves this PC.</value></data>
+  <data name="Settings.Theme" xml:space="preserve"><value>Theme</value></data>
+  <data name="Settings.SwitchLanguage" xml:space="preserve"><value>Italiano</value></data>
+  <data name="Theme.System" xml:space="preserve"><value>Same as Windows</value></data>
+  <data name="Theme.Light" xml:space="preserve"><value>Light</value></data>
+  <data name="Theme.Dark" xml:space="preserve"><value>Dark</value></data>
+  <data name="Nav.Menu" xml:space="preserve"><value>Menu</value></data>
+  <data name="Nav.Soon" xml:space="preserve"><value>Phase 4</value></data>
+  <data name="Nav.Migration" xml:space="preserve"><value>Migration</value></data>
+  <data name="Nav.Batch" xml:space="preserve"><value>Batch conversion</value></data>
+  <data name="Nav.Compare" xml:space="preserve"><value>Compare configs</value></data>
+  <data name="Nav.Audit" xml:space="preserve"><value>Security audit</value></data>
+  <data name="Nav.Cleanup" xml:space="preserve"><value>Unused objects</value></data>
+  <data name="Nav.Export" xml:space="preserve"><value>Export policies</value></data>
+  <data name="Nav.Import" xml:space="preserve"><value>Import from CSV</value></data>
+  <data name="Nav.Vpn" xml:space="preserve"><value>VPN summary</value></data>
+  <data name="Nav.Anonymize" xml:space="preserve"><value>Anonymize config</value></data>
+  <data name="Nav.Snippets" xml:space="preserve"><value>CLI snippets</value></data>
+  <data name="Nav.Upgrade" xml:space="preserve"><value>Upgrade planning</value></data>
+  <data name="Nav.About" xml:space="preserve"><value>About</value></data>
+  <data name="ComingSoon.Title" xml:space="preserve"><value>Coming soon</value></data>
+  <data name="ComingSoon.Body" xml:space="preserve"><value>This tool is part of the toolbox and arrives in Phase 4. Like the rest of Shiftwall, it works fully offline.</value></data>
+  <data name="Common.Back" xml:space="preserve"><value>Back</value></data>
+  <data name="Common.Next" xml:space="preserve"><value>Next</value></data>
+  <data name="Common.Browse" xml:space="preserve"><value>Browse…</value></data>
+  <data name="Wizard.Title" xml:space="preserve"><value>Configuration migration</value></data>
+  <data name="Wizard.Simulation" xml:space="preserve"><value>Simulation: no file is written until you press "Save configuration" in the last step.</value></data>
+  <data name="Step.Load" xml:space="preserve"><value>1  Load</value></data>
+  <data name="Step.PreChecks" xml:space="preserve"><value>2  Pre-checks</value></data>
+  <data name="Step.Mapping" xml:space="preserve"><value>3  Mapping</value></data>
+  <data name="Step.Transform" xml:space="preserve"><value>4  Transform</value></data>
+  <data name="Step.Report" xml:space="preserve"><value>5  Report and save</value></data>
+  <data name="Wizard.Load.Source" xml:space="preserve"><value>Source configuration</value></data>
+  <data name="Wizard.Load.Target" xml:space="preserve"><value>Target</value></data>
+  <data name="Wizard.Load.DropSource" xml:space="preserve"><value>Drop the backup of the FortiGate to migrate (.conf) here, or use Browse.</value></data>
+  <data name="Wizard.Load.PickSource" xml:space="preserve"><value>Choose the source backup</value></data>
+  <data name="Wizard.Load.PickTarget" xml:space="preserve"><value>Choose the factory-default backup of the target</value></data>
+  <data name="Source.Summary.None" xml:space="preserve"><value>No file loaded.</value></data>
+  <data name="Source.Summary" xml:space="preserve"><value>{0} · FortiOS {1} build {2} · {3} lines · {4} physical ports</value></data>
+  <data name="Source.Summary.Kind.BinaryOrEncrypted" xml:space="preserve"><value>Encrypted backup or binary file: cannot be read.</value></data>
+  <data name="Source.Summary.Kind.Yaml" xml:space="preserve"><value>YAML-format backup: not supported.</value></data>
+  <data name="Source.Summary.Kind.Empty" xml:space="preserve"><value>Empty file.</value></data>
+  <data name="Target.Mode.Backup" xml:space="preserve"><value>Factory-default backup (recommended)</value></data>
+  <data name="Target.Mode.Database" xml:space="preserve"><value>Model from the database</value></data>
+  <data name="Target.Drop" xml:space="preserve"><value>Drop the factory-default backup of the new FortiGate here, or use Browse.</value></data>
+  <data name="Target.Backup.Hint" xml:space="preserve"><value>It is the most reliable source: its interface names and header take precedence over the database.</value></data>
+  <data name="Target.OptionalModel" xml:space="preserve"><value>Model (optional, used to know whether it has a disk)</value></data>
+  <data name="Target.Model" xml:space="preserve"><value>Model</value></data>
+  <data name="Target.Version" xml:space="preserve"><value>FortiOS version</value></data>
+  <data name="Target.Summary.None" xml:space="preserve"><value>No target selected.</value></data>
+  <data name="Target.Summary.Backup" xml:space="preserve"><value>{0} · FortiOS {1} build {2} · {3} physical ports</value></data>
+  <data name="Target.Summary.Database" xml:space="preserve"><value>{0} · FortiOS {1} · {2} ports in the database</value></data>
+  <data name="Target.Unverified.Interfaces" xml:space="preserve"><value>Interfaces not verified: {0}</value></data>
+  <data name="Target.Unverified.Disk" xml:space="preserve"><value>Disk not verified: {0}</value></data>
+  <data name="Target.Unverified.Switch" xml:space="preserve"><value>Default switch not verified: a factory-default backup is needed to know it.</value></data>
+  <data name="Wizard.PreChecks.Intro" xml:space="preserve"><value>Checks run before anything is changed. Errors must be fixed before continuing; warnings go into the report and the checklist.</value></data>
+  <data name="Wizard.Mapping.Auto" xml:space="preserve"><value>Map by name</value></data>
+  <data name="Wizard.Mapping.Clear" xml:space="preserve"><value>Clear</value></data>
+  <data name="Wizard.Mapping.SaveTemplate" xml:space="preserve"><value>Save template…</value></data>
+  <data name="Wizard.Mapping.LoadTemplate" xml:space="preserve"><value>Load template…</value></data>
+  <data name="Wizard.Mapping.SourcePorts" xml:space="preserve"><value>Source ports</value></data>
+  <data name="Wizard.Mapping.TargetPorts" xml:space="preserve"><value>Target ports</value></data>
+  <data name="Wizard.Mapping.Hint" xml:space="preserve"><value>Pick the target port, or drag it here from the right column. Used ports that are not mapped block the next step.</value></data>
+  <data name="Wizard.Mapping.DragHint" xml:space="preserve"><value>Drag a port onto a row on the left.</value></data>
+  <data name="Wizard.Mapping.Uses" xml:space="preserve"><value>refs</value></data>
+  <data name="Wizard.Mapping.Unmap" xml:space="preserve"><value>Remove mapping</value></data>
+  <data name="Wizard.Transform.Changes" xml:space="preserve"><value>Changes</value></data>
+  <data name="Wizard.Transform.Validation" xml:space="preserve"><value>Validation</value></data>
+  <data name="Wizard.Transform.Diff" xml:space="preserve"><value>Differences (before | after)</value></data>
+  <data name="Wizard.Transform.ShowAll" xml:space="preserve"><value>Show the whole file</value></data>
+  <data name="Wizard.Report.SaveTitle" xml:space="preserve"><value>Save the result</value></data>
+  <data name="Wizard.Report.SaveHint" xml:space="preserve"><value>The new configuration is saved to a new file: the original is never overwritten.</value></data>
+  <data name="Wizard.Report.SaveConfig" xml:space="preserve"><value>Save configuration…</value></data>
+  <data name="Wizard.Report.ExportHtml" xml:space="preserve"><value>Export HTML report…</value></data>
+  <data name="Wizard.Report.PrintPdf" xml:space="preserve"><value>Print / PDF…</value></data>
+  <data name="Wizard.Report.OpenFolder" xml:space="preserve"><value>Open folder</value></data>
+  <data name="Wizard.Report.New" xml:space="preserve"><value>New migration</value></data>
+  <data name="Wizard.Report.Checklist" xml:space="preserve"><value>Manual checklist</value></data>
+  <data name="Wizard.Report.Saved" xml:space="preserve"><value>Configuration saved: {0}</value></data>
+  <data name="Batch.Title" xml:space="preserve"><value>Batch conversion</value></data>
+  <data name="Batch.Intro" xml:space="preserve"><value>Several sites with the same source model, the same target and the same mapping template. With simulation on, nothing is written.</value></data>
+  <data name="Batch.Files" xml:space="preserve"><value>Source configurations</value></data>
+  <data name="Batch.AddFiles" xml:space="preserve"><value>Add files…</value></data>
+  <data name="Batch.ClearFiles" xml:space="preserve"><value>Clear list</value></data>
+  <data name="Batch.RemoveFile" xml:space="preserve"><value>Remove</value></data>
+  <data name="Batch.Drop" xml:space="preserve"><value>Drop the site backups here</value></data>
+  <data name="Batch.Template" xml:space="preserve"><value>Mapping template</value></data>
+  <data name="Batch.Output" xml:space="preserve"><value>Output folder</value></data>
+  <data name="Batch.PickOutput" xml:space="preserve"><value>Choose the folder for the new configurations</value></data>
+  <data name="Batch.Simulate" xml:space="preserve"><value>Simulation (write no files)</value></data>
+  <data name="Batch.Run" xml:space="preserve"><value>Run</value></data>
+  <data name="Batch.Results" xml:space="preserve"><value>Results</value></data>
+  <data name="Batch.Progress" xml:space="preserve"><value>Processing {0} of {1}…</value></data>
+  <data name="Batch.Done" xml:space="preserve"><value>Done: {0} of {1} succeeded.</value></data>
+  <data name="About.Version" xml:space="preserve"><value>Version</value></data>
+  <data name="About.Privacy.Title" xml:space="preserve"><value>Privacy</value></data>
+  <data name="About.Privacy.Statement" xml:space="preserve"><value>Shiftwall sends no data. It works completely offline.</value></data>
+  <data name="About.Privacy.Details" xml:space="preserve"><value>No telemetry, analytics, online crash reports or automatic updates. Configurations are processed in memory and never written to logs. The only network feature (LAN backup download, Phase 4) is off by default and runs only when you start it.</value></data>
+  <data name="About.Database.Title" xml:space="preserve"><value>Model database</value></data>
+  <data name="About.Database.Embedded" xml:space="preserve"><value>Bundled database: {0} models, {1} FortiOS versions (up to {2}).</value></data>
+  <data name="About.Database.Imported" xml:space="preserve"><value>Imported database: {0} models, {1} FortiOS versions (up to {2}).</value></data>
+  <data name="About.Database.Hint" xml:space="preserve"><value>Every datum has its official source (see docs/SOURCES.md). You can import an updated database: it is validated before use.</value></data>
+  <data name="About.Database.Import" xml:space="preserve"><value>Import database…</value></data>
+  <data name="About.Database.Reset" xml:space="preserve"><value>Back to the bundled database</value></data>
+  <data name="About.Database.Pick" xml:space="preserve"><value>Choose models.json (with fortios-releases.json and upgrade-paths.json in the same folder)</value></data>
+  <data name="About.Database.ImportOk" xml:space="preserve"><value>Database imported and validated.</value></data>
+  <data name="About.Database.ImportFailed" xml:space="preserve"><value>The database is not valid and was not imported.</value></data>
+  <data name="About.Disclaimer.Title" xml:space="preserve"><value>Disclaimer</value></data>
+  <data name="About.Disclaimer" xml:space="preserve"><value>Shiftwall is not affiliated with Fortinet. FortiGate and FortiOS are trademarks of Fortinet, Inc. Modified configurations are not supported by Fortinet TAC: always test in a lab before production.</value></data>
+  <data name="About.Repository" xml:space="preserve"><value>Project on GitHub</value></data>
+  <data name="About.License" xml:space="preserve"><value>Open source software.</value></data>
+  <data name="Error.TemplateInvalid" xml:space="preserve"><value>The mapping template is not valid.</value></data>
+  <data name="Error.WouldOverwriteOriginal" xml:space="preserve"><value>This file is the original configuration: Shiftwall never overwrites it. Choose another name.</value></data>
+  <data name="Error.FileNotFound" xml:space="preserve"><value>The file no longer exists or was moved. Select it again.</value></data>
+  <data name="Error.AccessDenied" xml:space="preserve"><value>Access denied to the file or folder. Choose a folder where you can write.</value></data>
+  <data name="Error.FileInUse" xml:space="preserve"><value>The file is used by another program or the disk is not available. Close other programs and try again.</value></data>
+  <data name="Error.OutOfMemory" xml:space="preserve"><value>Not enough memory for this operation. Close other programs and try again.</value></data>
+  <data name="Error.Unexpected" xml:space="preserve"><value>An unexpected error occurred. Your files were not changed. Technical details (without configuration content) are in {0}.</value></data>
+</root>
