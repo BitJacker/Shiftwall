@@ -42,6 +42,17 @@ public abstract class ConfigContainer : ConfigNode
         oldNode.Parent = null;
     }
 
+    /// <summary>Inserts <paramref name="node"/> at <paramref name="index"/>.</summary>
+    public void Insert(int index, ConfigNode node)
+    {
+        ArgumentNullException.ThrowIfNull(node);
+        node.Parent = this;
+        _children.Insert(index, node);
+    }
+
+    /// <summary>Index of <paramref name="node"/> among the children, or -1.</summary>
+    public int IndexOf(ConfigNode node) => _children.IndexOf(node);
+
     /// <summary>Removes <paramref name="node"/> (with all its text) from this container.</summary>
     public bool Remove(ConfigNode node)
     {
@@ -155,6 +166,9 @@ public sealed class FieldNode(Statement statement) : ConfigNode
 public sealed class TriviaNode(Statement statement) : ConfigNode
 {
     public Statement Statement { get; } = statement;
+
+    /// <summary>Creates a trivia node from raw text that forms exactly one statement (e.g. a header line).</summary>
+    public static TriviaNode FromText(string raw) => new(ConfigLexer.LexSingle(raw, 1));
 
     public override void WriteTo(StringBuilder sb) => sb.Append(Statement.Raw);
 }

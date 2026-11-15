@@ -1,0 +1,176 @@
+#config-version=FGT60F-7.4.13-FW-build2933-261022:opmode=0:vdom=0:user=admin
+#conf_file_ver=6234567890123456
+#buildno=2933
+#global_vdom=1
+config system global
+    set hostname "branch-01"
+    set timezone "Europe/Rome"
+end
+config system interface
+    edit "wan1"
+        set vdom "root"
+        set ip 203.0.113.10 255.255.255.0
+        set allowaccess ping https
+        set type physical
+        set role wan
+    next
+    edit "wan2"
+        set vdom "root"
+        set mode dhcp
+        set type physical
+        set role wan
+    next
+    edit "dmz"
+        set vdom "root"
+        set type physical
+    next
+    edit "internal1"
+        set vdom "root"
+        set type physical
+    next
+    edit "internal2"
+        set vdom "root"
+        set type physical
+    next
+    edit "internal3"
+        set vdom "root"
+        set type physical
+    next
+    edit "internal4"
+        set vdom "root"
+        set type physical
+    next
+    edit "internal5"
+        set vdom "root"
+        set type physical
+    next
+    edit "a"
+        set vdom "root"
+        set type physical
+    next
+    edit "b"
+        set vdom "root"
+        set type physical
+    next
+    edit "internal"
+        set vdom "root"
+        set ip 192.168.10.1 255.255.255.0
+        set allowaccess ping https ssh
+        set type hard-switch
+        set role lan
+    next
+    edit "vlan20"
+        set vdom "root"
+        set ip 192.168.20.1 255.255.255.0
+        set interface "internal5"
+        set vlanid 20
+    next
+end
+config system virtual-switch
+    edit "internal"
+        set physical-switch "sw0"
+        config port
+            edit "internal1"
+            next
+            edit "internal2"
+            next
+            edit "internal3"
+            next
+            edit "internal4"
+            next
+        end
+    next
+end
+config system zone
+    edit "LAN"
+        set interface "internal" "vlan20"
+    next
+end
+config system admin
+    edit "admin"
+        set accprofile "super_admin"
+        set vdom "root"
+        set password ENC U2hpZnR3YWxsIHN5bnRoZXRpYyB0ZXN0IHZhbHVlIC0gbm90IGEgc2VjcmV0
+    next
+end
+config system dhcp server
+    edit 1
+        set default-gateway 192.168.20.1
+        set netmask 255.255.255.0
+        set interface "vlan20"
+        config ip-range
+            edit 1
+                set start-ip 192.168.20.100
+                set end-ip 192.168.20.199
+            next
+        end
+    next
+end
+config firewall address
+    edit "srv-web"
+        set subnet 192.168.20.10 255.255.255.255
+        set associated-interface "vlan20"
+        set comment "Web server on internal5 VLAN"
+    next
+end
+config firewall vip
+    edit "vip-web"
+        set extip 203.0.113.11
+        set mappedip "192.168.20.10"
+        set extintf "wan1"
+    next
+end
+config firewall policy
+    edit 1
+        set name "LAN-to-WAN"
+        set srcintf "LAN"
+        set dstintf "wan1" "wan2"
+        set action accept
+        set srcaddr "all"
+        set dstaddr "all"
+        set schedule "always"
+        set service "ALL"
+        set nat enable
+    next
+    edit 2
+        set name "WAN-to-web"
+        set srcintf "wan1"
+        set dstintf "LAN"
+        set action accept
+        set srcaddr "all"
+        set dstaddr "vip-web"
+        set schedule "always"
+        set service "HTTPS"
+    next
+end
+config router static
+    edit 1
+        set gateway 203.0.113.1
+        set device "wan1"
+    next
+    edit 2
+        set device "wan2"
+        set dynamic-gateway enable
+    next
+end
+config vpn ipsec phase1-interface
+    edit "to-hq"
+        set interface "wan1"
+        set peertype any
+        set proposal aes256-sha256
+        set remote-gw 198.51.100.1
+        set psksecret ENC U2hpZnR3YWxsIHN5bnRoZXRpYyB0ZXN0IHZhbHVlIC0gbm90IGEgc2VjcmV0
+    next
+end
+config system snmp sysinfo
+    set status enable
+    set trap-source-intf "internal5"
+end
+config log disk setting
+    set status enable
+end
+config system storage
+    edit "Internal"
+        set media-type "unknown"
+    next
+end

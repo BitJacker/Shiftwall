@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="MIG-001" xml:space="preserve"><value>Firmware diverso: sorgente FortiOS {0}, destinazione FortiOS {1}. Allinea prima il firmware (porta uno dei due apparati alla stessa versione): Shiftwall non traduce la sintassi della configurazione tra versioni.</value></data>
+  <data name="MIG-002" xml:space="preserve"><value>Versione firmware sconosciuta (sorgente {0}, destinazione {1}). Verifica che i due apparati abbiano la stessa versione FortiOS prima del ripristino.</value></data>
+  <data name="MIG-003" xml:space="preserve"><value>Header della destinazione non disponibile (destinazione scelta dal database). Viene mantenuto l'header della sorgente: prima del ripristino sostituisci le prime righe con quelle di un backup di default della destinazione, altrimenti il FortiGate rifiuta il file.</value></data>
+  <data name="MIG-004" xml:space="preserve"><value>L'elenco interfacce della destinazione {0} non è verificato. Carica un backup di default della destinazione per continuare.</value></data>
+  <data name="MIG-005" xml:space="preserve"><value>Nota sull'elenco interfacce della destinazione: {0}</value></data>
+  <data name="MIG-006" xml:space="preserve"><value>Non si sa se la destinazione ha un disco: le sezioni disco (config system storage, config log disk setting) vengono mantenute. Verificale a mano.</value></data>
+  <data name="MIG-007" xml:space="preserve"><value>La destinazione non ha disco: config system storage e config log disk setting verranno rimossi.</value></data>
+  <data name="MIG-008" xml:space="preserve"><value>private-data-encryption è attivo sulla sorgente: imposta la stessa chiave sulla destinazione prima del ripristino, oppure prevedi di reinserire i segreti.</value></data>
+  <data name="MIG-009" xml:space="preserve"><value>Configurazione multi-VDOM ({0}): la rinomina delle interfacce si applica a tutti i VDOM.</value></data>
+  <data name="MIG-010" xml:space="preserve"><value>La configurazione sorgente ha errori strutturali (vedi l'analisi del file). Correggili o esporta un backup completo.</value></data>
+  <data name="MIG-011" xml:space="preserve"><value>Switch hardware/virtuale presente (sorgente: {0}; destinazione: {1}). Shiftwall rinomina solo le porte membro: verifica la struttura dello switch sulla destinazione.</value></data>
+  <data name="MIG-012" xml:space="preserve"><value>La configurazione sorgente sembra parziale. Si consiglia un backup completo.</value></data>
+  <data name="MIG-013" xml:space="preserve"><value>{0} password sono mascherate (FortinetPasswordMask): non funzioneranno sulla destinazione. Usa un backup normale.</value></data>
+  <data name="MIG-014" xml:space="preserve"><value>Il file sorgente non è una configurazione FortiOS in formato testo.</value></data>
+  <data name="MIG-015" xml:space="preserve"><value>Sorgente e destinazione sono lo stesso file.</value></data>
+  <data name="MIG-020" xml:space="preserve"><value>L'interfaccia sorgente {0} è usata {1} volte ma non è mappata su un'interfaccia della destinazione.</value></data>
+  <data name="MIG-021" xml:space="preserve"><value>L'interfaccia sorgente {0} non è usata né mappata: la sua definizione verrà rimossa.</value></data>
+  <data name="MIG-022" xml:space="preserve"><value>Più interfacce sorgente sono mappate su {0}.</value></data>
+  <data name="MIG-023" xml:space="preserve"><value>L'interfaccia sorgente {0} è mappata su {1}, che non esiste sulla destinazione.</value></data>
+  <data name="MIG-024" xml:space="preserve"><value>Interfacce della destinazione non usate dalla mappatura: {0}.</value></data>
+  <data name="MIG-030" xml:space="preserve"><value>Header sostituito con quello della destinazione ({0}, FortiOS {1}).</value></data>
+  <data name="MIG-031" xml:space="preserve"><value>Interfaccia {0} rinominata in {1} ({2} occorrenze).</value></data>
+  <data name="MIG-032" xml:space="preserve"><value>Rimossa la definizione dell'interfaccia inutilizzata {0}.</value></data>
+  <data name="MIG-033" xml:space="preserve"><value>Rimossa la sezione "config {0}" (destinazione senza disco).</value></data>
+  <data name="MIG-034" xml:space="preserve"><value>Riga {line}: "{0}" compare anche in {1}, un campo che Shiftwall non rinomina. Verificalo a mano.</value></data>
+  <data name="MIG-040" xml:space="preserve"><value>Riga {line}: la configurazione prodotta ha un problema strutturale ({0}).</value></data>
+  <data name="MIG-041" xml:space="preserve"><value>Riga {line}: {0} (assente sulla destinazione) è ancora usata in {1}.</value></data>
+  <data name="MIG-042" xml:space="preserve"><value>Riga {line}: l'interfaccia fisica {0} non esiste sulla destinazione.</value></data>
+  <data name="MIG-043" xml:space="preserve"><value>Un valore cifrato (ENC) è diverso dalla sorgente. Non deve mai succedere: non usare il risultato.</value></data>
+  <data name="MIG-044" xml:space="preserve"><value>Lo switch {0} contiene {1}, che non esiste sulla destinazione.</value></data>
+  <data name="MIG-045" xml:space="preserve"><value>Validazione superata: blocchi bilanciati e nessun riferimento a interfacce assenti sulla destinazione.</value></data>
+  <data name="CHK-001" xml:space="preserve"><value>Testa la nuova configurazione in laboratorio prima della produzione. Le configurazioni modificate non sono supportate dal TAC Fortinet.</value></data>
+  <data name="CHK-002" xml:space="preserve"><value>Porta i due apparati alla stessa versione FortiOS prima del ripristino.</value></data>
+  <data name="CHK-003" xml:space="preserve"><value>Verifica che password, chiavi pre-condivise e certificati funzionino sulla destinazione (i valori ENC dipendono dalla chiave di cifratura).</value></data>
+  <data name="CHK-004" xml:space="preserve"><value>Sostituisci le righe di intestazione con quelle di un backup di default della destinazione.</value></data>
+  <data name="CHK-005" xml:space="preserve"><value>Verifica dove vanno ora i log (FortiAnalyzer, FortiGate Cloud, syslog): le impostazioni di log su disco sono cambiate o vanno riviste.</value></data>
+  <data name="CHK-006" xml:space="preserve"><value>Controlla i "possibili riferimenti" elencati nel report.</value></data>
+  <data name="CHK-007" xml:space="preserve"><value>Decidi cosa fare delle porte della destinazione non usate dalla migrazione.</value></data>
+  <data name="CHK-008" xml:space="preserve"><value>Verifica i membri dello switch hardware/virtuale sulla destinazione (config system virtual-switch).</value></data>
+  <data name="CHK-009" xml:space="preserve"><value>Verifica i nomi delle porte HA e MGMT sulla destinazione (non sempre presenti negli elenchi documentati).</value></data>
+  <data name="CHK-010" xml:space="preserve"><value>Registra il nuovo apparato e verifica licenze e abbonamenti FortiGuard.</value></data>
+  <data name="CHK-011" xml:space="preserve"><value>Assicurati di mantenere l'accesso di gestione (interfaccia admin, trusted host, IP di management) dopo il ripristino.</value></data>
+  <data name="Report.Title" xml:space="preserve"><value>Report di migrazione Shiftwall</value></data>
+  <data name="Report.Source" xml:space="preserve"><value>Sorgente</value></data>
+  <data name="Report.Target" xml:space="preserve"><value>Destinazione</value></data>
+  <data name="Report.Model" xml:space="preserve"><value>Modello</value></data>
+  <data name="Report.Firmware" xml:space="preserve"><value>Firmware</value></data>
+  <data name="Report.PreChecks" xml:space="preserve"><value>Controlli preliminari</value></data>
+  <data name="Report.Mapping" xml:space="preserve"><value>Mappatura interfacce</value></data>
+  <data name="Report.Changes" xml:space="preserve"><value>Modifiche</value></data>
+  <data name="Report.Validation" xml:space="preserve"><value>Validazione</value></data>
+  <data name="Report.Checklist" xml:space="preserve"><value>Checklist da verificare a mano</value></data>
+  <data name="Report.Diff" xml:space="preserve"><value>Differenze (prima / dopo)</value></data>
+  <data name="Report.NotMapped" xml:space="preserve"><value>non mappata</value></data>
+  <data name="Report.Generated" xml:space="preserve"><value>Generato da Shiftwall {0} il {1}. Shiftwall funziona offline e non invia dati.</value></data>
+  <data name="Report.Disclaimer" xml:space="preserve"><value>Shiftwall non è affiliato a Fortinet. FortiGate e FortiOS sono marchi di Fortinet, Inc. Le config modificate non sono supportate dal TAC Fortinet: testare sempre in laboratorio prima della produzione.</value></data>
+  <data name="Report.ContainsConfig" xml:space="preserve"><value>Questo report contiene estratti della configurazione: trattalo come la configurazione stessa.</value></data>
+  <data name="Report.Blocked" xml:space="preserve"><value>Migrazione bloccata: risolvi gli errori indicati sopra.</value></data>
+  <data name="Report.Uses" xml:space="preserve"><value>Riferimenti</value></data>
+</root>

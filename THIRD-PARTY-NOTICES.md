@@ -10,6 +10,7 @@ actually referenced by the build, with its exact version.
 |---|---|---|---|---|
 | .NET runtime and libraries | 10.0.x (SDK 10.0.404) | MIT | <https://github.com/dotnet/runtime/blob/main/LICENSE.TXT> | 2026-11-15 |
 | Windows Presentation Foundation (WPF) | 10.0.x | MIT | <https://github.com/dotnet/wpf/blob/main/LICENSE.TXT> | 2026-11-15 |
+| DiffPlex | 1.9.0 | Apache-2.0 | <https://www.nuget.org/packages/DiffPlex/1.9.0> (no dependencies) | 2026-11-15 |
 
 ## Planned (not referenced yet)
 
@@ -18,7 +19,6 @@ Verified in Phase 0, added to the table above when the code that uses them lands
 | Component | Version | License | Notes |
 |---|---|---|---|
 | AvalonEdit | 6.3.1.120 | MIT | Text/diff viewer |
-| DiffPlex | 1.9.0 | Apache-2.0 | Diff engine |
 | ClosedXML | 0.105.1 | MIT | Excel export. Transitive `SixLabors.Fonts` must stay at **1.0.0 (Apache-2.0)**: versions 2.x use the Six Labors Split License, not OSI-approved. Pinned centrally. |
 | DocumentFormat.OpenXml | 3.x | MIT | ClosedXML dependency |
 | ClosedXML.Parser, ExcelNumberFormat, RBush.Signed | 2.0.0, 1.1.0, 4.0.0 | MIT | ClosedXML dependencies |
