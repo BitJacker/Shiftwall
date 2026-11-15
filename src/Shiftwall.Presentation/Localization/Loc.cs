@@ -43,7 +43,8 @@ public sealed class Loc : INotifyPropertyChanged
     /// <summary>All keys of the neutral resource file (used by tests to check the Italian translation).</summary>
     internal static IEnumerable<string> Keys()
     {
-        using var set = Resources.GetResourceSet(CultureInfo.InvariantCulture, createIfNotExists: true, tryParents: false)!;
+        // Not disposed: the ResourceManager caches and shares this set; disposing it breaks later lookups.
+        var set = Resources.GetResourceSet(CultureInfo.InvariantCulture, createIfNotExists: true, tryParents: false)!;
         foreach (System.Collections.DictionaryEntry e in set) yield return (string)e.Key;
     }
 }

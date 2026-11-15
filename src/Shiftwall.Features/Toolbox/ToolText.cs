@@ -21,7 +21,8 @@ public static class ToolText
     /// <summary>All keys of the neutral resource file (tests check the Italian translation).</summary>
     internal static IEnumerable<string> Keys()
     {
-        using var set = Resources.GetResourceSet(CultureInfo.InvariantCulture, createIfNotExists: true, tryParents: false)!;
+        // Not disposed: the ResourceManager caches and shares this set; disposing it breaks later lookups.
+        var set = Resources.GetResourceSet(CultureInfo.InvariantCulture, createIfNotExists: true, tryParents: false)!;
         foreach (System.Collections.DictionaryEntry e in set) yield return (string)e.Key;
     }
 }
