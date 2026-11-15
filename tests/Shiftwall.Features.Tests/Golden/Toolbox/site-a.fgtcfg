@@ -1,0 +1,224 @@
+#config-version=FGT60F-7.4.13-FW-build2933-261022:opmode=0:vdom=0:user=mrossi
+#conf_file_ver=6234567890123456
+#buildno=2933
+#global_vdom=1
+config system global
+    set admin-https-ssl-versions tlsv1-1 tlsv1-2 tlsv1-3
+    set admintimeout 30
+    set hostname "hq-fw01"
+    set strong-crypto disable
+    set timezone "Europe/Rome"
+end
+config system admin
+    edit "admin"
+        set accprofile "super_admin"
+        set vdom "root"
+        set password ENC U2hpZnR3YWxsIHN5bnRoZXRpYyB0ZXN0IHZhbHVlIC0gbm90IGEgc2VjcmV0
+    next
+    edit "mrossi"
+        set accprofile "super_admin"
+        set vdom "root"
+        set trusthost1 192.168.10.0 255.255.255.0
+        set two-factor email
+        set email-to "mario.rossi@example.com"
+        set password ENC U2hpZnR3YWxsIHN5bnRoZXRpYyB0ZXN0IHZhbHVlIC0gbm90IGEgc2VjcmV0
+    next
+end
+config system dns
+    set primary 192.0.2.53
+    set secondary 192.0.2.54
+end
+config system interface
+    edit "wan1"
+        set vdom "root"
+        set ip 203.0.113.10 255.255.255.0
+        set allowaccess ping https ssh http
+        set type physical
+        set role wan
+        set alias "Fibra Uffici Milano"
+    next
+    edit "internal"
+        set vdom "root"
+        set ip 192.168.10.1 255.255.255.0
+        set allowaccess ping https ssh telnet
+        set type hard-switch
+        set role lan
+    next
+    edit "to-branch"
+        set vdom "root"
+        set type tunnel
+        set interface "wan1"
+    next
+end
+config firewall address
+    edit "all"
+    next
+    edit "srv-web"
+        set subnet 192.168.10.20 255.255.255.255
+        set comment "Server web gestionale"
+    next
+    edit "net-lan"
+        set subnet 192.168.10.0 255.255.255.0
+    next
+    edit "net-branch"
+        set subnet 192.168.20.0 255.255.255.0
+    next
+    edit "old-printer"
+        set subnet 192.168.10.99 255.255.255.255
+    next
+    edit "old-nas"
+        set subnet 192.168.10.98 255.255.255.255
+    next
+    edit "updates"
+        set type fqdn
+        set fqdn "updates.example.com"
+    next
+end
+config firewall addrgrp
+    edit "grp-old"
+        set member "old-printer" "old-nas"
+    next
+    edit "grp-servers"
+        set member "srv-web"
+    next
+end
+config firewall service custom
+    edit "ALL"
+        set category "General"
+        set protocol IP
+    next
+    edit "HTTPS"
+        set category "Web Access"
+        set tcp-portrange 443
+    next
+    edit "app-8443"
+        set tcp-portrange 8443
+    next
+end
+config firewall schedule recurring
+    edit "always"
+        set day sunday monday tuesday wednesday thursday friday saturday
+    next
+    edit "office-hours"
+        set day monday tuesday wednesday thursday friday
+        set start 08:00
+        set end 18:00
+    next
+end
+config firewall vip
+    edit "vip-web"
+        set extip 203.0.113.11
+        set mappedip "192.168.10.20"
+        set extintf "wan1"
+        set portforward enable
+        set extport 443
+        set mappedport 8443
+    next
+end
+config vpn ipsec phase1-interface
+    edit "to-branch"
+        set interface "wan1"
+        set ike-version 2
+        set peertype any
+        set net-device disable
+        set proposal aes256-sha256 3des-sha1
+        set dhgrp 14 5
+        set remote-gw 198.51.100.20
+        set psksecret ENC U2hpZnR3YWxsIHN5bnRoZXRpYyB0ZXN0IHZhbHVlIC0gbm90IGEgc2VjcmV0
+    next
+end
+config vpn ipsec phase2-interface
+    edit "to-branch-p2"
+        set phase1name "to-branch"
+        set proposal aes256-sha256
+        set dhgrp 14
+        set src-subnet 192.168.10.0 255.255.255.0
+        set dst-subnet 192.168.20.0 255.255.255.0
+        set keylifeseconds 3600
+    next
+end
+config firewall policy
+    edit 1
+        set name "lan-to-internet"
+        set srcintf "internal"
+        set dstintf "wan1"
+        set action accept
+        set srcaddr "all"
+        set dstaddr "all"
+        set schedule "always"
+        set service "ALL"
+        set nat enable
+    next
+    edit 2
+        set name "lan-to-internet-copy"
+        set srcintf "internal"
+        set dstintf "wan1"
+        set action accept
+        set srcaddr "all"
+        set dstaddr "all"
+        set schedule "always"
+        set service "ALL"
+        set nat enable
+    next
+    edit 3
+        set name "web-only"
+        set srcintf "internal"
+        set dstintf "wan1"
+        set action accept
+        set srcaddr "net-lan"
+        set dstaddr "updates"
+        set schedule "office-hours"
+        set service "HTTPS"
+        set utm-status enable
+        set av-profile "default"
+    next
+    edit 4
+        set name "lan-to-branch"
+        set srcintf "internal"
+        set dstintf "to-branch"
+        set action accept
+        set srcaddr "net-lan"
+        set dstaddr "net-branch"
+        set schedule "always"
+        set service "ALL"
+        set logtraffic disable
+    next
+    edit 5
+        set name "publish-web"
+        set srcintf "wan1"
+        set dstintf "internal"
+        set action accept
+        set srcaddr "all"
+        set dstaddr "vip-web"
+        set schedule "always"
+        set service "app-8443"
+        set comments "Pubblicazione per cliente ACME"
+    next
+    edit 6
+        set name "everything"
+        set srcintf "any"
+        set dstintf "any"
+        set action accept
+        set srcaddr "all"
+        set dstaddr "all"
+        set schedule "always"
+        set service "ALL"
+        set status disable
+    next
+    edit 7
+        set name "internal-any"
+        set srcintf "internal"
+        set dstintf "to-branch"
+        set action accept
+        set srcaddr "all"
+        set dstaddr "all"
+        set schedule "always"
+        set service "ALL"
+    next
+end
+config user local
+    edit "giulia.bianchi"
+        set type password
+        set passwd ENC U2hpZnR3YWxsIHN5bnRoZXRpYyB0ZXN0IHZhbHVlIC0gbm90IGEgc2VjcmV0
+    next
+end
