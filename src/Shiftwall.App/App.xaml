@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Shiftwall.App"
              xmlns:vm="clr-namespace:Shiftwall.Presentation.ViewModels;assembly=Shiftwall.Presentation"
+             xmlns:tb="clr-namespace:Shiftwall.Presentation.ViewModels.Toolbox;assembly=Shiftwall.Presentation"
              xmlns:views="clr-namespace:Shiftwall.App.Views"
              ShutdownMode="OnMainWindowClose">
     <Application.Resources>
@@ -54,6 +55,34 @@
                 <Setter Property="Background" Value="{StaticResource SubtleFillBrush}" />
             </Style>
 
+            <!-- Read-only monospaced box for generated scripts and previews. -->
+            <Style x:Key="ScriptBox" TargetType="TextBox">
+                <Setter Property="FontFamily" Value="{StaticResource MonoFont}" />
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="IsReadOnly" Value="True" />
+                <Setter Property="AcceptsReturn" Value="True" />
+                <Setter Property="TextWrapping" Value="NoWrap" />
+                <Setter Property="HorizontalScrollBarVisibility" Value="Auto" />
+                <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
+            </Style>
+            <!-- A button that looks like a hyperlink (opens an official source in the browser). -->
+            <Style x:Key="LinkButton" TargetType="Button">
+                <Setter Property="Cursor" Value="Hand" />
+                <Setter Property="Foreground" Value="{StaticResource AccentBrush}" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <TextBlock TextDecorations="Underline" TextWrapping="Wrap"><ContentPresenter /></TextBlock>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="FieldLabel" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="Opacity" Value="0.72" />
+                <Setter Property="Margin" Value="0,8,0,2" />
+            </Style>
+
             <!-- A finding / diagnostic row: coloured icon + text. -->
             <DataTemplate x:Key="MessageTemplate" DataType="{x:Type vm:MessageItem}">
                 <Grid Margin="0,3">
@@ -73,7 +102,17 @@
             <DataTemplate DataType="{x:Type vm:MigrationWizardViewModel}"><views:MigrationWizardView /></DataTemplate>
             <DataTemplate DataType="{x:Type vm:BatchViewModel}"><views:BatchView /></DataTemplate>
             <DataTemplate DataType="{x:Type vm:AboutViewModel}"><views:AboutView /></DataTemplate>
-            <DataTemplate DataType="{x:Type vm:ComingSoonViewModel}"><views:ComingSoonView /></DataTemplate>
+            <DataTemplate DataType="{x:Type tb:ConfigSlotViewModel}"><views:ConfigSlotView /></DataTemplate>
+            <DataTemplate DataType="{x:Type tb:CompareViewModel}"><views:CompareView /></DataTemplate>
+            <DataTemplate DataType="{x:Type tb:AuditViewModel}"><views:AuditView /></DataTemplate>
+            <DataTemplate DataType="{x:Type tb:CleanupViewModel}"><views:CleanupView /></DataTemplate>
+            <DataTemplate DataType="{x:Type tb:ExportViewModel}"><views:ExportView /></DataTemplate>
+            <DataTemplate DataType="{x:Type tb:ImportViewModel}"><views:ImportView /></DataTemplate>
+            <DataTemplate DataType="{x:Type tb:VpnViewModel}"><views:VpnView /></DataTemplate>
+            <DataTemplate DataType="{x:Type tb:AnonymizeViewModel}"><views:AnonymizeView /></DataTemplate>
+            <DataTemplate DataType="{x:Type tb:SnippetsViewModel}"><views:SnippetsView /></DataTemplate>
+            <DataTemplate DataType="{x:Type tb:UpgradeViewModel}"><views:UpgradeView /></DataTemplate>
+            <DataTemplate DataType="{x:Type tb:LanViewModel}"><views:LanView /></DataTemplate>
             <DataTemplate DataType="{x:Type vm:TargetSelectorViewModel}"><views:TargetSelectorView /></DataTemplate>
         </ResourceDictionary>
     </Application.Resources>

@@ -64,10 +64,6 @@
                                         </MultiBinding>
                                     </TextBlock.Text>
                                 </TextBlock>
-                                <Border Grid.Column="2" CornerRadius="4" Padding="5,1" Background="{StaticResource SubtleFillBrush}"
-                                        Visibility="{Binding IsAvailable, Converter={StaticResource InverseBoolToVisibility}}">
-                                    <TextBlock Text="{l:T Nav.Soon}" FontSize="10" />
-                                </Border>
                             </Grid>
                         </DataTemplate>
                     </ListBox.ItemTemplate>

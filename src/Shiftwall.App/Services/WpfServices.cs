@@ -71,6 +71,8 @@ public sealed class WpfShell : IShell
     {
         if (Directory.Exists(path)) Process.Start(new ProcessStartInfo("explorer.exe", $"\"{path}\"") { UseShellExecute = true });
     }
+
+    public void CopyText(string text) => Clipboard.SetText(text);
 }
 
 /// <summary>

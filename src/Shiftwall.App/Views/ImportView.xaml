@@ -1,0 +1,50 @@
+<UserControl x:Class="Shiftwall.App.Views.ImportView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:l="clr-namespace:Shiftwall.App.Localization"
+             xmlns:loc="clr-namespace:Shiftwall.Presentation.Localization;assembly=Shiftwall.Presentation">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top">
+            <TextBlock Text="{l:T Import.Title}" Style="{StaticResource PageTitle}" />
+            <TextBlock Text="{l:T Import.Intro}" Style="{StaticResource Muted}" Margin="0,0,0,12" />
+            <WrapPanel>
+                <StackPanel Margin="0,0,16,0">
+                    <TextBlock Text="{l:T Import.Kind}" Style="{StaticResource FieldLabel}" />
+                    <ComboBox ItemsSource="{Binding Kinds}" SelectedItem="{Binding Kind}" Width="200" AutomationProperties.Name="{l:T Import.Kind}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource LocKey}" ConverterParameter="Import.Kind.">
+                                            <Binding />
+                                            <Binding Source="{x:Static loc:Loc.Instance}" Path="Culture" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel VerticalAlignment="Bottom" Orientation="Horizontal">
+                    <Button Content="{l:T Import.SaveTemplate}" Command="{Binding SaveTemplateCommand}" Margin="0,0,8,0" />
+                    <Button Content="{l:T Import.Browse}" Command="{Binding BrowseCommand}" />
+                </StackPanel>
+            </WrapPanel>
+            <TextBlock Margin="0,8,0,0" TextWrapping="Wrap" Style="{StaticResource Muted}">
+                <Run Text="{l:T Import.Columns}" /> <Run Text="{Binding Columns, Mode=OneWay}" FontFamily="{StaticResource MonoFont}" />
+            </TextBlock>
+            <TextBlock Text="{l:T Import.Help}" Style="{StaticResource Muted}" FontSize="11" Margin="0,4,0,0" />
+            <TextBlock Margin="0,10,0,4" FontWeight="SemiBold" TextWrapping="Wrap">
+                <Run Text="{Binding CsvPath, Mode=OneWay}" /> <Run Text="{Binding Summary, Mode=OneWay}" />
+            </TextBlock>
+            <ItemsControl ItemsSource="{Binding Errors}" ItemTemplate="{StaticResource MessageTemplate}" MaxHeight="160" />
+        </StackPanel>
+        <DockPanel Margin="0,8,0,0">
+            <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Margin="0,8,0,0">
+                <Button Content="{l:T Tool.Copy}" Command="{Binding CopyCommand}" Margin="0,0,8,0" />
+                <Button Content="{l:T Tool.SaveScript}" Command="{Binding SaveCommand}" />
+            </StackPanel>
+            <TextBox Text="{Binding Script, Mode=OneWay}" Style="{StaticResource ScriptBox}" AutomationProperties.Name="{l:T Tool.Script}" />
+        </DockPanel>
+    </DockPanel>
+</UserControl>

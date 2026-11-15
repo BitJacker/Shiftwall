@@ -24,6 +24,13 @@ public partial class App : Application
         ApplyTheme(_main.Theme);
         _main.ThemeChanged += (_, _) => ApplyTheme(_main.Theme);
 
+        // "--page <key>" opens a menu page at start-up (e.g. "--page audit"); used by the CI screenshots.
+        var pageArg = Array.IndexOf(e.Args, "--page");
+        if (pageArg >= 0 && pageArg + 1 < e.Args.Length && _main.Pages.FirstOrDefault(p => p.Key == e.Args[pageArg + 1]) is { } page)
+        {
+            _main.SelectedPage = page;
+        }
+
         var window = new MainWindow { DataContext = _main };
         MainWindow = window;
         window.Show();

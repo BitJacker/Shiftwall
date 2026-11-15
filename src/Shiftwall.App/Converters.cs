@@ -94,11 +94,14 @@ public sealed class StepStateConverter : IValueConverter
     public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture) => throw new NotSupportedException();
 }
 
-/// <summary>Localization key → text (for keys stored in view models, e.g. menu titles).</summary>
+/// <summary>
+/// Localization key → text (for keys stored in view models, e.g. menu titles). With a ConverterParameter the value
+/// (e.g. an enum) is appended to that prefix: parameter "Import.Kind." + value Address → key "Import.Kind.Address".
+/// </summary>
 public sealed class LocKeyConverter : IMultiValueConverter
 {
     public object Convert(object[] values, Type targetType, object? parameter, CultureInfo culture) =>
-        values.Length > 0 && values[0] is string key ? Loc.T(key) : "";
+        values.Length > 0 && values[0] is { } v ? Loc.T((parameter as string ?? "") + v) : "";
 
     public object[] ConvertBack(object value, Type[] targetTypes, object? parameter, CultureInfo culture) => throw new NotSupportedException();
 }

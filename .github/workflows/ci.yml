@@ -66,6 +66,19 @@ jobs:
           [System.Drawing.Graphics]::FromImage($bmp).CopyFromScreen($b.Location, [System.Drawing.Point]::Empty, $b.Size)
           $bmp.Save("screenshot-main.png")
           Stop-Process $p
+          # One screenshot per toolbox page (empty state), to review the layout.
+          foreach ($page in "compare","audit","cleanup","export","import","vpn","anonymize","snippets","upgrade","lan") {
+            $q = Start-Process -FilePath publish\Shiftwall.exe -ArgumentList "--page",$page -PassThru
+            $sw = [Diagnostics.Stopwatch]::StartNew()
+            while ($q.MainWindowHandle -eq 0 -and $sw.Elapsed.TotalSeconds -lt 30) { Start-Sleep -Milliseconds 100; $q.Refresh() }
+            Start-Sleep -Seconds 2
+            if ($q.HasExited) { throw "Shiftwall exited on page $page" }
+            $bmp = New-Object System.Drawing.Bitmap $b.Width, $b.Height
+            [System.Drawing.Graphics]::FromImage($bmp).CopyFromScreen($b.Location, [System.Drawing.Point]::Empty, $b.Size)
+            $bmp.Save("screenshot-$page.png")
+            Stop-Process $q
+            Start-Sleep -Seconds 1
+          }
       - name: SHA256
         shell: pwsh
         run: (Get-FileHash publish\Shiftwall.exe -Algorithm SHA256).Hash + "  Shiftwall.exe" | Out-File -Encoding ascii publish\SHA256SUMS.txt
@@ -81,6 +94,6 @@ jobs:
         with:
           name: smoke-test
           path: |
-            screenshot-main.png
+            screenshot-*.png
             startup.txt
           retention-days: 14

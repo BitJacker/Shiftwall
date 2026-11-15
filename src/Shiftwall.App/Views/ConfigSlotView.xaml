@@ -1,0 +1,23 @@
+<UserControl x:Class="Shiftwall.App.Views.ConfigSlotView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:l="clr-namespace:Shiftwall.App.Localization">
+    <!-- A configuration file loaded by a toolbox page: drop zone, browse, summary and diagnostics. -->
+    <StackPanel>
+        <Border Style="{StaticResource DropZone}" Drop="OnDrop" DragOver="OnDragOver" Padding="12">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Button Content="{l:T Common.Browse}" Command="{Binding BrowseCommand}" Margin="8,0,0,0" />
+                    <Button FontFamily="{StaticResource IconFont}" Content="&#xE711;" Command="{Binding ClearCommand}" Margin="6,0,0,0" Padding="8,2"
+                            AutomationProperties.Name="{l:T Tool.Slot.Clear}" ToolTip="{l:T Tool.Slot.Clear}" />
+                </StackPanel>
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="{Binding FileName}" FontWeight="SemiBold" TextTrimming="CharacterEllipsis"
+                               Visibility="{Binding FileName, Converter={StaticResource NullToVisibility}}" />
+                    <TextBlock Text="{Binding Summary}" Style="{StaticResource Muted}" />
+                </StackPanel>
+            </DockPanel>
+        </Border>
+        <ItemsControl ItemsSource="{Binding Diagnostics}" ItemTemplate="{StaticResource MessageTemplate}" Margin="0,4,0,0" />
+    </StackPanel>
+</UserControl>

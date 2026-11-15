@@ -1,0 +1,75 @@
+<UserControl x:Class="Shiftwall.App.Views.LanView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:l="clr-namespace:Shiftwall.App.Localization">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel MaxWidth="760" HorizontalAlignment="Left">
+            <TextBlock Text="{l:T Lan.Title}" Style="{StaticResource PageTitle}" />
+            <TextBlock Text="{l:T Lan.Intro}" Style="{StaticResource Muted}" Margin="0,0,0,12" />
+
+            <!-- Disabled (default) -->
+            <Border Style="{StaticResource Card}" Visibility="{Binding Enabled, Converter={StaticResource InverseBoolToVisibility}}">
+                <StackPanel>
+                    <TextBlock Text="{l:T Lan.DisabledTitle}" FontWeight="SemiBold" />
+                    <TextBlock Text="{l:T Lan.DisabledBody}" TextWrapping="Wrap" Margin="0,6,0,10" />
+                    <Button Content="{l:T Lan.Enable}" Command="{Binding EnableCommand}" HorizontalAlignment="Left" />
+                </StackPanel>
+            </Border>
+
+            <!-- Enabled -->
+            <StackPanel Visibility="{Binding Enabled, Converter={StaticResource BoolToVisibility}}">
+                <Border Style="{StaticResource Card}">
+                    <StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="12" />
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="12" />
+                                <ColumnDefinition Width="160" />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel>
+                                <TextBlock Text="{l:T Lan.Host}" Style="{StaticResource FieldLabel}" />
+                                <TextBox Text="{Binding Host, UpdateSourceTrigger=PropertyChanged}" AutomationProperties.Name="{l:T Lan.Host}" />
+                            </StackPanel>
+                            <StackPanel Grid.Column="2">
+                                <TextBlock Text="{l:T Lan.Port}" Style="{StaticResource FieldLabel}" />
+                                <TextBox Text="{Binding Port, UpdateSourceTrigger=PropertyChanged}" AutomationProperties.Name="{l:T Lan.Port}" />
+                            </StackPanel>
+                            <StackPanel Grid.Column="4">
+                                <TextBlock Text="{l:T Lan.Vdom}" Style="{StaticResource FieldLabel}" />
+                                <TextBox Text="{Binding Vdom}" AutomationProperties.Name="{l:T Lan.Vdom}" />
+                            </StackPanel>
+                        </Grid>
+                        <TextBlock Text="{Binding HostError}" Foreground="#C42B1C" FontSize="11" Margin="0,2,0,0" />
+                        <TextBlock Text="{l:T Lan.Token}" Style="{StaticResource FieldLabel}" />
+                        <PasswordBox x:Name="Token" PasswordChanged="OnSecretChanged" AutomationProperties.Name="{l:T Lan.Token}" />
+                        <TextBlock Text="{l:T Lan.TokenHelp}" Style="{StaticResource Muted}" FontSize="11" Margin="0,2,0,0" />
+                        <CheckBox Content="{l:T Lan.FortiOs801}" IsChecked="{Binding FortiOs801}" Margin="0,10,0,0" />
+                        <StackPanel Visibility="{Binding FortiOs801, Converter={StaticResource BoolToVisibility}}">
+                            <TextBlock Text="{l:T Lan.BackupPassword}" Style="{StaticResource FieldLabel}" />
+                            <PasswordBox x:Name="BackupPassword" PasswordChanged="OnSecretChanged" AutomationProperties.Name="{l:T Lan.BackupPassword}" />
+                            <TextBlock Text="{l:T Lan.BackupPasswordHelp}" Style="{StaticResource Muted}" FontSize="11" Margin="0,2,0,0" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,14,0,0">
+                            <Button Content="{l:T Lan.Download}" Command="{Binding DownloadCommand}" MinWidth="140" Margin="0,0,8,0" />
+                            <Button Content="{l:T Common.Cancel}" Command="{Binding CancelCommand}" />
+                        </StackPanel>
+                        <TextBlock Text="{Binding Status}" TextWrapping="Wrap" FontWeight="SemiBold" Margin="0,10,0,0" />
+                    </StackPanel>
+                </Border>
+
+                <TextBlock Text="{l:T Lan.SafetyTitle}" Style="{StaticResource SectionTitle}" />
+                <TextBlock Text="{l:T Lan.SafetyBody}" TextWrapping="Wrap" Style="{StaticResource Muted}" />
+                <TextBlock Text="{l:T Lan.Sources}" TextWrapping="Wrap" Style="{StaticResource Muted}" FontSize="11" Margin="0,8,0,0" />
+                <StackPanel Orientation="Horizontal" Margin="0,14,0,0">
+                    <Button Content="{l:T Lan.ForgetCertificates}" Command="{Binding ForgetCertificatesCommand}" Margin="0,0,8,0" />
+                    <TextBlock VerticalAlignment="Center" Style="{StaticResource Muted}">
+                        <Run Text="{l:T Lan.Confirmed}" /> <Run Text="{Binding ConfirmedCount, Mode=OneWay}" />
+                    </TextBlock>
+                </StackPanel>
+                <Button Content="{l:T Lan.Disable}" Command="{Binding DisableCommand}" HorizontalAlignment="Left" Margin="0,14,0,0" />
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
