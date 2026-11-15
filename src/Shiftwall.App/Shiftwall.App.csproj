@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <RootNamespace>Shiftwall.App</RootNamespace>
+    <AssemblyName>Shiftwall</AssemblyName>
+    <ApplicationIcon>Assets\icon.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AssemblyTitle>Shiftwall</AssemblyTitle>
+    <Description>Offline FortiGate configuration migration and sysadmin toolbox</Description>
+    <SatelliteResourceLanguages>it;en</SatelliteResourceLanguages>
+    <!-- ThemeMode is an experimental WPF API (Fluent light/dark). -->
+    <NoWarn>$(NoWarn);WPF0001</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <SelfContained>true</SelfContained>
+    <PublishSingleFile>true</PublishSingleFile>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <PublishReadyToRun>true</PublishReadyToRun>
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+  <ItemGroup>
+    <Resource Include="Assets\icon.ico" />
+    <Resource Include="Assets\logo-64.png" />
+    <Resource Include="Assets\logo-128.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Shiftwall.Presentation\Shiftwall.Presentation.csproj" />
+  </ItemGroup>
+</Project>

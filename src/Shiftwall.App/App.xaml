@@ -1,0 +1,80 @@
+<Application x:Class="Shiftwall.App.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Shiftwall.App"
+             xmlns:vm="clr-namespace:Shiftwall.Presentation.ViewModels;assembly=Shiftwall.Presentation"
+             xmlns:views="clr-namespace:Shiftwall.App.Views"
+             ShutdownMode="OnMainWindowClose">
+    <Application.Resources>
+        <ResourceDictionary>
+            <local:BoolToVisibilityConverter x:Key="BoolToVisibility" />
+            <local:BoolToVisibilityConverter x:Key="InverseBoolToVisibility" Invert="True" />
+            <local:NullToVisibilityConverter x:Key="NullToVisibility" />
+            <local:NullToVisibilityConverter x:Key="InverseNullToVisibility" Invert="True" />
+            <local:SeverityToBrushConverter x:Key="SeverityToBrush" />
+            <local:SeverityToGlyphConverter x:Key="SeverityToGlyph" />
+            <local:DiffKindToBrushConverter x:Key="DiffKindToBrush" />
+            <local:StepStateConverter x:Key="StepState" />
+            <local:LocKeyConverter x:Key="LocKey" />
+            <local:ThemeToTextConverter x:Key="ThemeToText" />
+
+            <FontFamily x:Key="IconFont">Segoe Fluent Icons, Segoe MDL2 Assets</FontFamily>
+            <FontFamily x:Key="MonoFont">Cascadia Mono, Consolas, Courier New</FontFamily>
+            <SolidColorBrush x:Key="AccentBrush" Color="#0F8A9A" />
+            <SolidColorBrush x:Key="SubtleBorderBrush" Color="#33808080" />
+            <SolidColorBrush x:Key="SubtleFillBrush" Color="#10808080" />
+
+            <Style x:Key="PageTitle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="24" />
+                <Setter Property="FontWeight" Value="SemiBold" />
+                <Setter Property="Margin" Value="0,0,0,4" />
+            </Style>
+            <Style x:Key="SectionTitle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="FontWeight" Value="SemiBold" />
+                <Setter Property="Margin" Value="0,12,0,6" />
+            </Style>
+            <Style x:Key="Muted" TargetType="TextBlock">
+                <Setter Property="Opacity" Value="0.72" />
+                <Setter Property="TextWrapping" Value="Wrap" />
+            </Style>
+            <Style x:Key="Card" TargetType="Border">
+                <Setter Property="BorderBrush" Value="{StaticResource SubtleBorderBrush}" />
+                <Setter Property="Background" Value="{StaticResource SubtleFillBrush}" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="CornerRadius" Value="8" />
+                <Setter Property="Padding" Value="16" />
+            </Style>
+            <Style x:Key="DropZone" TargetType="Border">
+                <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}" />
+                <Setter Property="BorderThickness" Value="1.5" />
+                <Setter Property="CornerRadius" Value="8" />
+                <Setter Property="Padding" Value="16" />
+                <Setter Property="AllowDrop" Value="True" />
+                <Setter Property="Background" Value="{StaticResource SubtleFillBrush}" />
+            </Style>
+
+            <!-- A finding / diagnostic row: coloured icon + text. -->
+            <DataTemplate x:Key="MessageTemplate" DataType="{x:Type vm:MessageItem}">
+                <Grid Margin="0,3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="24" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock FontFamily="{StaticResource IconFont}" Text="{Binding Severity, Converter={StaticResource SeverityToGlyph}}"
+                               Foreground="{Binding Severity, Converter={StaticResource SeverityToBrush}}" Margin="0,2,0,0" />
+                    <TextBlock Grid.Column="1" TextWrapping="Wrap">
+                        <Run Text="{Binding Code, Mode=OneWay}" FontSize="11" Foreground="Gray" />
+                        <Run Text="{Binding Text, Mode=OneWay}" />
+                    </TextBlock>
+                </Grid>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type vm:MigrationWizardViewModel}"><views:MigrationWizardView /></DataTemplate>
+            <DataTemplate DataType="{x:Type vm:BatchViewModel}"><views:BatchView /></DataTemplate>
+            <DataTemplate DataType="{x:Type vm:AboutViewModel}"><views:AboutView /></DataTemplate>
+            <DataTemplate DataType="{x:Type vm:ComingSoonViewModel}"><views:ComingSoonView /></DataTemplate>
+            <DataTemplate DataType="{x:Type vm:TargetSelectorViewModel}"><views:TargetSelectorView /></DataTemplate>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

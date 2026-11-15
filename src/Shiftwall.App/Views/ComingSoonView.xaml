@@ -1,0 +1,9 @@
+<UserControl x:Class="Shiftwall.App.Views.ComingSoonView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:l="clr-namespace:Shiftwall.App.Localization">
+    <StackPanel MaxWidth="640" HorizontalAlignment="Left">
+        <TextBlock Style="{StaticResource PageTitle}" Text="{l:T ComingSoon.Title}" />
+        <TextBlock Style="{StaticResource Muted}" Text="{l:T ComingSoon.Body}" />
+    </StackPanel>
+</UserControl>
