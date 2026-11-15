@@ -13,20 +13,41 @@ public enum VerificationStatus
     [JsonStringEnumMemberName("unverified")] Unverified,
 }
 
+/// <summary>Kind of source.</summary>
+[JsonConverter(typeof(JsonStringEnumConverter<SourceKind>))]
+public enum SourceKind
+{
+    /// <summary>A public official Fortinet document (the default; <see cref="SourceRef.Url"/> required).</summary>
+    [JsonStringEnumMemberName("document")] Document,
+
+    /// <summary>
+    /// A real factory-default backup of the model, examined locally by a maintainer. The backup itself is never
+    /// stored or published (it has no URL); only interface names and switch membership are taken from it.
+    /// </summary>
+    [JsonStringEnumMemberName("factory-default-backup")] FactoryDefaultBackup,
+}
+
 /// <summary>An official source backing a datum, with the date it was last checked.</summary>
-/// <param name="Url">Absolute https URL on an allowed official Fortinet domain.</param>
-/// <param name="Title">Human-readable title of the document.</param>
+/// <param name="Url">Absolute https URL on an allowed official Fortinet host; null only for <see cref="SourceKind.FactoryDefaultBackup"/>.</param>
+/// <param name="Title">Human-readable title (for backups: model, FortiOS version and build).</param>
 /// <param name="VerifiedOn">Date the datum was last checked against the source.</param>
 /// <param name="Note">Where in the document the datum is found (section, table, CLI output...).</param>
-public sealed record SourceRef(string Url, string Title, DateOnly VerifiedOn, string? Note = null);
+/// <param name="Kind">Null means <see cref="SourceKind.Document"/>.</param>
+public sealed record SourceRef(
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.Never)] string? Url, string Title, DateOnly VerifiedOn, string? Note = null, SourceKind? Kind = null)
+{
+    [JsonIgnore]
+    public SourceKind EffectiveKind => Kind ?? SourceKind.Document;
+}
 
 /// <summary>A value together with its provenance.</summary>
 public sealed record Sourced<T>(
-    T? Value,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.Never)] T? Value,
     VerificationStatus Status,
     IReadOnlyList<SourceRef> Sources,
     string? Note = null)
 {
+    [JsonIgnore]
     public bool IsVerified => Status == VerificationStatus.Verified;
 
     public static Sourced<T> Unverified(string note) => new(default, VerificationStatus.Unverified, [], note);

@@ -62,8 +62,8 @@ internal static partial class HardwarePorts
 
         foreach (var model in doc.Models)
         {
-            var src = model.Interfaces.Sources.FirstOrDefault(s => s.Url.Contains("/hardware-acceleration/", StringComparison.Ordinal));
-            if (!model.Interfaces.IsVerified || src is null)
+            var src = model.Interfaces.Sources.FirstOrDefault(s => s.Url?.Contains("/hardware-acceleration/", StringComparison.Ordinal) == true);
+            if (!model.Interfaces.IsVerified || src?.Url is null)
             {
                 updated.Add(model);
                 continue;

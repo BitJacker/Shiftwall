@@ -141,7 +141,19 @@ public static partial class DatabaseValidator
 
     private static void CheckSource(SourceRef src, string where, List<string> errors, DateOnly now)
     {
-        CheckUrl(src.Url, where, errors);
+        if (src.EffectiveKind == SourceKind.FactoryDefaultBackup)
+        {
+            if (src.Url is not null) errors.Add($"{where}: a factory-default backup source must not have a URL (backups are never published).");
+        }
+        else if (src.Url is null)
+        {
+            errors.Add($"{where}: document source without URL.");
+        }
+        else
+        {
+            CheckUrl(src.Url, where, errors);
+        }
+
         if (string.IsNullOrWhiteSpace(src.Title)) errors.Add($"{where}: source without title ({src.Url}).");
         if (src.VerifiedOn < MinVerifiedOn || src.VerifiedOn > now) errors.Add($"{where}: verified_on {src.VerifiedOn:yyyy-MM-dd} out of range.");
     }

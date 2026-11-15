@@ -13,8 +13,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2019-03-28",
@@ -26,8 +25,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -122,8 +120,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -138,8 +135,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2019-07-18",
@@ -151,8 +147,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -246,8 +241,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -262,8 +256,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2019-10-09",
@@ -275,8 +268,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -375,8 +367,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -391,8 +382,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2019-12-19",
@@ -404,8 +394,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -504,8 +493,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -520,8 +508,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2020-05-12",
@@ -533,8 +520,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -652,8 +638,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -668,8 +653,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2020-08-20",
@@ -681,8 +665,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -804,8 +787,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -820,8 +802,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2020-11-12",
@@ -833,8 +814,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -954,8 +934,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -970,8 +949,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2020-12-17",
@@ -983,8 +961,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -1104,8 +1081,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -1120,8 +1096,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2021-04-26",
@@ -1133,8 +1108,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -1263,8 +1237,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -1279,8 +1252,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2021-06-02",
@@ -1292,8 +1264,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -1422,8 +1393,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -1438,8 +1408,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2021-11-04",
@@ -1451,8 +1420,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -1586,8 +1554,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -1602,8 +1569,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2022-06-22",
@@ -1615,8 +1581,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -1750,8 +1715,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -1766,8 +1730,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2022-11-03",
@@ -1779,8 +1742,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -1914,8 +1876,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -1930,8 +1891,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2023-02-23",
@@ -1943,8 +1903,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -2079,8 +2038,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -2095,8 +2053,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2023-04-12",
@@ -2108,8 +2065,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -2244,8 +2200,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -2260,8 +2215,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2023-06-08",
@@ -2273,8 +2227,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -2409,8 +2362,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -2425,8 +2377,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2024-02-07",
@@ -2438,8 +2389,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -2574,8 +2524,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -2590,8 +2539,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2025-05-27",
@@ -2603,8 +2551,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -2739,8 +2686,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -2755,8 +2701,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2020-03-31",
@@ -2768,8 +2713,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -2860,8 +2804,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -2876,8 +2819,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2020-06-04",
@@ -2889,8 +2831,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -2986,8 +2927,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -3002,8 +2942,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2020-07-30",
@@ -3015,8 +2954,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -3119,8 +3057,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -3135,8 +3072,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2020-10-22",
@@ -3148,8 +3084,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -3256,8 +3191,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -3272,8 +3206,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2020-12-10",
@@ -3285,8 +3218,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -3392,8 +3324,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -3408,8 +3339,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2021-02-18",
@@ -3421,8 +3351,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -3526,8 +3455,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -3542,8 +3470,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2021-05-20",
@@ -3555,8 +3482,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -3668,8 +3594,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -3684,8 +3609,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2021-08-26",
@@ -3697,8 +3621,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -3812,8 +3735,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -3828,8 +3750,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2021-11-18",
@@ -3841,8 +3762,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -3956,8 +3876,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -3972,8 +3891,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2022-04-26",
@@ -3985,8 +3903,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -4117,8 +4034,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -4133,8 +4049,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2022-08-25",
@@ -4146,8 +4061,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -4280,8 +4194,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -4296,8 +4209,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2022-11-01",
@@ -4309,8 +4221,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -4443,8 +4354,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -4459,8 +4369,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2023-02-23",
@@ -4472,8 +4381,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -4606,8 +4514,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -4622,8 +4529,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2023-06-08",
@@ -4635,8 +4541,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -4769,8 +4674,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -4785,8 +4689,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2023-06-26",
@@ -4798,8 +4701,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -4932,8 +4834,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -4948,8 +4849,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2024-02-07",
@@ -4961,8 +4861,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -5095,8 +4994,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -5111,8 +5009,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2025-03-27",
@@ -5124,8 +5021,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -5258,8 +5154,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -5274,8 +5169,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2021-03-30",
@@ -5287,8 +5181,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -5387,8 +5280,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -5403,8 +5295,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2021-07-15",
@@ -5416,8 +5307,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -5520,8 +5410,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -5536,8 +5425,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2021-10-20",
@@ -5549,8 +5437,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -5660,8 +5547,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -5676,8 +5562,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2021-12-07",
@@ -5689,8 +5574,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -5800,8 +5684,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -5816,8 +5699,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2022-01-27",
@@ -5829,8 +5711,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -5941,8 +5822,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -5957,8 +5837,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2022-02-09",
@@ -5970,8 +5849,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -6082,8 +5960,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -6098,8 +5975,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2022-06-07",
@@ -6111,8 +5987,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -6235,8 +6110,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -6251,8 +6125,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2022-10-06",
@@ -6264,8 +6137,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -6388,8 +6260,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -6404,8 +6275,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2022-10-13",
@@ -6417,8 +6287,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -6542,8 +6411,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -6558,8 +6426,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2022-11-22",
@@ -6571,8 +6438,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -6698,8 +6564,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -6714,8 +6579,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2023-02-23",
@@ -6727,8 +6591,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -6854,8 +6717,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -6870,8 +6732,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2023-03-16",
@@ -6883,8 +6744,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -7019,8 +6879,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -7035,8 +6894,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2023-06-08",
@@ -7048,8 +6906,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -7184,8 +7041,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -7200,8 +7056,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2023-10-26",
@@ -7213,8 +7068,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -7349,8 +7203,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -7365,8 +7218,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2024-02-07",
@@ -7378,8 +7230,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -7514,8 +7365,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -7530,8 +7380,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2024-04-04",
@@ -7543,8 +7392,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -7679,8 +7527,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -7695,8 +7542,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2024-10-22",
@@ -7708,8 +7554,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -7844,8 +7689,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -7860,8 +7704,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2025-01-14",
@@ -7873,8 +7716,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -8009,8 +7851,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -8025,8 +7866,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2025-11-06",
@@ -8038,8 +7878,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -8174,8 +8013,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -8190,8 +8028,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2026-01-30",
@@ -8203,8 +8040,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -8339,8 +8175,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -8355,8 +8190,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2022-03-31",
@@ -8368,8 +8202,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -8478,8 +8311,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -8494,8 +8326,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2022-08-04",
@@ -8507,8 +8338,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -8629,8 +8459,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -8645,8 +8474,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2022-10-03",
@@ -8658,8 +8486,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -8780,8 +8607,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -8796,8 +8622,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2022-11-10",
@@ -8809,8 +8634,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -8931,8 +8755,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -8947,8 +8770,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2023-01-31",
@@ -8960,8 +8782,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -9088,8 +8909,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -9104,8 +8924,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2023-06-08",
@@ -9117,8 +8936,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -9267,8 +9085,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -9283,8 +9100,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2023-09-28",
@@ -9296,8 +9112,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -9445,8 +9260,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -9461,8 +9275,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2024-02-07",
@@ -9474,8 +9287,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -9623,8 +9435,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -9639,8 +9450,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2024-03-14",
@@ -9652,8 +9462,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -9807,8 +9616,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -9823,8 +9631,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2024-08-15",
@@ -9836,8 +9643,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -9998,8 +9804,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -10014,8 +9819,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2024-09-19",
@@ -10027,8 +9831,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -10201,8 +10004,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -10217,8 +10019,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2025-02-12",
@@ -10230,8 +10031,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -10394,8 +10194,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -10410,8 +10209,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2025-09-10",
@@ -10423,8 +10221,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -10587,8 +10384,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -10603,8 +10399,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2026-01-29",
@@ -10616,8 +10411,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -10780,8 +10574,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -10796,8 +10589,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2026-10-22",
@@ -10809,8 +10601,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -10973,8 +10764,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -10989,8 +10779,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2023-05-11",
@@ -11002,8 +10791,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -11141,8 +10929,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -11157,8 +10944,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2023-08-31",
@@ -11170,8 +10956,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -11309,8 +11094,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -11325,8 +11109,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2023-12-20",
@@ -11338,8 +11121,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -11492,8 +11274,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -11508,8 +11289,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2024-02-07",
@@ -11521,8 +11301,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -11675,8 +11454,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -11691,8 +11469,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2024-05-15",
@@ -11704,8 +11481,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -11850,8 +11626,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -11866,8 +11641,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2024-09-17",
@@ -11879,8 +11653,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -12044,8 +11817,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -12060,8 +11832,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2024-12-12",
@@ -12073,8 +11844,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -12225,8 +11995,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -12241,8 +12010,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2025-01-21",
@@ -12254,8 +12022,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -12409,8 +12176,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -12425,8 +12191,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2025-05-27",
@@ -12438,8 +12203,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -12607,8 +12371,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -12623,8 +12386,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2025-09-25",
@@ -12636,8 +12398,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -12816,8 +12577,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -12832,8 +12592,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2026-01-19",
@@ -12845,8 +12604,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -13033,8 +12791,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -13049,8 +12806,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2026-01-27",
@@ -13062,8 +12818,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -13240,8 +12995,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -13256,8 +13010,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2026-05-07",
@@ -13269,8 +13022,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -13454,8 +13206,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -13470,8 +13221,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2026-10-22",
@@ -13483,8 +13233,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -13668,8 +13417,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -13684,8 +13432,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2024-07-25",
@@ -13697,8 +13444,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -13841,8 +13587,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -13857,8 +13602,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2024-11-28",
@@ -13870,8 +13614,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -14018,8 +13761,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -14034,8 +13776,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2025-01-28",
@@ -14047,8 +13788,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -14195,8 +13935,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -14211,8 +13950,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2025-04-16",
@@ -14224,8 +13962,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -14372,8 +14109,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -14388,8 +14124,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2025-08-21",
@@ -14401,8 +14136,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -14563,8 +14297,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -14579,8 +14312,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2025-12-11",
@@ -14592,8 +14324,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -14760,8 +14491,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -14776,8 +14506,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2026-01-28",
@@ -14789,8 +14518,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -14947,8 +14675,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -14963,8 +14690,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2026-06-02",
@@ -14976,8 +14702,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -15158,8 +14883,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -15174,8 +14898,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2026-10-22",
@@ -15187,8 +14910,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -15365,8 +15087,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -15381,8 +15102,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2026-04-21",
@@ -15394,8 +15114,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -15566,8 +15285,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -15582,8 +15300,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2026-09-15",
@@ -15595,8 +15312,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -15777,8 +15493,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     },
     {
@@ -15793,8 +15508,7 @@
             "verified_on": "2026-11-15",
             "note": "\"This guide provides release information for FortiOS ... build ...\""
           }
-        ],
-        "is_verified": true
+        ]
       },
       "release_date": {
         "value": "2026-10-22",
@@ -15806,8 +15520,7 @@
             "verified_on": "2026-11-15",
             "note": "Date of the \"Initial release.\" row."
           }
-        ],
-        "is_verified": true
+        ]
       },
       "supported_models": {
         "value": [
@@ -15988,8 +15701,7 @@
             "verified_on": "2026-11-15",
             "note": "Section \"Supported models\" (special-branch models excluded)."
           }
-        ],
-        "is_verified": true
+        ]
       }
     }
   ]

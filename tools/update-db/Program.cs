@@ -14,8 +14,13 @@ const string Usage = """
                                        (build, initial-release date, supported models).
       refresh-hw-ports [--apply]       Re-read the hardware-acceleration page cited for each model and
                                        compare the documented port list with data/models.json.
+      import-default-backup --model <id> --file <path> [--apply]
+                                       Take interface names and virtual-switch membership from a real
+                                       factory-default backup read from the local disk. The backup is never
+                                       copied or committed: only the names go to models.json.
       check-links                      Check that every source URL still answers HTTP 200.
       gen-docs                         Regenerate docs/SOURCES.md and docs/supported-models.md.
+      normalize                        Rewrite data/*.json in canonical formatting (after hand edits).
 
     Options:
       --data <dir>                     Data directory (default: ./data)
@@ -52,6 +57,24 @@ try
 
         case "check-links":
             return await CheckLinksAsync(cts.Token);
+
+        case "import-default-backup":
+            if (Option("--model") is not { } model || Option("--file") is not { } file)
+            {
+                Console.Error.WriteLine("import-default-backup needs --model <id> and --file <path>.");
+                return 2;
+            }
+
+            return DefaultBackupImport.Run(store, model, file, today, args.Contains("--apply"));
+
+        case "normalize":
+            ModelDatabase.LoadFromDirectory(dataDir);
+            store.Write(store.ReadModels());
+            store.Write(store.ReadReleases());
+            store.Write(store.ReadUpgradePaths());
+            ModelDatabase.LoadFromDirectory(dataDir);
+            Console.WriteLine("data/*.json rewritten in canonical format.");
+            return 0;
 
         case "gen-docs":
             var db = ModelDatabase.LoadFromDirectory(dataDir);
@@ -128,7 +151,7 @@ async Task<int> CheckLinksAsync(CancellationToken ct)
     var models = store.ReadModels();
     var releases = store.ReadReleases();
     var paths = store.ReadUpgradePaths();
-    void Add<T>(Sourced<T> s) { foreach (var src in s.Sources) urls.Add(src.Url); }
+    void Add<T>(Sourced<T> s) { foreach (var src in s.Sources) if (src.Url is not null) urls.Add(src.Url); }
     foreach (var m in models.Models) { Add(m.Interfaces); Add(m.HasDisk); Add(m.DefaultSwitches); }
     foreach (var r in releases.Releases) { Add(r.Build); Add(r.ReleaseDate); Add(r.SupportedModels); }
     Add(paths.UpgradePaths.PublishedInConsultableForm);

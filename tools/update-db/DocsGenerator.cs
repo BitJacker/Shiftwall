@@ -100,6 +100,10 @@ internal static class DocsGenerator
 
     private static string Mark<T>(Sourced<T> s, string? text) => s.IsVerified ? text ?? "" : "⚠ unverified";
 
+    private static string Cite(SourceRef src) => src.Url is null
+        ? $"{src.Title} (factory-default backup examined locally, not published)"
+        : $"[{src.Title}]({src.Url})";
+
     private static string Link(string? url) => url is null ? "—" : $"[link]({url})";
 
     private static void AppendField<T>(StringBuilder sb, string label, Sourced<T> s, Func<T, string> render)
@@ -115,7 +119,7 @@ internal static class DocsGenerator
 
         foreach (var src in s.Sources)
         {
-            sb.AppendLine(CultureInfo.InvariantCulture, $"  - [{src.Title}]({src.Url}) — verified {src.VerifiedOn:yyyy-MM-dd}{(src.Note is null ? "" : " — " + src.Note)}");
+            sb.AppendLine(CultureInfo.InvariantCulture, $"  - {Cite(src)} — verified {src.VerifiedOn:yyyy-MM-dd}{(src.Note is null ? "" : " — " + src.Note)}");
         }
 
         if (s.IsVerified && s.Note is not null)
@@ -130,7 +134,7 @@ internal static class DocsGenerator
     {
         foreach (var src in sources)
         {
-            sb.AppendLine(CultureInfo.InvariantCulture, $"- [{src.Title}]({src.Url}) — verified {src.VerifiedOn:yyyy-MM-dd}{(src.Note is null ? "" : " — " + src.Note)}");
+            sb.AppendLine(CultureInfo.InvariantCulture, $"- {Cite(src)} — verified {src.VerifiedOn:yyyy-MM-dd}{(src.Note is null ? "" : " — " + src.Note)}");
         }
 
         sb.AppendLine();
