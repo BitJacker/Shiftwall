@@ -20,7 +20,8 @@
     <PublishSingleFile>true</PublishSingleFile>
     <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
     <PublishReadyToRun>true</PublishReadyToRun>
-    <DebugType>embedded</DebugType>
+    <!-- Symbols are published next to the exe (and shipped as a separate download), not embedded: smaller exe. -->
+    <DebugType>portable</DebugType>
   </PropertyGroup>
   <ItemGroup>
     <Resource Include="Assets\icon.ico" />

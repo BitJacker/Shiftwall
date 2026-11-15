@@ -40,34 +40,20 @@ jobs:
         run: dotnet test -c Release
       - name: Publish single-file exe
         run: dotnet publish src/Shiftwall.App -c Release -o publish
-      - name: Smoke test (start-up time and screenshot)
+      - name: Version metadata
+        shell: pwsh
+        run: |
+          $version = ([xml](Get-Content Directory.Build.props)).Project.PropertyGroup.Version
+          tools/build/verify-metadata.ps1 -Exe publish/Shiftwall.exe -Version $version
+      - name: Smoke test (start-up time and screenshots)
         shell: pwsh
         run: |
           Add-Type -AssemblyName System.Windows.Forms, System.Drawing
-          function Start-Shiftwall([string]$label) {
-            $sw = [Diagnostics.Stopwatch]::StartNew()
-            $p = Start-Process -FilePath publish\Shiftwall.exe -PassThru
-            while ($p.MainWindowHandle -eq 0 -and $sw.Elapsed.TotalSeconds -lt 60) { Start-Sleep -Milliseconds 50; $p.Refresh() }
-            if ($p.MainWindowHandle -eq 0) { throw "No main window ($label)" }
-            $line = "$label start-up: $([int]$sw.Elapsed.TotalMilliseconds) ms"
-            Add-Content -Path startup.txt -Value $line
-            Write-Host $line
-            return $p
-          }
-          $first = Start-Shiftwall "first run (extracts native runtime files)"
-          Start-Sleep -Seconds 2
-          Stop-Process $first
-          Start-Sleep -Seconds 2
-          $p = Start-Shiftwall "second run"
-          Start-Sleep -Seconds 3
-          if ($p.HasExited) { throw "Shiftwall exited unexpectedly" }
+          tools/build/measure-startup.ps1 -Exe publish/Shiftwall.exe -Runs 5 -Label release | Tee-Object -Variable m | Format-List
+          "first run: $($m.FirstRunMs) ms`nwarm median: $($m.WarmMedianMs) ms ($($m.WarmRunsMs))`nsize: $($m.SizeMB) MB" | Set-Content startup.txt
           $b = [System.Windows.Forms.Screen]::PrimaryScreen.Bounds
-          $bmp = New-Object System.Drawing.Bitmap $b.Width, $b.Height
-          [System.Drawing.Graphics]::FromImage($bmp).CopyFromScreen($b.Location, [System.Drawing.Point]::Empty, $b.Size)
-          $bmp.Save("screenshot-main.png")
-          Stop-Process $p
-          # One screenshot per toolbox page (empty state), to review the layout.
-          foreach ($page in "compare","audit","cleanup","export","import","vpn","anonymize","snippets","upgrade","lan") {
+          # One screenshot of the start page and of every toolbox page (empty state), to review the layout.
+          foreach ($page in "migration","compare","audit","cleanup","export","import","vpn","anonymize","snippets","upgrade","lan") {
             $q = Start-Process -FilePath publish\Shiftwall.exe -ArgumentList "--page",$page -PassThru
             $sw = [Diagnostics.Stopwatch]::StartNew()
             while ($q.MainWindowHandle -eq 0 -and $sw.Elapsed.TotalSeconds -lt 30) { Start-Sleep -Milliseconds 100; $q.Refresh() }
@@ -79,9 +65,22 @@ jobs:
             Stop-Process $q
             Start-Sleep -Seconds 1
           }
+      - name: Size and start-up of publish variants
+        shell: pwsh
+        run: |
+          $variants = @(
+            @{ Name = 'r2r'; Args = @('-p:PublishReadyToRun=true', '-p:EnableCompressionInSingleFile=false') },
+            @{ Name = 'r2r-compressed'; Args = @('-p:PublishReadyToRun=true', '-p:EnableCompressionInSingleFile=true') },
+            @{ Name = 'jit-compressed'; Args = @('-p:PublishReadyToRun=false', '-p:EnableCompressionInSingleFile=true') }
+          )
+          $results = foreach ($v in $variants) {
+            dotnet publish src/Shiftwall.App -c Release -o "variants/$($v.Name)" @($v.Args) | Out-Null
+            tools/build/measure-startup.ps1 -Exe "variants/$($v.Name)/Shiftwall.exe" -Runs 7 -Label $v.Name
+          }
+          $results | Format-Table -AutoSize | Out-String -Width 200 | Tee-Object -FilePath variants.txt
       - name: SHA256
         shell: pwsh
-        run: (Get-FileHash publish\Shiftwall.exe -Algorithm SHA256).Hash + "  Shiftwall.exe" | Out-File -Encoding ascii publish\SHA256SUMS.txt
+        run: (Get-FileHash publish\Shiftwall.exe -Algorithm SHA256).Hash.ToLowerInvariant() + "  Shiftwall.exe" | Out-File -Encoding ascii publish\SHA256SUMS.txt
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: shiftwall-win-x64
@@ -90,10 +89,16 @@ jobs:
             publish/SHA256SUMS.txt
           retention-days: 14
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: shiftwall-win-x64-symbols
+          path: publish/*.pdb
+          retention-days: 14
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         if: always()
         with:
           name: smoke-test
           path: |
             screenshot-*.png
             startup.txt
+            variants.txt
           retention-days: 14
