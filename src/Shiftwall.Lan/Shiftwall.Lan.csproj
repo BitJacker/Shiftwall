@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    The only shipped project allowed to open network connections (see tests/Shiftwall.Architecture.Tests).
+    Used solely by the opt-in "Backup from LAN" page, disabled by default, after an explicit user action.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <RootNamespace>Shiftwall.Lan</RootNamespace>
+    <IsTrimmable>true</IsTrimmable>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Shiftwall.Features\Shiftwall.Features.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="Shiftwall.Lan.Tests" />
+  </ItemGroup>
+</Project>

@@ -9,6 +9,8 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Shiftwall.Core\Shiftwall.Core.csproj" />
+    <ProjectReference Include="..\..\src\Shiftwall.Features\Shiftwall.Features.csproj" />
+    <ProjectReference Include="..\..\src\Shiftwall.Presentation\Shiftwall.Presentation.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Using Include="Xunit" />

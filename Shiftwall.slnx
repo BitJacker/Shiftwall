@@ -3,12 +3,14 @@
     <Project Path="src/Shiftwall.App/Shiftwall.App.csproj" />
     <Project Path="src/Shiftwall.Core/Shiftwall.Core.csproj" />
     <Project Path="src/Shiftwall.Features/Shiftwall.Features.csproj" />
+    <Project Path="src/Shiftwall.Lan/Shiftwall.Lan.csproj" />
     <Project Path="src/Shiftwall.Presentation/Shiftwall.Presentation.csproj" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/Shiftwall.Architecture.Tests/Shiftwall.Architecture.Tests.csproj" />
     <Project Path="tests/Shiftwall.Core.Tests/Shiftwall.Core.Tests.csproj" />
     <Project Path="tests/Shiftwall.Features.Tests/Shiftwall.Features.Tests.csproj" />
+    <Project Path="tests/Shiftwall.Lan.Tests/Shiftwall.Lan.Tests.csproj" />
     <Project Path="tests/Shiftwall.Presentation.Tests/Shiftwall.Presentation.Tests.csproj" />
     <Project Path="tests/Shiftwall.UpdateDb.Tests/Shiftwall.UpdateDb.Tests.csproj" />
   </Folder>

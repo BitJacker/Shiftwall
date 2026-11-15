@@ -54,22 +54,47 @@ public sealed partial class NoNetworkTests
         Assert.True(offenders.Count == 0, "Network API used outside src/Shiftwall.Lan:\n" + string.Join("\n", offenders));
     }
 
-    [Fact]
-    public void CompiledCore_ReferencesNoNetworkType()
-    {
-        var path = typeof(Shiftwall.Core.Data.ModelDatabase).Assembly.Location;
-        using var pe = new PEReader(File.OpenRead(path));
-        var md = pe.GetMetadataReader();
-        var referenced = md.TypeReferences
-            .Select(h => md.GetTypeReference(h))
-            .Select(t => $"{md.GetString(t.Namespace)}.{md.GetString(t.Name)}")
-            .ToList();
-        var bad = referenced.Where(t => ForbiddenTypes.Contains(t) || ForbiddenNamespaces.Any(ns => t.StartsWith(ns + ".", StringComparison.Ordinal))).ToList();
-        Assert.True(bad.Count == 0, "Shiftwall.Core references network types: " + string.Join(", ", bad));
+    public static TheoryData<string> CompiledAssemblies() => ["Shiftwall.Core", "Shiftwall.Features", "Shiftwall.Presentation"];
 
-        var assemblyRefs = md.AssemblyReferences.Select(h => md.GetString(md.GetAssemblyReference(h).Name)).ToList();
-        Assert.DoesNotContain("System.Net.Http", assemblyRefs);
-        Assert.DoesNotContain("System.Net.Sockets", assemblyRefs);
+    private static MetadataReader Metadata(string assemblyName, out PEReader pe)
+    {
+        var path = Path.Combine(AppContext.BaseDirectory, assemblyName + ".dll");
+        pe = new PEReader(File.OpenRead(path));
+        return pe.GetMetadataReader();
+    }
+
+    [Theory]
+    [MemberData(nameof(CompiledAssemblies))]
+    public void CompiledAssembly_ReferencesNoNetworkType(string assembly)
+    {
+        var md = Metadata(assembly, out var pe);
+        using (pe)
+        {
+            var referenced = md.TypeReferences
+                .Select(h => md.GetTypeReference(h))
+                .Select(t => $"{md.GetString(t.Namespace)}.{md.GetString(t.Name)}")
+                .ToList();
+            var bad = referenced.Where(t => ForbiddenTypes.Contains(t) || ForbiddenNamespaces.Any(ns => t.StartsWith(ns + ".", StringComparison.Ordinal))).ToList();
+            Assert.True(bad.Count == 0, $"{assembly} references network types: " + string.Join(", ", bad));
+
+            var assemblyRefs = md.AssemblyReferences.Select(h => md.GetString(md.GetAssemblyReference(h).Name)).ToList();
+            Assert.DoesNotContain("System.Net.Http", assemblyRefs);
+            Assert.DoesNotContain("System.Net.Sockets", assemblyRefs);
+        }
+    }
+
+    /// <summary>Only the presentation layer may call the LAN module; the engine never does.</summary>
+    [Theory]
+    [InlineData("Shiftwall.Core")]
+    [InlineData("Shiftwall.Features")]
+    public void Engine_DoesNotReferenceLanModule(string assembly)
+    {
+        var md = Metadata(assembly, out var pe);
+        using (pe)
+        {
+            var assemblyRefs = md.AssemblyReferences.Select(h => md.GetString(md.GetAssemblyReference(h).Name)).ToList();
+            Assert.DoesNotContain(LanProject, assemblyRefs);
+        }
     }
 
     [Fact]
