@@ -1,0 +1,77 @@
+name: Bug report / Segnalazione bug
+description: Something does not work as expected. / Qualcosa non funziona come previsto.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > [!WARNING]
+        > **Do NOT attach real configurations: use the Anonymize function.**
+        > **NON allegare config reali, usa la funzione Anonimizza** (*Anonymize config* page).
+        >
+        > Do not attach the anonymization map (`.swmap`) or its password, API tokens or backups.
+        > Non allegare la mappa di anonimizzazione (`.swmap`) né la sua password, token API o backup.
+  - type: checkboxes
+    id: no-real-config
+    attributes:
+      label: Data check / Controllo dati
+      options:
+        - label: This report contains no real configuration, password, token or public IP address. / Questa segnalazione non contiene config reali, password, token o IP pubblici.
+          required: true
+  - type: input
+    id: version
+    attributes:
+      label: Shiftwall version / Versione di Shiftwall
+      description: About page. / Pagina Info.
+      placeholder: "0.1.0"
+    validations:
+      required: true
+  - type: input
+    id: windows
+    attributes:
+      label: Windows version / Versione di Windows
+      placeholder: "Windows 11 24H2"
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Migration wizard / Wizard di migrazione
+        - Batch conversion / Conversione batch
+        - Toolbox
+        - Backup from LAN / Backup da LAN
+        - Model database / Database modelli
+        - Other / Altro
+    validations:
+      required: true
+  - type: input
+    id: models
+    attributes:
+      label: Source and target model, FortiOS version / Modello sorgente e destinazione, versione FortiOS
+      placeholder: "FG-60F 7.4.8 -> FG-70G 7.4.8"
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce / Passi per riprodurre
+      placeholder: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected and actual result / Risultato atteso e ottenuto
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Anonymized excerpt or error log / Estratto anonimizzato o log degli errori
+      description: |
+        Only an excerpt anonymized with Shiftwall. The error log in %LOCALAPPDATA%\Shiftwall\logs contains no configuration content.
+        Solo un estratto anonimizzato con Shiftwall. Il log degli errori in %LOCALAPPDATA%\Shiftwall\logs non contiene contenuti delle config.
+      render: text

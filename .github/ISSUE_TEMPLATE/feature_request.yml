@@ -1,0 +1,31 @@
+name: Feature request / Nuova funzione
+description: Suggest an idea or an improvement. / Proponi un'idea o un miglioramento.
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Shiftwall stays offline, never decrypts `ENC` values and uses only official sources. Requests against these rules cannot be accepted.
+        Shiftwall resta offline, non decifra mai i valori `ENC` e usa solo fonti ufficiali. Richieste contrarie a queste regole non possono essere accolte.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / Problema
+      description: What are you trying to do? / Cosa stai cercando di fare?
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution / Soluzione proposta
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Sources / Fonti
+      description: Fortinet documentation or RFCs the feature relies on, if any. / Documentazione Fortinet o RFC su cui si basa, se presenti.
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered / Alternative valutate

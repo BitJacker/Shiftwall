@@ -1,0 +1,59 @@
+name: New FortiGate model / Nuovo modello FortiGate
+description: Add or correct a model in the database, with official sources. / Aggiungi o correggi un modello nel database, con fonti ufficiali.
+title: "[model] "
+labels: ["model-database"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Every datum needs an **official Fortinet source** (docs.fortinet.com, www.fortinet.com data sheets, community.fortinet.com technical tips). Without a source the datum is stored as *unverified*.
+        Ogni dato richiede una **fonte ufficiale Fortinet**. Senza fonte il dato viene registrato come *non verificato*.
+
+        **Do not attach backups.** If you have a factory-default backup, list only the interface names.
+        **Non allegare backup.** Se hai un backup di default, riporta solo i nomi delle interfacce.
+  - type: input
+    id: model
+    attributes:
+      label: Model / Modello
+      placeholder: "FG-90G"
+    validations:
+      required: true
+  - type: textarea
+    id: interfaces
+    attributes:
+      label: Interface names / Nomi delle interfacce
+      description: As they appear in FortiOS (config system interface). / Come compaiono in FortiOS.
+      placeholder: "wan1, wan2, internal1, internal2, ..."
+  - type: dropdown
+    id: disk
+    attributes:
+      label: Local disk / Disco locale
+      options:
+        - Unknown / Non so
+        - "Yes / Sì"
+        - "No"
+  - type: input
+    id: versions
+    attributes:
+      label: FortiOS versions / Versioni FortiOS
+      placeholder: "7.4.8 – 8.0.2"
+  - type: textarea
+    id: sources
+    attributes:
+      label: Official sources (mandatory) / Fonti ufficiali (obbligatorie)
+      description: |
+        One URL per line, with the document title and what it proves. / Un URL per riga, con il titolo del documento e cosa dimostra.
+      placeholder: |
+        https://docs.fortinet.com/document/fortigate/8.0.2/hardware-acceleration/... — port list
+        https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/pdf/... — Onboard Storage
+    validations:
+      required: true
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Confirmation / Conferma
+      options:
+        - label: Every datum above comes from the sources listed, which I checked today. / Ogni dato viene dalle fonti elencate, che ho verificato oggi.
+          required: true
+        - label: I attached no backup or configuration. / Non ho allegato backup o configurazioni.
+          required: true
