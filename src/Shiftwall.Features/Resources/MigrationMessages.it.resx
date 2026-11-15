@@ -6,7 +6,7 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
   <data name="MIG-001" xml:space="preserve"><value>Firmware diverso: sorgente FortiOS {0}, destinazione FortiOS {1}. Allinea prima il firmware (porta uno dei due apparati alla stessa versione): Shiftwall non traduce la sintassi della configurazione tra versioni.</value></data>
   <data name="MIG-002" xml:space="preserve"><value>Versione firmware sconosciuta (sorgente {0}, destinazione {1}). Verifica che i due apparati abbiano la stessa versione FortiOS prima del ripristino.</value></data>
-  <data name="MIG-003" xml:space="preserve"><value>Header della destinazione non disponibile (destinazione scelta dal database). Viene mantenuto l'header della sorgente: prima del ripristino sostituisci le prime righe con quelle di un backup di default della destinazione, altrimenti il FortiGate rifiuta il file.</value></data>
+  <data name="MIG-003" xml:space="preserve"><value>Header della destinazione non disponibile (destinazione scelta dal database). Viene mantenuto l'header della sorgente: prima del ripristino sostituisci il valore config-version all'inizio della prima riga (es. FGT60F-7.4.13-FW-build2933-261022) con quello di un backup di default della destinazione, altrimenti il FortiGate rifiuta il file.</value></data>
   <data name="MIG-004" xml:space="preserve"><value>L'elenco interfacce della destinazione {0} non è verificato. Carica un backup di default della destinazione per continuare.</value></data>
   <data name="MIG-005" xml:space="preserve"><value>Nota sull'elenco interfacce della destinazione: {0}</value></data>
   <data name="MIG-006" xml:space="preserve"><value>Non si sa se la destinazione ha un disco: le sezioni disco (config system storage, config log disk setting) vengono mantenute. Verificale a mano.</value></data>
@@ -24,7 +24,7 @@
   <data name="MIG-022" xml:space="preserve"><value>Più interfacce sorgente sono mappate su {0}.</value></data>
   <data name="MIG-023" xml:space="preserve"><value>L'interfaccia sorgente {0} è mappata su {1}, che non esiste sulla destinazione.</value></data>
   <data name="MIG-024" xml:space="preserve"><value>Interfacce della destinazione non usate dalla mappatura: {0}.</value></data>
-  <data name="MIG-030" xml:space="preserve"><value>Header sostituito con quello della destinazione ({0}, FortiOS {1}).</value></data>
+  <data name="MIG-030" xml:space="preserve"><value>config-version della prima riga sostituito con quello della destinazione ({0}, FortiOS {1}); modalità operativa, flag VDOM e le altre righe di intestazione restano quelli della sorgente, come nella procedura di migrazione manuale di Fortinet.</value></data>
   <data name="MIG-031" xml:space="preserve"><value>Interfaccia {0} rinominata in {1} ({2} occorrenze).</value></data>
   <data name="MIG-032" xml:space="preserve"><value>Rimossa la definizione dell'interfaccia inutilizzata {0}.</value></data>
   <data name="MIG-033" xml:space="preserve"><value>Rimossa la sezione "config {0}" (destinazione senza disco).</value></data>
@@ -38,7 +38,7 @@
   <data name="CHK-001" xml:space="preserve"><value>Testa la nuova configurazione in laboratorio prima della produzione. Le configurazioni modificate non sono supportate dal TAC Fortinet.</value></data>
   <data name="CHK-002" xml:space="preserve"><value>Porta i due apparati alla stessa versione FortiOS prima del ripristino.</value></data>
   <data name="CHK-003" xml:space="preserve"><value>Verifica che password, chiavi pre-condivise e certificati funzionino sulla destinazione (i valori ENC dipendono dalla chiave di cifratura).</value></data>
-  <data name="CHK-004" xml:space="preserve"><value>Sostituisci le righe di intestazione con quelle di un backup di default della destinazione.</value></data>
+  <data name="CHK-004" xml:space="preserve"><value>Sostituisci il valore config-version all'inizio della prima riga con quello di un backup di default della destinazione (FortiOS Best Practices, "Migrating a configuration manually").</value></data>
   <data name="CHK-005" xml:space="preserve"><value>Verifica dove vanno ora i log (FortiAnalyzer, FortiGate Cloud, syslog): le impostazioni di log su disco sono cambiate o vanno riviste.</value></data>
   <data name="CHK-006" xml:space="preserve"><value>Controlla i "possibili riferimenti" elencati nel report.</value></data>
   <data name="CHK-007" xml:space="preserve"><value>Decidi cosa fare delle porte della destinazione non usate dalla migrazione.</value></data>
@@ -63,4 +63,5 @@
   <data name="Report.ContainsConfig" xml:space="preserve"><value>Questo report contiene estratti della configurazione: trattalo come la configurazione stessa.</value></data>
   <data name="Report.Blocked" xml:space="preserve"><value>Migrazione bloccata: risolvi gli errori indicati sopra.</value></data>
   <data name="Report.Uses" xml:space="preserve"><value>Riferimenti</value></data>
+  <data name="MIG-035" xml:space="preserve"><value>La riga config-version non è stata trovata nel backup sorgente o in quello di destinazione: l'header non è stato modificato. Sostituisci a mano il valore config-version prima del ripristino.</value></data>
 </root>

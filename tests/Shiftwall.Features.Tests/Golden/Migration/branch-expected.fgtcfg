@@ -1,5 +1,5 @@
 #config-version=FGT70G-7.4.13-FW-build2933-261022:opmode=0:vdom=0:user=admin
-#conf_file_ver=7234567890123456
+#conf_file_ver=6234567890123456
 #buildno=2933
 #global_vdom=1
 config system global

@@ -6,7 +6,7 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
   <data name="MIG-001" xml:space="preserve"><value>Firmware differs: source FortiOS {0}, target FortiOS {1}. Align the firmware first (upgrade one of the units to the same version): Shiftwall does not translate configuration syntax between versions.</value></data>
   <data name="MIG-002" xml:space="preserve"><value>Firmware version unknown (source {0}, target {1}). Check that both units run the same FortiOS version before restoring.</value></data>
-  <data name="MIG-003" xml:space="preserve"><value>No target header available (target chosen from the database). The source header is kept: replace the first lines with those of a factory-default backup of the target before restoring, otherwise the FortiGate rejects the file.</value></data>
+  <data name="MIG-003" xml:space="preserve"><value>No target header available (target chosen from the database). The source header is kept: before restoring, replace the config-version value at the start of the first line (e.g. FGT60F-7.4.13-FW-build2933-261022) with the one of a factory-default backup of the target, otherwise the FortiGate rejects the file.</value></data>
   <data name="MIG-004" xml:space="preserve"><value>The interface list of target {0} is not verified. Load a factory-default backup of the target to continue.</value></data>
   <data name="MIG-005" xml:space="preserve"><value>Note on the target interface list: {0}</value></data>
   <data name="MIG-006" xml:space="preserve"><value>It is not known whether the target has a disk: the disk sections (config system storage, config log disk setting) are kept. Check them by hand.</value></data>
@@ -24,7 +24,7 @@
   <data name="MIG-022" xml:space="preserve"><value>Several source interfaces are mapped to {0}.</value></data>
   <data name="MIG-023" xml:space="preserve"><value>Source interface {0} is mapped to {1}, which does not exist on the target.</value></data>
   <data name="MIG-024" xml:space="preserve"><value>Target interfaces not used by the mapping: {0}.</value></data>
-  <data name="MIG-030" xml:space="preserve"><value>Header replaced with the target one ({0}, FortiOS {1}).</value></data>
+  <data name="MIG-030" xml:space="preserve"><value>config-version of the first line replaced with the target one ({0}, FortiOS {1}); operation mode, VDOM flag and the other header lines are kept, as in Fortinet's manual migration procedure.</value></data>
   <data name="MIG-031" xml:space="preserve"><value>Interface {0} renamed to {1} ({2} occurrence(s)).</value></data>
   <data name="MIG-032" xml:space="preserve"><value>Definition of unused interface {0} removed.</value></data>
   <data name="MIG-033" xml:space="preserve"><value>Section "config {0}" removed (target without disk).</value></data>
@@ -38,7 +38,7 @@
   <data name="CHK-001" xml:space="preserve"><value>Test the new configuration in a lab before production. Modified configurations are not supported by Fortinet TAC.</value></data>
   <data name="CHK-002" xml:space="preserve"><value>Bring both units to the same FortiOS version before restoring.</value></data>
   <data name="CHK-003" xml:space="preserve"><value>Check that passwords, pre-shared keys and certificates work on the target (ENC values depend on the encryption key).</value></data>
-  <data name="CHK-004" xml:space="preserve"><value>Replace the header lines with those of a factory-default backup of the target.</value></data>
+  <data name="CHK-004" xml:space="preserve"><value>Replace the config-version value at the start of the first line with the one of a factory-default backup of the target (FortiOS Best Practices, "Migrating a configuration manually").</value></data>
   <data name="CHK-005" xml:space="preserve"><value>Check where logs are sent now (FortiAnalyzer, FortiGate Cloud, syslog): disk logging settings changed or must be reviewed.</value></data>
   <data name="CHK-006" xml:space="preserve"><value>Review the "possible references" listed in the report.</value></data>
   <data name="CHK-007" xml:space="preserve"><value>Decide what to do with target ports not used by the migration.</value></data>
@@ -63,4 +63,5 @@
   <data name="Report.ContainsConfig" xml:space="preserve"><value>This report contains configuration excerpts: handle it like the configuration itself.</value></data>
   <data name="Report.Blocked" xml:space="preserve"><value>Migration blocked: resolve the errors above.</value></data>
   <data name="Report.Uses" xml:space="preserve"><value>References</value></data>
+  <data name="MIG-035" xml:space="preserve"><value>The config-version line was not found in the source or the target backup: the header was not changed. Replace the config-version value by hand before restoring.</value></data>
 </root>

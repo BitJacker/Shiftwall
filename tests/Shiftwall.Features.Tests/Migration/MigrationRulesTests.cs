@@ -241,4 +241,32 @@ public sealed class MigrationRulesTests
         Assert.Null(back["other"]);
         Assert.DoesNotContain("dmz", json, StringComparison.Ordinal);
     }
+
+    /// <summary>FortiOS Best Practices, "Migrating a configuration manually", step 4: only the config-version section changes.</summary>
+    [Fact]
+    public void Header_OnlyConfigVersionSectionIsReplaced()
+    {
+        var text = "#config-version=FGT60F-7.4.13-FW-build2933-261022:opmode=0:vdom=1:user=ops\n#conf_file_ver=42\n#buildno=2933\n#global_vdom=1\n" +
+                   "config system interface\n    edit \"port1\"\n        set type physical\n    next\nend\n";
+        var source = Fixtures.Source(text);
+        var target = Fixtures.Target("port1");
+        var result = MigrationEngine.Run(new MigrationRequest(source, target, InterfaceMapping.Auto(source.PhysicalInterfaces.Select(p => p.Name), target.PhysicalInterfaces)));
+        var lines = result.OutputText!.Split('\n');
+        Assert.Equal("#config-version=FGTSYN-7.4.13-FW-build2933-261022:opmode=0:vdom=1:user=ops", lines[0]);
+        Assert.Equal(["#conf_file_ver=42", "#buildno=2933", "#global_vdom=1"], lines[1..4]);
+        Assert.Contains(result.Changes, c => c.Code == MigrationCodes.HeaderReplaced);
+    }
+
+    [Fact]
+    public void Header_WithoutConfigVersionLine_IsLeftAndFlagged()
+    {
+        var text = "config system interface\n    edit \"port1\"\n        set type physical\n    next\nend\n";
+        var source = Fixtures.Source(text);
+        var target = Fixtures.Target("port1");
+        var result = MigrationEngine.Run(new MigrationRequest(source, target, InterfaceMapping.Auto(source.PhysicalInterfaces.Select(p => p.Name), target.PhysicalInterfaces)));
+        Assert.NotNull(result.OutputText);
+        Assert.StartsWith("config system interface", result.OutputText);
+        Assert.Contains(result.Changes, c => c.Code == MigrationCodes.HeaderNotReplaced);
+        Assert.Contains(result.Checklist, c => c.Code == MigrationCodes.CheckHeader);
+    }
 }

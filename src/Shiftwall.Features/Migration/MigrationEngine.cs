@@ -207,8 +207,15 @@ public static partial class MigrationEngine
         // 4. Header.
         if (request.Target.HeaderLines.Count > 0)
         {
-            ReplaceHeader(doc, request.Target.HeaderLines);
-            changes.Add(MigrationFinding.Info(MigrationCodes.HeaderReplaced, request.Target.PlatformCode ?? "?", request.Target.Version ?? "?"));
+            if (ReplaceConfigVersion(doc, request.Target.HeaderLines))
+            {
+                changes.Add(MigrationFinding.Info(MigrationCodes.HeaderReplaced, request.Target.PlatformCode ?? "?", request.Target.Version ?? "?"));
+            }
+            else
+            {
+                changes.Add(MigrationFinding.Warning(MigrationCodes.HeaderNotReplaced));
+                if (!checklist.Any(c => c.Code == MigrationCodes.CheckHeader)) checklist.Add(MigrationFinding.Info(MigrationCodes.CheckHeader));
+            }
         }
 
         var output = doc.ToText(sourceText.Length);
@@ -284,24 +291,34 @@ public static partial class MigrationEngine
     private static IEnumerable<ConfigBlock> DiskBlocks(ConfigDocument doc, string path) =>
         doc.GlobalScope.Blocks.Where(b => b.Path == path).ToList();
 
-    private static void ReplaceHeader(ConfigDocument doc, IReadOnlyList<Statement> targetHeader)
+    /// <summary>
+    /// Replaces the "config-version section" of the first header line with the target's, as in Fortinet's manual
+    /// migration procedure (FortiOS 8.0.0 Best Practices, "Migrating a configuration manually", step 4: only
+    /// <c>FGT80F-7.0.6-FW-build0366-220606</c> changes, <c>:opmode=0:vdom=0:user=admin</c> stays). The rest of the line
+    /// (operation mode, VDOM flag, user) and the other header lines describe the source configuration and are kept.
+    /// Returns false when either side has no recognisable config-version line.
+    /// </summary>
+    internal static bool ReplaceConfigVersion(ConfigDocument doc, IReadOnlyList<Statement> targetHeader)
     {
-        var existing = doc.Header.Lines;
-        var crlf = existing.Count > 0 ? existing[0].Raw.EndsWith("\r\n", StringComparison.Ordinal)
-                                      : doc.Children.FirstOrDefault() is { } first && first.ToText().EndsWith("\r\n", StringComparison.Ordinal);
-        foreach (var line in existing)
+        var targetSection = targetHeader.Select(l => ConfigVersionSection().Match(l.Raw)).FirstOrDefault(m => m.Success)?.Groups["section"].Value;
+        if (string.IsNullOrEmpty(targetSection)) return false;
+        foreach (var line in doc.Header.Lines)
         {
+            var m = ConfigVersionSection().Match(line.Raw);
+            if (!m.Success) continue;
             var node = doc.Children.OfType<TriviaNode>().FirstOrDefault(t => ReferenceEquals(t.Statement, line));
-            if (node is not null) doc.Remove(node);
+            if (node is null) return false;
+            var g = m.Groups["section"];
+            var raw = string.Concat(line.Raw.AsSpan(0, g.Index), targetSection, line.Raw.AsSpan(g.Index + g.Length));
+            doc.Replace(node, TriviaNode.FromText(raw));
+            return true;
         }
 
-        var index = 0;
-        foreach (var line in targetHeader)
-        {
-            var text = line.Raw.TrimEnd('\r', '\n') + (crlf ? "\r\n" : "\n");
-            doc.Insert(index++, TriviaNode.FromText(text));
-        }
+        return false;
     }
+
+    [System.Text.RegularExpressions.GeneratedRegex(@"^\s*#config-version=(?<section>[^:\r\n]+)")]
+    private static partial System.Text.RegularExpressions.Regex ConfigVersionSection();
 
     private static List<MigrationFinding> Validate(MigrationRequest request, string sourceText, string output)
     {

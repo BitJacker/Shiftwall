@@ -57,6 +57,7 @@ public static class MigrationCodes
     public const string DefinitionRemoved = "MIG-032";
     public const string SectionRemoved = "MIG-033";
     public const string PossibleReference = "MIG-034";
+    public const string HeaderNotReplaced = "MIG-035";
 
     // Validation of the output
     public const string OutputStructure = "MIG-040";

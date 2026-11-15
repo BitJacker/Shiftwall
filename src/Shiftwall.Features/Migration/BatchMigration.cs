@@ -41,7 +41,7 @@ public static class BatchMigration
     {
         try
         {
-            var inspection = ConfigInspector.Inspect(File.ReadAllBytes(path));
+            var inspection = ConfigInspector.Inspect(InputFile.ReadAllBytes(path));
             if (inspection.Kind != ConfigFileKind.FortiOsText)
             {
                 return new BatchItemResult(path, null, null, null, null, MigrationText.Format(MigrationCodes.SourceNotFortiOsText, [], null, ctx.Culture));

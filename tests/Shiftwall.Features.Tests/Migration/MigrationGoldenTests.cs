@@ -15,6 +15,31 @@ public sealed class MigrationGoldenTests
         Assert.Equal(Fixtures.Text("branch-expected.fgtcfg"), result.OutputText);
     }
 
+    /// <summary>
+    /// Multi-VDOM source: renames inside config global and inside each VDOM (policies with several interfaces,
+    /// static routes, VLAN parent, HA heartbeat device). The expected file was reviewed by hand.
+    /// </summary>
+    [Fact]
+    public void MultiVdom_ProducesTheReviewedOutput()
+    {
+        var source = Shiftwall.Features.Migration.SourceProfile.From(Shiftwall.Core.Config.ConfigInspector.Inspect(Fixtures.Bytes("multivdom-source.fgtcfg")));
+        var target = TargetProfile.FromDefaultBackup(Shiftwall.Core.Config.ConfigInspector.Inspect(Fixtures.Bytes("multivdom-target.fgtcfg")));
+        var mapping = InterfaceMapping.FromTemplate(MappingTemplate.FromJson(Fixtures.Text("multivdom-mapping.json")), source.PhysicalInterfaces.Select(p => p.Name));
+        var result = MigrationEngine.Run(new MigrationRequest(source, target, mapping));
+
+        Assert.False(result.IsBlocked);
+        Assert.True(result.IsValid, string.Join("; ", result.Validation.Select(v => v.Format())));
+        var expectedPath = Path.Combine(Fixtures.Dir, "multivdom-expected.fgtcfg");
+        if (!File.Exists(expectedPath))
+        {
+            File.WriteAllText(Path.Combine(Fixtures.Dir, "multivdom-actual.fgtcfg"), result.OutputText);
+            Assert.Fail("Expected file missing: review multivdom-actual.fgtcfg in the test output folder.");
+        }
+
+        Assert.Equal(File.ReadAllText(expectedPath), result.OutputText);
+        Assert.Contains(result.Analysis.PreChecks, f => f.Code == MigrationCodes.MultiVdom);
+    }
+
     [Fact]
     public void Branch_ReportsChangesWarningsAndChecklist()
     {
