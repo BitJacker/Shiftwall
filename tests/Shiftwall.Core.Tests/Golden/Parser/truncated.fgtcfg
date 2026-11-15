@@ -1,0 +1,13 @@
+#config-version=FGT60F-7.4.13-FW-build2933-261022:opmode=0:vdom=0:user=admin
+#conf_file_ver=4234567890123456
+#buildno=2933
+#global_vdom=1
+config system global
+    set hostname "lab-truncated"
+end
+config firewall address
+    edit "a1"
+        set subnet 192.0.2.1 255.255.255.255
+    next
+    edit "a2"
+        set subnet 192.0.2.2 255.255.255.255

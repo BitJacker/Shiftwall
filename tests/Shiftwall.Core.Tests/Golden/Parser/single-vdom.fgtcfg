@@ -1,0 +1,135 @@
+#config-version=FGT60F-7.4.13-FW-build2933-261022:opmode=0:vdom=0:user=admin
+#conf_file_ver=1234567890123456
+#buildno=2933
+#global_vdom=1
+config system global
+    set admintimeout 30
+    set alias "FGT-LAB-01"
+    set hostname "lab-fw-01"
+    set timezone "Europe/Rome"
+end
+config system admin
+    edit "admin"
+        set accprofile "super_admin"
+        set vdom "root"
+        set password ENC U2hpZnR3YWxsIHN5bnRoZXRpYyB0ZXN0IHZhbHVlIC0gbm90IGEgc2VjcmV0
+    next
+    edit "Security Administrator"
+        set accprofile "prof_admin"
+        set vdom "root"
+        set password ENC U2hpZnR3YWxsIHN5bnRoZXRpYyB0ZXN0IHZhbHVlIC0gbm90IGEgc2VjcmV0
+    next
+end
+config system interface
+    edit "wan1"
+        set vdom "root"
+        set ip 203.0.113.10 255.255.255.0
+        set allowaccess ping https ssh
+        set type physical
+        set role wan
+        set snmp-index 1
+    next
+    edit "internal1"
+        set vdom "root"
+        set ip 192.168.10.1 255.255.255.0
+        set allowaccess ping https ssh fabric
+        set type physical
+        set description "LAN \"office\" #1"
+        set role lan
+        set snmp-index 2
+        config ipv6
+            set ip6-address 2001:db8:10::1/64
+        end
+    next
+    edit "port10"
+        set vdom "root"
+        set type physical
+        set snmp-index 10
+    next
+    edit "vlan100"
+        set vdom "root"
+        set ip 192.168.100.1 255.255.255.0
+        set interface "internal1"
+        set vlanid 100
+    next
+end
+config system zone
+    edit "LAN"
+        set interface "internal1" "vlan100"
+    next
+end
+config firewall address
+    edit "srv-web"
+        set subnet 198.51.100.20 255.255.255.255
+        set comment 'Web server: it\'s public'
+    next
+    edit "net-office"
+        set subnet 192.168.10.0 255.255.255.0
+    next
+end
+config firewall addrgrp
+    edit "grp-servers"
+        set member "srv-web" "net-office"
+    next
+end
+config firewall policy
+    edit 1
+        set name "LAN to WAN"
+        set uuid 3f2b8c1e-6a4d-51ee-9e0f-0123456789ab
+        set srcintf "LAN"
+        set dstintf "wan1"
+        set action accept
+        set srcaddr "net-office"
+        set dstaddr "all"
+        set schedule "always"
+        set service "ALL"
+        set nat enable
+        set logtraffic all
+        set comments "Line one
+line two with \"quotes\" and a back\\slash"
+    next
+    edit 2
+        set srcintf "port10"
+        set dstintf "wan1"
+        set srcaddr "all"
+        set dstaddr "srv-web"
+        set action deny
+        set schedule "always"
+        set service "HTTPS"
+        unset logtraffic
+    next
+end
+config router static
+    edit 1
+        set gateway 203.0.113.1
+        set device "wan1"
+    next
+end
+config vpn certificate local
+    edit "Synthetic_Cert"
+        set password ENC U2hpZnR3YWxsIHN5bnRoZXRpYyB0ZXN0IHZhbHVlIC0gbm90IGEgc2VjcmV0
+        set comments "Synthetic certificate for tests"
+        set private-key "-----BEGIN ENCRYPTED PRIVATE KEY-----
+TUlJQ1N5bnRoZXRpY0tleU5vdEFSZWFsS2V5Rm9yVGVzdHNPbmx5MDEyMzQ1Njc4
+OWFiY2RlZmdoaWprbG1ub3BxcnN0dXZ3eHl6QUJDREVGR0hJSktMTU5PUFFSU1RV
+-----END ENCRYPTED PRIVATE KEY-----"
+        set certificate "-----BEGIN CERTIFICATE-----
+TUlJQ1N5bnRoZXRpY0NlcnROb3RBUmVhbENlcnRGb3JUZXN0c09ubHkwMTIzNDU2
+-----END CERTIFICATE-----"
+    next
+end
+config system replacemsg http "url-block"
+    set buffer "<html><body><h1 class=\"title\">Blocked</h1>
+<p>The page %%URL%% is blocked.</p>
+</body></html>"
+end
+config user local
+    edit "jdoe"
+        set type password
+        set passwd ENC U2hpZnR3YWxsIHN5bnRoZXRpYyB0ZXN0IHZhbHVlIC0gbm90IGEgc2VjcmV0
+    next
+end
+config system dns
+    set primary 192.0.2.53
+    set secondary 192.0.2.54
+end
