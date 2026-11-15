@@ -30,6 +30,9 @@ public interface IShell
     void OpenUrl(string url);
 
     void OpenFolder(string path);
+
+    /// <summary>Copies text (a generated CLI script) to the clipboard.</summary>
+    void CopyText(string text);
 }
 
 /// <summary>Marshals work to the UI thread.</summary>

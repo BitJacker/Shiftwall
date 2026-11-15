@@ -46,6 +46,12 @@ public sealed partial class LocalizationTests
             keys.Add(k);
         }
 
+        // Keys built from enum values at run time.
+        foreach (var v in Enum.GetNames<Shiftwall.Features.Toolbox.SectionChangeKind>()) keys.Add("Compare.Kind." + v);
+        foreach (var v in Enum.GetNames<Shiftwall.Lan.LanOutcome>()) keys.Add("Lan.Outcome." + v);
+        foreach (var v in Enum.GetNames<Shiftwall.Features.Toolbox.Vpn.VpnCheckResult>()) keys.Add("Vpn.Result." + v);
+        foreach (var v in Enum.GetNames<Shiftwall.Features.Toolbox.Import.ImportKind>()) keys.Add("Import.Kind." + v);
+        foreach (var v in Enum.GetNames<Shiftwall.Presentation.ViewModels.Toolbox.SnippetKind>()) keys.Add("Snippets.Kind." + v);
         return [.. keys];
     }
 

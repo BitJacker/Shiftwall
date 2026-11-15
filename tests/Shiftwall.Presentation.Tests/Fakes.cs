@@ -25,7 +25,15 @@ internal sealed class FakeDialogs : IDialogService
 
     public void ShowInfo(string message) => Infos.Add(message);
 
-    public bool Confirm(string message) => true;
+    public bool ConfirmAnswer { get; set; } = true;
+
+    public List<string> Confirmations { get; } = [];
+
+    public bool Confirm(string message)
+    {
+        Confirmations.Add(message);
+        return ConfirmAnswer;
+    }
 }
 
 internal sealed class FakePrinter : IReportPrinter
@@ -41,7 +49,11 @@ internal sealed class FakeShell : IShell
 
     public void OpenUrl(string url) => Urls.Add(url);
 
+    public List<string> Copied { get; } = [];
+
     public void OpenFolder(string path)
     {
     }
+
+    public void CopyText(string text) => Copied.Add(text);
 }

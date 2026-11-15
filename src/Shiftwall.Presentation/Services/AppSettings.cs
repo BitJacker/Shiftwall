@@ -17,8 +17,14 @@ public sealed class AppSettings
 
     public string Language { get; set; } = "it-IT";
 
-    /// <summary>The optional LAN download feature (Phase 4) is disabled by default.</summary>
+    /// <summary>The optional LAN download feature is disabled by default.</summary>
     public bool LanFeatureEnabled { get; set; }
+
+    /// <summary>
+    /// Certificate fingerprints (SHA-256) the user confirmed for self-signed FortiGate certificates, keyed by
+    /// "address:port". Not secret; no token or password is ever stored.
+    /// </summary>
+    public Dictionary<string, string> LanConfirmedCertificates { get; set; } = [];
 }
 
 public sealed class SettingsStore(string path)
