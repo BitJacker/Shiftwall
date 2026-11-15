@@ -1,0 +1,3401 @@
+{
+  "schema_version": 1,
+  "models": [
+    {
+      "id": "FG-30G",
+      "display_name": "FortiGate 30G",
+      "family": "FortiGate",
+      "platform": "hardware",
+      "interfaces": {
+        "value": [
+          {
+            "name": "wan",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "lan1",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "lan2",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "a",
+            "media": "rj45",
+            "speed": "1G",
+            "note": "FortiLink"
+          }
+        ],
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://docs.fortinet.com/document/fortigate/7.2.12/hardware-acceleration/643933/fortigate-30g-fast-path-architecture",
+            "title": "FortiOS 7.2.12 Hardware Acceleration — FortiGate 30G fast path architecture",
+            "verified_on": "2026-11-15",
+            "note": "`diagnose npu ... port-list` output and front panel interface list"
+          }
+        ],
+        "note": "Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only."
+      },
+      "has_disk": {
+        "value": false,
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/pdf/fortigate-fortiwifi-30g-series.pdf",
+            "title": "FortiGate/FortiWiFi 30G Series Data Sheet",
+            "verified_on": "2026-11-15",
+            "note": "Storage Capacity: — (FG-30G)"
+          }
+        ]
+      },
+      "default_switches": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it."
+      }
+    },
+    {
+      "id": "FG-31G",
+      "display_name": "FortiGate 31G",
+      "family": "FortiGate",
+      "platform": "hardware",
+      "interfaces": {
+        "value": [
+          {
+            "name": "wan",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "lan1",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "lan2",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "a",
+            "media": "rj45",
+            "speed": "1G",
+            "note": "FortiLink"
+          }
+        ],
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://docs.fortinet.com/document/fortigate/7.2.12/hardware-acceleration/643933/fortigate-30g-fast-path-architecture",
+            "title": "FortiOS 7.2.12 Hardware Acceleration — FortiGate 30G fast path architecture",
+            "verified_on": "2026-11-15",
+            "note": "`diagnose npu ... port-list` output and front panel interface list"
+          }
+        ],
+        "note": "Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only."
+      },
+      "has_disk": {
+        "value": true,
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/pdf/fortigate-fortiwifi-30g-series.pdf",
+            "title": "FortiGate/FortiWiFi 30G Series Data Sheet",
+            "verified_on": "2026-11-15",
+            "note": "Storage Capacity: 30 GB (FG-31G)"
+          }
+        ]
+      },
+      "default_switches": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it."
+      }
+    },
+    {
+      "id": "FG-40F",
+      "display_name": "FortiGate 40F",
+      "family": "FortiGate",
+      "platform": "hardware",
+      "interfaces": {
+        "value": [
+          {
+            "name": "wan",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "lan1",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "lan2",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "lan3",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "a",
+            "media": "rj45",
+            "speed": "1G",
+            "note": "FortiLink"
+          }
+        ],
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://docs.fortinet.com/document/fortigate/8.0.2/hardware-acceleration/965349/fortigate-40f-fast-path-architecture",
+            "title": "FortiOS 8.0.2 Hardware Acceleration — FortiGate 40F fast path architecture",
+            "verified_on": "2026-11-15",
+            "note": "`diagnose npu ... port-list` output and front panel interface list"
+          }
+        ],
+        "note": "Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only."
+      },
+      "has_disk": {
+        "value": false,
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/pdf/fortigate-fortiwifi-40f-series.pdf",
+            "title": "FortiGate/FortiWiFi 40F Series Data Sheet",
+            "verified_on": "2026-11-15",
+            "note": "Onboard Storage: 0"
+          }
+        ]
+      },
+      "default_switches": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it."
+      }
+    },
+    {
+      "id": "FG-50G",
+      "display_name": "FortiGate 50G",
+      "family": "FortiGate",
+      "platform": "hardware",
+      "interfaces": {
+        "value": [
+          {
+            "name": "wan",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "lan1",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "lan2",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "lan3",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "a",
+            "media": "rj45",
+            "speed": "1G",
+            "note": "FortiLink"
+          }
+        ],
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://docs.fortinet.com/document/fortigate/8.0.2/hardware-acceleration/201529/fortigate-50g-and-51g-fast-path-architecture",
+            "title": "FortiOS 8.0.2 Hardware Acceleration — FortiGate 50G and 51G fast path architecture",
+            "verified_on": "2026-11-15",
+            "note": "`diagnose npu ... port-list` output and front panel interface list"
+          }
+        ],
+        "note": "Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only."
+      },
+      "has_disk": {
+        "value": false,
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/pdf/fortigate-fortiwifi-50g-series.pdf",
+            "title": "FortiGate/FortiWiFi 50G Series Data Sheet",
+            "verified_on": "2026-11-15",
+            "note": "Internal Storage: — (FG-50G); ordering info"
+          }
+        ]
+      },
+      "default_switches": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it."
+      }
+    },
+    {
+      "id": "FG-51G",
+      "display_name": "FortiGate 51G",
+      "family": "FortiGate",
+      "platform": "hardware",
+      "interfaces": {
+        "value": [
+          {
+            "name": "wan",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "lan1",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "lan2",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "lan3",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "a",
+            "media": "rj45",
+            "speed": "1G",
+            "note": "FortiLink"
+          }
+        ],
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://docs.fortinet.com/document/fortigate/8.0.2/hardware-acceleration/201529/fortigate-50g-and-51g-fast-path-architecture",
+            "title": "FortiOS 8.0.2 Hardware Acceleration — FortiGate 50G and 51G fast path architecture",
+            "verified_on": "2026-11-15",
+            "note": "`diagnose npu ... port-list` output and front panel interface list"
+          }
+        ],
+        "note": "Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only."
+      },
+      "has_disk": {
+        "value": true,
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/pdf/fortigate-fortiwifi-50g-series.pdf",
+            "title": "FortiGate/FortiWiFi 50G Series Data Sheet",
+            "verified_on": "2026-11-15",
+            "note": "Ordering info: FG-51G ... 64GB SSD"
+          }
+        ]
+      },
+      "default_switches": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it."
+      }
+    },
+    {
+      "id": "FG-60F",
+      "display_name": "FortiGate 60F",
+      "family": "FortiGate",
+      "platform": "hardware",
+      "interfaces": {
+        "value": [
+          {
+            "name": "wan1",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "wan2",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "dmz",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "internal1",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "internal2",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "internal3",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "internal4",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "internal5",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "a",
+            "media": "rj45",
+            "speed": "1G",
+            "note": "FortiLink"
+          },
+          {
+            "name": "b",
+            "media": "rj45",
+            "speed": "1G",
+            "note": "FortiLink"
+          }
+        ],
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://docs.fortinet.com/document/fortigate/8.0.2/hardware-acceleration/758378/fortigate-60f-and-61f-fast-path-architecture",
+            "title": "FortiOS 8.0.2 Hardware Acceleration — FortiGate 60F and 61F fast path architecture",
+            "verified_on": "2026-11-15",
+            "note": "`diagnose npu ... port-list` output and front panel interface list"
+          }
+        ],
+        "note": "Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only."
+      },
+      "has_disk": {
+        "value": false,
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/pdf/fortigate-fortiwifi-60f-series.pdf",
+            "title": "FortiGate/FortiWiFi 60F Series Data Sheet",
+            "verified_on": "2026-11-15",
+            "note": "Internal Storage: — (FG-60F)"
+          }
+        ]
+      },
+      "default_switches": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it."
+      }
+    },
+    {
+      "id": "FG-61F",
+      "display_name": "FortiGate 61F",
+      "family": "FortiGate",
+      "platform": "hardware",
+      "interfaces": {
+        "value": [
+          {
+            "name": "wan1",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "wan2",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "dmz",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "internal1",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "internal2",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "internal3",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "internal4",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "internal5",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "a",
+            "media": "rj45",
+            "speed": "1G",
+            "note": "FortiLink"
+          },
+          {
+            "name": "b",
+            "media": "rj45",
+            "speed": "1G",
+            "note": "FortiLink"
+          }
+        ],
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://docs.fortinet.com/document/fortigate/8.0.2/hardware-acceleration/758378/fortigate-60f-and-61f-fast-path-architecture",
+            "title": "FortiOS 8.0.2 Hardware Acceleration — FortiGate 60F and 61F fast path architecture",
+            "verified_on": "2026-11-15",
+            "note": "`diagnose npu ... port-list` output and front panel interface list"
+          }
+        ],
+        "note": "Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only."
+      },
+      "has_disk": {
+        "value": true,
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/pdf/fortigate-fortiwifi-60f-series.pdf",
+            "title": "FortiGate/FortiWiFi 60F Series Data Sheet",
+            "verified_on": "2026-11-15",
+            "note": "Internal Storage: 1 x 128 GB SSD (FG-61F)"
+          }
+        ]
+      },
+      "default_switches": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it."
+      }
+    },
+    {
+      "id": "FG-70F",
+      "display_name": "FortiGate 70F",
+      "family": "FortiGate",
+      "platform": "hardware",
+      "interfaces": {
+        "value": [
+          {
+            "name": "wan1",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "wan2",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "dmz",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "internal1",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "internal2",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "internal3",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "internal4",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "internal5",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "a",
+            "media": "rj45",
+            "speed": "1G",
+            "note": "FortiLink"
+          },
+          {
+            "name": "b",
+            "media": "rj45",
+            "speed": "1G",
+            "note": "FortiLink"
+          }
+        ],
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://docs.fortinet.com/document/fortigate/8.0.2/hardware-acceleration/749156/fortigate-70f-and-71f-fast-path-architecture",
+            "title": "FortiOS 8.0.2 Hardware Acceleration — FortiGate 70F and 71F fast path architecture",
+            "verified_on": "2026-11-15",
+            "note": "`diagnose npu ... port-list` output and front panel interface list"
+          }
+        ],
+        "note": "Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only."
+      },
+      "has_disk": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "The official 70F/71F data sheet found covers only the 71F."
+      },
+      "default_switches": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it."
+      }
+    },
+    {
+      "id": "FG-71F",
+      "display_name": "FortiGate 71F",
+      "family": "FortiGate",
+      "platform": "hardware",
+      "interfaces": {
+        "value": [
+          {
+            "name": "wan1",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "wan2",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "dmz",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "internal1",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "internal2",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "internal3",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "internal4",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "internal5",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "a",
+            "media": "rj45",
+            "speed": "1G",
+            "note": "FortiLink"
+          },
+          {
+            "name": "b",
+            "media": "rj45",
+            "speed": "1G",
+            "note": "FortiLink"
+          }
+        ],
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://docs.fortinet.com/document/fortigate/8.0.2/hardware-acceleration/749156/fortigate-70f-and-71f-fast-path-architecture",
+            "title": "FortiOS 8.0.2 Hardware Acceleration — FortiGate 70F and 71F fast path architecture",
+            "verified_on": "2026-11-15",
+            "note": "`diagnose npu ... port-list` output and front panel interface list"
+          }
+        ],
+        "note": "Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only."
+      },
+      "has_disk": {
+        "value": true,
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/fortigate-70f-series.pdf",
+            "title": "FortiGate 71F Series Data Sheet",
+            "verified_on": "2026-11-15",
+            "note": "Internal Storage: 1 x 128 GB SSD"
+          }
+        ]
+      },
+      "default_switches": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it."
+      }
+    },
+    {
+      "id": "FG-70G",
+      "display_name": "FortiGate 70G",
+      "family": "FortiGate",
+      "platform": "hardware",
+      "interfaces": {
+        "value": [
+          {
+            "name": "wan1",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "wan2",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port1",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port2",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port3",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port4",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port5",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port6",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "a",
+            "media": "rj45",
+            "speed": "1G",
+            "note": "FortiLink"
+          },
+          {
+            "name": "b",
+            "media": "rj45",
+            "speed": "1G",
+            "note": "FortiLink"
+          }
+        ],
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://docs.fortinet.com/document/fortigate/8.0.2/hardware-acceleration/218161/fortigate-70g-and-71g-fast-path-architecture",
+            "title": "FortiOS 8.0.2 Hardware Acceleration — FortiGate 70G and 71G fast path architecture",
+            "verified_on": "2026-11-15",
+            "note": "`diagnose npu ... port-list` output and front panel interface list"
+          }
+        ],
+        "note": "Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only."
+      },
+      "has_disk": {
+        "value": false,
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/pdf/fortigate-fortiwifi-70g-series.pdf",
+            "title": "FortiGate/FortiWiFi 70G Series Data Sheet",
+            "verified_on": "2026-11-15",
+            "note": "Internal Storage: — (FG-70G)"
+          }
+        ]
+      },
+      "default_switches": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it."
+      }
+    },
+    {
+      "id": "FG-71G",
+      "display_name": "FortiGate 71G",
+      "family": "FortiGate",
+      "platform": "hardware",
+      "interfaces": {
+        "value": [
+          {
+            "name": "wan1",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "wan2",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port1",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port2",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port3",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port4",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port5",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port6",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "a",
+            "media": "rj45",
+            "speed": "1G",
+            "note": "FortiLink"
+          },
+          {
+            "name": "b",
+            "media": "rj45",
+            "speed": "1G",
+            "note": "FortiLink"
+          }
+        ],
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://docs.fortinet.com/document/fortigate/8.0.2/hardware-acceleration/218161/fortigate-70g-and-71g-fast-path-architecture",
+            "title": "FortiOS 8.0.2 Hardware Acceleration — FortiGate 70G and 71G fast path architecture",
+            "verified_on": "2026-11-15",
+            "note": "`diagnose npu ... port-list` output and front panel interface list"
+          }
+        ],
+        "note": "Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only."
+      },
+      "has_disk": {
+        "value": true,
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/pdf/fortigate-fortiwifi-70g-series.pdf",
+            "title": "FortiGate/FortiWiFi 70G Series Data Sheet",
+            "verified_on": "2026-11-15",
+            "note": "Internal Storage: 64GB SSD (FG-71G)"
+          }
+        ]
+      },
+      "default_switches": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it."
+      }
+    },
+    {
+      "id": "FG-80F",
+      "display_name": "FortiGate 80F",
+      "family": "FortiGate",
+      "platform": "hardware",
+      "interfaces": {
+        "value": [
+          {
+            "name": "wan1",
+            "media": "rj45/sfp",
+            "speed": "1G",
+            "note": "Shared media with SFP1"
+          },
+          {
+            "name": "wan2",
+            "media": "rj45/sfp",
+            "speed": "1G",
+            "note": "Shared media with SFP2"
+          },
+          {
+            "name": "internal1",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "internal2",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "internal3",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "internal4",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "internal5",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "internal6",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "a",
+            "media": "rj45",
+            "speed": "1G",
+            "note": "FortiLink"
+          },
+          {
+            "name": "b",
+            "media": "rj45",
+            "speed": "1G",
+            "note": "FortiLink"
+          }
+        ],
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://docs.fortinet.com/document/fortigate/8.0.2/hardware-acceleration/300792/fortigate-80f-81f-and-80f-bypass-fast-path-architecture",
+            "title": "FortiOS 8.0.2 Hardware Acceleration — FortiGate 80F, 81F, and 80F Bypass fast path architecture",
+            "verified_on": "2026-11-15",
+            "note": "`diagnose npu ... port-list` output and front panel interface list"
+          }
+        ],
+        "note": "Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only."
+      },
+      "has_disk": {
+        "value": false,
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/pdf/fortigate-fortiwifi-80f-series.pdf",
+            "title": "FortiGate/FortiWiFi 80F Series Data Sheet",
+            "verified_on": "2026-11-15",
+            "note": "Internal Storage: — (FG-80F)"
+          }
+        ]
+      },
+      "default_switches": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it."
+      }
+    },
+    {
+      "id": "FG-81F",
+      "display_name": "FortiGate 81F",
+      "family": "FortiGate",
+      "platform": "hardware",
+      "interfaces": {
+        "value": [
+          {
+            "name": "wan1",
+            "media": "rj45/sfp",
+            "speed": "1G",
+            "note": "Shared media with SFP1"
+          },
+          {
+            "name": "wan2",
+            "media": "rj45/sfp",
+            "speed": "1G",
+            "note": "Shared media with SFP2"
+          },
+          {
+            "name": "internal1",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "internal2",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "internal3",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "internal4",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "internal5",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "internal6",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "a",
+            "media": "rj45",
+            "speed": "1G",
+            "note": "FortiLink"
+          },
+          {
+            "name": "b",
+            "media": "rj45",
+            "speed": "1G",
+            "note": "FortiLink"
+          }
+        ],
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://docs.fortinet.com/document/fortigate/8.0.2/hardware-acceleration/300792/fortigate-80f-81f-and-80f-bypass-fast-path-architecture",
+            "title": "FortiOS 8.0.2 Hardware Acceleration — FortiGate 80F, 81F, and 80F Bypass fast path architecture",
+            "verified_on": "2026-11-15",
+            "note": "`diagnose npu ... port-list` output and front panel interface list"
+          }
+        ],
+        "note": "Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only."
+      },
+      "has_disk": {
+        "value": true,
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/pdf/fortigate-fortiwifi-80f-series.pdf",
+            "title": "FortiGate/FortiWiFi 80F Series Data Sheet",
+            "verified_on": "2026-11-15",
+            "note": "Internal Storage: 1x 128 GB SSD (FG-81F)"
+          }
+        ]
+      },
+      "default_switches": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it."
+      }
+    },
+    {
+      "id": "FG-90G",
+      "display_name": "FortiGate 90G",
+      "family": "FortiGate",
+      "platform": "hardware",
+      "interfaces": {
+        "value": [
+          {
+            "name": "wan1",
+            "media": "rj45/sfp+",
+            "speed": "10G",
+            "note": "Shared media with SFP+1"
+          },
+          {
+            "name": "wan2",
+            "media": "rj45/sfp+",
+            "speed": "10G",
+            "note": "Shared media with SFP+2"
+          },
+          {
+            "name": "port1",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port2",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port3",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port4",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port5",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port6",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "a",
+            "media": "rj45",
+            "speed": "1G",
+            "note": "FortiLink"
+          },
+          {
+            "name": "b",
+            "media": "rj45",
+            "speed": "1G",
+            "note": "FortiLink"
+          }
+        ],
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://docs.fortinet.com/document/fortigate/8.0.2/hardware-acceleration/403368/fortigate-90g-and-91g-fast-path-architecture",
+            "title": "FortiOS 8.0.2 Hardware Acceleration — FortiGate 90G and 91G fast path architecture",
+            "verified_on": "2026-11-15",
+            "note": "`diagnose npu ... port-list` output and front panel interface list"
+          }
+        ],
+        "note": "Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only."
+      },
+      "has_disk": {
+        "value": false,
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/pdf/fortigate-90g-series.pdf",
+            "title": "FortiGate 90G Series Data Sheet",
+            "verified_on": "2026-11-15",
+            "note": "Internal Storage: – (FG-90G)"
+          }
+        ]
+      },
+      "default_switches": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it."
+      }
+    },
+    {
+      "id": "FG-91G",
+      "display_name": "FortiGate 91G",
+      "family": "FortiGate",
+      "platform": "hardware",
+      "interfaces": {
+        "value": [
+          {
+            "name": "wan1",
+            "media": "rj45/sfp+",
+            "speed": "10G",
+            "note": "Shared media with SFP+1"
+          },
+          {
+            "name": "wan2",
+            "media": "rj45/sfp+",
+            "speed": "10G",
+            "note": "Shared media with SFP+2"
+          },
+          {
+            "name": "port1",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port2",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port3",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port4",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port5",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port6",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "a",
+            "media": "rj45",
+            "speed": "1G",
+            "note": "FortiLink"
+          },
+          {
+            "name": "b",
+            "media": "rj45",
+            "speed": "1G",
+            "note": "FortiLink"
+          }
+        ],
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://docs.fortinet.com/document/fortigate/8.0.2/hardware-acceleration/403368/fortigate-90g-and-91g-fast-path-architecture",
+            "title": "FortiOS 8.0.2 Hardware Acceleration — FortiGate 90G and 91G fast path architecture",
+            "verified_on": "2026-11-15",
+            "note": "`diagnose npu ... port-list` output and front panel interface list"
+          }
+        ],
+        "note": "Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only."
+      },
+      "has_disk": {
+        "value": true,
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/pdf/fortigate-90g-series.pdf",
+            "title": "FortiGate 90G Series Data Sheet",
+            "verified_on": "2026-11-15",
+            "note": "Internal Storage: 1 x 120 GB SSD (FG-91G)"
+          }
+        ]
+      },
+      "default_switches": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it."
+      }
+    },
+    {
+      "id": "FG-100E",
+      "display_name": "FortiGate 100E",
+      "family": "FortiGate",
+      "platform": "hardware",
+      "interfaces": {
+        "value": [
+          {
+            "name": "dmz",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "mgmt",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "wan1",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "wan2",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "ha1",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "ha2",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port1",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port2",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port3",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port4",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port5",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port6",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port7",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port8",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port9",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port10",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port11",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port12",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port13",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port14",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port15",
+            "media": "rj45/sfp",
+            "speed": "1G",
+            "note": "Shared media with SFP1"
+          },
+          {
+            "name": "port16",
+            "media": "rj45/sfp",
+            "speed": "1G",
+            "note": "Shared media with SFP2"
+          }
+        ],
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://docs.fortinet.com/document/fortigate/7.2.12/hardware-acceleration/719639/fortigate-100e-and-101e-fast-path-architecture",
+            "title": "FortiOS 7.2.12 Hardware Acceleration — FortiGate 100E and 101E fast path architecture",
+            "verified_on": "2026-11-15",
+            "note": "`diagnose npu ... port-list` output and front panel interface list"
+          }
+        ],
+        "note": "Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only."
+      },
+      "has_disk": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "No official 100E data sheet was found online."
+      },
+      "default_switches": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it."
+      }
+    },
+    {
+      "id": "FG-101E",
+      "display_name": "FortiGate 101E",
+      "family": "FortiGate",
+      "platform": "hardware",
+      "interfaces": {
+        "value": [
+          {
+            "name": "dmz",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "mgmt",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "wan1",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "wan2",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "ha1",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "ha2",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port1",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port2",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port3",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port4",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port5",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port6",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port7",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port8",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port9",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port10",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port11",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port12",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port13",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port14",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port15",
+            "media": "rj45/sfp",
+            "speed": "1G",
+            "note": "Shared media with SFP1"
+          },
+          {
+            "name": "port16",
+            "media": "rj45/sfp",
+            "speed": "1G",
+            "note": "Shared media with SFP2"
+          }
+        ],
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://docs.fortinet.com/document/fortigate/7.2.12/hardware-acceleration/719639/fortigate-100e-and-101e-fast-path-architecture",
+            "title": "FortiOS 7.2.12 Hardware Acceleration — FortiGate 100E and 101E fast path architecture",
+            "verified_on": "2026-11-15",
+            "note": "`diagnose npu ... port-list` output and front panel interface list"
+          }
+        ],
+        "note": "Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only."
+      },
+      "has_disk": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "No official 101E data sheet was found online."
+      },
+      "default_switches": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it."
+      }
+    },
+    {
+      "id": "FG-100F",
+      "display_name": "FortiGate 100F",
+      "family": "FortiGate",
+      "platform": "hardware",
+      "interfaces": {
+        "value": [
+          {
+            "name": "dmz",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "mgmt",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "wan1",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "wan2",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "ha1",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "ha2",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port1",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port2",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port3",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port4",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port5",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port6",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port7",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port8",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port9",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port10",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port11",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port12",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "x1",
+            "media": "sfp+",
+            "speed": "10G",
+            "note": "FortiLink"
+          },
+          {
+            "name": "x2",
+            "media": "sfp+",
+            "speed": "10G",
+            "note": "FortiLink"
+          },
+          {
+            "name": "port13",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port14",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port15",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port16",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port17",
+            "media": "rj45/sfp",
+            "speed": "1G",
+            "note": "Shared RJ45/SFP interface"
+          },
+          {
+            "name": "port18",
+            "media": "rj45/sfp",
+            "speed": "1G",
+            "note": "Shared RJ45/SFP interface"
+          },
+          {
+            "name": "port19",
+            "media": "rj45/sfp",
+            "speed": "1G",
+            "note": "Shared RJ45/SFP interface"
+          },
+          {
+            "name": "port20",
+            "media": "rj45/sfp",
+            "speed": "1G",
+            "note": "Shared RJ45/SFP interface"
+          }
+        ],
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://docs.fortinet.com/document/fortigate/8.0.2/hardware-acceleration/47902/fortigate-100f-and-101f-fast-path-architecture",
+            "title": "FortiOS 8.0.2 Hardware Acceleration — FortiGate 100F and 101F fast path architecture",
+            "verified_on": "2026-11-15",
+            "note": "`diagnose npu ... port-list` output and front panel interface list"
+          }
+        ],
+        "note": "Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only."
+      },
+      "has_disk": {
+        "value": false,
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/zh_cn/fortigate-100f-series.pdf",
+            "title": "FortiGate 100F Series Data Sheet (Chinese edition)",
+            "verified_on": "2026-11-15",
+            "note": "Internal storage: — (FortiGate 100F)"
+          }
+        ]
+      },
+      "default_switches": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it."
+      }
+    },
+    {
+      "id": "FG-101F",
+      "display_name": "FortiGate 101F",
+      "family": "FortiGate",
+      "platform": "hardware",
+      "interfaces": {
+        "value": [
+          {
+            "name": "dmz",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "mgmt",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "wan1",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "wan2",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "ha1",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "ha2",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port1",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port2",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port3",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port4",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port5",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port6",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port7",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port8",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port9",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port10",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port11",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port12",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "x1",
+            "media": "sfp+",
+            "speed": "10G",
+            "note": "FortiLink"
+          },
+          {
+            "name": "x2",
+            "media": "sfp+",
+            "speed": "10G",
+            "note": "FortiLink"
+          },
+          {
+            "name": "port13",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port14",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port15",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port16",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port17",
+            "media": "rj45/sfp",
+            "speed": "1G",
+            "note": "Shared RJ45/SFP interface"
+          },
+          {
+            "name": "port18",
+            "media": "rj45/sfp",
+            "speed": "1G",
+            "note": "Shared RJ45/SFP interface"
+          },
+          {
+            "name": "port19",
+            "media": "rj45/sfp",
+            "speed": "1G",
+            "note": "Shared RJ45/SFP interface"
+          },
+          {
+            "name": "port20",
+            "media": "rj45/sfp",
+            "speed": "1G",
+            "note": "Shared RJ45/SFP interface"
+          }
+        ],
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://docs.fortinet.com/document/fortigate/8.0.2/hardware-acceleration/47902/fortigate-100f-and-101f-fast-path-architecture",
+            "title": "FortiOS 8.0.2 Hardware Acceleration — FortiGate 100F and 101F fast path architecture",
+            "verified_on": "2026-11-15",
+            "note": "`diagnose npu ... port-list` output and front panel interface list"
+          }
+        ],
+        "note": "Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only."
+      },
+      "has_disk": {
+        "value": true,
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/zh_cn/fortigate-100f-series.pdf",
+            "title": "FortiGate 100F Series Data Sheet (Chinese edition)",
+            "verified_on": "2026-11-15",
+            "note": "Internal storage: 1x 480 GB SSD (FortiGate 101F)"
+          }
+        ]
+      },
+      "default_switches": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it."
+      }
+    },
+    {
+      "id": "FG-120G",
+      "display_name": "FortiGate 120G",
+      "family": "FortiGate",
+      "platform": "hardware",
+      "interfaces": {
+        "value": [
+          {
+            "name": "port1",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port2",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port3",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port4",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port5",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port6",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port7",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port8",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port9",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port10",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port11",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port12",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port13",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port14",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port15",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port16",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "x1",
+            "media": "sfp+",
+            "speed": "10G",
+            "note": "FortiLink"
+          },
+          {
+            "name": "x2",
+            "media": "sfp+",
+            "speed": "10G",
+            "note": "FortiLink"
+          },
+          {
+            "name": "x3",
+            "media": "sfp+",
+            "speed": "10G",
+            "note": "FortiLink"
+          },
+          {
+            "name": "x4",
+            "media": "sfp+",
+            "speed": "10G",
+            "note": "FortiLink"
+          },
+          {
+            "name": "port17",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port18",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port19",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port20",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port21",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port22",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port23",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port24",
+            "media": "sfp",
+            "speed": "1G"
+          }
+        ],
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://docs.fortinet.com/document/fortigate/8.0.2/hardware-acceleration/221839/fortigate-120g-and-121g-fast-path-architecture",
+            "title": "FortiOS 8.0.2 Hardware Acceleration — FortiGate 120G and 121G fast path architecture",
+            "verified_on": "2026-11-15",
+            "note": "`diagnose npu ... port-list` output and front panel interface list"
+          }
+        ],
+        "note": "Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only. The HA and MGMT ports are not connected to the NP processor, so their FortiOS names are not in the port list: verify them with a factory-default backup."
+      },
+      "has_disk": {
+        "value": false,
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/pdf/fortigate-120g-series.pdf",
+            "title": "FortiGate 120G Series Data Sheet",
+            "verified_on": "2026-11-15",
+            "note": "Internal Storage: — (FG-120G)"
+          }
+        ]
+      },
+      "default_switches": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it."
+      }
+    },
+    {
+      "id": "FG-121G",
+      "display_name": "FortiGate 121G",
+      "family": "FortiGate",
+      "platform": "hardware",
+      "interfaces": {
+        "value": [
+          {
+            "name": "port1",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port2",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port3",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port4",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port5",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port6",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port7",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port8",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port9",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port10",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port11",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port12",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port13",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port14",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port15",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port16",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "x1",
+            "media": "sfp+",
+            "speed": "10G",
+            "note": "FortiLink"
+          },
+          {
+            "name": "x2",
+            "media": "sfp+",
+            "speed": "10G",
+            "note": "FortiLink"
+          },
+          {
+            "name": "x3",
+            "media": "sfp+",
+            "speed": "10G",
+            "note": "FortiLink"
+          },
+          {
+            "name": "x4",
+            "media": "sfp+",
+            "speed": "10G",
+            "note": "FortiLink"
+          },
+          {
+            "name": "port17",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port18",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port19",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port20",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port21",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port22",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port23",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port24",
+            "media": "sfp",
+            "speed": "1G"
+          }
+        ],
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://docs.fortinet.com/document/fortigate/8.0.2/hardware-acceleration/221839/fortigate-120g-and-121g-fast-path-architecture",
+            "title": "FortiOS 8.0.2 Hardware Acceleration — FortiGate 120G and 121G fast path architecture",
+            "verified_on": "2026-11-15",
+            "note": "`diagnose npu ... port-list` output and front panel interface list"
+          }
+        ],
+        "note": "Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only. The HA and MGMT ports are not connected to the NP processor, so their FortiOS names are not in the port list: verify them with a factory-default backup."
+      },
+      "has_disk": {
+        "value": true,
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/pdf/fortigate-120g-series.pdf",
+            "title": "FortiGate 120G Series Data Sheet",
+            "verified_on": "2026-11-15",
+            "note": "Internal Storage: 1 x 480 GB SSD (FG-121G)"
+          }
+        ]
+      },
+      "default_switches": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it."
+      }
+    },
+    {
+      "id": "FG-200E",
+      "display_name": "FortiGate 200E",
+      "family": "FortiGate",
+      "platform": "hardware",
+      "interfaces": {
+        "value": [
+          {
+            "name": "port9",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port10",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port11",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port12",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port13",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port14",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port15",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port16",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port17",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port18",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "wan1",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "wan2",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port1",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port2",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port3",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port4",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port5",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port6",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port7",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port8",
+            "media": "rj45",
+            "speed": "1G"
+          }
+        ],
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://docs.fortinet.com/document/fortigate/8.0.2/hardware-acceleration/854455/fortigate-200e-and-201e-fast-path-architecture",
+            "title": "FortiOS 8.0.2 Hardware Acceleration — FortiGate 200E and 201E fast path architecture",
+            "verified_on": "2026-11-15",
+            "note": "`diagnose npu ... port-list` output and front panel interface list"
+          }
+        ],
+        "note": "Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only."
+      },
+      "has_disk": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "No official 200E data sheet was found online."
+      },
+      "default_switches": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it."
+      }
+    },
+    {
+      "id": "FG-201E",
+      "display_name": "FortiGate 201E",
+      "family": "FortiGate",
+      "platform": "hardware",
+      "interfaces": {
+        "value": [
+          {
+            "name": "port9",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port10",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port11",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port12",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port13",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port14",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port15",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port16",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port17",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port18",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "wan1",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "wan2",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port1",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port2",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port3",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port4",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port5",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port6",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port7",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port8",
+            "media": "rj45",
+            "speed": "1G"
+          }
+        ],
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://docs.fortinet.com/document/fortigate/8.0.2/hardware-acceleration/854455/fortigate-200e-and-201e-fast-path-architecture",
+            "title": "FortiOS 8.0.2 Hardware Acceleration — FortiGate 200E and 201E fast path architecture",
+            "verified_on": "2026-11-15",
+            "note": "`diagnose npu ... port-list` output and front panel interface list"
+          }
+        ],
+        "note": "Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only."
+      },
+      "has_disk": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "No official 201E data sheet was found online."
+      },
+      "default_switches": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it."
+      }
+    },
+    {
+      "id": "FG-200F",
+      "display_name": "FortiGate 200F",
+      "family": "FortiGate",
+      "platform": "hardware",
+      "interfaces": {
+        "value": [
+          {
+            "name": "port1",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port2",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port3",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port4",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port5",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port6",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port7",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port8",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port9",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port10",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port11",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port12",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port13",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port14",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port15",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port16",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port17",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port18",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port19",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port20",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port21",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port22",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port23",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port24",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "x1",
+            "media": "sfp+",
+            "speed": "10G"
+          },
+          {
+            "name": "x2",
+            "media": "sfp+",
+            "speed": "10G"
+          },
+          {
+            "name": "x3",
+            "media": "sfp+",
+            "speed": "10G",
+            "note": "FortiLink"
+          },
+          {
+            "name": "x4",
+            "media": "sfp+",
+            "speed": "10G",
+            "note": "FortiLink"
+          }
+        ],
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://docs.fortinet.com/document/fortigate/8.0.2/hardware-acceleration/336140/fortigate-200f-and-201f-fast-path-architecture",
+            "title": "FortiOS 8.0.2 Hardware Acceleration — FortiGate 200F and 201F fast path architecture",
+            "verified_on": "2026-11-15",
+            "note": "`diagnose npu ... port-list` output and front panel interface list"
+          }
+        ],
+        "note": "Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only. The HA and MGMT ports are not connected to the NP processor, so their FortiOS names are not in the port list: verify them with a factory-default backup."
+      },
+      "has_disk": {
+        "value": false,
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/ko_kr/ds-fortigate-200f-series_ko.pdf",
+            "title": "FortiGate 200F Series Data Sheet (Korean edition)",
+            "verified_on": "2026-11-15",
+            "note": "Onboard storage: 0 (FortiGate 200F)"
+          }
+        ]
+      },
+      "default_switches": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it."
+      }
+    },
+    {
+      "id": "FG-201F",
+      "display_name": "FortiGate 201F",
+      "family": "FortiGate",
+      "platform": "hardware",
+      "interfaces": {
+        "value": [
+          {
+            "name": "port1",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port2",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port3",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port4",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port5",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port6",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port7",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port8",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port9",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port10",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port11",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port12",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port13",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port14",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port15",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port16",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port17",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port18",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port19",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port20",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port21",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port22",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port23",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port24",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "x1",
+            "media": "sfp+",
+            "speed": "10G"
+          },
+          {
+            "name": "x2",
+            "media": "sfp+",
+            "speed": "10G"
+          },
+          {
+            "name": "x3",
+            "media": "sfp+",
+            "speed": "10G",
+            "note": "FortiLink"
+          },
+          {
+            "name": "x4",
+            "media": "sfp+",
+            "speed": "10G",
+            "note": "FortiLink"
+          }
+        ],
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://docs.fortinet.com/document/fortigate/8.0.2/hardware-acceleration/336140/fortigate-200f-and-201f-fast-path-architecture",
+            "title": "FortiOS 8.0.2 Hardware Acceleration — FortiGate 200F and 201F fast path architecture",
+            "verified_on": "2026-11-15",
+            "note": "`diagnose npu ... port-list` output and front panel interface list"
+          }
+        ],
+        "note": "Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only. The HA and MGMT ports are not connected to the NP processor, so their FortiOS names are not in the port list: verify them with a factory-default backup."
+      },
+      "has_disk": {
+        "value": true,
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/ko_kr/ds-fortigate-200f-series_ko.pdf",
+            "title": "FortiGate 200F Series Data Sheet (Korean edition)",
+            "verified_on": "2026-11-15",
+            "note": "Onboard storage: 1x 480 GB SSD (FortiGate 201F)"
+          }
+        ]
+      },
+      "default_switches": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it."
+      }
+    },
+    {
+      "id": "FG-200G",
+      "display_name": "FortiGate 200G",
+      "family": "FortiGate",
+      "platform": "hardware",
+      "interfaces": {
+        "value": [
+          {
+            "name": "port1",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port2",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port3",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port4",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port5",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port6",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port7",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port8",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port9",
+            "media": "rj45",
+            "speed": "5G"
+          },
+          {
+            "name": "port10",
+            "media": "rj45",
+            "speed": "5G"
+          },
+          {
+            "name": "port11",
+            "media": "rj45",
+            "speed": "5G"
+          },
+          {
+            "name": "port12",
+            "media": "rj45",
+            "speed": "5G"
+          },
+          {
+            "name": "port13",
+            "media": "rj45",
+            "speed": "5G"
+          },
+          {
+            "name": "port14",
+            "media": "rj45",
+            "speed": "5G"
+          },
+          {
+            "name": "port15",
+            "media": "rj45",
+            "speed": "5G"
+          },
+          {
+            "name": "port16",
+            "media": "rj45",
+            "speed": "5G"
+          },
+          {
+            "name": "x1",
+            "media": "sfp+",
+            "speed": "10G",
+            "note": "FortiLink"
+          },
+          {
+            "name": "x2",
+            "media": "sfp+",
+            "speed": "10G",
+            "note": "FortiLink"
+          },
+          {
+            "name": "x3",
+            "media": "sfp+",
+            "speed": "10G"
+          },
+          {
+            "name": "x4",
+            "media": "sfp+",
+            "speed": "10G"
+          },
+          {
+            "name": "x5",
+            "media": "sfp+",
+            "speed": "10G"
+          },
+          {
+            "name": "x6",
+            "media": "sfp+",
+            "speed": "10G"
+          },
+          {
+            "name": "x7",
+            "media": "sfp+",
+            "speed": "10G"
+          },
+          {
+            "name": "x8",
+            "media": "sfp+",
+            "speed": "10G"
+          },
+          {
+            "name": "port17",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port18",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port19",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port20",
+            "media": "sfp",
+            "speed": "1G"
+          }
+        ],
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://docs.fortinet.com/document/fortigate/8.0.2/hardware-acceleration/793766/fortigate-200g-and-201g-fast-path-architecture",
+            "title": "FortiOS 8.0.2 Hardware Acceleration — FortiGate 200G and 201G fast path architecture",
+            "verified_on": "2026-11-15",
+            "note": "`diagnose npu ... port-list` output and front panel interface list"
+          }
+        ],
+        "note": "Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only. The HA and MGMT ports are not connected to the NP processor, so their FortiOS names are not in the port list: verify them with a factory-default backup."
+      },
+      "has_disk": {
+        "value": false,
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/pdf/fortigate-200g-series.pdf",
+            "title": "FortiGate 200G Series Data Sheet",
+            "verified_on": "2026-11-15",
+            "note": "Onboard Storage: 0 (FG-200G)"
+          }
+        ]
+      },
+      "default_switches": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it."
+      }
+    },
+    {
+      "id": "FG-201G",
+      "display_name": "FortiGate 201G",
+      "family": "FortiGate",
+      "platform": "hardware",
+      "interfaces": {
+        "value": [
+          {
+            "name": "port1",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port2",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port3",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port4",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port5",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port6",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port7",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port8",
+            "media": "rj45",
+            "speed": "1G"
+          },
+          {
+            "name": "port9",
+            "media": "rj45",
+            "speed": "5G"
+          },
+          {
+            "name": "port10",
+            "media": "rj45",
+            "speed": "5G"
+          },
+          {
+            "name": "port11",
+            "media": "rj45",
+            "speed": "5G"
+          },
+          {
+            "name": "port12",
+            "media": "rj45",
+            "speed": "5G"
+          },
+          {
+            "name": "port13",
+            "media": "rj45",
+            "speed": "5G"
+          },
+          {
+            "name": "port14",
+            "media": "rj45",
+            "speed": "5G"
+          },
+          {
+            "name": "port15",
+            "media": "rj45",
+            "speed": "5G"
+          },
+          {
+            "name": "port16",
+            "media": "rj45",
+            "speed": "5G"
+          },
+          {
+            "name": "x1",
+            "media": "sfp+",
+            "speed": "10G",
+            "note": "FortiLink"
+          },
+          {
+            "name": "x2",
+            "media": "sfp+",
+            "speed": "10G",
+            "note": "FortiLink"
+          },
+          {
+            "name": "x3",
+            "media": "sfp+",
+            "speed": "10G"
+          },
+          {
+            "name": "x4",
+            "media": "sfp+",
+            "speed": "10G"
+          },
+          {
+            "name": "x5",
+            "media": "sfp+",
+            "speed": "10G"
+          },
+          {
+            "name": "x6",
+            "media": "sfp+",
+            "speed": "10G"
+          },
+          {
+            "name": "x7",
+            "media": "sfp+",
+            "speed": "10G"
+          },
+          {
+            "name": "x8",
+            "media": "sfp+",
+            "speed": "10G"
+          },
+          {
+            "name": "port17",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port18",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port19",
+            "media": "sfp",
+            "speed": "1G"
+          },
+          {
+            "name": "port20",
+            "media": "sfp",
+            "speed": "1G"
+          }
+        ],
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://docs.fortinet.com/document/fortigate/8.0.2/hardware-acceleration/793766/fortigate-200g-and-201g-fast-path-architecture",
+            "title": "FortiOS 8.0.2 Hardware Acceleration — FortiGate 200G and 201G fast path architecture",
+            "verified_on": "2026-11-15",
+            "note": "`diagnose npu ... port-list` output and front panel interface list"
+          }
+        ],
+        "note": "Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only. The HA and MGMT ports are not connected to the NP processor, so their FortiOS names are not in the port list: verify them with a factory-default backup."
+      },
+      "has_disk": {
+        "value": true,
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/pdf/fortigate-200g-series.pdf",
+            "title": "FortiGate 200G Series Data Sheet",
+            "verified_on": "2026-11-15",
+            "note": "Onboard Storage: 1x 480 GB SSD (FG-201G)"
+          }
+        ]
+      },
+      "default_switches": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it."
+      }
+    },
+    {
+      "id": "FG-30E",
+      "display_name": "FortiGate 30E",
+      "family": "FortiGate",
+      "platform": "hardware",
+      "interfaces": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "No Hardware Acceleration guide page with a port list exists for this model. Load a factory-default backup of the target model."
+      },
+      "has_disk": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "No official data sheet covering this exact model was found (the 60E URL now serves the 60F data sheet; the 80E data sheet covers only the 80E-POE/81E-POE)."
+      },
+      "default_switches": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it."
+      },
+      "note": "Widespread end-of-sale model: included so the app can warn explicitly instead of silently missing it."
+    },
+    {
+      "id": "FG-50E",
+      "display_name": "FortiGate 50E",
+      "family": "FortiGate",
+      "platform": "hardware",
+      "interfaces": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "No Hardware Acceleration guide page with a port list exists for this model. Load a factory-default backup of the target model."
+      },
+      "has_disk": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "No official data sheet covering this exact model was found (the 60E URL now serves the 60F data sheet; the 80E data sheet covers only the 80E-POE/81E-POE)."
+      },
+      "default_switches": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it."
+      },
+      "note": "Widespread end-of-sale model: included so the app can warn explicitly instead of silently missing it."
+    },
+    {
+      "id": "FG-60E",
+      "display_name": "FortiGate 60E",
+      "family": "FortiGate",
+      "platform": "hardware",
+      "interfaces": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "No Hardware Acceleration guide page with a port list exists for this model. Load a factory-default backup of the target model."
+      },
+      "has_disk": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "No official data sheet covering this exact model was found (the 60E URL now serves the 60F data sheet; the 80E data sheet covers only the 80E-POE/81E-POE)."
+      },
+      "default_switches": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it."
+      },
+      "note": "Widespread end-of-sale model: included so the app can warn explicitly instead of silently missing it."
+    },
+    {
+      "id": "FG-61E",
+      "display_name": "FortiGate 61E",
+      "family": "FortiGate",
+      "platform": "hardware",
+      "interfaces": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "No Hardware Acceleration guide page with a port list exists for this model. Load a factory-default backup of the target model."
+      },
+      "has_disk": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "No official data sheet covering this exact model was found (the 60E URL now serves the 60F data sheet; the 80E data sheet covers only the 80E-POE/81E-POE)."
+      },
+      "default_switches": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it."
+      },
+      "note": "Widespread end-of-sale model: included so the app can warn explicitly instead of silently missing it."
+    },
+    {
+      "id": "FG-80E",
+      "display_name": "FortiGate 80E",
+      "family": "FortiGate",
+      "platform": "hardware",
+      "interfaces": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "No Hardware Acceleration guide page with a port list exists for this model. Load a factory-default backup of the target model."
+      },
+      "has_disk": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "No official data sheet covering this exact model was found (the 60E URL now serves the 60F data sheet; the 80E data sheet covers only the 80E-POE/81E-POE)."
+      },
+      "default_switches": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it."
+      },
+      "note": "Widespread end-of-sale model: included so the app can warn explicitly instead of silently missing it."
+    },
+    {
+      "id": "FG-81E",
+      "display_name": "FortiGate 81E",
+      "family": "FortiGate",
+      "platform": "hardware",
+      "interfaces": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "No Hardware Acceleration guide page with a port list exists for this model. Load a factory-default backup of the target model."
+      },
+      "has_disk": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "No official data sheet covering this exact model was found (the 60E URL now serves the 60F data sheet; the 80E data sheet covers only the 80E-POE/81E-POE)."
+      },
+      "default_switches": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it."
+      },
+      "note": "Widespread end-of-sale model: included so the app can warn explicitly instead of silently missing it."
+    },
+    {
+      "id": "FG-VM64",
+      "display_name": "FortiGate-VM (VM64)",
+      "family": "FortiGate-VM",
+      "platform": "vm",
+      "interfaces": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "The number of vNICs depends on the hypervisor and deployment; load a factory-default backup of the target VM."
+      },
+      "has_disk": {
+        "value": true,
+        "status": "verified",
+        "sources": [
+          {
+            "url": "https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/fortigate-vm.pdf",
+            "title": "FortiGate-VM Data Sheet",
+            "verified_on": "2026-11-15",
+            "note": "Storage Support (Minimum / Maximum): 32 GB / 2 TB"
+          }
+        ]
+      },
+      "default_switches": {
+        "value": null,
+        "status": "unverified",
+        "sources": [],
+        "note": "Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it."
+      }
+    }
+  ]
+}
