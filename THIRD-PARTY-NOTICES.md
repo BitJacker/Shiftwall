@@ -1,5 +1,10 @@
 # Third-party notices
 
+Shiftwall is licensed under the [GNU General Public License v3.0](LICENSE). The components below keep their own
+licenses. Apache-2.0 (DiffPlex) is compatible with GPLv3, according to the
+[FSF license list](https://www.gnu.org/licenses/license-list.html#apache2) and the
+[Apache Software Foundation](https://www.apache.org/licenses/GPL-compatibility.html).
+
 Shiftwall uses the third-party components listed below. Licenses were checked on the date shown against the
 package metadata on nuget.org or the project's own LICENSE file. A component is added here when it is
 actually referenced by the build, with its exact version.
@@ -12,16 +17,10 @@ actually referenced by the build, with its exact version.
 | Windows Presentation Foundation (WPF) | 10.0.x | MIT | <https://github.com/dotnet/wpf/blob/main/LICENSE.TXT> | 2026-11-15 |
 | DiffPlex | 1.9.0 | Apache-2.0 | <https://www.nuget.org/packages/DiffPlex/1.9.0> (no dependencies) | 2026-11-15 |
 
-## Planned (not referenced yet)
+## Evaluated and not used
 
-Verified in Phase 0, added to the table above when the code that uses them lands:
-
-| Component | Version | License | Notes |
-|---|---|---|---|
-| AvalonEdit | 6.3.1.120 | MIT | Text/diff viewer |
-| ClosedXML | 0.105.1 | MIT | Excel export. Transitive `SixLabors.Fonts` must stay at **1.0.0 (Apache-2.0)**: versions 2.x use the Six Labors Split License, not OSI-approved. Pinned centrally. |
-| DocumentFormat.OpenXml | 3.x | MIT | ClosedXML dependency |
-| ClosedXML.Parser, ExcelNumberFormat, RBush.Signed | 2.0.0, 1.1.0, 4.0.0 | MIT | ClosedXML dependencies |
+AvalonEdit and ClosedXML (both MIT) were evaluated in Phase 0. Shiftwall does not use them: the diff view is a WPF
+list and Excel files are written by a small built-in writer (`Shiftwall.Features/Toolbox/Export/TableExport.cs`).
 
 **Rejected:** QuestPDF (not an OSI license) and PDFsharp ≥ 6.5.0 (AGPL-3.0 or commercial since 2026-10-13).
 PDF reports are produced by printing to the Windows "Microsoft Print to PDF" printer.
@@ -31,6 +30,7 @@ PDF reports are produced by printing to the Windows "Microsoft Print to PDF" pri
 | Component | Version | License | Source | Checked |
 |---|---|---|---|---|
 | xunit.v3 | 4.0.3 | Apache-2.0 | nuget.org | 2026-11-15 |
+| gitleaks (secret scan in CI and pre-commit) | 8.30.1 | MIT | <https://github.com/gitleaks/gitleaks/blob/master/LICENSE> | 2026-11-15 |
 | Playwright (brand asset rendering script only) | preinstalled | Apache-2.0 | <https://github.com/microsoft/playwright> | 2026-11-15 |
 
 ## Artwork

@@ -99,7 +99,7 @@
   <data name="About.Version" xml:space="preserve"><value>Version</value></data>
   <data name="About.Privacy.Title" xml:space="preserve"><value>Privacy</value></data>
   <data name="About.Privacy.Statement" xml:space="preserve"><value>Shiftwall sends no data. It works completely offline.</value></data>
-  <data name="About.Privacy.Details" xml:space="preserve"><value>No telemetry, analytics, online crash reports or automatic updates. Configurations are processed in memory and never written to logs. The only network feature (LAN backup download, Phase 4) is off by default and runs only when you start it.</value></data>
+  <data name="About.Privacy.Details" xml:space="preserve"><value>No telemetry, analytics, online crash reports or automatic updates. Configurations are processed in memory and never written to logs. The only network feature (Backup from LAN page) is off by default and runs only when you start it.</value></data>
   <data name="About.Database.Title" xml:space="preserve"><value>Model database</value></data>
   <data name="About.Database.Embedded" xml:space="preserve"><value>Bundled database: {0} models, {1} FortiOS versions (up to {2}).</value></data>
   <data name="About.Database.Imported" xml:space="preserve"><value>Imported database: {0} models, {1} FortiOS versions (up to {2}).</value></data>
@@ -112,7 +112,7 @@
   <data name="About.Disclaimer.Title" xml:space="preserve"><value>Disclaimer</value></data>
   <data name="About.Disclaimer" xml:space="preserve"><value>Shiftwall is not affiliated with Fortinet. FortiGate and FortiOS are trademarks of Fortinet, Inc. Modified configurations are not supported by Fortinet TAC: always test in a lab before production.</value></data>
   <data name="About.Repository" xml:space="preserve"><value>Project on GitHub</value></data>
-  <data name="About.License" xml:space="preserve"><value>Open source software.</value></data>
+  <data name="About.License" xml:space="preserve"><value>Free software under the GNU General Public License v3.0, without any warranty.</value></data>
   <data name="Error.TemplateInvalid" xml:space="preserve"><value>The mapping template is not valid.</value></data>
   <data name="Error.WouldOverwriteOriginal" xml:space="preserve"><value>This file is the original configuration: Shiftwall never overwrites it. Choose another name.</value></data>
   <data name="Error.FileNotFound" xml:space="preserve"><value>The file no longer exists or was moved. Select it again.</value></data>

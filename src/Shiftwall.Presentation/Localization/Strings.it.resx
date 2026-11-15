@@ -99,7 +99,7 @@
   <data name="About.Version" xml:space="preserve"><value>Versione</value></data>
   <data name="About.Privacy.Title" xml:space="preserve"><value>Privacy</value></data>
   <data name="About.Privacy.Statement" xml:space="preserve"><value>Shiftwall non invia dati. Funziona completamente offline.</value></data>
-  <data name="About.Privacy.Details" xml:space="preserve"><value>Niente telemetria, analytics, crash report online o aggiornamenti automatici. Le configurazioni sono elaborate in memoria e non finiscono nei log. L'unica funzione di rete (download del backup in LAN, Fase 4) è disattivata di default e parte solo su tua richiesta.</value></data>
+  <data name="About.Privacy.Details" xml:space="preserve"><value>Niente telemetria, analytics, crash report online o aggiornamenti automatici. Le configurazioni sono elaborate in memoria e non finiscono nei log. L'unica funzione di rete (pagina Backup da LAN) è disattivata di default e parte solo su tua richiesta.</value></data>
   <data name="About.Database.Title" xml:space="preserve"><value>Database modelli</value></data>
   <data name="About.Database.Embedded" xml:space="preserve"><value>Database incluso: {0} modelli, {1} versioni FortiOS (fino alla {2}).</value></data>
   <data name="About.Database.Imported" xml:space="preserve"><value>Database importato: {0} modelli, {1} versioni FortiOS (fino alla {2}).</value></data>
@@ -112,7 +112,7 @@
   <data name="About.Disclaimer.Title" xml:space="preserve"><value>Avvertenze</value></data>
   <data name="About.Disclaimer" xml:space="preserve"><value>Shiftwall non è affiliato a Fortinet. FortiGate e FortiOS sono marchi di Fortinet, Inc. Le config modificate non sono supportate dal TAC Fortinet: testare sempre in laboratorio prima della produzione.</value></data>
   <data name="About.Repository" xml:space="preserve"><value>Progetto su GitHub</value></data>
-  <data name="About.License" xml:space="preserve"><value>Software open source.</value></data>
+  <data name="About.License" xml:space="preserve"><value>Software libero con licenza GNU General Public License v3.0, senza alcuna garanzia.</value></data>
   <data name="Error.TemplateInvalid" xml:space="preserve"><value>Il template di mappatura non è valido.</value></data>
   <data name="Error.WouldOverwriteOriginal" xml:space="preserve"><value>Questo file è la configurazione originale: Shiftwall non la sovrascrive mai. Scegli un altro nome.</value></data>
   <data name="Error.FileNotFound" xml:space="preserve"><value>Il file non esiste più o è stato spostato. Selezionalo di nuovo.</value></data>
