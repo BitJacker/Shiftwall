@@ -9,7 +9,8 @@ a configuration moving from one firewall to another. No third-party logos, shape
 | `logo-16.svg`, `logo-24.svg` | Pixel-aligned versions for 16 and 24 px |
 | `icon.ico` | Windows icon: 16, 24, 32, 48, 64, 128, 256 |
 | `logo-512.png`, `logo-1024.png` | README / social |
-| `banner.svg`, `banner-1280x640.png` | GitHub social preview |
+| `banner.svg`, `banner-1280x640.png` | Banner |
+| `social-preview.png` | GitHub social preview (copy of the banner: 1280×640, under 1 MB) |
 | `variants/` | Discarded design candidates (kept for history) |
 
 ## Palette
