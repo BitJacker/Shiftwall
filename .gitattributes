@@ -7,3 +7,4 @@
 *.ico binary
 *.pdf binary
 *.sln text eol=crlf
+dist/*.exe filter=lfs diff=lfs merge=lfs -text
