@@ -12,7 +12,7 @@ Describe the problem, the affected version and the steps to reproduce it. **Neve
 configuration**: reproduce the problem with a synthetic file, or with a configuration anonymized by Shiftwall's
 *Anonymize config* tool (do not send the reversible map, nor its password).
 
-You will get an answer as soon as possible. Fixes are released as a new version with a note in
+You will get a first answer within a few days. Fixes are released as a new version with a note in
 [CHANGELOG.md](CHANGELOG.md); reporters are credited if they wish.
 
 ## Supported versions

@@ -1,7 +1,7 @@
 name: New FortiGate model / Nuovo modello FortiGate
 description: Add or correct a model in the database, with official sources. / Aggiungi o correggi un modello nel database, con fonti ufficiali.
 title: "[model] "
-labels: ["model-database"]
+labels: ["new-model"]
 body:
   - type: markdown
     attributes:

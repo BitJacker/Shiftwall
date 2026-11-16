@@ -3,6 +3,30 @@
 Thank you for helping. By contributing you agree that your work is released under the [GPL-3.0](LICENSE) and that you
 follow the [code of conduct](CODE_OF_CONDUCT.md).
 
+## Quick setup
+
+With [Git](https://git-scm.com/) and the [.NET SDK 10.0.404](https://dotnet.microsoft.com/download/dotnet/10.0):
+
+```bash
+git clone https://github.com/BitJacker/shiftwall.git
+```
+
+```bash
+cd shiftwall
+```
+
+```bash
+dotnet test -c Release
+```
+
+That builds everything and runs all the tests. On Windows, start the app with
+`dotnet run --project src/Shiftwall.App`.
+
+## Response times
+
+Shiftwall is maintained in spare time. Expect a first answer to issues and pull requests **within a few days**,
+sometimes longer. Security reports (see [SECURITY.md](SECURITY.md)) are read first.
+
 ## Golden rules
 
 - **Never commit real configurations or backups**, not even "harmless" ones. Test files are synthetic and use the
@@ -15,18 +39,14 @@ follow the [code of conduct](CODE_OF_CONDUCT.md).
 
 ## Build and test
 
-Requirements: [.NET SDK 10.0.404](https://dotnet.microsoft.com/download/dotnet/10.0) (pinned in `global.json`).
-The app is WPF and runs on Windows; libraries and tests also build on Linux and macOS.
-
-```bash
-dotnet test -c Release
-```
+The SDK version is pinned in `global.json`. The app is WPF and runs on Windows; libraries and tests also build on
+Linux and macOS. Single-file exe (Windows):
 
 ```bash
 dotnet publish src/Shiftwall.App -c Release -o publish
 ```
 
-The second command (Windows) produces the single-file `publish/Shiftwall.exe`.
+It produces `publish/Shiftwall.exe`.
 
 Secret scan, the same one CI runs (Linux, downloads gitleaks and checks its SHA256):
 
@@ -103,4 +123,4 @@ sources, and a maintainer will add it.
 1. Move *Unreleased* to the new version in `CHANGELOG.md`, set `<Version>` in `Directory.Build.props` and write the
    release text in `docs/releases/v<version>.md`.
 2. Tag the commit on `main`: `git tag v<version>` and push the tag. The release workflow builds, tests and publishes
-   `Shiftwall.exe` and `SHA256SUMS.txt`.
+   `Shiftwall.exe` and `SHA256SUMS.txt`. Versions 0.x are published as pre-releases.
