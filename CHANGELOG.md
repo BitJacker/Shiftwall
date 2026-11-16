@@ -7,7 +7,10 @@ The format is based on [Keep a Changelog 1.1.0](https://keepachangelog.com/en/1.
 
 ## [Unreleased]
 
-First public version, to be released as 0.1.0.
+## [0.1.0] - not yet released (pre-release)
+
+First public version, published as a GitHub pre-release. The date is set when the `v0.1.0` tag is created, after
+testing in a lab.
 
 ### Added
 
@@ -36,4 +39,5 @@ First public version, to be released as 0.1.0.
 - `ENC` values are copied unchanged and never decrypted; configuration content never reaches the logs.
 - Secret scanning with gitleaks in CI and as an optional pre-commit hook.
 
-[Unreleased]: https://github.com/BitJacker/shiftwall/commits/main
+[Unreleased]: https://github.com/BitJacker/shiftwall/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/BitJacker/shiftwall/releases/tag/v0.1.0

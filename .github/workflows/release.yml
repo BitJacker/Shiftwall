@@ -1,6 +1,7 @@
 # Builds and publishes a release when a tag "v*" is pushed (for example v0.1.0).
 # The tag must match <Version> in Directory.Build.props and docs/releases/<tag>.md must exist (release text).
 # Release assets: Shiftwall.exe and SHA256SUMS.txt. Debug symbols are kept as a workflow artifact.
+# Versions 0.x are published as pre-releases (SemVer 2.0.0 item 4: major version zero is initial development).
 # Actions are pinned to commit SHAs (tag in the comment).
 name: Release
 
@@ -62,8 +63,10 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          $flags = @()
+          if ($env:TAG.StartsWith('v0.')) { $flags += '--prerelease' }
           gh release create $env:TAG publish/Shiftwall.exe publish/SHA256SUMS.txt `
-            --title "Shiftwall $env:TAG" --notes-file "docs/releases/$env:TAG.md" --verify-tag
+            --title "Shiftwall $env:TAG" --notes-file "docs/releases/$env:TAG.md" --verify-tag @flags
           if ($LASTEXITCODE -ne 0) { throw "gh release create failed" }
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
