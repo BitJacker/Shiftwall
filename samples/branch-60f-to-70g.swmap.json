@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "name": "Sample: branch-60f.conf to factory-default-70g.conf (synthetic)",
+  "source_platform": "FGT60F",
+  "target_model": "FGT70G",
+  "map": {
+    "wan1": "wan1",
+    "wan2": "wan2",
+    "internal1": "port1",
+    "internal2": "port2",
+    "internal3": "port3",
+    "internal4": "port4",
+    "internal5": "port6",
+    "a": "a",
+    "b": "b"
+  }
+}

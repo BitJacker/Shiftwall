@@ -20,6 +20,9 @@ TestResults/
 **/backups/
 **/local-backups/
 
+# The only .conf files allowed: synthetic samples, checked by SamplesTests (marker line, documentation IPs).
+!samples/*.conf
+
 # Local-only data (anonymization maps, tokens, user templates)
 *.swmap
 *.swtoken
