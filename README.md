@@ -4,7 +4,7 @@
 
 <h1 align="center">Shiftwall</h1>
 
-<p align="center">Offline FortiGate configuration migration and sysadmin toolbox for Windows, in a single portable exe.</p>
+<p align="center">Migrate FortiGate configurations between models, offline, plus a sysadmin toolbox. One portable Windows exe, no telemetry.</p>
 
 <p align="center"><b>English</b> · <a href="README.it.md">Italiano</a></p>
 
@@ -15,6 +15,8 @@
   <img src="https://img.shields.io/badge/platform-Windows%2010%2F11%20x64-0078D6" alt="Platform: Windows 10/11 x64">
 </p>
 
+<!-- Demo GIF: when assets/demo.gif exists (see docs/RECORDING.md), replace the screenshot below with
+     <img src="assets/demo.gif" alt="Shiftwall demo: migration from a 60F-style to a 70G-style configuration" width="800"> -->
 <p align="center">
   <img src="assets/screenshots/migration-wizard.png" alt="Migration wizard, step 1: load the source backup and the factory-default backup of the target" width="800">
 </p>
@@ -66,10 +68,20 @@ The build fails if code outside the LAN module uses a network client. Details: [
 
 ## Download
 
-1. Download `Shiftwall.exe` and `SHA256SUMS.txt` from the [latest release](https://github.com/BitJacker/shiftwall/releases/latest).
-2. Check the hash in PowerShell: `Get-FileHash .\Shiftwall.exe -Algorithm SHA256` must match `SHA256SUMS.txt`.
-3. The exe is not code-signed, so SmartScreen shows "Windows protected your PC": after checking the hash, choose
-   *More info* → *Run anyway*.
+**[Download Shiftwall.exe](https://github.com/BitJacker/shiftwall/releases/latest/download/Shiftwall.exe)** · [SHA256SUMS.txt](https://github.com/BitJacker/shiftwall/releases/latest/download/SHA256SUMS.txt)
+· [all releases](https://github.com/BitJacker/shiftwall/releases)
+
+> Version 0.1.0 is a **pre-release**. GitHub's "latest" links skip pre-releases, so until the first stable release the
+> two links above do not work: download both files from the [releases page](https://github.com/BitJacker/shiftwall/releases).
+
+Check the file before running it. In PowerShell, in the folder with both files:
+
+```powershell
+(Get-FileHash .\Shiftwall.exe -Algorithm SHA256).Hash -eq (Get-Content .\SHA256SUMS.txt).Split(' ')[0]
+```
+
+`True` means the file is intact (the comparison ignores upper/lower case). The exe is not code-signed, so SmartScreen
+shows "Windows protected your PC": after checking the hash, choose *More info* → *Run anyway*.
 
 Step-by-step instructions and the list of files Shiftwall writes: [docs/download-and-verify.md](docs/download-and-verify.md).
 No installer and no administrator rights are needed (about 144 MB, Windows 10/11 x64).
@@ -83,6 +95,19 @@ No installer and no administrator rights are needed (about 144 MB, Windows 10/11
 5. Review the changes, save the new configuration, follow the checklist and test it in a lab.
 
 Full guide: [docs/migration-guide.md](docs/migration-guide.md).
+
+## Try it in one minute
+
+No FortiGate at hand? Use the synthetic files in [samples/](samples/) (open each file on GitHub and choose
+*Download raw file*):
+
+1. **Migration**: drop `branch-60f.conf` on the left and `factory-default-70g.conf` on the right; choose model
+   **FG-70G** in the list under it.
+2. Go to step 3 and press **Load template…**: pick `branch-60f-to-70g.swmap.json`.
+3. Step 4 shows the result: `internal5` becomes `port6`, the unused `dmz` port and the disk sections are removed, the
+   `ENC` values are unchanged. Nothing is written until you press *Save configuration*.
+4. **Security audit**: load `hq-60f.conf` to see findings (HTTP/Telnet admin access, weak IPsec proposals, missing
+   NTP) with their sources.
 
 ## Supported models and versions
 
@@ -164,6 +189,7 @@ The app runs on Windows; libraries and tests also build on Linux and macOS. Deta
 - More models with verified interface lists, from official sources and contributed factory-default interface names.
 - Feedback from real migrations to extend the pre-checks and the checklist.
 - Code signing of the exe, to remove the SmartScreen warning.
+- Installation with [winget](https://learn.microsoft.com/windows/package-manager/winget/), after the first stable release.
 
 ## Contributing, license and disclaimer
 

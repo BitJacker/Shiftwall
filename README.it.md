@@ -4,7 +4,7 @@
 
 <h1 align="center">Shiftwall</h1>
 
-<p align="center">Migrazione offline delle configurazioni FortiGate e toolbox per sistemisti, per Windows, in un unico exe portable.</p>
+<p align="center">Migra le configurazioni FortiGate tra modelli diversi, offline, con una toolbox per sistemisti. Un unico exe portable per Windows, senza telemetria.</p>
 
 <p align="center"><a href="README.md">English</a> · <b>Italiano</b></p>
 
@@ -15,6 +15,8 @@
   <img src="https://img.shields.io/badge/platform-Windows%2010%2F11%20x64-0078D6" alt="Piattaforma: Windows 10/11 x64">
 </p>
 
+<!-- GIF demo: quando esiste assets/demo.gif (vedi docs/RECORDING.md), sostituisci lo screenshot qui sotto con
+     <img src="assets/demo.gif" alt="Demo di Shiftwall: migrazione da una configurazione stile 60F a una stile 70G" width="800"> -->
 <p align="center">
   <img src="assets/screenshots/migration-wizard.png" alt="Wizard di migrazione, passo 1: carica il backup sorgente e il backup di default della destinazione" width="800">
 </p>
@@ -71,10 +73,21 @@ La build fallisce se codice fuori dal modulo LAN usa un client di rete. Dettagli
 
 ## Download
 
-1. Scarica `Shiftwall.exe` e `SHA256SUMS.txt` dall'[ultima release](https://github.com/BitJacker/shiftwall/releases/latest).
-2. Verifica l'hash in PowerShell: `Get-FileHash .\Shiftwall.exe -Algorithm SHA256` deve coincidere con `SHA256SUMS.txt`.
-3. L'exe non è firmato, quindi SmartScreen mostra "Windows protected your PC": dopo aver verificato l'hash scegli
-   *More info* → *Run anyway* (in Windows in italiano le voci compaiono tradotte).
+**[Scarica Shiftwall.exe](https://github.com/BitJacker/shiftwall/releases/latest/download/Shiftwall.exe)** · [SHA256SUMS.txt](https://github.com/BitJacker/shiftwall/releases/latest/download/SHA256SUMS.txt)
+· [tutte le release](https://github.com/BitJacker/shiftwall/releases)
+
+> La versione 0.1.0 è una **pre-release**. I link "latest" di GitHub saltano le pre-release, quindi fino alla prima
+> release stabile i due link qui sopra non funzionano: scarica i due file dalla [pagina delle release](https://github.com/BitJacker/shiftwall/releases).
+
+Verifica il file prima di avviarlo. In PowerShell, nella cartella con i due file:
+
+```powershell
+(Get-FileHash .\Shiftwall.exe -Algorithm SHA256).Hash -eq (Get-Content .\SHA256SUMS.txt).Split(' ')[0]
+```
+
+`True` significa che il file è integro (il confronto ignora maiuscole e minuscole). L'exe non è firmato, quindi
+SmartScreen mostra "Windows protected your PC": dopo aver verificato l'hash scegli *More info* → *Run anyway* (in
+Windows in italiano le voci compaiono tradotte).
 
 Istruzioni passo passo e l'elenco dei file che Shiftwall scrive: [docs/download-and-verify.md](docs/download-and-verify.md#scaricare-e-verificare-shiftwall).
 Non servono installer né diritti di amministratore (circa 144 MB, Windows 10/11 x64).
@@ -89,6 +102,19 @@ Non servono installer né diritti di amministratore (circa 144 MB, Windows 10/11
 5. Controlla le modifiche, salva la nuova configurazione, segui la checklist e provala in laboratorio.
 
 Guida completa: [docs/migration-guide.md](docs/migration-guide.md#guida-alla-migrazione).
+
+## Provalo in 1 minuto
+
+Non hai un FortiGate sotto mano? Usa i file sintetici in [samples/](samples/) (apri ogni file su GitHub e scegli
+*Download raw file*):
+
+1. **Migrazione**: trascina `branch-60f.conf` a sinistra e `factory-default-70g.conf` a destra; scegli il modello
+   **FG-70G** nell'elenco sotto.
+2. Vai al passo 3 e premi **Carica template…**: scegli `branch-60f-to-70g.swmap.json`.
+3. Il passo 4 mostra il risultato: `internal5` diventa `port6`, la porta `dmz` non usata e le sezioni del disco sono
+   rimosse, i valori `ENC` restano invariati. Nessun file viene scritto finché non premi *Salva configurazione*.
+4. **Audit sicurezza**: carica `hq-60f.conf` per vedere i rilievi (accesso admin HTTP/Telnet, proposte IPsec deboli,
+   NTP mancante) con le loro fonti.
 
 ## Modelli e versioni supportati
 
@@ -173,6 +199,7 @@ L'app gira su Windows; librerie e test si compilano anche su Linux e macOS. Dett
   forniti dalla community.
 - Riscontri da migrazioni reali per ampliare controlli e checklist.
 - Firma digitale dell'exe, per eliminare l'avviso di SmartScreen.
+- Installazione con [winget](https://learn.microsoft.com/windows/package-manager/winget/), dopo la prima release stabile.
 
 ## Contribuire, licenza e disclaimer
 
