@@ -18,9 +18,10 @@ testing in a lab.
   models running the same FortiOS version. Target from a factory-default backup (recommended) or from the model
   database. Interface renaming in every reference and VDOM, removal of disk sections on diskless targets, replacement of
   the `config-version` section of the header only, validation of the result, before/after diff, HTML report,
-  print/PDF and a manual checklist. Mapping templates can be saved and reused.
+  print/PDF and a manual checklist. Mapping templates can be saved and reused. The interface mapping is suggested by
+  name and role (WAN to WAN, LAN ports in order, e.g. FortiGate 50E `lan1` → 60F `internal1`) and must be checked.
 - Batch conversion of several sites with the same mapping template, with a simulation mode.
-- Model database with 34 models and 96 FortiOS releases (6.2.0 – 8.0.2). Every datum cites its official Fortinet
+- Model database with 112 models (desktop to data center, from the Hardware Acceleration guide) and 96 FortiOS releases (6.2.0 – 8.0.2). Every datum cites its official Fortinet
   source and verification date; unverified data shows a warning. An updated database can be imported and is validated
   first.
 - Offline toolbox: configuration compare, security audit (23 rules with sources and a score), unused objects with a

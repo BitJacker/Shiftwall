@@ -10,9 +10,9 @@ Accepted hosts: `docs.fortinet.com`, `www.fortinet.com`, `community.fortinet.com
 
 ## Summary
 
-- Models: **34**
+- Models: **112**
 - FortiOS releases: **96** (6.2.0 – 8.0.2)
-- Fields verified: **338**, unverified: **52**
+- Fields verified: **416**, unverified: **208**
 - Upgrade paths: none listed — see below
 
 ## Upgrade paths
@@ -24,6 +24,36 @@ Official tool: <https://docs.fortinet.com/upgrade-tool/fortigate>
 - [FortiOS 7.6.8 Release Notes - Upgrade information](https://docs.fortinet.com/document/fortigate/7.6.8/fortios-release-notes/832438/upgrade-information) — verified 2026-11-15 — "Supported upgrade path information is available through the Upgrade Path Tool on the Fortinet Document Library."
 
 ## Models
+
+### FG-1000D — FortiGate 1000D
+
+- **Interfaces:** `port17`, `port18`, `port19`, `port20`, `port21`, `port22`, `port23`, `port24`, `port27`, `port28`, `port25`, `port26`, `port31`, `port32`, `port29`, `port30`
+  - [FortiOS 7.4.9 Hardware Acceleration — FortiGate 1000D fast path architecture](https://docs.fortinet.com/document/fortigate/7.4.9/hardware-acceleration/669831/fortigate-1000d-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-1000F — FortiGate 1000F
+
+- **Interfaces:** `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `port17`, `port18`, `port19`, `port20`, `port21`, `port22`, `port23`, `port24`, `port25`, `port26`, `port27`, `port28`, `port29`, `port30`, `port31`, `port32`, `port33`, `port34`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 1000F and 1001F fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/658772/fortigate-1000f-and-1001f-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-1001F — FortiGate 1001F
+
+- **Interfaces:** `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `port17`, `port18`, `port19`, `port20`, `port21`, `port22`, `port23`, `port24`, `port25`, `port26`, `port27`, `port28`, `port29`, `port30`, `port31`, `port32`, `port33`, `port34`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 1000F and 1001F fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/658772/fortigate-1000f-and-1001f-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
 
 ### FG-100E — FortiGate 100E
 
@@ -67,6 +97,36 @@ Official tool: <https://docs.fortinet.com/upgrade-tool/fortigate>
 
 - **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
 
+### FG-1100E — FortiGate 1100E
+
+- **Interfaces:** `port20`, `port1`, `port2`, `port19`, `port3`, `port4`, `port18`, `port5`, `port6`, `port17`, `port7`, `port8`, `port25`, `port26`, `port29`, `port30`, `port33`, `port24`, `port9`, `port10`, `port23`, `port11`, `port12`, `port22`, `port13`, `port14`, `port21`, `port15`, `port16`, `port27`, `port28`, `port31`, `port32`, `port34`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 1100E and 1101E fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/824164/fortigate-1100e-and-1101e-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-1101E — FortiGate 1101E
+
+- **Interfaces:** `port20`, `port1`, `port2`, `port19`, `port3`, `port4`, `port18`, `port5`, `port6`, `port17`, `port7`, `port8`, `port25`, `port26`, `port29`, `port30`, `port33`, `port24`, `port9`, `port10`, `port23`, `port11`, `port12`, `port22`, `port13`, `port14`, `port21`, `port15`, `port16`, `port27`, `port28`, `port31`, `port32`, `port34`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 1100E and 1101E fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/824164/fortigate-1100e-and-1101e-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-1200D — FortiGate 1200D
+
+- **Interfaces:** `port33`, `port34`, `port1`, `port3`, `port5`, `port7`, `port17`, `port19`, `port21`, `port23`, `port2`, `port4`, `port6`, `port8`, `port18`, `port20`, `port22`, `port24`, `port35`, `port36`, `port9`, `port11`, `port13`, `port15`, `port25`, `port27`, `port29`, `port31`, `port10`, `port12`, `port14`, `port16`, `port26`, `port28`, `port30`, `port32`
+  - [FortiOS 7.0.17 Hardware Acceleration — FortiGate 1200D fast path architecture](https://docs.fortinet.com/document/fortigate/7.0.17/hardware-acceleration/713616/fortigate-1200d-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
 ### FG-120G — FortiGate 120G
 
 - **Interfaces:** `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `x1`, `x2`, `x3`, `x4`, `port17`, `port18`, `port19`, `port20`, `port21`, `port22`, `port23`, `port24`
@@ -86,6 +146,56 @@ Official tool: <https://docs.fortinet.com/upgrade-tool/fortigate>
 
 - **Disk:** yes
   - [FortiGate 120G Series Data Sheet](https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/pdf/fortigate-120g-series.pdf) — verified 2026-11-15 — Internal Storage: 1 x 480 GB SSD (FG-121G)
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-1500D — FortiGate 1500D
+
+- **Interfaces:** `port1`, `port5`, `port17`, `port21`, `port33`, `port2`, `port6`, `port18`, `port22`, `port34`, `port3`, `port7`, `port19`, `port23`, `port35`, `port4`, `port8`, `port20`, `port24`, `port36`, `port9`, `port13`, `port25`, `port29`, `port37`, `port10`, `port14`, `port26`, `port30`, `port38`, `port11`, `port15`, `port27`, `port31`, `port39`, `port12`, `port16`, `port28`, `port32`, `port40`
+  - [FortiOS 7.2.12 Hardware Acceleration — FortiGate 1500D fast path architecture](https://docs.fortinet.com/document/fortigate/7.2.12/hardware-acceleration/718643/fortigate-1500d-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-1500DT — FortiGate 1500DT
+
+- **Interfaces:** `port1`, `port5`, `port17`, `port21`, `port33`, `port2`, `port6`, `port18`, `port22`, `port34`, `port3`, `port7`, `port19`, `port23`, `port35`, `port4`, `port8`, `port20`, `port24`, `port36`, `port9`, `port13`, `port25`, `port29`, `port37`, `port10`, `port14`, `port26`, `port30`, `port38`, `port11`, `port15`, `port27`, `port31`, `port39`, `port12`, `port16`, `port28`, `port32`, `port40`
+  - [FortiOS 7.2.12 Hardware Acceleration — FortiGate 1500DT fast path architecture](https://docs.fortinet.com/document/fortigate/7.2.12/hardware-acceleration/294571/fortigate-1500dt-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-1800F — FortiGate 1800F
+
+- **Interfaces:** `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `port17`, `port18`, `port19`, `port20`, `port21`, `port22`, `port23`, `port24`, `port25`, `port26`, `port27`, `port28`, `port29`, `port30`, `port31`, `port32`, `port33`, `port34`, `port35`, `port36`, `port37`, `port38`, `port39`, `port40`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 1800F and 1801F fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/403769/fortigate-1800f-and-1801f-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-1801F — FortiGate 1801F
+
+- **Interfaces:** `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `port17`, `port18`, `port19`, `port20`, `port21`, `port22`, `port23`, `port24`, `port25`, `port26`, `port27`, `port28`, `port29`, `port30`, `port31`, `port32`, `port33`, `port34`, `port35`, `port36`, `port37`, `port38`, `port39`, `port40`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 1800F and 1801F fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/403769/fortigate-1800f-and-1801f-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-2000E — FortiGate 2000E
+
+- **Interfaces:** `port1`, `port5`, `port9`, `port13`, `port17`, `port21`, `port25`, `port29`, `port2`, `port6`, `port10`, `port14`, `port18`, `port22`, `port26`, `port30`, `port3`, `port7`, `port11`, `port15`, `port19`, `port23`, `port27`, `port31`, `port4`, `port8`, `port12`, `port16`, `port20`, `port24`, `port28`, `port32`, `port33`, `port34`, `port35`, `port36`, `port37`, `port38`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 2000E fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/336579/fortigate-2000e-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
 
 - **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
 
@@ -153,6 +263,136 @@ Official tool: <https://docs.fortinet.com/upgrade-tool/fortigate>
 
 - **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
 
+### FG-2200E — FortiGate 2200E
+
+- **Interfaces:** `port1`, `port2`, `port3`, `port13`, `port14`, `port15`, `port16`, `port17`, `port31`, `port4`, `port5`, `port6`, `port18`, `port19`, `port20`, `port24`, `port23`, `port32`, `port7`, `port8`, `port9`, `port22`, `port21`, `port26`, `port25`, `port28`, `port33`, `port10`, `port11`, `port12`, `port29`, `port30`, `port27`, `port34`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 2200E and 2201E fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/133905/fortigate-2200e-and-2201e-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-2201E — FortiGate 2201E
+
+- **Interfaces:** `port1`, `port2`, `port3`, `port13`, `port14`, `port15`, `port16`, `port17`, `port31`, `port4`, `port5`, `port6`, `port18`, `port19`, `port20`, `port24`, `port23`, `port32`, `port7`, `port8`, `port9`, `port22`, `port21`, `port26`, `port25`, `port28`, `port33`, `port10`, `port11`, `port12`, `port29`, `port30`, `port27`, `port34`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 2200E and 2201E fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/133905/fortigate-2200e-and-2201e-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-2500E — FortiGate 2500E
+
+- **Interfaces:** `port1`, `port5`, `port9`, `port13`, `port17`, `port21`, `port25`, `port29`, `port2`, `port6`, `port10`, `port14`, `port18`, `port22`, `port26`, `port30`, `port3`, `port7`, `port11`, `port15`, `port19`, `port23`, `port27`, `port31`, `port4`, `port8`, `port12`, `port16`, `port20`, `port24`, `port28`, `port32`, `port37`, `port38`, `port39`, `port40`, `port43`, `port44`, `port41`, `port42`, `port33`, `port34`, `port35`, `port36`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 2500E fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/107715/fortigate-2500e-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-2600F — FortiGate 2600F
+
+- **Interfaces:** `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `port17`, `port18`, `port19`, `port20`, `port21`, `port22`, `port23`, `port24`, `port25`, `port26`, `port27`, `port28`, `port29`, `port30`, `port31`, `port32`, `port33`, `port34`, `port35`, `port36`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 2600F and 2601F fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/205818/fortigate-2600f-and-2601f-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-2601F — FortiGate 2601F
+
+- **Interfaces:** `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `port17`, `port18`, `port19`, `port20`, `port21`, `port22`, `port23`, `port24`, `port25`, `port26`, `port27`, `port28`, `port29`, `port30`, `port31`, `port32`, `port33`, `port34`, `port35`, `port36`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 2600F and 2601F fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/205818/fortigate-2600f-and-2601f-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-3000D — FortiGate 3000D
+
+- **Interfaces:** `port1`, `port6`, `port2`, `port5`, `port3`, `port8`, `port4`, `port7`, `port10`, `port13`, `port9`, `port14`, `port12`, `port15`, `port11`, `port16`
+  - [FortiOS 7.4.9 Hardware Acceleration — FortiGate 3000D fast path architecture](https://docs.fortinet.com/document/fortigate/7.4.9/hardware-acceleration/639979/fortigate-3000d-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-3000F — FortiGate 3000F
+
+- **Interfaces:** `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `port17`, `port18`, `port19`, `port20`, `port21`, `port22`, `port23`, `port24`, `port25`, `port26`, `port27`, `port28`, `port29`, `port30`, `port31`, `port32`, `port33`, `port34`, `port35`, `port36`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 3000F and 3001F fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/975148/fortigate-3000f-and-3001f-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-3000G — FortiGate 3000G
+
+- **Interfaces:** `wan1`, `wan2`, `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `port17`, `port18`, `port19`, `port20`, `port21`, `port22`, `port23`, `port24`, `port25`, `port26`, `port27`, `port28`, `port29`, `port30`, `port31`, `port32`, `port33`, `port34`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 3000G and 3001G fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/921181/fortigate-3000g-and-3001g-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-3001F — FortiGate 3001F
+
+- **Interfaces:** `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `port17`, `port18`, `port19`, `port20`, `port21`, `port22`, `port23`, `port24`, `port25`, `port26`, `port27`, `port28`, `port29`, `port30`, `port31`, `port32`, `port33`, `port34`, `port35`, `port36`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 3000F and 3001F fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/975148/fortigate-3000f-and-3001f-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-3001G — FortiGate 3001G
+
+- **Interfaces:** `wan1`, `wan2`, `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `port17`, `port18`, `port19`, `port20`, `port21`, `port22`, `port23`, `port24`, `port25`, `port26`, `port27`, `port28`, `port29`, `port30`, `port31`, `port32`, `port33`, `port34`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 3000G and 3001G fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/921181/fortigate-3000g-and-3001g-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-300D — FortiGate 300D
+
+- **Interfaces:** `port5`, `port7`, `port8`, `port6`, `port3`, `port4`, `port1`, `port2`
+  - [FortiOS 6.4.16 Hardware Acceleration — FortiGate 300D fast path architecture](https://docs.fortinet.com/document/fortigate/6.4.16/hardware-acceleration/655120/fortigate-300d-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-300E — FortiGate 300E
+
+- **Interfaces:** `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `port17`, `port18`, `port19`, `port20`, `port21`, `port22`, `port23`, `port25`, `port26`, `port27`, `port28`, `s1`, `s2`, `vw1`, `vw2`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 300E and 301E fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/218633/fortigate-300e-and-301e-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there. The documented output prints port2 more than once (a typo in the guide): a port may be missing from this list. Load a factory-default backup to complete it.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-301E — FortiGate 301E
+
+- **Interfaces:** `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `port17`, `port18`, `port19`, `port20`, `port21`, `port22`, `port23`, `port25`, `port26`, `port27`, `port28`, `s1`, `s2`, `vw1`, `vw2`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 300E and 301E fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/218633/fortigate-300e-and-301e-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there. The documented output prints port2 more than once (a typo in the guide): a port may be missing from this list. Load a factory-default backup to complete it.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
 ### FG-30E — FortiGate 30E
 
 Widespread end-of-sale model: included so the app can warn explicitly instead of silently missing it.
@@ -174,6 +414,16 @@ Widespread end-of-sale model: included so the app can warn explicitly instead of
 
 - **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
 
+### FG-3100D — FortiGate 3100D
+
+- **Interfaces:** `port1`, `port6`, `port10`, `port13`, `port2`, `port5`, `port9`, `port14`, `port3`, `port8`, `port12`, `port15`, `port4`, `port7`, `port11`, `port16`, `port17`, `port21`, `port25`, `port29`, `port18`, `port22`, `port26`, `port30`, `port19`, `port23`, `port27`, `port31`, `port20`, `port24`, `port28`, `port32`
+  - [FortiOS 7.4.9 Hardware Acceleration — FortiGate 3100D fast path architecture](https://docs.fortinet.com/document/fortigate/7.4.9/hardware-acceleration/229491/fortigate-3100d-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
 ### FG-31G — FortiGate 31G
 
 - **Interfaces:** `wan`, `lan1`, `lan2`, `a`
@@ -185,6 +435,306 @@ Widespread end-of-sale model: included so the app can warn explicitly instead of
 
 - **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
 
+### FG-3200D — FortiGate 3200D
+
+- **Interfaces:** `port1`, `port5`, `port10`, `port13`, `port17`, `port22`, `port2`, `port6`, `port9`, `port14`, `port18`, `port21`, `port3`, `port7`, `port12`, `port15`, `port19`, `port24`, `port4`, `port8`, `port11`, `port16`, `port20`, `port23`, `port26`, `port29`, `port33`, `port37`, `port41`, `port45`, `port25`, `port30`, `port34`, `port38`, `port42`, `port46`, `port28`, `port31`, `port35`, `port39`, `port43`, `port47`, `port27`, `port32`, `port36`, `port40`, `port44`, `port48`
+  - [FortiOS 7.4.9 Hardware Acceleration — FortiGate 3200D fast path architecture](https://docs.fortinet.com/document/fortigate/7.4.9/hardware-acceleration/289881/fortigate-3200d-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-3200F — FortiGate 3200F
+
+- **Interfaces:** `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `port17`, `port18`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 3200F and 3201F fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/632762/fortigate-3200f-and-3201f-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-3201F — FortiGate 3201F
+
+- **Interfaces:** `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `port17`, `port18`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 3200F and 3201F fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/632762/fortigate-3200f-and-3201f-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-3300E — FortiGate 3300E
+
+- **Interfaces:** `port1`, `port14`, `port2`, `port15`, `port3`, `port16`, `port13`, `port17`, `port31`, `port4`, `port5`, `port6`, `port18`, `port19`, `port20`, `port24`, `port23`, `port32`, `port7`, `port8`, `port9`, `port22`, `port21`, `port26`, `port25`, `port28`, `port33`, `port10`, `port11`, `port12`, `port29`, `port30`, `port27`, `port34`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 3300E and 3301E fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/132249/fortigate-3300e-and-3301e-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-3301E — FortiGate 3301E
+
+- **Interfaces:** `port1`, `port14`, `port2`, `port15`, `port3`, `port16`, `port13`, `port17`, `port31`, `port4`, `port5`, `port6`, `port18`, `port19`, `port20`, `port24`, `port23`, `port32`, `port7`, `port8`, `port9`, `port22`, `port21`, `port26`, `port25`, `port28`, `port33`, `port10`, `port11`, `port12`, `port29`, `port30`, `port27`, `port34`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 3300E and 3301E fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/132249/fortigate-3300e-and-3301e-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-3400E — FortiGate 3400E
+
+- **Interfaces:** `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `port17`, `port18`, `port19`, `port20`, `port21`, `port22`, `port23`, `port24`, `port25`, `port26`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 3400E and 3401E fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/620401/fortigate-3400e-and-3401e-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-3401E — FortiGate 3401E
+
+- **Interfaces:** `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `port17`, `port18`, `port19`, `port20`, `port21`, `port22`, `port23`, `port24`, `port25`, `port26`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 3400E and 3401E fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/620401/fortigate-3400e-and-3401e-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-3500F — FortiGate 3500F
+
+- **Interfaces:** `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `port17`, `port18`, `port19`, `port20`, `port21`, `port22`, `port23`, `port24`, `port25`, `port26`, `port27`, `port28`, `port29`, `port30`, `port31`, `port32`, `port33`, `port34`, `port35`, `port36`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 3500F and 3501F fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/968988/fortigate-3500f-and-3501f-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-3500G — FortiGate 3500G
+
+- **Interfaces:** `wan1`, `wan2`, `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `port17`, `port18`, `port19`, `port20`, `port21`, `port22`, `port23`, `port24`, `port25`, `port26`, `port27`, `port28`, `port29`, `port30`, `port31`, `port32`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 3500G and 3501G fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/86979/fortigate-3500g-and-3501g-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-3501F — FortiGate 3501F
+
+- **Interfaces:** `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `port17`, `port18`, `port19`, `port20`, `port21`, `port22`, `port23`, `port24`, `port25`, `port26`, `port27`, `port28`, `port29`, `port30`, `port31`, `port32`, `port33`, `port34`, `port35`, `port36`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 3500F and 3501F fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/968988/fortigate-3500f-and-3501f-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-3501G — FortiGate 3501G
+
+- **Interfaces:** `wan1`, `wan2`, `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `port17`, `port18`, `port19`, `port20`, `port21`, `port22`, `port23`, `port24`, `port25`, `port26`, `port27`, `port28`, `port29`, `port30`, `port31`, `port32`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 3500G and 3501G fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/86979/fortigate-3500g-and-3501g-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-3600E — FortiGate 3600E
+
+- **Interfaces:** `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `port17`, `port18`, `port19`, `port20`, `port21`, `port22`, `port23`, `port24`, `port25`, `port26`, `port27`, `port28`, `port29`, `port30`, `port31`, `port32`, `port33`, `port34`, `port35`, `port36`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 3600E and 3601E fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/55228/fortigate-3600e-and-3601e-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-3601E — FortiGate 3601E
+
+- **Interfaces:** `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `port17`, `port18`, `port19`, `port20`, `port21`, `port22`, `port23`, `port24`, `port25`, `port26`, `port27`, `port28`, `port29`, `port30`, `port31`, `port32`, `port33`, `port34`, `port35`, `port36`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 3600E and 3601E fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/55228/fortigate-3600e-and-3601e-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-3700D — FortiGate 3700D
+
+- **Interfaces:** `port5`, `port9`, `port13`, `port6`, `port10`, `port14`, `port7`, `port11`, `port8`, `port12`, `port1`, `port2`, `port15`, `port19`, `port23`, `port16`, `port20`, `port24`, `port17`, `port21`, `port18`, `port22`, `port3`, `port4`, `port26`, `port25`, `port28`, `port27`, `port30`, `port29`, `port32`, `port31`
+  - [FortiOS 7.4.9 Hardware Acceleration — FortiGate 3700D fast path architecture](https://docs.fortinet.com/document/fortigate/7.4.9/hardware-acceleration/436400/fortigate-3700d-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-3700F — FortiGate 3700F
+
+- **Interfaces:** `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `port17`, `port18`, `port19`, `port20`, `port21`, `port22`, `port23`, `port24`, `port25`, `port26`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 3700F and 3701F fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/753806/fortigate-3700f-and-3701f-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-3701F — FortiGate 3701F
+
+- **Interfaces:** `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `port17`, `port18`, `port19`, `port20`, `port21`, `port22`, `port23`, `port24`, `port25`, `port26`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 3700F and 3701F fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/753806/fortigate-3700f-and-3701f-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-3800D — FortiGate 3800D
+
+- **Interfaces:** `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`
+  - [FortiOS 7.0.17 Hardware Acceleration — FortiGate 3800D fast path architecture](https://docs.fortinet.com/document/fortigate/7.0.17/hardware-acceleration/951962/fortigate-3800d-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-3800G — FortiGate 3800G
+
+- **Interfaces:** `wan1`, `wan2`, `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `port17`, `port18`, `port19`, `port20`, `port21`, `port22`
+  - [FortiOS 7.4.9 Hardware Acceleration — FortiGate 3800G and 3801G fast path architecture](https://docs.fortinet.com/document/fortigate/7.4.9/hardware-acceleration/194174/fortigate-3800g-and-3801g-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-3801G — FortiGate 3801G
+
+- **Interfaces:** `wan1`, `wan2`, `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `port17`, `port18`, `port19`, `port20`, `port21`, `port22`
+  - [FortiOS 7.4.9 Hardware Acceleration — FortiGate 3800G and 3801G fast path architecture](https://docs.fortinet.com/document/fortigate/7.4.9/hardware-acceleration/194174/fortigate-3800g-and-3801g-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-3810D — FortiGate 3810D
+
+- **Interfaces:** `port1`, `port2`, `port3`, `port4`, `port5`, `port6`
+  - [FortiOS 6.4.16 Hardware Acceleration — FortiGate 3810D fast path architecture](https://docs.fortinet.com/document/fortigate/6.4.16/hardware-acceleration/623503/fortigate-3810d-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-3815D — FortiGate 3815D
+
+- **Interfaces:** `port1`, `port2`, `port3`, `port4`, `port11`, `port12`, `port13`, `port14`, `port10`, `port9`, `port8`, `port7`, `port5`, `port6`
+  - [FortiOS 6.4.16 Hardware Acceleration — FortiGate 3815D fast path architecture](https://docs.fortinet.com/document/fortigate/6.4.16/hardware-acceleration/56293/fortigate-3815d-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-3960E — FortiGate 3960E
+
+- **Interfaces:** `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `port17`, `port18`, `port19`, `port20`, `port21`, `port22`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 3960E fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/184848/fortigate-3960e-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-3980E — FortiGate 3980E
+
+- **Interfaces:** `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `port17`, `port18`, `port19`, `port20`, `port21`, `port22`, `port23`, `port24`, `port25`, `port26`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 3980E fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/926384/fortigate-3980e-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-400D — FortiGate 400D
+
+- **Interfaces:** `port10`, `port9`, `port12`, `port11`, `port14`, `port13`, `port16`, `port15`, `port5`, `port7`, `port8`, `port6`, `port3`, `port4`, `port1`, `port2`
+  - [FortiOS 6.4.16 Hardware Acceleration — FortiGate 400D fast path architecture](https://docs.fortinet.com/document/fortigate/6.4.16/hardware-acceleration/665155/fortigate-400d-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-400E — FortiGate 400E
+
+- **Interfaces:** `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `port17`, `port18`, `port19`, `port20`, `port21`, `port22`, `port23`, `port25`, `port26`, `port27`, `port28`, `s1`, `s2`, `vw1`, `vw2`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 400E and 401E fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/75781/fortigate-400e-and-401e-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there. The documented output prints port2 more than once (a typo in the guide): a port may be missing from this list. Load a factory-default backup to complete it.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-400F — FortiGate 400F
+
+- **Interfaces:** `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `port17`, `port18`, `port19`, `port20`, `port21`, `port22`, `port23`, `port24`, `x1`, `x2`, `x3`, `x4`, `x5`, `x6`, `x7`, `x8`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 400F and 401F fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/785717/fortigate-400f-and-401f-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-400G — FortiGate 400G
+
+- **Interfaces:** `wan1`, `wan2`, `lan1`, `lan2`, `lan3`, `lan4`, `lan5`, `lan6`, `lan7`, `lan8`, `lan9`, `lan10`, `lan11`, `lan12`, `lan13`, `lan14`, `lan15`, `lan16`, `lan17`, `lan18`, `lan19`, `lan20`, `lan21`, `lan22`, `x1`, `x2`, `x3`, `x4`, `x5`, `x6`, `x7`, `x8`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 400G and 401G fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/258495/fortigate-400g-and-401g-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-401E — FortiGate 401E
+
+- **Interfaces:** `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `port17`, `port18`, `port19`, `port20`, `port21`, `port22`, `port23`, `port25`, `port26`, `port27`, `port28`, `s1`, `s2`, `vw1`, `vw2`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 400E and 401E fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/75781/fortigate-400e-and-401e-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there. The documented output prints port2 more than once (a typo in the guide): a port may be missing from this list. Load a factory-default backup to complete it.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-401F — FortiGate 401F
+
+- **Interfaces:** `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `port17`, `port18`, `port19`, `port20`, `port21`, `port22`, `port23`, `port24`, `x1`, `x2`, `x3`, `x4`, `x5`, `x6`, `x7`, `x8`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 400F and 401F fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/785717/fortigate-400f-and-401f-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-401G — FortiGate 401G
+
+- **Interfaces:** `wan1`, `wan2`, `lan1`, `lan2`, `lan3`, `lan4`, `lan5`, `lan6`, `lan7`, `lan8`, `lan9`, `lan10`, `lan11`, `lan12`, `lan13`, `lan14`, `lan15`, `lan16`, `lan17`, `lan18`, `lan19`, `lan20`, `lan21`, `lan22`, `x1`, `x2`, `x3`, `x4`, `x5`, `x6`, `x7`, `x8`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 400G and 401G fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/258495/fortigate-400g-and-401g-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
 ### FG-40F — FortiGate 40F
 
 - **Interfaces:** `wan`, `lan1`, `lan2`, `lan3`, `a`
@@ -193,6 +743,96 @@ Widespread end-of-sale model: included so the app can warn explicitly instead of
 
 - **Disk:** no
   - [FortiGate/FortiWiFi 40F Series Data Sheet](https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/pdf/fortigate-fortiwifi-40f-series.pdf) — verified 2026-11-15 — Onboard Storage: 0
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-4200F — FortiGate 4200F
+
+- **Interfaces:** `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `ha1_np`, `ha2_np`, `aux1_np`, `aux2_np`, `port17`, `port18`, `port19`, `port20`, `port21`, `port22`, `port23`, `port24`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 4200F and 4201F fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/159837/fortigate-4200f-and-4201f-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-4201F — FortiGate 4201F
+
+- **Interfaces:** `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `ha1_np`, `ha2_np`, `aux1_np`, `aux2_np`, `port17`, `port18`, `port19`, `port20`, `port21`, `port22`, `port23`, `port24`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 4200F and 4201F fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/159837/fortigate-4200f-and-4201f-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-4400F — FortiGate 4400F
+
+- **Interfaces:** `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `ha1_np`, `ha2_np`, `aux1_np`, `aux2_np`, `port17`, `port18`, `port19`, `port20`, `port21`, `port22`, `port23`, `port24`, `port25`, `port26`, `port27`, `port28`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 4400F and 4401F fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/908116/fortigate-4400f-and-4401f-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-4401F — FortiGate 4401F
+
+- **Interfaces:** `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `ha1_np`, `ha2_np`, `aux1_np`, `aux2_np`, `port17`, `port18`, `port19`, `port20`, `port21`, `port22`, `port23`, `port24`, `port25`, `port26`, `port27`, `port28`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 4400F and 4401F fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/908116/fortigate-4400f-and-4401f-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-4800F — FortiGate 4800F
+
+- **Interfaces:** `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `port17`, `port18`, `port19`, `port20`, `port21`, `port22`, `port23`, `port24`, `port25`, `port26`, `port27`, `port28`, `aux1`, `aux2`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 4800F and 4801F fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/382376/fortigate-4800f-and-4801f-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-4801F — FortiGate 4801F
+
+- **Interfaces:** `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `port17`, `port18`, `port19`, `port20`, `port21`, `port22`, `port23`, `port24`, `port25`, `port26`, `port27`, `port28`, `aux1`, `aux2`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 4800F and 4801F fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/382376/fortigate-4800f-and-4801f-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-500D — FortiGate 500D
+
+- **Interfaces:** `port10`, `port9`, `port12`, `port11`, `port14`, `port13`, `port16`, `port15`, `port5`, `port7`, `port8`, `port6`, `port3`, `port4`, `port1`, `port2`
+  - [FortiOS 6.4.16 Hardware Acceleration — FortiGate 500D fast path architecture](https://docs.fortinet.com/document/fortigate/6.4.16/hardware-acceleration/490381/fortigate-500d-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-500E — FortiGate 500E
+
+- **Interfaces:** `x1`, `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `s1`, `s2`, `vw1`, `vw2`, `x2`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 500E and 501E fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/40356/fortigate-500e-and-501e-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-501E — FortiGate 501E
+
+- **Interfaces:** `x1`, `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `s1`, `s2`, `vw1`, `vw2`, `x2`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 500E and 501E fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/40356/fortigate-500e-and-501e-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
 
 - **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
 
@@ -225,6 +865,56 @@ Widespread end-of-sale model: included so the app can warn explicitly instead of
 
 - **Disk:** yes
   - [FortiGate/FortiWiFi 50G Series Data Sheet](https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/pdf/fortigate-fortiwifi-50g-series.pdf) — verified 2026-11-15 — Ordering info: FG-51G ... 64GB SSD
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-600D — FortiGate 600D
+
+- **Interfaces:** `port10`, `port9`, `port12`, `port11`, `port14`, `port13`, `port16`, `port15`, `port5`, `port7`, `port8`, `port6`, `port3`, `port4`, `port1`, `port2`, `port17`, `port18`
+  - [FortiOS 6.4.16 Hardware Acceleration — FortiGate 600D fast path architecture](https://docs.fortinet.com/document/fortigate/6.4.16/hardware-acceleration/357324/fortigate-600d-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-600E — FortiGate 600E
+
+- **Interfaces:** `x1`, `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `s1`, `s2`, `vw1`, `vw2`, `x2`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 600E and 601E fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/733616/fortigate-600e-and-601e-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-600F — FortiGate 600F
+
+- **Interfaces:** `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `port17`, `port18`, `port19`, `port20`, `port21`, `port22`, `port23`, `port24`, `x1`, `x2`, `x3`, `x4`, `x5`, `x6`, `x7`, `x8`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 600F and 601F fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/589036/fortigate-600f-and-601f-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-601E — FortiGate 601E
+
+- **Interfaces:** `x1`, `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `s1`, `s2`, `vw1`, `vw2`, `x2`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 600E and 601E fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/733616/fortigate-600e-and-601e-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-601F — FortiGate 601F
+
+- **Interfaces:** `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `port17`, `port18`, `port19`, `port20`, `port21`, `port22`, `port23`, `port24`, `x1`, `x2`, `x3`, `x4`, `x5`, `x6`, `x7`, `x8`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 600F and 601F fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/589036/fortigate-600f-and-601f-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
 
 - **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
 
@@ -267,6 +957,26 @@ Widespread end-of-sale model: included so the app can warn explicitly instead of
 
 - **Disk:** yes
   - [FortiGate/FortiWiFi 60F Series Data Sheet](https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/pdf/fortigate-fortiwifi-60f-series.pdf) — verified 2026-11-15 — Internal Storage: 1 x 128 GB SSD (FG-61F)
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-700G — FortiGate 700G
+
+- **Interfaces:** `wan1`, `wan2`, `lan1`, `lan2`, `lan3`, `lan4`, `lan5`, `lan6`, `lan7`, `lan8`, `lan9`, `lan10`, `lan11`, `lan12`, `lan13`, `lan14`, `lan15`, `lan16`, `lan17`, `lan18`, `lan19`, `lan20`, `lan21`, `lan22`, `x1`, `x2`, `x3`, `x4`, `x5`, `x6`, `x7`, `x8`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 700G and 701G fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/336816/fortigate-700g-and-701g-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-701G — FortiGate 701G
+
+- **Interfaces:** `wan1`, `wan2`, `lan1`, `lan2`, `lan3`, `lan4`, `lan5`, `lan6`, `lan7`, `lan8`, `lan9`, `lan10`, `lan11`, `lan12`, `lan13`, `lan14`, `lan15`, `lan16`, `lan17`, `lan18`, `lan19`, `lan20`, `lan21`, `lan22`, `x1`, `x2`, `x3`, `x4`, `x5`, `x6`, `x7`, `x8`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 700G and 701G fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/336816/fortigate-700g-and-701g-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
 
 - **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
 
@@ -313,6 +1023,16 @@ Widespread end-of-sale model: included so the app can warn explicitly instead of
 
 - **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
 
+### FG-800D — FortiGate 800D
+
+- **Interfaces:** `port31`, `wan1`, `port1`, `wan2`, `port2`, `port3`, `port4`, `port5`, `port6`, `port30`, `port29`, `port28`, `port27`, `port26`, `port25`, `port24`, `port23`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `port17`, `port18`, `port19`, `port20`, `port21`, `port22`, `port32`
+  - [FortiOS 7.4.9 Hardware Acceleration — FortiGate 800D fast path architecture](https://docs.fortinet.com/document/fortigate/7.4.9/hardware-acceleration/922670/fortigate-800d-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
 ### FG-80E — FortiGate 80E
 
 Widespread end-of-sale model: included so the app can warn explicitly instead of silently missing it.
@@ -355,6 +1075,36 @@ Widespread end-of-sale model: included so the app can warn explicitly instead of
 
 - **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
 
+### FG-900D — FortiGate 900D
+
+- **Interfaces:** `port17`, `port18`, `port19`, `port20`, `port21`, `port22`, `port23`, `port24`, `port27`, `port28`, `port25`, `port26`, `port31`, `port32`, `port29`, `port30`
+  - [FortiOS 7.4.9 Hardware Acceleration — FortiGate 900D fast path architecture](https://docs.fortinet.com/document/fortigate/7.4.9/hardware-acceleration/239506/fortigate-900d-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-900G — FortiGate 900G
+
+- **Interfaces:** `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `port17`, `port18`, `port19`, `port20`, `port21`, `port22`, `port23`, `port24`, `x1`, `x2`, `x3`, `x4`, `x5`, `x6`, `x7`, `x8`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 900G and 901G fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/56929/fortigate-900g-and-901g-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FG-901G — FortiGate 901G
+
+- **Interfaces:** `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `port7`, `port8`, `port9`, `port10`, `port11`, `port12`, `port13`, `port14`, `port15`, `port16`, `port17`, `port18`, `port19`, `port20`, `port21`, `port22`, `port23`, `port24`, `x1`, `x2`, `x3`, `x4`, `x5`, `x6`, `x7`, `x8`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate 900G and 901G fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/56929/fortigate-900g-and-901g-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
 ### FG-90G — FortiGate 90G
 
 - **Interfaces:** `wan1`, `wan2`, `port1`, `port2`, `port3`, `port4`, `port5`, `port6`, `a`, `b`
@@ -383,6 +1133,36 @@ Widespread end-of-sale model: included so the app can warn explicitly instead of
 
 - **Disk:** yes
   - [FortiGate-VM Data Sheet](https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/fortigate-vm.pdf) — verified 2026-11-15 — Storage Support (Minimum / Maximum): 32 GB / 2 TB
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FGR-60F — FortiGate Rugged 60F
+
+- **Interfaces:** `wan1`, `wan2`, `internal1`, `internal2`, `internal3`, `internal4`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate Rugged 60F  fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/754739/fortigate-rugged-60f-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FGR-70F — FortiGate Rugged 70F
+
+- **Interfaces:** `sfp1`, `sfp2`, `wan1`, `wan2`, `lan1`, `lan2`, `lan3`, `lan4`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate Rugged 70F fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/850195/fortigate-rugged-70f-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
+
+- **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
+
+### FGR-70G — FortiGate Rugged 70G
+
+- **Interfaces:** `wan1`, `wan2`, `sfp1`, `sfp2`, `lan1`, `lan2`, `lan3`, `lan4`
+  - [FortiOS 7.6.6 Hardware Acceleration — FortiGate Rugged 70G  fast path architecture](https://docs.fortinet.com/document/fortigate/7.6.6/hardware-acceleration/68672/fortigate-rugged-70g-fast-path-architecture) — verified 2026-11-17 — `diagnose npu ... port-list` output
+  - Note: Names and speeds from the `diagnose npu ... port-list` output in the Hardware Acceleration guide; it lists NP-connected interfaces only (management and HA ports are often missing). Media not documented there.
+
+- **Disk:** ⚠ unverified — Not checked yet: see the model's data sheet (Storage / Internal Storage).
 
 - **Default hardware/virtual switch:** ⚠ unverified — Factory-default hardware/virtual switch membership is not documented in the sources used. Load a factory-default backup of the target model to get it.
 
