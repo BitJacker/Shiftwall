@@ -8,6 +8,7 @@ A test (`tests/Shiftwall.Features.Tests/SamplesTests.cs`) fails if a sample brea
 | File | Use it for |
 |---|---|
 | `branch-60f.conf` | Migration source: 60F-style port names, FortiOS 7.4.13, a VLAN, an IPsec tunnel, a DMZ port to drop. |
+| `branch-50e.conf` | Migration source: 50E-style port names (`lan1`…`lan5`, hardware switch `lan`), FortiOS 6.2.17. Try it with target *FortiGate 60F* from the database: the suggested mapping is `lan1`…`lan5` → `internal1`…`internal5`. |
 | `factory-default-70g.conf` | Migration target: a factory-default-style backup with 70G-style port names, FortiOS 7.4.13. |
 | `branch-60f-to-70g.swmap.json` | Mapping template for the two files above (*Load template…* in step 3). |
 | `hq-60f.conf` | Toolbox: deliberate audit findings, unused objects, policies to export, an IPsec tunnel. |

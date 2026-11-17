@@ -108,4 +108,25 @@ public sealed partial class SamplesTests
 
     [GeneratedRegex(@"ENC ([A-Za-z0-9+/=]+)")]
     private static partial Regex Enc();
+
+    [Fact]
+    public void FiftyESample_MigratesTo60F_WithTheSuggestedMapping()
+    {
+        var source = SourceProfile.From(ConfigInspector.Inspect(File.ReadAllBytes(Path.Combine(SamplesDir(), "branch-50e.conf"))));
+        var target = TargetProfile.FromDatabase(ModelDatabase.LoadEmbedded().FindModel("FG-60F")!, "6.2.17");
+        var usage = MigrationEngine.Analyze(new MigrationRequest(source, target, new InterfaceMapping())).UsageCount;
+        var mapping = InterfaceMapping.Suggest(source.PhysicalInterfaces.Select(p => (p.Name, usage.GetValueOrDefault(p.Name))), target.PhysicalInterfaces);
+
+        var result = MigrationEngine.Run(new MigrationRequest(source, target, mapping));
+
+        Assert.False(result.IsBlocked, string.Join("; ", result.Analysis.Blocking.Select(f => f.Format())));
+        Assert.True(result.IsValid, string.Join("; ", result.Validation.Select(v => v.Format())));
+        var output = result.OutputText!;
+        Assert.Contains("set interface \"internal5\"", output);
+        Assert.Contains("edit \"internal1\"", output);
+        Assert.DoesNotContain("edit \"lan5\"", output);
+        // A field outside the documented interface fields is not renamed: it is reported for manual review.
+        Assert.Contains(result.Analysis.MappingFindings, f => f.Code == MigrationCodes.PossibleReference && f.Arguments[0] == "lan5");
+        Assert.Contains("set name \"LAN-to-WAN\"", output); // policies keep their names: only interfaces change
+    }
 }
