@@ -58,13 +58,13 @@
   <data name="Target.Unverified.Disk" xml:space="preserve"><value>Disk not verified: {0}</value></data>
   <data name="Target.Unverified.Switch" xml:space="preserve"><value>Default switch not verified: a factory-default backup is needed to know it.</value></data>
   <data name="Wizard.PreChecks.Intro" xml:space="preserve"><value>Checks run before anything is changed. Errors must be fixed before continuing; warnings go into the report and the checklist.</value></data>
-  <data name="Wizard.Mapping.Auto" xml:space="preserve"><value>Map by name</value></data>
+  <data name="Wizard.Mapping.Auto" xml:space="preserve"><value>Suggest mapping</value></data>
   <data name="Wizard.Mapping.Clear" xml:space="preserve"><value>Clear</value></data>
   <data name="Wizard.Mapping.SaveTemplate" xml:space="preserve"><value>Save template…</value></data>
   <data name="Wizard.Mapping.LoadTemplate" xml:space="preserve"><value>Load template…</value></data>
   <data name="Wizard.Mapping.SourcePorts" xml:space="preserve"><value>Source ports</value></data>
   <data name="Wizard.Mapping.TargetPorts" xml:space="preserve"><value>Target ports</value></data>
-  <data name="Wizard.Mapping.Hint" xml:space="preserve"><value>Pick the target port, or drag it here from the right column. Used ports that are not mapped block the next step.</value></data>
+  <data name="Wizard.Mapping.Hint" xml:space="preserve"><value>Shiftwall suggests a mapping: same name first, then same role (WAN to WAN, LAN ports in order, e.g. lan1 → internal1). Check it before going on. To change it, pick the target port or drag it here from the right column. Used ports left unmapped block the next step.</value></data>
   <data name="Wizard.Mapping.DragHint" xml:space="preserve"><value>Drag a port onto a row on the left.</value></data>
   <data name="Wizard.Mapping.Uses" xml:space="preserve"><value>refs</value></data>
   <data name="Wizard.Mapping.Unmap" xml:space="preserve"><value>Remove mapping</value></data>

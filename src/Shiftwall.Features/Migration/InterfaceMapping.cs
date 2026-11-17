@@ -34,6 +34,87 @@ public sealed class InterfaceMapping
         return m;
     }
 
+    /// <summary>
+    /// Proposes a mapping for the user to review: same names first, then ports of the same role in natural order
+    /// (wan1, wan2 → wan1, wan2; lan1…lan5 or port1… → internal1… / port1… / lan1…; x1 → x1 or sfp1; dmz → dmz).
+    /// When the target has fewer ports of a role, ports in use get priority. A port with no counterpart of its
+    /// role stays unmapped: WAN and DMZ ports fall back to the remaining LAN ports, nothing else is guessed.
+    /// </summary>
+    /// <param name="source">Source physical interfaces with their usage count (references in the configuration).</param>
+    /// <param name="targetInterfaces">Target physical interfaces.</param>
+    public static InterfaceMapping Suggest(IEnumerable<(string Name, int Usage)> source, IEnumerable<string> targetInterfaces)
+    {
+        var src = source.ToList();
+        var free = targetInterfaces.Distinct(StringComparer.Ordinal).ToList();
+        var m = new InterfaceMapping();
+        foreach (var (name, _) in src) m[name] = null;
+
+        foreach (var (name, _) in src.Where(s => free.Contains(s.Name, StringComparer.Ordinal)))
+        {
+            m[name] = name;
+            free.Remove(name);
+        }
+
+        void Assign(PortRole role, Func<PortRole, bool> pool)
+        {
+            var pending = src.Where(s => !m.IsMapped(s.Name) && RoleOf(s.Name) == role).ToList();
+            var targets = free.Where(t => pool(RoleOf(t))).OrderBy(t => t, NaturalComparer.Instance).ToList();
+            if (pending.Count == 0 || targets.Count == 0) return;
+            var ordered = pending.Count <= targets.Count
+                ? pending.OrderBy(s => s.Name, NaturalComparer.Instance)
+                : pending.OrderByDescending(s => s.Usage > 0).ThenBy(s => s.Name, NaturalComparer.Instance);
+            foreach (var (s, t) in ordered.Zip(targets))
+            {
+                m[s.Name] = t;
+                free.Remove(t);
+            }
+        }
+
+        Assign(PortRole.Wan, r => r == PortRole.Wan);
+        Assign(PortRole.Dmz, r => r == PortRole.Dmz);
+        Assign(PortRole.Fiber, r => r == PortRole.Fiber);
+        Assign(PortRole.Lan, r => r == PortRole.Lan);
+        Assign(PortRole.Wan, r => r == PortRole.Lan);
+        Assign(PortRole.Dmz, r => r == PortRole.Lan);
+        return m;
+    }
+
+    internal enum PortRole { Other, Wan, Dmz, Lan, Fiber }
+
+    internal static PortRole RoleOf(string name)
+    {
+        var prefix = name.TrimEnd('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
+        var hasNumber = prefix.Length < name.Length;
+        return prefix switch
+        {
+            "wan" => PortRole.Wan,
+            "dmz" => PortRole.Dmz,
+            "lan" or "internal" or "port" when hasNumber => PortRole.Lan,
+            "x" or "sfp" when hasNumber => PortRole.Fiber,
+            _ => PortRole.Other,
+        };
+    }
+
+    /// <summary>Orders port2 before port10.</summary>
+    private sealed class NaturalComparer : IComparer<string>
+    {
+        public static readonly NaturalComparer Instance = new();
+
+        public int Compare(string? x, string? y)
+        {
+            var (px, nx) = Split(x ?? "");
+            var (py, ny) = Split(y ?? "");
+            var c = string.CompareOrdinal(px, py);
+            return c != 0 ? c : nx.CompareTo(ny);
+        }
+
+        private static (string Prefix, long Number) Split(string s)
+        {
+            var prefix = s.TrimEnd('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
+            return (prefix, long.TryParse(s.AsSpan(prefix.Length), out var n) ? n : -1);
+        }
+    }
+
     /// <summary>Target interfaces that two or more source interfaces map to.</summary>
     public IReadOnlyList<string> DuplicateTargets() =>
         [.. _map.Values.Where(v => v is not null).GroupBy(v => v!, StringComparer.Ordinal).Where(g => g.Count() > 1).Select(g => g.Key)];

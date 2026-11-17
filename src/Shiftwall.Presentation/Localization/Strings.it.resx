@@ -58,13 +58,13 @@
   <data name="Target.Unverified.Disk" xml:space="preserve"><value>Disco non verificato: {0}</value></data>
   <data name="Target.Unverified.Switch" xml:space="preserve"><value>Switch di default non verificato: serve un backup di default per conoscerlo.</value></data>
   <data name="Wizard.PreChecks.Intro" xml:space="preserve"><value>Controlli eseguiti prima di modificare qualsiasi cosa. Gli errori vanno risolti prima di continuare; gli avvisi finiscono nel report e nella checklist.</value></data>
-  <data name="Wizard.Mapping.Auto" xml:space="preserve"><value>Mappa per nome</value></data>
+  <data name="Wizard.Mapping.Auto" xml:space="preserve"><value>Proponi abbinamento</value></data>
   <data name="Wizard.Mapping.Clear" xml:space="preserve"><value>Azzera</value></data>
   <data name="Wizard.Mapping.SaveTemplate" xml:space="preserve"><value>Salva template…</value></data>
   <data name="Wizard.Mapping.LoadTemplate" xml:space="preserve"><value>Carica template…</value></data>
   <data name="Wizard.Mapping.SourcePorts" xml:space="preserve"><value>Porte sorgente</value></data>
   <data name="Wizard.Mapping.TargetPorts" xml:space="preserve"><value>Porte destinazione</value></data>
-  <data name="Wizard.Mapping.Hint" xml:space="preserve"><value>Scegli la porta di destinazione oppure trascinala qui dalla colonna a destra. Le porte usate e non mappate bloccano il passo successivo.</value></data>
+  <data name="Wizard.Mapping.Hint" xml:space="preserve"><value>Shiftwall propone un abbinamento: stesso nome, poi stesso ruolo (WAN con WAN, porte LAN in ordine, es. lan1 → internal1). Controllalo prima di proseguire. Per cambiarlo scegli la porta di destinazione oppure trascinala qui dalla colonna a destra. Le porte usate e non mappate bloccano il passo successivo.</value></data>
   <data name="Wizard.Mapping.DragHint" xml:space="preserve"><value>Trascina una porta su una riga a sinistra.</value></data>
   <data name="Wizard.Mapping.Uses" xml:space="preserve"><value>usi</value></data>
   <data name="Wizard.Mapping.Unmap" xml:space="preserve"><value>Rimuovi mappatura</value></data>

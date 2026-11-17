@@ -44,20 +44,21 @@ public sealed class WizardTests : IDisposable
     }
 
     [Fact]
-    public async Task Mapping_AutoMatchesNames_AndBlocksUntilUsedPortsAreMapped()
+    public async Task Mapping_IsSuggestedByRole_AndBlocksWhenAUsedPortIsCleared()
     {
         await LoadBranchAsync();
         Assert.Equal(["wan1", "wan2", "dmz", "internal1", "internal2", "internal3", "internal4", "internal5", "a", "b"], _vm.SourcePorts.Select(p => p.Name));
         Assert.Equal("wan1", _vm.SourcePorts.Single(p => p.Name == "wan1").Target);
-        Assert.Null(_vm.SourcePorts.Single(p => p.Name == "internal1").Target);
+        Assert.Equal("port1", _vm.SourcePorts.Single(p => p.Name == "internal1").Target);
+        Assert.Equal("port5", _vm.SourcePorts.Single(p => p.Name == "internal5").Target);
+        Assert.False(_vm.HasBlockingMapping); // the suggestion is complete: the user can go on (after checking it)
+
+        _vm.SourcePorts.Single(p => p.Name == "internal5").Target = null;
+        await _vm.ReanalyzeAsync();
         Assert.True(_vm.HasBlockingMapping);
         Assert.True(_vm.SourcePorts.Single(p => p.Name == "internal5").IsBlocking);
 
-        foreach (var (s, t) in new[] { ("internal1", "port1"), ("internal2", "port2"), ("internal3", "port3"), ("internal4", "port4"), ("internal5", "port6") })
-        {
-            _vm.Map(s, t);
-        }
-
+        _vm.Map("internal5", "port6");
         await _vm.ReanalyzeAsync();
         Assert.False(_vm.HasBlockingMapping);
         Assert.Equal("internal5", _vm.TargetPorts.Single(t => t.Name == "port6").AssignedFrom);

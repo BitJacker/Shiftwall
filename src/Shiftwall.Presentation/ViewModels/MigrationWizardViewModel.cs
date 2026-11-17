@@ -242,9 +242,9 @@ public sealed class MigrationWizardViewModel : ObservableObject
 
     private void AutoMap()
     {
-        var targets = TargetPorts.Select(t => t.Name).ToHashSet(StringComparer.Ordinal);
+        var suggested = InterfaceMapping.Suggest(SourcePorts.Select(s => (s.Name, s.Uses)), TargetPorts.Select(t => t.Name));
         _suppressRowEvents = true;
-        foreach (var s in SourcePorts) s.Target = targets.Contains(s.Name) ? s.Name : null;
+        foreach (var s in SourcePorts) s.Target = suggested[s.Name];
         _suppressRowEvents = false;
         Reanalyze();
     }
@@ -310,11 +310,12 @@ public sealed class MigrationWizardViewModel : ObservableObject
         var probe = MigrationEngine.Analyze(new MigrationRequest(_source, target, new InterfaceMapping()));
         foreach (var t in target.PhysicalInterfaces) TargetPorts.Add(new TargetPortItem(t));
         var targetNames = target.PhysicalInterfaces.ToHashSet(StringComparer.Ordinal);
+        var suggested = InterfaceMapping.Suggest(_source.PhysicalInterfaces.Select(p => (p.Name, probe.UsageCount.GetValueOrDefault(p.Name))), target.PhysicalInterfaces);
+        var keepPrevious = previous.Count > 0 && previous.Values.All(v => v is null || targetNames.Contains(v));
         foreach (var p in _source.PhysicalInterfaces)
         {
             var row = new SourcePortItem(p.Name, probe.UsageCount.GetValueOrDefault(p.Name));
-            row.Target = previous.TryGetValue(p.Name, out var prev) && prev is not null && targetNames.Contains(prev) ? prev
-                       : targetNames.Contains(p.Name) ? p.Name : null;
+            row.Target = keepPrevious && previous.TryGetValue(p.Name, out var prev) ? prev : suggested[p.Name];
             row.PropertyChanged += OnSourcePortChanged;
             SourcePorts.Add(row);
         }
