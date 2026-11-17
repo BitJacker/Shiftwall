@@ -14,6 +14,9 @@ const string Usage = """
                                        (build, initial-release date, supported models).
       refresh-hw-ports [--apply]       Re-read the hardware-acceleration page cited for each model and
                                        compare the documented port list with data/models.json.
+      add-hw-model --url <url> --models <id>[,<id>...] [--apply]
+                                       Add models from one Hardware Acceleration "fast path architecture"
+                                       page (interface names and speeds). Disk and switches stay unverified.
       import-default-backup --model <id> --file <path> [--apply]
                                        Take interface names and virtual-switch membership from a real
                                        factory-default backup read from the local disk. The backup is never
@@ -56,6 +59,15 @@ try
 
         case "refresh-hw-ports":
             return await HardwarePorts.RefreshAsync(store, today, args.Contains("--apply"), cts.Token);
+
+        case "add-hw-model":
+            if (Option("--url") is not { } hwUrl || Option("--models") is not { } ids)
+            {
+                Console.Error.WriteLine("add-hw-model needs --url <url> and --models <id>[,<id>...].");
+                return 2;
+            }
+
+            return await HardwarePorts.AddAsync(store, hwUrl, ids.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries), today, args.Contains("--apply"), cts.Token);
 
         case "check-links":
             return await CheckLinksAsync(cts.Token);
