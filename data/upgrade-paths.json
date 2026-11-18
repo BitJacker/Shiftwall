@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "upgrade_paths": {
+    "official_tool_url": "https://docs.fortinet.com/upgrade-tool/fortigate",
+    "paths": [],
+    "published_in_consultable_form": {
+      "value": false,
+      "status": "verified",
+      "sources": [
+        {
+          "url": "https://docs.fortinet.com/document/fortigate/7.6.8/fortios-release-notes/832438/upgrade-information",
+          "title": "FortiOS 7.6.8 Release Notes - Upgrade information",
+          "verified_on": "2026-11-15",
+          "note": "\"Supported upgrade path information is available through the Upgrade Path Tool on the Fortinet Document Library.\""
+        }
+      ],
+      "note": "Fortinet publishes supported upgrade paths only through the interactive Upgrade Path Tool. Shiftwall does not scrape it and lists no paths: the app opens the official tool in the browser instead."
+    }
+  }
+}

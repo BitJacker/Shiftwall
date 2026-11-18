@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="SW-P001" xml:space="preserve"><value>Riga {line}: un valore tra virgolette non viene mai chiuso. Il resto del file viene letto come parte di quel valore.</value></data>
+  <data name="SW-P002" xml:space="preserve"><value>Riga {line}: il blocco "config {0}" non viene mai chiuso con "end". Il file è troncato o incompleto.</value></data>
+  <data name="SW-P003" xml:space="preserve"><value>Riga {line}: "end" senza un "config" corrispondente. Viene lasciato invariato.</value></data>
+  <data name="SW-P004" xml:space="preserve"><value>Riga {line}: "next" fuori da una voce "edit". Viene lasciato invariato.</value></data>
+  <data name="SW-P005" xml:space="preserve"><value>Riga {line}: "edit" fuori da un blocco "config". Viene lasciato invariato.</value></data>
+  <data name="SW-P006" xml:space="preserve"><value>Riga {line}: istruzione sconosciuta "{0}". Viene lasciata invariata.</value></data>
+  <data name="SW-P007" xml:space="preserve"><value>Riga {line}: istruzione di campo fuori da qualsiasi blocco "config".</value></data>
+  <data name="SW-D001" xml:space="preserve"><value>Questo file non è una configurazione in formato testo: molto probabilmente è un backup cifrato con password. Shiftwall non decifra mai i backup. Esporta di nuovo la configurazione senza cifratura: dalla GUI, clicca sul nome utente (in alto a destra) &gt; Configuration &gt; Backup e lascia disattivato "Encryption"; dalla CLI, usa "execute backup config" senza password di backup. Conserva il file esportato in un posto sicuro.</value></data>
+  <data name="SW-D002" xml:space="preserve"><value>Questo è un backup in formato YAML. Shiftwall legge solo backup in formato FortiOS: esporta di nuovo scegliendo "FortiOS" come File format (GUI: nome utente &gt; Configuration &gt; Backup).</value></data>
+  <data name="SW-D003" xml:space="preserve"><value>Manca la riga di intestazione "#config-version": non è possibile leggere modello e versione firmware dal file.</value></data>
+  <data name="SW-D004" xml:space="preserve"><value>Sembra una configurazione parziale ({0}). Per una migrazione serve un backup completo.</value></data>
+  <data name="SW-D005" xml:space="preserve"><value>Riga {line}: private-data-encryption è attivo. I segreti (valori ENC) sono cifrati con la chiave privata di questo FortiGate: sul nuovo FortiGate va impostata la stessa chiave private-data-encryption PRIMA di ripristinare la configurazione, altrimenti quei segreti non potranno essere decifrati. Da FortiOS 7.6.1 la chiave viene generata in modo casuale quando si attiva l'opzione: se non è possibile riprodurla, prevedi di reinserire password e chiavi pre-condivise.</value></data>
+  <data name="SW-D006" xml:space="preserve"><value>Configurazione multi-VDOM (VDOM: {0}). Ogni VDOM viene elaborato separatamente.</value></data>
+  <data name="SW-D007" xml:space="preserve"><value>Riga {line}: {0} password sono mascherate con "FortinetPasswordMask". Fortinet sconsiglia di ripristinare un file così: per la migrazione esporta un backup normale.</value></data>
+  <data name="SW-D008" xml:space="preserve"><value>Trovati {0} valori cifrati (ENC). Vengono copiati identici e mai decifrati.</value></data>
+  <data name="SW-D009" xml:space="preserve"><value>Il file non è UTF-8 valido. Viene elaborato byte per byte e salvato con la stessa codifica.</value></data>
+  <data name="SW-D010" xml:space="preserve"><value>Il file è vuoto.</value></data>
+  <data name="Partial.no-header" xml:space="preserve"><value>manca l'intestazione</value></data>
+  <data name="Partial.no-system-global" xml:space="preserve"><value>manca "config system global"</value></data>
+  <data name="Partial.unclosed-blocks" xml:space="preserve"><value>blocchi non chiusi</value></data>
+</root>

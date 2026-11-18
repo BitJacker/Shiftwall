@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <RootNamespace>Shiftwall.Core</RootNamespace>
+    <IsTrimmable>true</IsTrimmable>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- The model/version database ships inside the assembly; users can override it by importing a file. -->
+    <EmbeddedResource Include="..\..\data\*.json" LogicalName="Shiftwall.Data.%(Filename)%(Extension)" />
+  </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="Shiftwall.Core.Tests" />
+  </ItemGroup>
+</Project>

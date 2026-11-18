@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="AUD-001.Title" xml:space="preserve"><value>HTTP or Telnet administration on an internet-facing interface</value></data>
+  <data name="AUD-001.Why" xml:space="preserve"><value>HTTP and Telnet send credentials in clear text. Fortinet recommends disabling insecure protocols and not allowing administrative access from the WAN.</value></data>
+  <data name="AUD-001.Fix" xml:space="preserve"><value>Remove http and telnet from "set allowaccess" on the interface; manage the FortiGate from a management network or through a VPN.</value></data>
+  <data name="AUD-001.Detail" xml:space="preserve"><value>Interface {0} allows {1}.</value></data>
+  <data name="AUD-002.Title" xml:space="preserve"><value>HTTP or Telnet administration enabled</value></data>
+  <data name="AUD-002.Why" xml:space="preserve"><value>HTTP and Telnet are unencrypted. Use HTTPS and SSH only.</value></data>
+  <data name="AUD-002.Fix" xml:space="preserve"><value>Remove http and telnet from "set allowaccess" on the interface.</value></data>
+  <data name="AUD-002.Detail" xml:space="preserve"><value>Interface {0} allows {1}.</value></data>
+  <data name="AUD-003.Title" xml:space="preserve"><value>Administrative access from the internet without restrictions</value></data>
+  <data name="AUD-003.Why" xml:space="preserve"><value>If administration must be reachable on a public interface, Fortinet recommends a local-in policy or trusted hosts so that only known sources can connect.</value></data>
+  <data name="AUD-003.Fix" xml:space="preserve"><value>Disable administrative access on the interface, or add trusted hosts to every administrator and/or a local-in policy that allows only known addresses.</value></data>
+  <data name="AUD-003.Detail" xml:space="preserve"><value>Interface {0} allows {1}; no local-in policy and at least one administrator without trusted hosts.</value></data>
+  <data name="AUD-010.Title" xml:space="preserve"><value>Policy that allows everything (any to any)</value></data>
+  <data name="AUD-010.Why" xml:space="preserve"><value>Fortinet: do not use the all or any objects in a policy, except when routing to the internet; follow least privilege.</value></data>
+  <data name="AUD-010.Fix" xml:space="preserve"><value>Restrict source, destination and services to what is really needed.</value></data>
+  <data name="AUD-010.Detail" xml:space="preserve"><value>Policy {0}: source all, destination all, service ALL, action accept.</value></data>
+  <data name="AUD-011.Title" xml:space="preserve"><value>Policy on the "any" interface</value></data>
+  <data name="AUD-011.Why" xml:space="preserve"><value>Fortinet: policies that allow traffic should apply to a specific interface, not the any interface.</value></data>
+  <data name="AUD-011.Fix" xml:space="preserve"><value>Replace "any" with the actual interfaces or zones.</value></data>
+  <data name="AUD-011.Detail" xml:space="preserve"><value>Policy {0} uses the any interface.</value></data>
+  <data name="AUD-012.Title" xml:space="preserve"><value>Duplicate policy</value></data>
+  <data name="AUD-012.Why" xml:space="preserve"><value>A policy with the same match criteria as an earlier one is never used: Fortinet recommends no unused policies.</value></data>
+  <data name="AUD-012.Fix" xml:space="preserve"><value>Delete the duplicate or merge the two policies.</value></data>
+  <data name="AUD-012.Detail" xml:space="preserve"><value>Policy {0} matches the same traffic as policy {1}, which comes first.</value></data>
+  <data name="AUD-013.Title" xml:space="preserve"><value>Shadowed policy</value></data>
+  <data name="AUD-013.Why" xml:space="preserve"><value>Policies are evaluated in order and the first match wins. A broader policy above a narrower one makes the narrower one unreachable.</value></data>
+  <data name="AUD-013.Fix" xml:space="preserve"><value>Move the more specific policy above the broader one, or remove it. Check by hand: groups are compared by name, not expanded.</value></data>
+  <data name="AUD-013.Detail" xml:space="preserve"><value>Policy {0} is covered by policy {1} (action {2}), which comes first.</value></data>
+  <data name="AUD-014.Title" xml:space="preserve"><value>Disabled policy</value></data>
+  <data name="AUD-014.Why" xml:space="preserve"><value>Fortinet: there should not be any unused policies.</value></data>
+  <data name="AUD-014.Fix" xml:space="preserve"><value>Delete the policy if it is no longer needed.</value></data>
+  <data name="AUD-014.Detail" xml:space="preserve"><value>Policy {0} is disabled.</value></data>
+  <data name="AUD-020.Title" xml:space="preserve"><value>Traffic logging disabled</value></data>
+  <data name="AUD-020.Why" xml:space="preserve"><value>Without logs there is no record for analysis, alerts or troubleshooting. The default (utm) logs at least sessions with security profiles.</value></data>
+  <data name="AUD-020.Fix" xml:space="preserve"><value>Set "logtraffic all" (or at least utm) on the policy.</value></data>
+  <data name="AUD-020.Detail" xml:space="preserve"><value>Policy {0} has logtraffic disable.</value></data>
+  <data name="AUD-021.Title" xml:space="preserve"><value>Internet traffic without security profiles</value></data>
+  <data name="AUD-021.Why" xml:space="preserve"><value>Security profiles decide what is inspected. Fortinet: without web filtering, for example, you have no insight or control over browsing.</value></data>
+  <data name="AUD-021.Fix" xml:space="preserve"><value>Apply the profiles the traffic needs (antivirus, web filter, IPS, application control, DNS filter).</value></data>
+  <data name="AUD-021.Detail" xml:space="preserve"><value>Accept policy {0} towards the internet has no security profile.</value></data>
+  <data name="AUD-030.Title" xml:space="preserve"><value>Default "admin" account</value></data>
+  <data name="AUD-030.Why" xml:space="preserve"><value>Fortinet: the default administrator name is well known; change it to a non-guessable name.</value></data>
+  <data name="AUD-030.Fix" xml:space="preserve"><value>Create a new super_admin account with another name, test it, then delete or rename "admin".</value></data>
+  <data name="AUD-030.Detail" xml:space="preserve"><value>The account "admin" exists.</value></data>
+  <data name="AUD-031.Title" xml:space="preserve"><value>Administrator without trusted hosts</value></data>
+  <data name="AUD-031.Why" xml:space="preserve"><value>Trusted hosts limit the addresses an administrator can log in from.</value></data>
+  <data name="AUD-031.Fix" xml:space="preserve"><value>Set trusthost1… on the account with the management networks.</value></data>
+  <data name="AUD-031.Detail" xml:space="preserve"><value>Administrator {0} can log in from any address.</value></data>
+  <data name="AUD-032.Title" xml:space="preserve"><value>Administrator without multi-factor authentication</value></data>
+  <data name="AUD-032.Why" xml:space="preserve"><value>Fortinet: implement multi-factor authentication for administrators.</value></data>
+  <data name="AUD-032.Fix" xml:space="preserve"><value>Enable two-factor on the account (FortiToken, e-mail or SMS).</value></data>
+  <data name="AUD-032.Detail" xml:space="preserve"><value>Administrator {0} has no two-factor authentication.</value></data>
+  <data name="AUD-033.Title" xml:space="preserve"><value>Administrator idle timeout too long</value></data>
+  <data name="AUD-033.Why" xml:space="preserve"><value>Fortinet: set the administrator idle timeout to a low value, preferably less than ten minutes.</value></data>
+  <data name="AUD-033.Fix" xml:space="preserve"><value>Set "admintimeout" to 10 minutes or less in config system global.</value></data>
+  <data name="AUD-033.Detail" xml:space="preserve"><value>admintimeout is {0} minutes.</value></data>
+  <data name="AUD-034.Title" xml:space="preserve"><value>Default administrative ports</value></data>
+  <data name="AUD-034.Why" xml:space="preserve"><value>Fortinet: the default administrative ports are well known and targeted first; non-standard ports add a layer of protection.</value></data>
+  <data name="AUD-034.Fix" xml:space="preserve"><value>Change admin-sport and admin-ssh-port in config system global (and update firewall rules and bookmarks).</value></data>
+  <data name="AUD-034.Detail" xml:space="preserve"><value>Default ports in use: {0}.</value></data>
+  <data name="AUD-040.Title" xml:space="preserve"><value>Weak IPsec algorithms (DES, MD5, null)</value></data>
+  <data name="AUD-040.Why" xml:space="preserve"><value>RFC 8221 and RFC 8247: DES and HMAC-MD5 MUST NOT be used.</value></data>
+  <data name="AUD-040.Fix" xml:space="preserve"><value>Use AES-GCM or AES with SHA-256 or stronger, on both ends of the tunnel.</value></data>
+  <data name="AUD-040.Detail" xml:space="preserve"><value>Tunnel {0} offers {1}.</value></data>
+  <data name="AUD-041.Title" xml:space="preserve"><value>Outdated IPsec algorithms (3DES, SHA-1)</value></data>
+  <data name="AUD-041.Why" xml:space="preserve"><value>RFC 8221/8247 downgrade 3DES and SHA-1 and ask to replace them with AES and SHA-2.</value></data>
+  <data name="AUD-041.Fix" xml:space="preserve"><value>Replace with AES-GCM or AES with SHA-256 or stronger, on both ends of the tunnel.</value></data>
+  <data name="AUD-041.Detail" xml:space="preserve"><value>Tunnel {0} offers {1}.</value></data>
+  <data name="AUD-042.Title" xml:space="preserve"><value>Broken Diffie-Hellman groups (1, 22)</value></data>
+  <data name="AUD-042.Why" xml:space="preserve"><value>RFC 8247: DH group 1 (768-bit) and group 22 MUST NOT be used.</value></data>
+  <data name="AUD-042.Fix" xml:space="preserve"><value>Use group 14 or newer (19, 20, 21).</value></data>
+  <data name="AUD-042.Detail" xml:space="preserve"><value>Tunnel {0} offers DH group {1}.</value></data>
+  <data name="AUD-043.Title" xml:space="preserve"><value>Weak Diffie-Hellman groups (2, 5, 23, 24)</value></data>
+  <data name="AUD-043.Why" xml:space="preserve"><value>RFC 8247: groups 2, 5, 23 and 24 SHOULD NOT be used.</value></data>
+  <data name="AUD-043.Fix" xml:space="preserve"><value>Use group 14 or newer (19, 20, 21).</value></data>
+  <data name="AUD-043.Detail" xml:space="preserve"><value>Tunnel {0} offers DH group {1}.</value></data>
+  <data name="AUD-044.Title" xml:space="preserve"><value>Strong crypto disabled</value></data>
+  <data name="AUD-044.Why" xml:space="preserve"><value>Fortinet: force strong ciphers; strong-crypto is enabled by default.</value></data>
+  <data name="AUD-044.Fix" xml:space="preserve"><value>Set "strong-crypto enable" in config system global.</value></data>
+  <data name="AUD-044.Detail" xml:space="preserve"><value>strong-crypto is disabled.</value></data>
+  <data name="AUD-045.Title" xml:space="preserve"><value>TLS 1.0 or 1.1 allowed</value></data>
+  <data name="AUD-045.Why" xml:space="preserve"><value>RFC 8996 deprecates TLS 1.0 and 1.1; Fortinet recommends disabling weak encryption protocols.</value></data>
+  <data name="AUD-045.Fix" xml:space="preserve"><value>Allow only TLS 1.2 and 1.3.</value></data>
+  <data name="AUD-045.Detail" xml:space="preserve"><value>{0} is {1}.</value></data>
+  <data name="AUD-050.Title" xml:space="preserve"><value>Time synchronization (NTP) not configured</value></data>
+  <data name="AUD-050.Why" xml:space="preserve"><value>Logs and certificates depend on an accurate clock; Fortinet recommends NTP or PTP. In FortiOS 7.4 and 7.6 ntpsync is disabled by default.</value></data>
+  <data name="AUD-050.Fix" xml:space="preserve"><value>Set "ntpsync enable" in config system ntp, with the FortiGuard or your own NTP servers.</value></data>
+  <data name="AUD-050.Detail" xml:space="preserve"><value>NTP synchronization is not enabled.</value></data>
+  <data name="AUD-051.Title" xml:space="preserve"><value>DNS servers not configured</value></data>
+  <data name="AUD-051.Why" xml:space="preserve"><value>Without DNS servers FortiGuard updates, FQDN addresses and many services do not work. The default primary server is 0.0.0.0 (FortiOS 7.6 CLI reference).</value></data>
+  <data name="AUD-051.Fix" xml:space="preserve"><value>Set primary and secondary in config system dns.</value></data>
+  <data name="AUD-051.Detail" xml:space="preserve"><value>No primary DNS server.</value></data>
+  <data name="AUDN-001" xml:space="preserve"><value>Checks are based only on what the backup states. Groups are compared by name (not expanded) and values not present in a standard backup are treated as defaults. Review every item before changing the device.</value></data>
+  <data name="AUDN-002" xml:space="preserve"><value>NTP/DNS: FortiOS version older than 7.4 or unknown; defaults not verified for this version, so missing settings were not reported.</value></data>
+  <data name="Severity.High" xml:space="preserve"><value>High</value></data>
+  <data name="Severity.Medium" xml:space="preserve"><value>Medium</value></data>
+  <data name="Severity.Low" xml:space="preserve"><value>Low</value></data>
+  <data name="Export.Col.Vdom" xml:space="preserve"><value>VDOM</value></data>
+  <data name="Export.Col.Seq" xml:space="preserve"><value>Order</value></data>
+  <data name="Export.Col.Id" xml:space="preserve"><value>ID</value></data>
+  <data name="Export.Col.Name" xml:space="preserve"><value>Name</value></data>
+  <data name="Export.Col.Status" xml:space="preserve"><value>Status</value></data>
+  <data name="Export.Col.SrcIntf" xml:space="preserve"><value>Source interface</value></data>
+  <data name="Export.Col.DstIntf" xml:space="preserve"><value>Destination interface</value></data>
+  <data name="Export.Col.SrcAddr" xml:space="preserve"><value>Source</value></data>
+  <data name="Export.Col.DstAddr" xml:space="preserve"><value>Destination</value></data>
+  <data name="Export.Col.Service" xml:space="preserve"><value>Service</value></data>
+  <data name="Export.Col.Schedule" xml:space="preserve"><value>Schedule</value></data>
+  <data name="Export.Col.Action" xml:space="preserve"><value>Action</value></data>
+  <data name="Export.Col.Nat" xml:space="preserve"><value>NAT</value></data>
+  <data name="Export.Col.Users" xml:space="preserve"><value>Users/groups</value></data>
+  <data name="Export.Col.Profiles" xml:space="preserve"><value>Security profiles</value></data>
+  <data name="Export.Col.Log" xml:space="preserve"><value>Log</value></data>
+  <data name="Export.Col.Comments" xml:space="preserve"><value>Comments</value></data>
+  <data name="Export.Col.Type" xml:space="preserve"><value>Type</value></data>
+  <data name="Export.Col.Value" xml:space="preserve"><value>Value</value></data>
+  <data name="Export.Col.Interface" xml:space="preserve"><value>Interface</value></data>
+  <data name="Export.Col.Comment" xml:space="preserve"><value>Comment</value></data>
+  <data name="Export.Col.Members" xml:space="preserve"><value>Members</value></data>
+  <data name="Export.Col.Protocol" xml:space="preserve"><value>Protocol</value></data>
+  <data name="Export.Col.Tcp" xml:space="preserve"><value>TCP ports</value></data>
+  <data name="Export.Col.Udp" xml:space="preserve"><value>UDP ports</value></data>
+  <data name="Export.Col.Sctp" xml:space="preserve"><value>SCTP ports</value></data>
+  <data name="Export.Col.Icmp" xml:space="preserve"><value>ICMP type/code</value></data>
+  <data name="Export.Col.Category" xml:space="preserve"><value>Category</value></data>
+  <data name="Export.Col.ExtIntf" xml:space="preserve"><value>External interface</value></data>
+  <data name="Export.Col.ExtIp" xml:space="preserve"><value>External IP</value></data>
+  <data name="Export.Col.MappedIp" xml:space="preserve"><value>Mapped IP</value></data>
+  <data name="Export.Col.PortForward" xml:space="preserve"><value>Port forwarding</value></data>
+  <data name="Export.Col.ExtPort" xml:space="preserve"><value>External port</value></data>
+  <data name="Export.Col.MappedPort" xml:space="preserve"><value>Mapped port</value></data>
+  <data name="Export.Col.Days" xml:space="preserve"><value>Days</value></data>
+  <data name="Export.Col.Start" xml:space="preserve"><value>Start</value></data>
+  <data name="Export.Col.End" xml:space="preserve"><value>End</value></data>
+  <data name="Export.Sheet.Policies" xml:space="preserve"><value>Policies</value></data>
+  <data name="Export.Sheet.Addresses" xml:space="preserve"><value>Addresses</value></data>
+  <data name="Export.Sheet.Addresses6" xml:space="preserve"><value>IPv6 addresses</value></data>
+  <data name="Export.Sheet.AddressGroups" xml:space="preserve"><value>Address groups</value></data>
+  <data name="Export.Sheet.Services" xml:space="preserve"><value>Services</value></data>
+  <data name="Export.Sheet.ServiceGroups" xml:space="preserve"><value>Service groups</value></data>
+  <data name="Export.Sheet.Vips" xml:space="preserve"><value>Virtual IPs</value></data>
+  <data name="Export.Sheet.Schedules" xml:space="preserve"><value>Schedules</value></data>
+  <data name="Import.Empty" xml:space="preserve"><value>Row {0}: the file is empty.</value></data>
+  <data name="Import.MissingColumn" xml:space="preserve"><value>Row {0}: required column "{1}" is missing.</value></data>
+  <data name="Import.NameMissing" xml:space="preserve"><value>Row {0}: the name is empty.</value></data>
+  <data name="Import.NameTooLong" xml:space="preserve"><value>Row {0}: "{1}" is longer than {2} characters.</value></data>
+  <data name="Import.NameDuplicate" xml:space="preserve"><value>Row {0}: the name "{1}" is repeated.</value></data>
+  <data name="Import.BadSubnet" xml:space="preserve"><value>Row {0}: "{1}" is not a valid subnet (use 192.0.2.0/24 or 192.0.2.0 255.255.255.0).</value></data>
+  <data name="Import.HostBits" xml:space="preserve"><value>Row {0}: "{1}" has host bits set: use the network address.</value></data>
+  <data name="Import.BadRange" xml:space="preserve"><value>Row {0}: "{1}" is not a valid range (first-last).</value></data>
+  <data name="Import.BadFqdn" xml:space="preserve"><value>Row {0}: "{1}" is not a valid FQDN.</value></data>
+  <data name="Import.BadAddressType" xml:space="preserve"><value>Row {0}: type "{1}" is not supported (ipmask, iprange, fqdn).</value></data>
+  <data name="Import.NoMembers" xml:space="preserve"><value>Row {0}: no members (separate them with |).</value></data>
+  <data name="Import.NoPorts" xml:space="preserve"><value>Row {0}: no ports.</value></data>
+  <data name="Import.BadPort" xml:space="preserve"><value>Row {0}: "{1}" is not a valid port or range (1-65535, e.g. 443 or 8000-8080).</value></data>
+  <data name="Import.TooManyPorts" xml:space="preserve"><value>Row {0}: more than {1} port ranges.</value></data>
+  <data name="Import.BadProtocolNumber" xml:space="preserve"><value>Row {0}: "{1}" is not a valid protocol number (0-255).</value></data>
+  <data name="Import.BadProtocol" xml:space="preserve"><value>Row {0}: protocol "{1}" is not supported.</value></data>
+  <data name="Import.BadNumber" xml:space="preserve"><value>Row {0}: {1} "{2}" must be a number from 0 to 255.</value></data>
+  <data name="Import.BadIp" xml:space="preserve"><value>Row {0}: {1} "{2}" is not a valid IPv4 address or range.</value></data>
+  <data name="Snippet.Required" xml:space="preserve"><value>Field "{0}" is required.</value></data>
+  <data name="Snippet.NameTooLong" xml:space="preserve"><value>The name is longer than {0} characters.</value></data>
+  <data name="Snippet.VlanId" xml:space="preserve"><value>The VLAN ID must be between 1 and 4094.</value></data>
+  <data name="Snippet.BadIp" xml:space="preserve"><value>"{0}" is not a valid address.</value></data>
+  <data name="Snippet.HostBits" xml:space="preserve"><value>"{0}" has host bits set: use the network address.</value></data>
+  <data name="Snippet.Distance" xml:space="preserve"><value>The distance must be between 1 and 255.</value></data>
+  <data name="Snippet.Import" xml:space="preserve"><value>{0}</value></data>
+</root>

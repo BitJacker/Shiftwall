@@ -1,0 +1,48 @@
+<UserControl x:Class="Shiftwall.App.Views.TargetSelectorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:l="clr-namespace:Shiftwall.App.Localization">
+    <StackPanel>
+        <WrapPanel Orientation="Horizontal" Margin="0,0,0,8">
+            <RadioButton Content="{l:T Target.Mode.Backup}" IsChecked="{Binding IsBackupMode}" Margin="0,0,16,4" />
+            <RadioButton Content="{l:T Target.Mode.Database}" IsChecked="{Binding IsDatabaseMode}" Margin="0,0,0,4" />
+        </WrapPanel>
+
+        <!-- Factory-default backup (recommended) -->
+        <StackPanel Visibility="{Binding IsBackupMode, Converter={StaticResource BoolToVisibility}}">
+            <Border x:Name="BackupDrop" Style="{StaticResource DropZone}" Drop="OnBackupDrop" DragOver="OnDragOver">
+                <StackPanel>
+                    <TextBlock Text="{l:T Target.Drop}" TextWrapping="Wrap" />
+                    <TextBlock Text="{l:T Target.Backup.Hint}" FontSize="12" Style="{StaticResource Muted}" Margin="0,4,0,0" />
+                    <TextBlock Text="{Binding BackupPath}" FontSize="12" Margin="0,6,0,0" TextTrimming="CharacterEllipsis"
+                               Visibility="{Binding BackupPath, Converter={StaticResource NullToVisibility}}" />
+                </StackPanel>
+            </Border>
+            <TextBlock Text="{l:T Target.OptionalModel}" FontSize="12" Margin="0,10,0,2" Style="{StaticResource Muted}" />
+        </StackPanel>
+
+        <!-- Database -->
+        <TextBlock Text="{l:T Target.Model}" FontSize="12" Margin="0,4,0,2" Style="{StaticResource Muted}"
+                   Visibility="{Binding IsDatabaseMode, Converter={StaticResource BoolToVisibility}}" />
+        <ComboBox ItemsSource="{Binding Models}" SelectedItem="{Binding SelectedModel}" DisplayMemberPath="Id" IsEditable="False"
+                  AutomationProperties.Name="{l:T Target.Model}" />
+        <StackPanel Visibility="{Binding IsDatabaseMode, Converter={StaticResource BoolToVisibility}}">
+            <TextBlock Text="{l:T Target.Version}" FontSize="12" Margin="0,8,0,2" Style="{StaticResource Muted}" />
+            <ComboBox ItemsSource="{Binding Versions}" SelectedItem="{Binding SelectedVersion}" AutomationProperties.Name="{l:T Target.Version}" />
+        </StackPanel>
+
+        <ItemsControl ItemsSource="{Binding ModelWarnings}" Margin="0,8,0,0">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock TextWrapping="Wrap" Foreground="#C27C0E" Margin="0,2">
+                        <Run FontFamily="{StaticResource IconFont}" Text="&#xE7BA;" />
+                        <Run Text="{Binding Mode=OneWay}" />
+                    </TextBlock>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <TextBlock Text="{Binding Summary}" FontWeight="SemiBold" Margin="0,10,0,4" TextWrapping="Wrap" />
+        <ItemsControl ItemsSource="{Binding Diagnostics}" ItemTemplate="{StaticResource MessageTemplate}" />
+    </StackPanel>
+</UserControl>

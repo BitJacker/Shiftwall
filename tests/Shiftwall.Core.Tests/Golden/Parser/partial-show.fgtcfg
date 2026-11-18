@@ -1,0 +1,11 @@
+config firewall policy
+    edit 7
+        set srcintf "internal1"
+        set dstintf "wan1"
+        set srcaddr "all"
+        set dstaddr "all"
+        set action accept
+        set schedule "always"
+        set service "ALL"
+    next
+end

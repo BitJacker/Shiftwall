@@ -1,0 +1,6 @@
+system_global:
+  hostname: lab-yaml
+  timezone: Europe/Rome
+firewall_address:
+  - name: srv-web
+    subnet: 198.51.100.20 255.255.255.255

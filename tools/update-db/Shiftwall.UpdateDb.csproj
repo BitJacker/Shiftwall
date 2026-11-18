@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Developer tool, NOT part of Shiftwall.exe. It is the only place outside src/Shiftwall.Lan that
+       is allowed to make network requests (to docs.fortinet.com / www.fortinet.com only). -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <RootNamespace>Shiftwall.UpdateDb</RootNamespace>
+    <AssemblyName>update-db</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Shiftwall.Core\Shiftwall.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="Shiftwall.UpdateDb.Tests" />
+  </ItemGroup>
+</Project>

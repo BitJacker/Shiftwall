@@ -1,0 +1,74 @@
+#config-version=FGT40F-7.4.13-FW-build2933-261022:opmode=0:vdom=0:user=admin
+#conf_file_ver=6234567890123457
+#buildno=2933
+#global_vdom=1
+config system global
+    set hostname "branch-fw01"
+    set timezone "Europe/Rome"
+end
+config system ntp
+    set ntpsync enable
+end
+config system dns
+    set primary 192.0.2.53
+end
+config system interface
+    edit "wan"
+        set vdom "root"
+        set ip 198.51.100.20 255.255.255.0
+        set allowaccess ping
+        set type physical
+        set role wan
+    next
+    edit "lan"
+        set vdom "root"
+        set ip 192.168.20.1 255.255.255.0
+        set allowaccess ping https ssh
+        set type hard-switch
+        set role lan
+    next
+end
+config firewall address
+    edit "hq-lan"
+        set subnet 192.168.10.0 255.255.255.0
+    next
+    edit "local-lan"
+        set subnet 192.168.20.0 255.255.255.0
+    next
+end
+config vpn ipsec phase1-interface
+    edit "to-hq"
+        set interface "wan"
+        set ike-version 2
+        set peertype any
+        set net-device disable
+        set proposal aes256-sha256
+        set dhgrp 14
+        set remote-gw 203.0.113.10
+        set psksecret ENC U2hpZnR3YWxsIHN5bnRoZXRpYyB0ZXN0IHZhbHVlIC0gbm90IGEgc2VjcmV0
+    next
+end
+config vpn ipsec phase2-interface
+    edit "to-hq-p2"
+        set phase1name "to-hq"
+        set proposal aes128-sha1
+        set dhgrp 14
+        set src-addr-type name
+        set dst-addr-type name
+        set src-name "local-lan"
+        set dst-name "hq-lan"
+        set keylifeseconds 43200
+    next
+end
+config firewall policy
+    edit 1
+        set name "to-hq"
+        set srcintf "lan"
+        set dstintf "to-hq"
+        set action accept
+        set srcaddr "local-lan"
+        set dstaddr "hq-lan"
+        set schedule "always"
+        set service "ALL"
+    next
+end

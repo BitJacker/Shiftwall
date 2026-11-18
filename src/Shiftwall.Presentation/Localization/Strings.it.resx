@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="App.Tagline" xml:space="preserve"><value>Migrazione FortiGate offline</value></data>
+  <data name="App.Offline" xml:space="preserve"><value>Offline: nessun dato lascia questo PC.</value></data>
+  <data name="Settings.Theme" xml:space="preserve"><value>Tema</value></data>
+  <data name="Settings.SwitchLanguage" xml:space="preserve"><value>English</value></data>
+  <data name="Theme.System" xml:space="preserve"><value>Come Windows</value></data>
+  <data name="Theme.Light" xml:space="preserve"><value>Chiaro</value></data>
+  <data name="Theme.Dark" xml:space="preserve"><value>Scuro</value></data>
+  <data name="Nav.Menu" xml:space="preserve"><value>Menu</value></data>
+  <data name="Nav.Migration" xml:space="preserve"><value>Migrazione</value></data>
+  <data name="Nav.Batch" xml:space="preserve"><value>Conversione in blocco</value></data>
+  <data name="Nav.Compare" xml:space="preserve"><value>Confronta config</value></data>
+  <data name="Nav.Audit" xml:space="preserve"><value>Audit sicurezza</value></data>
+  <data name="Nav.Cleanup" xml:space="preserve"><value>Oggetti inutilizzati</value></data>
+  <data name="Nav.Export" xml:space="preserve"><value>Export policy</value></data>
+  <data name="Nav.Import" xml:space="preserve"><value>Import da CSV</value></data>
+  <data name="Nav.Vpn" xml:space="preserve"><value>Riepilogo VPN</value></data>
+  <data name="Nav.Anonymize" xml:space="preserve"><value>Anonimizza config</value></data>
+  <data name="Nav.Snippets" xml:space="preserve"><value>Snippet CLI</value></data>
+  <data name="Nav.Upgrade" xml:space="preserve"><value>Pianifica upgrade</value></data>
+  <data name="Nav.About" xml:space="preserve"><value>Info</value></data>
+  <data name="Common.Back" xml:space="preserve"><value>Indietro</value></data>
+  <data name="Common.Next" xml:space="preserve"><value>Avanti</value></data>
+  <data name="Common.Browse" xml:space="preserve"><value>Sfoglia…</value></data>
+  <data name="Wizard.Title" xml:space="preserve"><value>Migrazione configurazione</value></data>
+  <data name="Wizard.Simulation" xml:space="preserve"><value>Simulazione: nessun file viene scritto finché non premi "Salva configurazione" nell'ultimo passo.</value></data>
+  <data name="Step.Load" xml:space="preserve"><value>1  Carica</value></data>
+  <data name="Step.PreChecks" xml:space="preserve"><value>2  Controlli</value></data>
+  <data name="Step.Mapping" xml:space="preserve"><value>3  Mappatura</value></data>
+  <data name="Step.Transform" xml:space="preserve"><value>4  Trasformazione</value></data>
+  <data name="Step.Report" xml:space="preserve"><value>5  Report e salvataggio</value></data>
+  <data name="Wizard.Load.Source" xml:space="preserve"><value>Configurazione sorgente</value></data>
+  <data name="Wizard.Load.Target" xml:space="preserve"><value>Destinazione</value></data>
+  <data name="Wizard.Load.DropSource" xml:space="preserve"><value>Trascina qui il backup del FortiGate da migrare (.conf), oppure usa Sfoglia.</value></data>
+  <data name="Wizard.Load.PickSource" xml:space="preserve"><value>Scegli il backup sorgente</value></data>
+  <data name="Wizard.Load.PickTarget" xml:space="preserve"><value>Scegli il backup di default della destinazione</value></data>
+  <data name="Source.Summary.None" xml:space="preserve"><value>Nessun file caricato.</value></data>
+  <data name="Source.Summary" xml:space="preserve"><value>{0} · FortiOS {1} build {2} · {3} righe · {4} porte fisiche</value></data>
+  <data name="Source.Summary.Kind.BinaryOrEncrypted" xml:space="preserve"><value>Backup cifrato o file binario: non leggibile.</value></data>
+  <data name="Source.Summary.Kind.Yaml" xml:space="preserve"><value>Backup in formato YAML: non supportato.</value></data>
+  <data name="Source.Summary.Kind.Empty" xml:space="preserve"><value>File vuoto.</value></data>
+  <data name="Target.Mode.Backup" xml:space="preserve"><value>Backup di default (consigliato)</value></data>
+  <data name="Target.Mode.Database" xml:space="preserve"><value>Modello dal database</value></data>
+  <data name="Target.Drop" xml:space="preserve"><value>Trascina qui il backup di default del nuovo FortiGate, oppure usa Sfoglia.</value></data>
+  <data name="Target.Backup.Hint" xml:space="preserve"><value>È la fonte più affidabile: i suoi nomi di interfaccia e il suo header prevalgono sul database.</value></data>
+  <data name="Target.OptionalModel" xml:space="preserve"><value>Modello (facoltativo, serve per sapere se ha un disco)</value></data>
+  <data name="Target.Model" xml:space="preserve"><value>Modello</value></data>
+  <data name="Target.Version" xml:space="preserve"><value>Versione FortiOS</value></data>
+  <data name="Target.Summary.None" xml:space="preserve"><value>Nessuna destinazione scelta.</value></data>
+  <data name="Target.Summary.Backup" xml:space="preserve"><value>{0} · FortiOS {1} build {2} · {3} porte fisiche</value></data>
+  <data name="Target.Summary.Database" xml:space="preserve"><value>{0} · FortiOS {1} · {2} porte nel database</value></data>
+  <data name="Target.Unverified.Interfaces" xml:space="preserve"><value>Interfacce non verificate: {0}</value></data>
+  <data name="Target.Unverified.Disk" xml:space="preserve"><value>Disco non verificato: {0}</value></data>
+  <data name="Target.Unverified.Switch" xml:space="preserve"><value>Switch di default non verificato: serve un backup di default per conoscerlo.</value></data>
+  <data name="Wizard.PreChecks.Intro" xml:space="preserve"><value>Controlli eseguiti prima di modificare qualsiasi cosa. Gli errori vanno risolti prima di continuare; gli avvisi finiscono nel report e nella checklist.</value></data>
+  <data name="Wizard.Mapping.Auto" xml:space="preserve"><value>Proponi abbinamento</value></data>
+  <data name="Wizard.Mapping.Clear" xml:space="preserve"><value>Azzera</value></data>
+  <data name="Wizard.Mapping.SaveTemplate" xml:space="preserve"><value>Salva template…</value></data>
+  <data name="Wizard.Mapping.LoadTemplate" xml:space="preserve"><value>Carica template…</value></data>
+  <data name="Wizard.Mapping.SourcePorts" xml:space="preserve"><value>Porte sorgente</value></data>
+  <data name="Wizard.Mapping.TargetPorts" xml:space="preserve"><value>Porte destinazione</value></data>
+  <data name="Wizard.Mapping.Hint" xml:space="preserve"><value>Shiftwall propone un abbinamento: stesso nome, poi stesso ruolo (WAN con WAN, porte LAN in ordine, es. lan1 → internal1). Controllalo prima di proseguire. Per cambiarlo scegli la porta di destinazione oppure trascinala qui dalla colonna a destra. Le porte usate e non mappate bloccano il passo successivo.</value></data>
+  <data name="Wizard.Mapping.DragHint" xml:space="preserve"><value>Trascina una porta su una riga a sinistra.</value></data>
+  <data name="Wizard.Mapping.Uses" xml:space="preserve"><value>usi</value></data>
+  <data name="Wizard.Mapping.Unmap" xml:space="preserve"><value>Rimuovi mappatura</value></data>
+  <data name="Wizard.Transform.Changes" xml:space="preserve"><value>Modifiche</value></data>
+  <data name="Wizard.Transform.Validation" xml:space="preserve"><value>Validazione</value></data>
+  <data name="Wizard.Transform.Diff" xml:space="preserve"><value>Differenze (prima | dopo)</value></data>
+  <data name="Wizard.Transform.ShowAll" xml:space="preserve"><value>Mostra tutto il file</value></data>
+  <data name="Wizard.Report.SaveTitle" xml:space="preserve"><value>Salva il risultato</value></data>
+  <data name="Wizard.Report.SaveHint" xml:space="preserve"><value>La nuova configurazione viene salvata in un file nuovo: l'originale non viene mai sovrascritto.</value></data>
+  <data name="Wizard.Report.SaveConfig" xml:space="preserve"><value>Salva configurazione…</value></data>
+  <data name="Wizard.Report.ExportHtml" xml:space="preserve"><value>Esporta report HTML…</value></data>
+  <data name="Wizard.Report.PrintPdf" xml:space="preserve"><value>Stampa / PDF…</value></data>
+  <data name="Wizard.Report.OpenFolder" xml:space="preserve"><value>Apri cartella</value></data>
+  <data name="Wizard.Report.New" xml:space="preserve"><value>Nuova migrazione</value></data>
+  <data name="Wizard.Report.Checklist" xml:space="preserve"><value>Checklist da verificare a mano</value></data>
+  <data name="Wizard.Report.Saved" xml:space="preserve"><value>Configurazione salvata: {0}</value></data>
+  <data name="Batch.Title" xml:space="preserve"><value>Conversione in blocco</value></data>
+  <data name="Batch.Intro" xml:space="preserve"><value>Più sedi con lo stesso modello sorgente, la stessa destinazione e lo stesso template di mappatura. Con la simulazione attiva non viene scritto nulla.</value></data>
+  <data name="Batch.Files" xml:space="preserve"><value>Configurazioni sorgente</value></data>
+  <data name="Batch.AddFiles" xml:space="preserve"><value>Aggiungi file…</value></data>
+  <data name="Batch.ClearFiles" xml:space="preserve"><value>Svuota elenco</value></data>
+  <data name="Batch.RemoveFile" xml:space="preserve"><value>Rimuovi</value></data>
+  <data name="Batch.Drop" xml:space="preserve"><value>Trascina qui i backup delle sedi</value></data>
+  <data name="Batch.Template" xml:space="preserve"><value>Template di mappatura</value></data>
+  <data name="Batch.Output" xml:space="preserve"><value>Cartella di destinazione</value></data>
+  <data name="Batch.PickOutput" xml:space="preserve"><value>Scegli la cartella dove salvare le nuove configurazioni</value></data>
+  <data name="Batch.Simulate" xml:space="preserve"><value>Simulazione (non scrivere file)</value></data>
+  <data name="Batch.Run" xml:space="preserve"><value>Avvia</value></data>
+  <data name="Batch.Results" xml:space="preserve"><value>Risultati</value></data>
+  <data name="Batch.Progress" xml:space="preserve"><value>Elaborazione {0} di {1}…</value></data>
+  <data name="Batch.Done" xml:space="preserve"><value>Completato: {0} su {1} riusciti.</value></data>
+  <data name="About.Version" xml:space="preserve"><value>Versione</value></data>
+  <data name="About.Privacy.Title" xml:space="preserve"><value>Privacy</value></data>
+  <data name="About.Privacy.Statement" xml:space="preserve"><value>Shiftwall non invia dati. Funziona completamente offline.</value></data>
+  <data name="About.Privacy.Details" xml:space="preserve"><value>Niente telemetria, analytics, crash report online o aggiornamenti automatici. Le configurazioni sono elaborate in memoria e non finiscono nei log. L'unica funzione di rete (pagina Backup da LAN) è disattivata di default e parte solo su tua richiesta.</value></data>
+  <data name="About.Database.Title" xml:space="preserve"><value>Database modelli</value></data>
+  <data name="About.Database.Embedded" xml:space="preserve"><value>Database incluso: {0} modelli, {1} versioni FortiOS (fino alla {2}).</value></data>
+  <data name="About.Database.Imported" xml:space="preserve"><value>Database importato: {0} modelli, {1} versioni FortiOS (fino alla {2}).</value></data>
+  <data name="About.Database.Hint" xml:space="preserve"><value>Ogni dato ha la sua fonte ufficiale (vedi docs/SOURCES.md). Puoi importare un database aggiornato: viene validato prima dell'uso.</value></data>
+  <data name="About.Database.Import" xml:space="preserve"><value>Importa database…</value></data>
+  <data name="About.Database.Reset" xml:space="preserve"><value>Torna al database incluso</value></data>
+  <data name="About.Database.Pick" xml:space="preserve"><value>Scegli models.json (con fortios-releases.json e upgrade-paths.json nella stessa cartella)</value></data>
+  <data name="About.Database.ImportOk" xml:space="preserve"><value>Database importato e validato.</value></data>
+  <data name="About.Database.ImportFailed" xml:space="preserve"><value>Il database non è valido e non è stato importato.</value></data>
+  <data name="About.Disclaimer.Title" xml:space="preserve"><value>Avvertenze</value></data>
+  <data name="About.Disclaimer" xml:space="preserve"><value>Shiftwall non è affiliato a Fortinet. FortiGate e FortiOS sono marchi di Fortinet, Inc. Le config modificate non sono supportate dal TAC Fortinet: testare sempre in laboratorio prima della produzione.</value></data>
+  <data name="About.Repository" xml:space="preserve"><value>Progetto su GitHub</value></data>
+  <data name="About.License" xml:space="preserve"><value>Software libero con licenza GNU General Public License v3.0, senza alcuna garanzia.</value></data>
+  <data name="Error.TemplateInvalid" xml:space="preserve"><value>Il template di mappatura non è valido.</value></data>
+  <data name="Error.WouldOverwriteOriginal" xml:space="preserve"><value>Questo file è la configurazione originale: Shiftwall non la sovrascrive mai. Scegli un altro nome.</value></data>
+  <data name="Error.FileNotFound" xml:space="preserve"><value>Il file non esiste più o è stato spostato. Selezionalo di nuovo.</value></data>
+  <data name="Error.AccessDenied" xml:space="preserve"><value>Accesso negato al file o alla cartella. Scegli una cartella in cui hai i permessi di scrittura.</value></data>
+  <data name="Error.FileInUse" xml:space="preserve"><value>Il file è in uso da un altro programma o il disco non è disponibile. Chiudi gli altri programmi e riprova.</value></data>
+  <data name="Error.OutOfMemory" xml:space="preserve"><value>Memoria insufficiente per questa operazione. Chiudi altri programmi e riprova.</value></data>
+  <data name="Error.Unexpected" xml:space="preserve"><value>Si è verificato un errore imprevisto. I tuoi file non sono stati modificati. Dettagli tecnici (senza contenuti delle config) sono in {0}.</value></data>
+  <data name="Nav.Lan" xml:space="preserve"><value>Backup da LAN</value></data>
+  <data name="Common.Cancel" xml:space="preserve"><value>Annulla</value></data>
+  <data name="Tool.Copy" xml:space="preserve"><value>Copia</value></data>
+  <data name="Tool.SaveScript" xml:space="preserve"><value>Salva script…</value></data>
+  <data name="Tool.Saved" xml:space="preserve"><value>Salvato: {0}</value></data>
+  <data name="Tool.Script" xml:space="preserve"><value>Script CLI generato</value></data>
+  <data name="Tool.Script.Header" xml:space="preserve"><value>{0} — generato da Shiftwall {1} il {2}</value></data>
+  <data name="Tool.Script.Source" xml:space="preserve"><value>Sorgente: {0}</value></data>
+  <data name="Tool.Script.Review" xml:space="preserve"><value>Verifica prima di applicarlo. Fai prima un backup del FortiGate; Shiftwall non applica nulla.</value></data>
+  <data name="Tool.Slot.Clear" xml:space="preserve"><value>Rimuovi file</value></data>
+  <data name="Tool.Slot.None" xml:space="preserve"><value>Trascina qui un backup FortiOS oppure usa Sfoglia.</value></data>
+  <data name="Tool.Slot.Unusable" xml:space="preserve"><value>Questo file non può essere analizzato (vedi i messaggi sotto).</value></data>
+  <data name="Tool.Slot.Summary" xml:space="preserve"><value>{0} · FortiOS {1} · {2:N0} righe</value></data>
+  <data name="Compare.Title" xml:space="preserve"><value>Confronta configurazioni</value></data>
+  <data name="Compare.Intro" xml:space="preserve"><value>Differenze per sezione e voce, non riga per riga: spostamenti e rientri sono ignorati, i campi modificati sono elencati uno per uno. I valori cifrati sono confrontati ma mai mostrati.</value></data>
+  <data name="Compare.Left" xml:space="preserve"><value>Prima (A)</value></data>
+  <data name="Compare.Right" xml:space="preserve"><value>Dopo (B)</value></data>
+  <data name="Compare.LoadBoth" xml:space="preserve"><value>Carica entrambe le configurazioni.</value></data>
+  <data name="Compare.Identical" xml:space="preserve"><value>Nessuna differenza.</value></data>
+  <data name="Compare.Summary" xml:space="preserve"><value>{0} aggiunte · {1} rimosse · {2} modificate, in {3} sezioni</value></data>
+  <data name="Compare.NotSet" xml:space="preserve"><value>(non impostato)</value></data>
+  <data name="Compare.Filter" xml:space="preserve"><value>Filtro</value></data>
+  <data name="Compare.ExportCsv" xml:space="preserve"><value>Esporta CSV…</value></data>
+  <data name="Compare.Kind.Added" xml:space="preserve"><value>Aggiunta</value></data>
+  <data name="Compare.Kind.Removed" xml:space="preserve"><value>Rimossa</value></data>
+  <data name="Compare.Kind.Changed" xml:space="preserve"><value>Modificata</value></data>
+  <data name="Compare.Col.Change" xml:space="preserve"><value>Modifica</value></data>
+  <data name="Compare.Col.Location" xml:space="preserve"><value>Dove</value></data>
+  <data name="Compare.Col.Details" xml:space="preserve"><value>Dettagli</value></data>
+  <data name="Compare.Col.Field" xml:space="preserve"><value>Campo</value></data>
+  <data name="Compare.Col.Before" xml:space="preserve"><value>Prima</value></data>
+  <data name="Compare.Col.After" xml:space="preserve"><value>Dopo</value></data>
+  <data name="Audit.Title" xml:space="preserve"><value>Audit di sicurezza</value></data>
+  <data name="Audit.Intro" xml:space="preserve"><value>Controlla il backup rispetto alle best practice. Ogni regola cita la sua fonte (documentazione Fortinet o RFC); aprila per leggere il testo originale.</value></data>
+  <data name="Audit.Pick" xml:space="preserve"><value>Scegli il backup da analizzare</value></data>
+  <data name="Audit.LoadFirst" xml:space="preserve"><value>Carica un backup per iniziare.</value></data>
+  <data name="Audit.Score" xml:space="preserve"><value>{0}/100</value></data>
+  <data name="Audit.ScoreHelp" xml:space="preserve"><value>100 meno 15 per ogni regola alta, 8 per ogni media e 3 per ogni bassa non rispettata.</value></data>
+  <data name="Audit.Summary" xml:space="preserve"><value>Regole non rispettate: {0} alte, {1} medie, {2} basse · {3} superate</value></data>
+  <data name="Audit.ShowPassed" xml:space="preserve"><value>Mostra le regole superate</value></data>
+  <data name="Audit.ExportCsv" xml:space="preserve"><value>Esporta CSV…</value></data>
+  <data name="Audit.Why" xml:space="preserve"><value>Perché:</value></data>
+  <data name="Audit.Fix" xml:space="preserve"><value>Correzione:</value></data>
+  <data name="Audit.Passed" xml:space="preserve"><value>superata</value></data>
+  <data name="Audit.Col.Rule" xml:space="preserve"><value>Regola</value></data>
+  <data name="Audit.Col.Severity" xml:space="preserve"><value>Gravità</value></data>
+  <data name="Audit.Col.Title" xml:space="preserve"><value>Titolo</value></data>
+  <data name="Audit.Col.Where" xml:space="preserve"><value>Dove</value></data>
+  <data name="Audit.Col.Detail" xml:space="preserve"><value>Dettaglio</value></data>
+  <data name="Audit.Col.Fix" xml:space="preserve"><value>Correzione</value></data>
+  <data name="Audit.Col.Sources" xml:space="preserve"><value>Fonti</value></data>
+  <data name="Cleanup.Title" xml:space="preserve"><value>Oggetti inutilizzati</value></data>
+  <data name="Cleanup.Intro" xml:space="preserve"><value>Indirizzi, gruppi, servizi e pianificazioni a cui nulla nel loro VDOM fa riferimento. Shiftwall scrive solo lo script CLI che li elimina: lo verifichi e lo applichi tu.</value></data>
+  <data name="Cleanup.Pick" xml:space="preserve"><value>Scegli il backup da ripulire</value></data>
+  <data name="Cleanup.PickReference" xml:space="preserve"><value>Scegli il backup di default di fabbrica</value></data>
+  <data name="Cleanup.Config" xml:space="preserve"><value>Configurazione</value></data>
+  <data name="Cleanup.Reference" xml:space="preserve"><value>Backup di default dello stesso modello (facoltativo)</value></data>
+  <data name="Cleanup.ReferenceHelp" xml:space="preserve"><value>Gli oggetti presenti nel backup di default (servizi predefiniti, "all", "always"…) non vengono mai proposti.</value></data>
+  <data name="Cleanup.LoadFirst" xml:space="preserve"><value>Carica un backup per iniziare.</value></data>
+  <data name="Cleanup.None" xml:space="preserve"><value>Nessun oggetto inutilizzato.</value></data>
+  <data name="Cleanup.Summary" xml:space="preserve"><value>{0} oggetti inutilizzati, {1} selezionati</value></data>
+  <data name="Cleanup.SelectAll" xml:space="preserve"><value>Seleziona tutti</value></data>
+  <data name="Cleanup.SelectNone" xml:space="preserve"><value>Deseleziona tutti</value></data>
+  <data name="Cleanup.ScriptHelp" xml:space="preserve"><value>I gruppi sono eliminati prima dei membri. Incolla lo script nella CLI dopo un backup.</value></data>
+  <data name="Cleanup.Col.Table" xml:space="preserve"><value>Tabella</value></data>
+  <data name="Cleanup.Col.Name" xml:space="preserve"><value>Nome</value></data>
+  <data name="Cleanup.Col.ViaGroup" xml:space="preserve"><value>Solo in gruppi inutilizzati</value></data>
+  <data name="Export.Title" xml:space="preserve"><value>Esporta policy e oggetti</value></data>
+  <data name="Export.Intro" xml:space="preserve"><value>Tabelle per documentazione e audit: policy, indirizzi, gruppi, servizi, VIP e pianificazioni. Excel ha un foglio per tabella; il CSV esporta la tabella visualizzata.</value></data>
+  <data name="Export.Pick" xml:space="preserve"><value>Scegli il backup da esportare</value></data>
+  <data name="Export.LoadFirst" xml:space="preserve"><value>Carica un backup per iniziare.</value></data>
+  <data name="Export.Sheet" xml:space="preserve"><value>Tabella</value></data>
+  <data name="Export.Preview" xml:space="preserve"><value>Anteprima</value></data>
+  <data name="Export.SaveXlsx" xml:space="preserve"><value>Salva Excel…</value></data>
+  <data name="Export.SaveCsv" xml:space="preserve"><value>Salva CSV…</value></data>
+  <data name="Import.Title" xml:space="preserve"><value>Import da CSV</value></data>
+  <data name="Import.Intro" xml:space="preserve"><value>Crea indirizzi, gruppi, servizi o VIP in blocco: Shiftwall controlla ogni riga e scrive lo script CLI. Nulla viene inviato al dispositivo.</value></data>
+  <data name="Import.Kind" xml:space="preserve"><value>Tipo di oggetto</value></data>
+  <data name="Import.Kind.Address" xml:space="preserve"><value>Indirizzi</value></data>
+  <data name="Import.Kind.AddressGroup" xml:space="preserve"><value>Gruppi di indirizzi</value></data>
+  <data name="Import.Kind.Service" xml:space="preserve"><value>Servizi</value></data>
+  <data name="Import.Kind.ServiceGroup" xml:space="preserve"><value>Gruppi di servizi</value></data>
+  <data name="Import.Kind.Vip" xml:space="preserve"><value>Virtual IP</value></data>
+  <data name="Import.SaveTemplate" xml:space="preserve"><value>Salva modello CSV…</value></data>
+  <data name="Import.Browse" xml:space="preserve"><value>Apri CSV…</value></data>
+  <data name="Import.Pick" xml:space="preserve"><value>Scegli il file CSV</value></data>
+  <data name="Import.Columns" xml:space="preserve"><value>Colonne:</value></data>
+  <data name="Import.Help" xml:space="preserve"><value>Prima riga = nomi delle colonne. Separatori virgola, punto e virgola o tab riconosciuti. Separa i membri dei gruppi con |.</value></data>
+  <data name="Import.LoadFirst" xml:space="preserve"><value>Apri un file CSV.</value></data>
+  <data name="Import.Ok" xml:space="preserve"><value>— {0} oggetti, nessun errore.</value></data>
+  <data name="Import.Failed" xml:space="preserve"><value>— {0} errori: correggi il CSV, lo script non viene prodotto finché ci sono errori.</value></data>
+  <data name="Vpn.Title" xml:space="preserve"><value>Riepilogo VPN IPsec</value></data>
+  <data name="Vpn.Intro" xml:space="preserve"><value>Fase 1 e fase 2 di ogni tunnel route-based. Carica anche l'altra sede per verificare che proposte, gruppi DH, durate e selettori corrispondano. Le chiavi pre-condivise non vengono mai lette.</value></data>
+  <data name="Vpn.Local" xml:space="preserve"><value>Sede A</value></data>
+  <data name="Vpn.Remote" xml:space="preserve"><value>Sede B (facoltativa)</value></data>
+  <data name="Vpn.PickLocal" xml:space="preserve"><value>Scegli il backup della sede A</value></data>
+  <data name="Vpn.PickRemote" xml:space="preserve"><value>Scegli il backup della sede B</value></data>
+  <data name="Vpn.LoadFirst" xml:space="preserve"><value>Carica il backup di una sede.</value></data>
+  <data name="Vpn.TunnelCount" xml:space="preserve"><value>{0} tunnel.</value></data>
+  <data name="Vpn.NoPairs" xml:space="preserve"><value>Nessun tunnel della sede A punta a un indirizzo della sede B (né ha lo stesso nome).</value></data>
+  <data name="Vpn.PairSummary" xml:space="preserve"><value>{0} coppie di tunnel · {1} differenze · {2} valori lasciati al default FortiOS (non confrontati)</value></data>
+  <data name="Vpn.Default" xml:space="preserve"><value>(predefinito)</value></data>
+  <data name="Vpn.Tunnels" xml:space="preserve"><value>Tunnel</value></data>
+  <data name="Vpn.Checks" xml:space="preserve"><value>Coerenza tra le due sedi</value></data>
+  <data name="Vpn.Result.Match" xml:space="preserve"><value>OK</value></data>
+  <data name="Vpn.Result.Mismatch" xml:space="preserve"><value>Non corrisponde</value></data>
+  <data name="Vpn.Result.Unknown" xml:space="preserve"><value>Predefinito: verificare</value></data>
+  <data name="Vpn.Col.Tunnel" xml:space="preserve"><value>Tunnel</value></data>
+  <data name="Vpn.Col.Phase" xml:space="preserve"><value>Fase</value></data>
+  <data name="Vpn.Col.Name" xml:space="preserve"><value>Nome</value></data>
+  <data name="Vpn.Col.Endpoints" xml:space="preserve"><value>Gateway / selettori</value></data>
+  <data name="Vpn.Col.Proposal" xml:space="preserve"><value>Proposta</value></data>
+  <data name="Vpn.Col.Lifetime" xml:space="preserve"><value>Durata (s)</value></data>
+  <data name="Vpn.Col.Parameter" xml:space="preserve"><value>Parametro</value></data>
+  <data name="Vpn.Col.Result" xml:space="preserve"><value>Esito</value></data>
+  <data name="Anonymize.Title" xml:space="preserve"><value>Anonimizza configurazione</value></data>
+  <data name="Anonymize.Intro" xml:space="preserve"><value>Maschera ciò che ti identifica prima di inviare una configurazione a un collega o al supporto. Lo stesso valore riceve sempre lo stesso alias, così il file resta leggibile. La mappa per tornare indietro è salvata solo su questo PC, cifrata con la tua password.</value></data>
+  <data name="Anonymize.Pick" xml:space="preserve"><value>Scegli il backup da anonimizzare</value></data>
+  <data name="Anonymize.LoadFirst" xml:space="preserve"><value>Carica un backup per iniziare.</value></data>
+  <data name="Anonymize.Options" xml:space="preserve"><value>Cosa mascherare</value></data>
+  <data name="Anonymize.PublicIps" xml:space="preserve"><value>Indirizzi IP pubblici (sempre)</value></data>
+  <data name="Anonymize.Secrets" xml:space="preserve"><value>Valori ENC, password e certificati (sempre)</value></data>
+  <data name="Anonymize.PrivateIps" xml:space="preserve"><value>Anche gli indirizzi IP privati</value></data>
+  <data name="Anonymize.Hostnames" xml:space="preserve"><value>Hostname e domini</value></data>
+  <data name="Anonymize.Users" xml:space="preserve"><value>Nomi utente</value></data>
+  <data name="Anonymize.Emails" xml:space="preserve"><value>Indirizzi e-mail</value></data>
+  <data name="Anonymize.Comments" xml:space="preserve"><value>Commenti, descrizioni e alias</value></data>
+  <data name="Anonymize.Stats" xml:space="preserve"><value>Mascherati: {0} indirizzi IP, {1} hostname, {2} utenti, {3} e-mail, {4} commenti, {5} segreti.</value></data>
+  <data name="Anonymize.MapTitle" xml:space="preserve"><value>Mappa di ripristino</value></data>
+  <data name="Anonymize.MapHelp" xml:space="preserve"><value>Cifrata con AES-256-GCM; la chiave è derivata dalla tua password (PBKDF2-SHA256, 600.000 iterazioni). Senza password la mappa non si apre: conservala con cura.</value></data>
+  <data name="Anonymize.Password" xml:space="preserve"><value>Password</value></data>
+  <data name="Anonymize.PasswordConfirm" xml:space="preserve"><value>Ripeti password</value></data>
+  <data name="Anonymize.PasswordShort" xml:space="preserve"><value>Almeno {0} caratteri.</value></data>
+  <data name="Anonymize.PasswordMismatch" xml:space="preserve"><value>Le password non coincidono.</value></data>
+  <data name="Anonymize.SaveMap" xml:space="preserve"><value>1. Salva mappa…</value></data>
+  <data name="Anonymize.SaveOutput" xml:space="preserve"><value>2. Salva file anonimizzato…</value></data>
+  <data name="Anonymize.SaveOrder" xml:space="preserve"><value>Salva prima la mappa: senza di essa il file anonimizzato non è riconducibile all'originale.</value></data>
+  <data name="Anonymize.Preview" xml:space="preserve"><value>Anteprima (prime 400 righe)</value></data>
+  <data name="Anonymize.RestoreTitle" xml:space="preserve"><value>Ripristino</value></data>
+  <data name="Anonymize.RestoreHelp" xml:space="preserve"><value>Carica un file anonimizzato (ad esempio restituito dal supporto), la sua mappa e la password per riavere i valori originali.</value></data>
+  <data name="Anonymize.PickAnonymized" xml:space="preserve"><value>Scegli il file anonimizzato</value></data>
+  <data name="Anonymize.PickMap" xml:space="preserve"><value>Mappa…</value></data>
+  <data name="Anonymize.Restore" xml:space="preserve"><value>Ripristina e salva…</value></data>
+  <data name="Anonymize.SaveRestored" xml:space="preserve"><value>Salva file ripristinato</value></data>
+  <data name="Anonymize.MapFailed" xml:space="preserve"><value>La mappa non si apre: password errata o file danneggiato.</value></data>
+  <data name="Snippets.Title" xml:space="preserve"><value>Snippet CLI</value></data>
+  <data name="Snippets.Intro" xml:space="preserve"><value>CLI pronta da incollare per le operazioni comuni. Nomi e campi sono controllati sulla CLI reference di FortiOS.</value></data>
+  <data name="Snippets.Kind" xml:space="preserve"><value>Operazione</value></data>
+  <data name="Snippets.Kind.Vlan" xml:space="preserve"><value>Interfaccia VLAN</value></data>
+  <data name="Snippets.Kind.Policy" xml:space="preserve"><value>Policy firewall</value></data>
+  <data name="Snippets.Kind.Vip" xml:space="preserve"><value>Virtual IP (port forward)</value></data>
+  <data name="Snippets.Kind.StaticRoute" xml:space="preserve"><value>Rotta statica</value></data>
+  <data name="Snippets.Kind.LocalUser" xml:space="preserve"><value>Utente locale</value></data>
+  <data name="Snippets.Name" xml:space="preserve"><value>Nome</value></data>
+  <data name="Snippets.Parent" xml:space="preserve"><value>Interfaccia padre</value></data>
+  <data name="Snippets.IpCidr" xml:space="preserve"><value>Indirizzo IP / prefisso (es. 192.168.30.1/24)</value></data>
+  <data name="Snippets.AllowAccess" xml:space="preserve"><value>Accesso amministrativo (es. ping https ssh)</value></data>
+  <data name="Snippets.Alias" xml:space="preserve"><value>Alias (facoltativo)</value></data>
+  <data name="Snippets.SrcIntf" xml:space="preserve"><value>Interfaccia/e sorgente</value></data>
+  <data name="Snippets.DstIntf" xml:space="preserve"><value>Interfaccia/e destinazione</value></data>
+  <data name="Snippets.SrcAddr" xml:space="preserve"><value>Indirizzo/i sorgente</value></data>
+  <data name="Snippets.DstAddr" xml:space="preserve"><value>Indirizzo/i destinazione</value></data>
+  <data name="Snippets.Service" xml:space="preserve"><value>Servizio/i</value></data>
+  <data name="Snippets.Action" xml:space="preserve"><value>Azione</value></data>
+  <data name="Snippets.Schedule" xml:space="preserve"><value>Pianificazione</value></data>
+  <data name="Snippets.Log" xml:space="preserve"><value>Log del traffico</value></data>
+  <data name="Snippets.ListHelp" xml:space="preserve"><value>Separa più valori con virgole. La policy riceve il primo ID libero (edit 0).</value></data>
+  <data name="Snippets.ExtIntf" xml:space="preserve"><value>Interfaccia esterna</value></data>
+  <data name="Snippets.ExtIp" xml:space="preserve"><value>IP esterno</value></data>
+  <data name="Snippets.MappedIp" xml:space="preserve"><value>IP interno</value></data>
+  <data name="Snippets.Protocol" xml:space="preserve"><value>Protocollo (tcp, udp, sctp)</value></data>
+  <data name="Snippets.ExtPort" xml:space="preserve"><value>Porta esterna (facoltativa)</value></data>
+  <data name="Snippets.MappedPort" xml:space="preserve"><value>Porta interna (facoltativa)</value></data>
+  <data name="Snippets.Destination" xml:space="preserve"><value>Destinazione (es. 10.20.0.0/16)</value></data>
+  <data name="Snippets.Gateway" xml:space="preserve"><value>Gateway</value></data>
+  <data name="Snippets.Device" xml:space="preserve"><value>Interfaccia</value></data>
+  <data name="Snippets.Distance" xml:space="preserve"><value>Distanza (1-255)</value></data>
+  <data name="Snippets.UserEnabled" xml:space="preserve"><value>Account attivo</value></data>
+  <data name="Snippets.PasswordHelp" xml:space="preserve"><value>La password non viene chiesta qui: sostituisci &lt;PASSWORD&gt; nello script sul dispositivo.</value></data>
+  <data name="Snippets.Comment" xml:space="preserve"><value>Commento (facoltativo)</value></data>
+  <data name="Snippets.Generate" xml:space="preserve"><value>Genera</value></data>
+  <data name="Upgrade.Title" xml:space="preserve"><value>Pianificazione upgrade</value></data>
+  <data name="Upgrade.Intro" xml:space="preserve"><value>Le release che supportano il tuo modello, prese dalle release notes ufficiali. Shiftwall mostra un percorso di upgrade solo se Fortinet lo pubblica in forma consultabile; oggi i percorsi sono disponibili solo nell'Upgrade Path Tool di Fortinet.</value></data>
+  <data name="Upgrade.Model" xml:space="preserve"><value>Modello</value></data>
+  <data name="Upgrade.Current" xml:space="preserve"><value>Versione attuale</value></data>
+  <data name="Upgrade.NoPaths" xml:space="preserve"><value>Nessun percorso di upgrade mostrato: Fortinet pubblica i percorsi supportati solo nell'Upgrade Path Tool interattivo (le release notes rimandano a esso). Aprilo per avere la sequenza esatta per il tuo modello e la tua versione.</value></data>
+  <data name="Upgrade.PathsAvailable" xml:space="preserve"><value>I percorsi di upgrade del database sono elencati sotto con le loro fonti.</value></data>
+  <data name="Upgrade.OpenTool" xml:space="preserve"><value>Apri l'Upgrade Path Tool</value></data>
+  <data name="Upgrade.Newer" xml:space="preserve"><value>Release successive</value></data>
+  <data name="Upgrade.Col.Date" xml:space="preserve"><value>Rilascio</value></data>
+  <data name="Upgrade.Col.Supports" xml:space="preserve"><value>Supporta il modello</value></data>
+  <data name="Upgrade.Col.Source" xml:space="preserve"><value>Release notes</value></data>
+  <data name="Lan.Title" xml:space="preserve"><value>Backup da LAN</value></data>
+  <data name="Lan.Intro" xml:space="preserve"><value>Scarica il backup della configurazione da un FortiGate della tua rete locale tramite REST API. È l'unica funzione di Shiftwall che usa la rete, e solo quando premi Scarica.</value></data>
+  <data name="Lan.DisabledTitle" xml:space="preserve"><value>La funzione LAN è disattivata</value></data>
+  <data name="Lan.DisabledBody" xml:space="preserve"><value>Per impostazione predefinita Shiftwall non apre mai connessioni di rete. Attiva questa funzione solo se vuoi scaricare i backup direttamente da un FortiGate: ti serve il token di un amministratore REST API (FortiOS: Sistema › Amministratori › REST API Admin).</value></data>
+  <data name="Lan.Enable" xml:space="preserve"><value>Attiva la funzione LAN</value></data>
+  <data name="Lan.EnableConfirm" xml:space="preserve"><value>Attivare la funzione LAN? Shiftwall si collegherà a un FortiGate solo quando premi Scarica, solo verso indirizzi IP privati, e non salverà mai il token.</value></data>
+  <data name="Lan.Disable" xml:space="preserve"><value>Disattiva la funzione LAN</value></data>
+  <data name="Lan.Host" xml:space="preserve"><value>Indirizzo IP del FortiGate (privato)</value></data>
+  <data name="Lan.HostInvalid" xml:space="preserve"><value>Inserisci un indirizzo IP privato (10.x, 172.16-31.x, 192.168.x o IPv6 fc00::/7). I nomi host non sono accettati.</value></data>
+  <data name="Lan.Port" xml:space="preserve"><value>Porta HTTPS</value></data>
+  <data name="Lan.Vdom" xml:space="preserve"><value>VDOM (vuoto = global)</value></data>
+  <data name="Lan.Token" xml:space="preserve"><value>Token REST API</value></data>
+  <data name="Lan.TokenHelp" xml:space="preserve"><value>Tenuto solo in memoria per questo download, poi cancellato. Mai scritto su disco.</value></data>
+  <data name="Lan.FortiOs801" xml:space="preserve"><value>Il FortiGate usa FortiOS 8.0.1 o successivo</value></data>
+  <data name="Lan.BackupPassword" xml:space="preserve"><value>Password del backup (almeno 8 caratteri)</value></data>
+  <data name="Lan.BackupPasswordHelp" xml:space="preserve"><value>Da FortiOS 8.0.1 un backup deve proteggere i segreti: vengono cifrati con questa password e il resto resta leggibile. Ti servirà per ripristinare il file.</value></data>
+  <data name="Lan.Download" xml:space="preserve"><value>Scarica backup</value></data>
+  <data name="Lan.Connecting" xml:space="preserve"><value>Connessione a {0}…</value></data>
+  <data name="Lan.CertificateConfirm" xml:space="preserve"><value>Il certificato di {0} non è attendibile per Windows (i FortiGate usano di solito un certificato autofirmato).
+
+Soggetto: {1}
+SHA-256: {2}
+
+Confronta l'impronta con quella mostrata dal FortiGate (Sistema › Certificati). Considerare attendibile questo certificato per questo dispositivo?</value></data>
+  <data name="Lan.CertificateRefused" xml:space="preserve"><value>Certificato non confermato: non è stato scaricato nulla.</value></data>
+  <data name="Lan.Outcome.Success" xml:space="preserve"><value>Backup scaricato.</value></data>
+  <data name="Lan.Outcome.CertificateNotConfirmed" xml:space="preserve"><value>Certificato non confermato.</value></data>
+  <data name="Lan.Outcome.Unauthorized" xml:space="preserve"><value>Accesso negato: verifica il token e che questo PC sia tra i trusted host dell'amministratore API.</value></data>
+  <data name="Lan.Outcome.Forbidden" xml:space="preserve"><value>Vietato: l'amministratore API deve avere accesso in lettura e scrittura alla configurazione di sistema.</value></data>
+  <data name="Lan.Outcome.NotFound" xml:space="preserve"><value>Endpoint non trovato: verifica la porta e la versione FortiOS.</value></data>
+  <data name="Lan.Outcome.HttpError" xml:space="preserve"><value>Il FortiGate ha restituito un errore.</value></data>
+  <data name="Lan.Outcome.NotAConfiguration" xml:space="preserve"><value>La risposta non è un backup FortiOS (da FortiOS 8.0.1 seleziona l'opzione e imposta una password del backup).</value></data>
+  <data name="Lan.Outcome.Timeout" xml:space="preserve"><value>Nessuna risposta entro 60 secondi.</value></data>
+  <data name="Lan.Outcome.NetworkError" xml:space="preserve"><value>Connessione non riuscita: verifica l'indirizzo, la porta e che l'amministrazione HTTPS sia consentita su quell'interfaccia.</value></data>
+  <data name="Lan.Cancelled" xml:space="preserve"><value>Annullato.</value></data>
+  <data name="Lan.Save" xml:space="preserve"><value>Salva il backup scaricato</value></data>
+  <data name="Lan.Saved" xml:space="preserve"><value>Salvato: {0}. Ora puoi aprirlo negli altri strumenti.</value></data>
+  <data name="Lan.SafetyTitle" xml:space="preserve"><value>Come ti protegge</value></data>
+  <data name="Lan.SafetyBody" xml:space="preserve"><value>Sono accettati solo indirizzi IP privati, quindi non avviene alcuna query DNS e nulla esce dalla tua rete. Non viene usato alcun proxy e i reindirizzamenti non sono seguiti. Un certificato non attendibile per Windows viene usato solo dopo che ne hai confermato l'impronta; l'impronta (non segreta) viene ricordata per quel dispositivo. Il token e la password del backup non vengono mai salvati e sono cancellati dopo ogni tentativo.</value></data>
+  <data name="Lan.Sources" xml:space="preserve"><value>Endpoint /api/v2/monitor/system/config/backup: FortiOS Administration Guide ("Using APIs", "REST API administrator") e technical tip della Fortinet Community. Il riferimento API completo di Fortinet (FNDN) richiede un account, quindi il metodo HTTP è POST con ripiego su GET.</value></data>
+  <data name="Lan.ForgetCertificates" xml:space="preserve"><value>Dimentica i certificati confermati</value></data>
+  <data name="Lan.Confirmed" xml:space="preserve"><value>Certificati confermati:</value></data>
+  <data name="Error.FileTooLarge" xml:space="preserve"><value>"{0}" è di {1} MB: più dei {2} MB accettati per questo tipo di file. Verifica che sia il file giusto.</value></data>
+  <data name="Error.PathTooLong" xml:space="preserve"><value>Il percorso è troppo lungo per Windows. Sposta il file in una cartella con un percorso più corto.</value></data>
+  <data name="Error.Crypto" xml:space="preserve"><value>Errore di cifratura: il file è danneggiato oppure la password è errata.</value></data>
+</root>

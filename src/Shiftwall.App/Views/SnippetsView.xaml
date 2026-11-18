@@ -1,0 +1,146 @@
+<UserControl x:Class="Shiftwall.App.Views.SnippetsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:l="clr-namespace:Shiftwall.App.Localization"
+             xmlns:loc="clr-namespace:Shiftwall.Presentation.Localization;assembly=Shiftwall.Presentation">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top">
+            <TextBlock Text="{l:T Snippets.Title}" Style="{StaticResource PageTitle}" />
+            <TextBlock Text="{l:T Snippets.Intro}" Style="{StaticResource Muted}" Margin="0,0,0,12" />
+        </StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="360" />
+                <ColumnDefinition Width="16" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+                    <TextBlock Text="{l:T Snippets.Kind}" Style="{StaticResource FieldLabel}" />
+                    <ComboBox ItemsSource="{Binding Kinds}" SelectedItem="{Binding Kind}" AutomationProperties.Name="{l:T Snippets.Kind}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource LocKey}" ConverterParameter="Snippets.Kind.">
+                                            <Binding />
+                                            <Binding Source="{x:Static loc:Loc.Instance}" Path="Culture" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+
+                    <!-- Name: all kinds except static route -->
+                    <StackPanel Visibility="{Binding IsStaticRoute, Converter={StaticResource InverseBoolToVisibility}}">
+                        <TextBlock Text="{l:T Snippets.Name}" Style="{StaticResource FieldLabel}" />
+                        <TextBox Text="{Binding Name}" AutomationProperties.Name="{l:T Snippets.Name}" />
+                    </StackPanel>
+
+                    <!-- VLAN -->
+                    <StackPanel Visibility="{Binding IsVlan, Converter={StaticResource BoolToVisibility}}">
+                        <TextBlock Text="{l:T Snippets.Parent}" Style="{StaticResource FieldLabel}" />
+                        <TextBox Text="{Binding Interface}" AutomationProperties.Name="{l:T Snippets.Parent}" />
+                        <TextBlock Text="VLAN ID" Style="{StaticResource FieldLabel}" />
+                        <TextBox Text="{Binding VlanId}" AutomationProperties.Name="VLAN ID" />
+                        <TextBlock Text="{l:T Snippets.IpCidr}" Style="{StaticResource FieldLabel}" />
+                        <TextBox Text="{Binding IpCidr}" AutomationProperties.Name="{l:T Snippets.IpCidr}" />
+                        <TextBlock Text="VDOM" Style="{StaticResource FieldLabel}" />
+                        <TextBox Text="{Binding Vdom}" AutomationProperties.Name="VDOM" />
+                        <TextBlock Text="{l:T Snippets.AllowAccess}" Style="{StaticResource FieldLabel}" />
+                        <TextBox Text="{Binding AllowAccess}" AutomationProperties.Name="{l:T Snippets.AllowAccess}" />
+                        <TextBlock Text="{l:T Snippets.Alias}" Style="{StaticResource FieldLabel}" />
+                        <TextBox Text="{Binding Alias}" AutomationProperties.Name="{l:T Snippets.Alias}" />
+                    </StackPanel>
+
+                    <!-- Policy -->
+                    <StackPanel Visibility="{Binding IsPolicy, Converter={StaticResource BoolToVisibility}}">
+                        <TextBlock Text="{l:T Snippets.SrcIntf}" Style="{StaticResource FieldLabel}" />
+                        <TextBox Text="{Binding SrcIntf}" AutomationProperties.Name="{l:T Snippets.SrcIntf}" />
+                        <TextBlock Text="{l:T Snippets.DstIntf}" Style="{StaticResource FieldLabel}" />
+                        <TextBox Text="{Binding DstIntf}" AutomationProperties.Name="{l:T Snippets.DstIntf}" />
+                        <TextBlock Text="{l:T Snippets.SrcAddr}" Style="{StaticResource FieldLabel}" />
+                        <TextBox Text="{Binding SrcAddr}" AutomationProperties.Name="{l:T Snippets.SrcAddr}" />
+                        <TextBlock Text="{l:T Snippets.DstAddr}" Style="{StaticResource FieldLabel}" />
+                        <TextBox Text="{Binding DstAddr}" AutomationProperties.Name="{l:T Snippets.DstAddr}" />
+                        <TextBlock Text="{l:T Snippets.Service}" Style="{StaticResource FieldLabel}" />
+                        <TextBox Text="{Binding Service}" AutomationProperties.Name="{l:T Snippets.Service}" />
+                        <TextBlock Text="{l:T Snippets.Action}" Style="{StaticResource FieldLabel}" />
+                        <ComboBox ItemsSource="{Binding Actions}" SelectedItem="{Binding Action}" AutomationProperties.Name="{l:T Snippets.Action}" />
+                        <CheckBox Content="NAT" IsChecked="{Binding Nat}" Margin="0,8,0,0" />
+                        <TextBlock Text="{l:T Snippets.Schedule}" Style="{StaticResource FieldLabel}" />
+                        <TextBox Text="{Binding Schedule}" AutomationProperties.Name="{l:T Snippets.Schedule}" />
+                        <TextBlock Text="{l:T Snippets.Log}" Style="{StaticResource FieldLabel}" />
+                        <ComboBox ItemsSource="{Binding LogOptions}" SelectedItem="{Binding LogTraffic}" AutomationProperties.Name="{l:T Snippets.Log}" />
+                        <TextBlock Text="{l:T Snippets.ListHelp}" Style="{StaticResource Muted}" FontSize="11" Margin="0,4,0,0" />
+                    </StackPanel>
+
+                    <!-- VIP -->
+                    <StackPanel Visibility="{Binding IsVip, Converter={StaticResource BoolToVisibility}}">
+                        <TextBlock Text="{l:T Snippets.ExtIntf}" Style="{StaticResource FieldLabel}" />
+                        <TextBox Text="{Binding ExtIntf}" AutomationProperties.Name="{l:T Snippets.ExtIntf}" />
+                        <TextBlock Text="{l:T Snippets.ExtIp}" Style="{StaticResource FieldLabel}" />
+                        <TextBox Text="{Binding ExtIp}" AutomationProperties.Name="{l:T Snippets.ExtIp}" />
+                        <TextBlock Text="{l:T Snippets.MappedIp}" Style="{StaticResource FieldLabel}" />
+                        <TextBox Text="{Binding MappedIp}" AutomationProperties.Name="{l:T Snippets.MappedIp}" />
+                        <TextBlock Text="{l:T Snippets.Protocol}" Style="{StaticResource FieldLabel}" />
+                        <TextBox Text="{Binding Protocol}" AutomationProperties.Name="{l:T Snippets.Protocol}" />
+                        <TextBlock Text="{l:T Snippets.ExtPort}" Style="{StaticResource FieldLabel}" />
+                        <TextBox Text="{Binding ExtPort}" AutomationProperties.Name="{l:T Snippets.ExtPort}" />
+                        <TextBlock Text="{l:T Snippets.MappedPort}" Style="{StaticResource FieldLabel}" />
+                        <TextBox Text="{Binding MappedPort}" AutomationProperties.Name="{l:T Snippets.MappedPort}" />
+                    </StackPanel>
+
+                    <!-- Static route -->
+                    <StackPanel Visibility="{Binding IsStaticRoute, Converter={StaticResource BoolToVisibility}}">
+                        <TextBlock Text="{l:T Snippets.Destination}" Style="{StaticResource FieldLabel}" />
+                        <TextBox Text="{Binding IpCidr}" AutomationProperties.Name="{l:T Snippets.Destination}" />
+                        <TextBlock Text="{l:T Snippets.Gateway}" Style="{StaticResource FieldLabel}" />
+                        <TextBox Text="{Binding Gateway}" AutomationProperties.Name="{l:T Snippets.Gateway}" />
+                        <TextBlock Text="{l:T Snippets.Device}" Style="{StaticResource FieldLabel}" />
+                        <TextBox Text="{Binding Interface}" AutomationProperties.Name="{l:T Snippets.Device}" />
+                        <TextBlock Text="{l:T Snippets.Distance}" Style="{StaticResource FieldLabel}" />
+                        <TextBox Text="{Binding Distance}" AutomationProperties.Name="{l:T Snippets.Distance}" />
+                    </StackPanel>
+
+                    <!-- Local user -->
+                    <StackPanel Visibility="{Binding IsLocalUser, Converter={StaticResource BoolToVisibility}}">
+                        <CheckBox Content="{l:T Snippets.UserEnabled}" IsChecked="{Binding UserEnabled}" Margin="0,8,0,0" />
+                        <TextBlock Text="{l:T Snippets.PasswordHelp}" Style="{StaticResource Muted}" FontSize="11" Margin="0,4,0,0" />
+                    </StackPanel>
+
+                    <!-- Comment: all kinds except VLAN and user -->
+                    <StackPanel>
+                        <StackPanel.Style>
+                            <Style TargetType="StackPanel">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsVlan}" Value="True"><Setter Property="Visibility" Value="Collapsed" /></DataTrigger>
+                                    <DataTrigger Binding="{Binding IsLocalUser}" Value="True"><Setter Property="Visibility" Value="Collapsed" /></DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
+                        <TextBlock Text="{l:T Snippets.Comment}" Style="{StaticResource FieldLabel}" />
+                        <TextBox Text="{Binding Comment}" AutomationProperties.Name="{l:T Snippets.Comment}" />
+                    </StackPanel>
+
+                    <Button Content="{l:T Snippets.Generate}" Command="{Binding GenerateCommand}" HorizontalAlignment="Left" Margin="0,12,0,0" MinWidth="120" />
+                    <ItemsControl ItemsSource="{Binding Errors}" Margin="0,8,0,0">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" Foreground="#C42B1C" TextWrapping="Wrap" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </ScrollViewer>
+            <DockPanel Grid.Column="2">
+                <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Margin="0,8,0,0">
+                    <Button Content="{l:T Tool.Copy}" Command="{Binding CopyCommand}" Margin="0,0,8,0" />
+                    <Button Content="{l:T Tool.SaveScript}" Command="{Binding SaveCommand}" />
+                </StackPanel>
+                <TextBox Text="{Binding Script, Mode=OneWay}" Style="{StaticResource ScriptBox}" AutomationProperties.Name="{l:T Tool.Script}" />
+            </DockPanel>
+        </Grid>
+    </DockPanel>
+</UserControl>

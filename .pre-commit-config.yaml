@@ -1,0 +1,7 @@
+# Optional local hooks. Install pre-commit (https://pre-commit.com/#install), then run: pre-commit install
+# gitleaks blocks commits that contain secrets; it reads .gitleaks.toml from the repository root.
+repos:
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.30.1
+    hooks:
+      - id: gitleaks

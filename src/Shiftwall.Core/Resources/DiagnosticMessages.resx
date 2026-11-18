@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="SW-P001" xml:space="preserve"><value>Line {line}: a quoted value is never closed. The rest of the file is read as part of that value.</value></data>
+  <data name="SW-P002" xml:space="preserve"><value>Line {line}: the block "config {0}" is never closed with "end". The file is truncated or incomplete.</value></data>
+  <data name="SW-P003" xml:space="preserve"><value>Line {line}: "end" without a matching "config". It is kept as is.</value></data>
+  <data name="SW-P004" xml:space="preserve"><value>Line {line}: "next" outside an "edit" entry. It is kept as is.</value></data>
+  <data name="SW-P005" xml:space="preserve"><value>Line {line}: "edit" outside a "config" block. It is kept as is.</value></data>
+  <data name="SW-P006" xml:space="preserve"><value>Line {line}: unknown statement "{0}". It is kept as is.</value></data>
+  <data name="SW-P007" xml:space="preserve"><value>Line {line}: field statement outside any "config" block.</value></data>
+  <data name="SW-D001" xml:space="preserve"><value>This file is not a text configuration: it is most likely a backup encrypted with a password. Shiftwall never decrypts backups. Export the configuration again without encryption: in the GUI, click your user name (top right) &gt; Configuration &gt; Backup and leave "Encryption" disabled; in the CLI, use "execute backup config" without a backup password. Keep the exported file in a safe place.</value></data>
+  <data name="SW-D002" xml:space="preserve"><value>This is a YAML-format backup. Shiftwall reads FortiOS-format backups only: export again choosing "FortiOS" as File format (GUI: user name &gt; Configuration &gt; Backup).</value></data>
+  <data name="SW-D003" xml:space="preserve"><value>The "#config-version" header line is missing: model and firmware version cannot be read from the file.</value></data>
+  <data name="SW-D004" xml:space="preserve"><value>This looks like a partial configuration ({0}). A full backup is needed for a migration.</value></data>
+  <data name="SW-D005" xml:space="preserve"><value>Line {line}: private-data-encryption is enabled. Secrets (ENC values) are encrypted with this FortiGate's private key: the new FortiGate must use the same private-data-encryption key BEFORE the configuration is restored, otherwise those secrets cannot be decrypted. Since FortiOS 7.6.1 the key is generated randomly when the option is enabled, so plan to re-enter passwords and pre-shared keys if the key cannot be reproduced.</value></data>
+  <data name="SW-D006" xml:space="preserve"><value>Multi-VDOM configuration (VDOMs: {0}). Each VDOM is processed separately.</value></data>
+  <data name="SW-D007" xml:space="preserve"><value>Line {line}: {0} password(s) are masked with "FortinetPasswordMask". Fortinet does not recommend restoring such a file: export a normal backup for the migration.</value></data>
+  <data name="SW-D008" xml:space="preserve"><value>{0} encrypted value(s) (ENC) found. They are copied unchanged and never decrypted.</value></data>
+  <data name="SW-D009" xml:space="preserve"><value>The file is not valid UTF-8. It is processed byte for byte and saved with the same encoding.</value></data>
+  <data name="SW-D010" xml:space="preserve"><value>The file is empty.</value></data>
+  <data name="Partial.no-header" xml:space="preserve"><value>no header</value></data>
+  <data name="Partial.no-system-global" xml:space="preserve"><value>no "config system global"</value></data>
+  <data name="Partial.unclosed-blocks" xml:space="preserve"><value>blocks not closed</value></data>
+</root>

@@ -1,0 +1,93 @@
+<UserControl x:Class="Shiftwall.App.Views.BatchView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:l="clr-namespace:Shiftwall.App.Localization">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top">
+            <TextBlock Text="{l:T Batch.Title}" Style="{StaticResource PageTitle}" />
+            <TextBlock Text="{l:T Batch.Intro}" Style="{StaticResource Muted}" Margin="0,0,0,14" />
+        </StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="16" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- Files -->
+            <Border Style="{StaticResource Card}">
+                <DockPanel>
+                    <TextBlock DockPanel.Dock="Top" Text="{l:T Batch.Files}" Style="{StaticResource SectionTitle}" Margin="0,0,0,8" />
+                    <WrapPanel DockPanel.Dock="Top" Margin="0,0,0,8">
+                        <Button Content="{l:T Batch.AddFiles}" Command="{Binding AddFilesCommand}" Margin="0,0,8,0" />
+                        <Button Content="{l:T Batch.ClearFiles}" Command="{Binding ClearFilesCommand}" />
+                    </WrapPanel>
+                    <Border Style="{StaticResource DropZone}" Drop="OnFilesDrop" DragOver="OnDragOver" MinHeight="140" Padding="6">
+                        <Grid>
+                            <TextBlock Text="{l:T Batch.Drop}" Style="{StaticResource Muted}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            <ListBox ItemsSource="{Binding Files}" MaxHeight="220" Background="Transparent" BorderThickness="0">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <DockPanel>
+                                            <Button DockPanel.Dock="Right" FontFamily="{StaticResource IconFont}" Content="&#xE711;" Padding="6,2"
+                                                    Command="{Binding DataContext.RemoveFileCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                    CommandParameter="{Binding}" AutomationProperties.Name="{l:T Batch.RemoveFile}" />
+                                            <TextBlock Text="{Binding}" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" />
+                                        </DockPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </Grid>
+                    </Border>
+                </DockPanel>
+            </Border>
+
+            <!-- Target, template, output -->
+            <Border Grid.Column="2" Style="{StaticResource Card}">
+                <StackPanel>
+                    <TextBlock Text="{l:T Wizard.Load.Target}" Style="{StaticResource SectionTitle}" Margin="0,0,0,8" />
+                    <ContentControl Content="{Binding Target}" Focusable="False" />
+                    <Button Content="{l:T Common.Browse}" Command="{Binding BrowseTargetCommand}" HorizontalAlignment="Left" Margin="0,8,0,0"
+                            Visibility="{Binding Target.IsBackupMode, Converter={StaticResource BoolToVisibility}}" />
+                    <TextBlock Text="{l:T Batch.Template}" Style="{StaticResource SectionTitle}" />
+                    <DockPanel>
+                        <Button DockPanel.Dock="Right" Content="{l:T Common.Browse}" Command="{Binding LoadTemplateCommand}" />
+                        <TextBlock Text="{Binding TemplatePath}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" Margin="0,0,8,0" />
+                    </DockPanel>
+                    <TextBlock Text="{l:T Batch.Output}" Style="{StaticResource SectionTitle}" />
+                    <DockPanel>
+                        <Button DockPanel.Dock="Right" Content="{l:T Common.Browse}" Command="{Binding PickOutputCommand}" />
+                        <TextBlock Text="{Binding OutputFolder}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" Margin="0,0,8,0" />
+                    </DockPanel>
+                    <CheckBox Content="{l:T Batch.Simulate}" IsChecked="{Binding Simulate}" Margin="0,12,0,0" />
+                    <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
+                        <Button Content="{l:T Batch.Run}" Command="{Binding RunCommand}" MinWidth="120" Margin="0,0,8,0" />
+                        <Button Content="{l:T Wizard.Report.OpenFolder}" Command="{Binding OpenOutputCommand}" />
+                    </StackPanel>
+                    <TextBlock Text="{Binding Progress}" Margin="0,8,0,0" />
+                </StackPanel>
+            </Border>
+
+            <!-- Results -->
+            <DataGrid Grid.Row="1" Grid.ColumnSpan="3" Margin="0,16,0,0" ItemsSource="{Binding Results}" AutoGenerateColumns="False"
+                      IsReadOnly="True" HeadersVisibility="Column" GridLinesVisibility="Horizontal" AutomationProperties.Name="{l:T Batch.Results}">
+                <DataGrid.Columns>
+                    <DataGridCheckBoxColumn Header="OK" Binding="{Binding Succeeded}" />
+                    <DataGridTextColumn Header="File" Binding="{Binding File}" Width="200" />
+                    <DataGridTextColumn Binding="{Binding Summary}" Width="*">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="TextWrapping" Value="Wrap" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding OutputPath}" Width="260" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </DockPanel>
+</UserControl>

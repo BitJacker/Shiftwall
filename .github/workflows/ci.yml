@@ -1,0 +1,102 @@
+# Build, test and smoke-test Shiftwall. Actions are pinned to commit SHAs (tag in the comment).
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  secrets:
+    name: Secret scan (gitleaks)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - name: gitleaks
+        run: tools/build/gitleaks.sh
+
+  test-linux:
+    name: Tests (Linux)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-dotnet@0f4a354dd5547a28c70b7853dbd95d5b67886e73 # v6.1.0
+        with:
+          global-json-file: global.json
+      - name: Test
+        run: dotnet test -c Release
+      - name: Validate model database
+        run: dotnet run --project tools/update-db -c Release -- validate
+      - name: Generated docs are up to date
+        run: dotnet run --project tools/update-db -c Release -- gen-docs --check
+
+  windows:
+    name: Build, test and smoke test (Windows)
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-dotnet@0f4a354dd5547a28c70b7853dbd95d5b67886e73 # v6.1.0
+        with:
+          global-json-file: global.json
+      - name: Test
+        run: dotnet test -c Release
+      - name: Publish single-file exe
+        run: dotnet publish src/Shiftwall.App -c Release -o publish
+      - name: Version metadata
+        shell: pwsh
+        run: |
+          $version = ([xml](Get-Content Directory.Build.props)).Project.PropertyGroup.Version
+          tools/build/verify-metadata.ps1 -Exe publish/Shiftwall.exe -Version $version
+      - name: Smoke test (start-up time and screenshots)
+        shell: pwsh
+        run: |
+          Add-Type -AssemblyName System.Windows.Forms, System.Drawing
+          tools/build/measure-startup.ps1 -Exe publish/Shiftwall.exe -Runs 5 -Label release | Tee-Object -Variable m | Format-List
+          "first run: $($m.FirstRunMs) ms`nwarm median: $($m.WarmMedianMs) ms ($($m.WarmRunsMs))`nsize: $($m.SizeMB) MB" | Set-Content startup.txt
+          $b = [System.Windows.Forms.Screen]::PrimaryScreen.Bounds
+          # One screenshot of the start page and of every toolbox page (empty state), to review the layout.
+          foreach ($page in "migration","compare","audit","cleanup","export","import","vpn","anonymize","snippets","upgrade","lan") {
+            $q = Start-Process -FilePath publish\Shiftwall.exe -ArgumentList "--page",$page -PassThru
+            $sw = [Diagnostics.Stopwatch]::StartNew()
+            while ($q.MainWindowHandle -eq 0 -and $sw.Elapsed.TotalSeconds -lt 30) { Start-Sleep -Milliseconds 100; $q.Refresh() }
+            Start-Sleep -Seconds 2
+            if ($q.HasExited) { throw "Shiftwall exited on page $page" }
+            $bmp = New-Object System.Drawing.Bitmap $b.Width, $b.Height
+            [System.Drawing.Graphics]::FromImage($bmp).CopyFromScreen($b.Location, [System.Drawing.Point]::Empty, $b.Size)
+            $bmp.Save("screenshot-$page.png")
+            Stop-Process $q
+            Start-Sleep -Seconds 1
+          }
+      - name: SHA256
+        shell: pwsh
+        run: (Get-FileHash publish\Shiftwall.exe -Algorithm SHA256).Hash.ToLowerInvariant() + "  Shiftwall.exe" | Out-File -Encoding ascii publish\SHA256SUMS.txt
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: shiftwall-win-x64
+          path: |
+            publish/Shiftwall.exe
+            publish/SHA256SUMS.txt
+          retention-days: 14
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: shiftwall-win-x64-symbols
+          path: publish/*.pdb
+          retention-days: 14
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: smoke-test
+          path: |
+            screenshot-*.png
+            startup.txt
+          retention-days: 14

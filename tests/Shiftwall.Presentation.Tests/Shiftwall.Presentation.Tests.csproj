@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="xunit.v3" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Shiftwall.Presentation\Shiftwall.Presentation.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Shiftwall.Features.Tests\Golden\Migration\*.fgtcfg;..\Shiftwall.Features.Tests\Golden\Migration\*.json" LinkBase="Golden" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\Shiftwall.Features.Tests\Golden\Toolbox\*.fgtcfg" LinkBase="Golden\Toolbox" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

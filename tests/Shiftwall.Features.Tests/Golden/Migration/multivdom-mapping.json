@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "name": "multivdom synthetic",
+  "source_platform": "FGT60F",
+  "target_model": null,
+  "map": {
+    "wan1": "port1",
+    "wan2": "port2",
+    "internal1": "port3",
+    "internal2": "port4",
+    "internal3": "ha"
+  }
+}

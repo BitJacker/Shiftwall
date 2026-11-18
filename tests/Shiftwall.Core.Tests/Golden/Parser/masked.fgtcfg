@@ -1,0 +1,23 @@
+#config-version=FGT60F-7.6.8-FW-build3744-261022:opmode=0:vdom=0:user=admin
+#conf_file_ver=3234567890123456
+#buildno=3744
+#global_vdom=1
+config system global
+    set hostname "lab-masked"
+end
+config system admin
+    edit "admin"
+        set accprofile "super_admin"
+        set vdom "root"
+        set password FortinetPasswordMask
+    next
+end
+config vpn ipsec phase1-interface
+    edit "vpn-1"
+        set interface "wan1"
+        set peertype any
+        set proposal aes128-sha256 aes256-sha256
+        set remote-gw 198.51.100.55
+        set psksecret FortinetPasswordMask
+    next
+end

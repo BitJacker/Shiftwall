@@ -1,0 +1,28 @@
+# Build output
+bin/
+obj/
+artifacts/
+publish/
+*.user
+.vs/
+.idea/
+TestResults/
+
+# NEVER commit real FortiGate configurations or backups.
+# Synthetic test fixtures live in tests/**/golden/ with the .fgtcfg extension.
+*.conf
+*.cfg
+*.conf.bak
+*.cfg.bak
+*.bak
+*.backup
+*.tar.gz
+**/backups/
+**/local-backups/
+
+# The only .conf files allowed: synthetic samples, checked by SamplesTests (marker line, documentation IPs).
+!samples/*.conf
+
+# Local-only data (anonymization maps, tokens, user templates)
+*.swmap
+*.swtoken
