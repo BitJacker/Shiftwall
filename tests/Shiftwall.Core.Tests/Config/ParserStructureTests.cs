@@ -108,6 +108,19 @@ public sealed class ParserStructureTests
         Assert.Equal(4, h.Lines.Count);
     }
 
+    [Theory]
+    [InlineData("#config-version=FG100D-5.04-FW-build1064-160608:opmode=1:vdom=0", "FG100D", "5.04", "1064", "160608")]
+    [InlineData("#config-version=FGVM64-4.00-FW-build656-130211:opmode=0:vdom=0:user=admin", "FGVM64", "4.00", "656", "130211")]
+    [InlineData("#config-version=FGT60E-7.0.5-FW-build0304", "FGT60E", "7.0.5", "0304", null)]
+    public void OlderHeaderLayouts_AreParsed(string line, string platform, string version, string build, string? stamp)
+    {
+        var h = ConfigParser.Parse(line + "\nconfig system global\nend\n").Header;
+        Assert.Equal(platform, h.PlatformCode);
+        Assert.Equal(version, h.Version);
+        Assert.Equal(build, h.Build);
+        Assert.Equal(stamp, h.BuildStamp);
+    }
+
     [Fact]
     public void MultiVdom_ScopesAreFound()
     {

@@ -10,11 +10,12 @@ namespace Shiftwall.Core.Config;
 /// model" and must not be edited (Administration Guide, "CLI basics" - Editing the configuration file). The
 /// field layout below matches the examples published on community.fortinet.com, e.g.
 /// <c>#config-version=FG6H1F-7.2.8-FW-build1639-240313:opmode=0:vdom=0:user=admin</c>; it is parsed defensively and
-/// any unrecognised layout is kept as raw text only.
+/// any unrecognised layout is kept as raw text only. Older backups (FortiOS 4.x/5.0) write a two-part version such as
+/// <c>5.00</c> or <c>5.04</c>, and some exports omit the date stamp: both are accepted and the version is kept as written.
 /// </remarks>
 public sealed partial class ConfigHeader
 {
-    [GeneratedRegex(@"^(?<platform>[A-Za-z0-9_]+)-(?<version>\d+\.\d+\.\d+)-FW-build(?<build>\d+)-(?<stamp>\d{6})(?<rest>(?::[^:=]+=[^:]*)*)$")]
+    [GeneratedRegex(@"^(?<platform>[A-Za-z0-9_]+)-(?<version>\d+\.\d+(?:\.\d+)?)-FW-build(?<build>\d+)(?:-(?<stamp>\d{6}))?(?<rest>(?::[^:=]+=[^:]*)*)$")]
     private static partial Regex ConfigVersionRegex();
 
     private ConfigHeader(IReadOnlyList<KeyValuePair<string, string>> fields, IReadOnlyList<Statement> lines)
@@ -26,7 +27,7 @@ public sealed partial class ConfigHeader
             PlatformCode = m.Groups["platform"].Value;
             Version = m.Groups["version"].Value;
             Build = m.Groups["build"].Value;
-            BuildStamp = m.Groups["stamp"].Value;
+            BuildStamp = m.Groups["stamp"].Success ? m.Groups["stamp"].Value : null;
             foreach (var kv in m.Groups["rest"].Value.Split(':', StringSplitOptions.RemoveEmptyEntries))
             {
                 var eq = kv.IndexOf('=');
