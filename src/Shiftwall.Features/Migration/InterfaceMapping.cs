@@ -36,7 +36,8 @@ public sealed class InterfaceMapping
 
     /// <summary>
     /// Proposes a mapping for the user to review: same names first, then ports of the same role in natural order
-    /// (wan1, wan2 → wan1, wan2; lan1…lan5 or port1… → internal1… / port1… / lan1…; x1 → x1 or sfp1; dmz → dmz).
+    /// (wan1, wan2 → wan1, wan2; lan1…lan5 or port1… → internal1… / port1… / lan1…; x1 → x1 or sfp1; dmz → dmz;
+    /// a switch-mode "internal" → the first LAN port left, reported by the analysis).
     /// When the target has fewer ports of a role, ports in use get priority. A port with no counterpart of its
     /// role stays unmapped: WAN and DMZ ports fall back to the remaining LAN ports, nothing else is guessed.
     /// </summary>
@@ -74,12 +75,13 @@ public sealed class InterfaceMapping
         Assign(PortRole.Dmz, r => r == PortRole.Dmz);
         Assign(PortRole.Fiber, r => r == PortRole.Fiber);
         Assign(PortRole.Lan, r => r == PortRole.Lan);
+        Assign(PortRole.SwitchModeLan, r => r == PortRole.Lan);
         Assign(PortRole.Wan, r => r == PortRole.Lan);
         Assign(PortRole.Dmz, r => r == PortRole.Lan);
         return m;
     }
 
-    internal enum PortRole { Other, Wan, Dmz, Lan, Fiber }
+    internal enum PortRole { Other, Wan, Dmz, Lan, Fiber, SwitchModeLan }
 
     internal static PortRole RoleOf(string name)
     {
@@ -90,6 +92,9 @@ public sealed class InterfaceMapping
             "wan" => PortRole.Wan,
             "dmz" => PortRole.Dmz,
             "lan" or "internal" or "port" when hasNumber => PortRole.Lan,
+            // A physical "internal"/"lan" without a number: the built-in switch of older models in switch mode
+            // (community.fortinet.com Technical Tip "Switch mode vs interface mode", FortiOS 5.2 and earlier).
+            "lan" or "internal" => PortRole.SwitchModeLan,
             "x" or "sfp" when hasNumber => PortRole.Fiber,
             _ => PortRole.Other,
         };

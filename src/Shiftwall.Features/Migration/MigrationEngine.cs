@@ -140,6 +140,10 @@ public static partial class MigrationEngine
             {
                 mapping.Add(MigrationFinding.Error(MigrationCodes.MappedToUnknownTarget, iface, mapped));
             }
+            else if (InterfaceMapping.RoleOf(iface) == InterfaceMapping.PortRole.SwitchModeLan && InterfaceMapping.RoleOf(mapped) != InterfaceMapping.PortRole.SwitchModeLan)
+            {
+                mapping.Add(MigrationFinding.Warning(MigrationCodes.SwitchModePortToSinglePort, iface, mapped));
+            }
         }
 
         foreach (var dup in request.Mapping.DuplicateTargets())

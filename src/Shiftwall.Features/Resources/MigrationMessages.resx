@@ -24,6 +24,7 @@
   <data name="MIG-022" xml:space="preserve"><value>Several source interfaces are mapped to {0}.</value></data>
   <data name="MIG-023" xml:space="preserve"><value>Source interface {0} is mapped to {1}, which does not exist on the target.</value></data>
   <data name="MIG-024" xml:space="preserve"><value>Target interfaces not used by the mapping: {0}.</value></data>
+  <data name="MIG-025" xml:space="preserve"><value>"{0}" is a physical interface without a port number: on older models (FortiOS 5.2 and earlier, switch mode) it groups several front-panel ports with one address. On the target it becomes the single port {1}. To keep several ports on that network, create a hardware switch on the target after the restore.</value></data>
   <data name="MIG-030" xml:space="preserve"><value>config-version of the first line replaced with the target one ({0}, FortiOS {1}); operation mode, VDOM flag and the other header lines are kept, as in Fortinet's manual migration procedure.</value></data>
   <data name="MIG-031" xml:space="preserve"><value>Interface {0} renamed to {1} ({2} occurrence(s)).</value></data>
   <data name="MIG-032" xml:space="preserve"><value>Definition of unused interface {0} removed.</value></data>

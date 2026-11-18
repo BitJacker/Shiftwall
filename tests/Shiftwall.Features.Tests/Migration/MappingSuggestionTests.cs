@@ -1,3 +1,6 @@
+using System.Text;
+using Shiftwall.Core.Config;
+using Shiftwall.Core.Data;
 using Shiftwall.Features.Migration;
 
 namespace Shiftwall.Features.Tests.Migration;
@@ -52,5 +55,52 @@ public sealed class MappingSuggestionTests
         Assert.Null(m["ha1"]);
         Assert.Null(m["s1"]);
         Assert.Equal("x1", m["x1"]);
+    }
+
+    [Fact]
+    public void SwitchModeInternal_TakesTheFirstLanPortLeft()
+    {
+        // 60D in switch mode (FortiOS 5.0): "internal" is one physical interface for the whole built-in switch.
+        var m = Suggest(["dmz", "wan1", "wan2", "modem", "internal"], Fg60F, "internal", "dmz", "wan1");
+
+        Assert.Equal("internal1", m["internal"]);
+        Assert.Equal("dmz", m["dmz"]);
+        Assert.Null(m["modem"]);
+    }
+
+    [Fact]
+    public void SwitchModeInternal_MappedToOnePort_IsReported()
+    {
+        const string config = """
+            #config-version=FGT60D-5.00-FW-build271-140410:opmode=0:vdom=0:user=admin
+            config system interface
+                edit "wan1"
+                    set vdom "root"
+                    set type physical
+                next
+                edit "internal"
+                    set vdom "root"
+                    set ip 192.168.1.99 255.255.255.0
+                    set type physical
+                next
+            end
+            config firewall policy
+                edit 1
+                    set srcintf "internal"
+                    set dstintf "wan1"
+                next
+            end
+
+            """;
+        var source = SourceProfile.From(ConfigInspector.Inspect(Encoding.UTF8.GetBytes(config)));
+        var target = TargetProfile.FromDatabase(ModelDatabase.LoadEmbedded().FindModel("FG-60F")!, "5.00");
+        var usage = MigrationEngine.Analyze(new MigrationRequest(source, target, new InterfaceMapping())).UsageCount;
+        var mapping = InterfaceMapping.Suggest(source.PhysicalInterfaces.Select(p => (p.Name, usage.GetValueOrDefault(p.Name))), target.PhysicalInterfaces);
+
+        var analysis = MigrationEngine.Analyze(new MigrationRequest(source, target, mapping));
+
+        Assert.False(analysis.IsBlocked);
+        var w = Assert.Single(analysis.MappingFindings, f => f.Code == MigrationCodes.SwitchModePortToSinglePort);
+        Assert.Equal(["internal", "internal1"], w.Arguments);
     }
 }

@@ -24,6 +24,7 @@
   <data name="MIG-022" xml:space="preserve"><value>Più interfacce sorgente sono mappate su {0}.</value></data>
   <data name="MIG-023" xml:space="preserve"><value>L'interfaccia sorgente {0} è mappata su {1}, che non esiste sulla destinazione.</value></data>
   <data name="MIG-024" xml:space="preserve"><value>Interfacce della destinazione non usate dalla mappatura: {0}.</value></data>
+  <data name="MIG-025" xml:space="preserve"><value>"{0}" è un'interfaccia fisica senza numero di porta: sui modelli più vecchi (FortiOS 5.2 e precedenti, switch mode) raggruppa più porte del pannello con un solo indirizzo. Sulla destinazione diventa la sola porta {1}. Per avere più porte su quella rete, crea uno switch hardware sulla destinazione dopo il ripristino.</value></data>
   <data name="MIG-030" xml:space="preserve"><value>config-version della prima riga sostituito con quello della destinazione ({0}, FortiOS {1}); modalità operativa, flag VDOM e le altre righe di intestazione restano quelli della sorgente, come nella procedura di migrazione manuale di Fortinet.</value></data>
   <data name="MIG-031" xml:space="preserve"><value>Interfaccia {0} rinominata in {1} ({2} occorrenze).</value></data>
   <data name="MIG-032" xml:space="preserve"><value>Rimossa la definizione dell'interfaccia inutilizzata {0}.</value></data>

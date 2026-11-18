@@ -50,6 +50,7 @@ public static class MigrationCodes
     public const string DuplicateTarget = "MIG-022";
     public const string MappedToUnknownTarget = "MIG-023";
     public const string TargetOnlyPorts = "MIG-024";
+    public const string SwitchModePortToSinglePort = "MIG-025";
 
     // Changes
     public const string HeaderReplaced = "MIG-030";
