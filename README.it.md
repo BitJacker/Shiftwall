@@ -78,6 +78,11 @@ La build fallisce se codice fuori dal modulo LAN usa un client di rete. Dettagli
 
 > La versione 0.1.0 è una **pre-release**. I link "latest" di GitHub saltano le pre-release, quindi fino alla prima
 > release stabile i due link qui sopra non funzionano: scarica i due file dalla [pagina delle release](https://github.com/BitJacker/shiftwall/releases).
+>
+> **Build di prova (non ancora testata in laboratorio):** [dist/Shiftwall.exe](https://github.com/BitJacker/shiftwall/raw/main/dist/Shiftwall.exe)
+> · [dist/SHA256SUMS.txt](https://github.com/BitJacker/shiftwall/raw/main/dist/SHA256SUMS.txt), compilata dalla CI su Windows
+> da `main`. L'exe pesa circa 144 MB ed è salvato con Git LFS: un file da 1 KB è il puntatore LFS, non il programma
+> (*Code → Download ZIP* scarica il puntatore).
 
 Verifica il file prima di avviarlo. In PowerShell, nella cartella con i due file:
 
