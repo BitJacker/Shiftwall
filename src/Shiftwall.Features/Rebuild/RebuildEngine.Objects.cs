@@ -682,8 +682,41 @@ public sealed partial class RebuildEngine
         }
     }
 
+    /// <summary>DH groups that the Security Rating Insights consider insecure (Administration Guide 8.0, Phase 1 configuration).</summary>
+    private static readonly HashSet<string> WeakDhGroups = new(StringComparer.Ordinal) { "1", "2", "5", "14", "22", "23", "24", "25", "26", "27" };
+
+    /// <summary>Encryption and hash algorithms "not recommended" (Administration Guide 8.0, Phase 1 and Phase 2 configuration).</summary>
+    private static readonly HashSet<string> WeakAlgorithms = new(StringComparer.Ordinal) { "null", "des", "3des", "md5", "sha1", "prfsha1" };
+
+    /// <summary>
+    /// IPsec tunnels written with IKEv1, weak DH groups or weak algorithms: kept as they are, because the other side
+    /// must change at the same time, and reported with the best practices.
+    /// </summary>
+    private void WeakVpnFindings()
+    {
+        var phase2 = _sections["ipsec"].Blocks.Where(b => b.Path == "vpn ipsec phase2-interface").SelectMany(b => b.Entries).ToList();
+        foreach (var p1 in _sections["ipsec"].Blocks.Where(b => b.Path == "vpn ipsec phase1-interface").SelectMany(b => b.Entries))
+        {
+            var weak = new List<string>();
+            string[] Values(CliEntry e, string param) => [.. e.Sets.FirstOrDefault(x => x.Param == param)?.Values ?? []];
+            void Check(CliEntry e, string label)
+            {
+                var dh = Values(e, "dhgrp").Where(WeakDhGroups.Contains).ToList();
+                if (dh.Count > 0) weak.Add($"{label} DH {string.Join(" ", dh)}");
+                var proposals = Values(e, "proposal").Where(p => p.Split('-').Any(WeakAlgorithms.Contains)).ToList();
+                if (proposals.Count > 0) weak.Add($"{label} {string.Join(" ", proposals)}");
+            }
+
+            if (Values(p1, "ike-version").FirstOrDefault() == "1") weak.Add("IKEv1");
+            Check(p1, "phase1");
+            foreach (var p2 in phase2.Where(e => Values(e, "phase1name").FirstOrDefault() == p1.Key)) Check(p2, $"phase2 {p2.Key}");
+            if (weak.Count > 0) _findings.Add(MigrationFinding.Warning(RebuildCodes.WeakVpn, p1.Key!, string.Join("; ", weak)));
+        }
+    }
+
     private void AddFindings(SslVpnInfo ssl)
     {
+        WeakVpnFindings();
         _findings.Add(MigrationFinding.Info(RebuildCodes.FactoryDefaultTarget));
         if (_opt.ManagementInterface is null) _findings.Add(MigrationFinding.Warning(RebuildCodes.ManagementUnknown));
         if (_req.Target.LowMemory) _findings.Add(MigrationFinding.Warning(RebuildCodes.LowMemoryModel, _req.Target.ModelId ?? "?"));

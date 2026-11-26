@@ -63,3 +63,22 @@ public sealed class ProfileTests
         Assert.Contains(r.Findings, f => f.Code == RebuildCodes.DefaultProfilesUnverified && f.Severity == FindingSeverity.Warning);
     }
 }
+
+/// <summary>Point 4: weak site-to-site VPNs are kept and reported with the best practices.</summary>
+public sealed class WeakVpnTests
+{
+    [Fact]
+    public void OldSiteToSiteTunnel_IsKept_AndReported()
+    {
+        var r = RebuildEngine.Run(RebuildFixtures.Office110C());
+        var f = Assert.Single(r.Findings, f => f.Code == RebuildCodes.WeakVpn);
+        Assert.Equal("to-sede2", f.Arguments[0]);
+        Assert.Contains("IKEv1", f.Arguments[1], StringComparison.Ordinal);
+        Assert.Contains("DH 14 5", f.Arguments[1], StringComparison.Ordinal);
+        Assert.Contains("3des-sha1", f.Arguments[1], StringComparison.Ordinal);
+        Assert.Contains("set ike-version 1", r.FullScript());
+
+        // The dial-up tunnel written by Shiftwall follows the guide (IKEv2, DH 20 21): not reported.
+        Assert.DoesNotContain(r.Findings, x => x.Code == RebuildCodes.WeakVpn && x.Arguments[0] == "dialup_vpn");
+    }
+}

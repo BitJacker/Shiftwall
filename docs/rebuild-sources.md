@@ -90,6 +90,17 @@ new switch is a software switch, with a warning (RB-061).
 With a factory-default backup the replacement profile must exist in it; without the backup the names come only from the
 pages above and the report says they are not checked on the device (RB-071).
 
+## Weak IPsec settings (RB-072)
+
+| Fact | Source |
+|---|---|
+| DES, 3DES, MD5, SHA1 "not recommended"; DH groups 1, 2, 5, 14, 22–27 "considered insecure by Fortinet's Security Rating Insights"; default DH groups 20 and 21; FortiClient 7.4.4 and later do not support IKEv1 | [8.0.0 Administration Guide: Phase 1 configuration](https://docs.fortinet.com/document/fortigate/8.0.0/administration-guide/790613/phase-1-configuration) |
+| Phase 2: DES, 3DES, MD5, SHA1 "not recommended"; "Fortinet recommends choosing DH groups in the range 15-21 and 28-32" | [8.0.0 Administration Guide: Phase 2 configuration](https://docs.fortinet.com/document/fortigate/8.0.0/administration-guide/604285/phase-2-configuration) |
+| AES-GCM or AES-CBC with SHA-256, disable 3DES, DES, MD5 and DH groups below 14, prefer IKEv2 | [8.0.0 Best Practices: IPsec VPN remote access](https://docs.fortinet.com/document/fortigate/8.0.0/best-practices/655233/ipsec-vpn-remote-access) |
+
+Site-to-site tunnels are never changed by Shiftwall: the other side must change at the same moment. The report lists them
+with what is weak.
+
 ## SSL VPN → IPsec dial-up
 
 | What | Source |

@@ -74,4 +74,5 @@ public static class RebuildCodes
     public const string DefaultProfilesApplied = "RB-069";
     public const string PolicyDisabledForProfiles = "RB-070";
     public const string DefaultProfilesUnverified = "RB-071";
+    public const string WeakVpn = "RB-072";
 }

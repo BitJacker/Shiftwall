@@ -365,4 +365,7 @@
   <data name="RBR.Enabled" xml:space="preserve">
     <value>attiva</value>
   </data>
+  <data name="RB-072" xml:space="preserve">
+    <value>Il tunnel IPsec '{0}' usa impostazioni che Fortinet non raccomanda ({1}): mantenuto per compatibilità con l'altra sede, da aggiornare insieme (IKEv2, gruppi DH 19-21, AES-GCM o AES con SHA-256). Fonti: FortiOS 8.0 Administration Guide, Phase 1 e Phase 2 configuration (DES, 3DES, MD5 e SHA1 non raccomandati; gruppi DH 1, 2, 5, 14, 22-27 insicuri per la Security Rating Insights); FortiOS 8.0 Best Practices, IPsec VPN remote access (preferire IKEv2).</value>
+  </data>
 </root>
