@@ -102,7 +102,7 @@ public sealed class LanBackupClientTests
     }
 
     /// <summary>One-request-per-connection HTTPS server for tests (TLS with a fresh self-signed certificate).</summary>
-    private sealed class TestServer : IDisposable
+    internal sealed class TestServer : IDisposable
     {
         private readonly TcpListener _listener = new(IPAddress.Loopback, 0);
         private readonly X509Certificate2 _cert;
