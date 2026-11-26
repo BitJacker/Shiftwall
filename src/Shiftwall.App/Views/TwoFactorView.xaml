@@ -9,7 +9,7 @@
         </StackPanel>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="380" />
+                <ColumnDefinition Width="330" />
                 <ColumnDefinition Width="16" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
@@ -51,7 +51,7 @@
                     <TextBlock Text="{l:T TwoFactor.Template}" Style="{StaticResource FieldLabel}" />
                     <TextBox Text="{Binding EmailTemplate, UpdateSourceTrigger=PropertyChanged, Delay=400}" AutomationProperties.Name="{l:T TwoFactor.Template}" />
                     <TextBlock Text="{l:T TwoFactor.TemplateHelp}" Style="{StaticResource Muted}" FontSize="11" />
-                    <CheckBox Content="{l:T TwoFactor.CreateMissing}" IsChecked="{Binding CreateMissingUsers}" Margin="0,8,0,0" />
+                    <CheckBox IsChecked="{Binding CreateMissingUsers}" Margin="0,8,0,0"><TextBlock Text="{l:T TwoFactor.CreateMissing}" TextWrapping="Wrap" /></CheckBox>
                     <TextBlock Text="{l:T TwoFactor.BatchSize}" Style="{StaticResource FieldLabel}" />
                     <TextBox Text="{Binding BatchSize, UpdateSourceTrigger=PropertyChanged}" Width="80" HorizontalAlignment="Left" AutomationProperties.Name="{l:T TwoFactor.BatchSize}" />
                     <TextBlock Text="{l:T TwoFactor.BatchHelp}" Style="{StaticResource Muted}" FontSize="11" />
@@ -103,7 +103,7 @@
                     <DockPanel Margin="0,8,0,0">
                         <WrapPanel DockPanel.Dock="Top">
                             <TextBlock Text="{l:T TwoFactor.FilterLabel}" VerticalAlignment="Center" Margin="0,0,6,0" />
-                            <ComboBox ItemsSource="{Binding Filters}" SelectedValuePath="Value" SelectedValue="{Binding Filter}" DisplayMemberPath="Label" Width="170" Margin="0,0,12,0" AutomationProperties.Name="{l:T TwoFactor.FilterLabel}" />
+                            <ComboBox ItemsSource="{Binding Filters}" SelectedValuePath="Value" SelectedValue="{Binding Filter}" DisplayMemberPath="Label" Width="170" Margin="0,0,12,4" AutomationProperties.Name="{l:T TwoFactor.FilterLabel}" />
                             <TextBlock Text="{l:T TwoFactor.Search}" VerticalAlignment="Center" Margin="0,0,6,0" />
                             <TextBox Text="{Binding Search, UpdateSourceTrigger=PropertyChanged, Delay=300}" Width="180" AutomationProperties.Name="{l:T TwoFactor.Search}" />
                             <Button Content="{l:T TwoFactor.SelectAll}" Command="{Binding SelectAllCommand}" Margin="12,0,0,0" />
@@ -111,22 +111,22 @@
                         </WrapPanel>
                         <WrapPanel DockPanel.Dock="Top" Margin="0,8,0,8">
                             <TextBlock Text="{l:T TwoFactor.Edit.Action}" VerticalAlignment="Center" Margin="0,0,6,0" />
-                            <ComboBox ItemsSource="{Binding ActionChoices}" SelectedValuePath="Value" SelectedValue="{Binding EditAction}" DisplayMemberPath="Label" Width="230" Margin="0,0,12,0" AutomationProperties.Name="{l:T TwoFactor.Edit.Action}" />
+                            <ComboBox ItemsSource="{Binding ActionChoices}" SelectedValuePath="Value" SelectedValue="{Binding EditAction}" DisplayMemberPath="Label" Width="280" Margin="0,0,12,4" AutomationProperties.Name="{l:T TwoFactor.Edit.Action}" />
                             <TextBlock Text="{l:T TwoFactor.Edit.Email}" VerticalAlignment="Center" Margin="0,0,6,0" />
-                            <TextBox Text="{Binding EditEmail, UpdateSourceTrigger=PropertyChanged}" Width="220" AutomationProperties.Name="{l:T TwoFactor.Edit.Email}" />
+                            <TextBox Text="{Binding EditEmail, UpdateSourceTrigger=PropertyChanged}" Width="240" AutomationProperties.Name="{l:T TwoFactor.Edit.Email}" />
                             <Button Content="{l:T TwoFactor.AddSelected}" Command="{Binding AddSelectedCommand}" Margin="12,0,0,0" />
                         </WrapPanel>
                         <DataGrid ItemsSource="{Binding Visible}" AutoGenerateColumns="False" HeadersVisibility="Column" GridLinesVisibility="Horizontal"
                                   CanUserAddRows="False" CanUserDeleteRows="False" EnableRowVirtualization="True" AutomationProperties.Name="{l:T TwoFactor.Accounts}">
                             <DataGrid.Columns>
                                 <DataGridCheckBoxColumn Binding="{Binding IsSelected, UpdateSourceTrigger=PropertyChanged}" Width="34" />
-                                <DataGridTextColumn Header="{l:T TwoFactor.Col.Account}" Binding="{Binding Entry.Name}" IsReadOnly="True" Width="*" />
+                                <DataGridTextColumn Header="{l:T TwoFactor.Col.Account}" Binding="{Binding Entry.Name}" IsReadOnly="True" Width="170" />
                                 <DataGridTextColumn Header="{l:T TwoFactor.Col.Kind}" Binding="{Binding Kind}" IsReadOnly="True" Width="110" />
                                 <DataGridTextColumn Header="VDOM" Binding="{Binding Entry.Vdom}" IsReadOnly="True" Width="80" />
                                 <DataGridTextColumn Header="{l:T TwoFactor.Col.Type}" Binding="{Binding Entry.Type}" IsReadOnly="True" Width="90" />
                                 <DataGridTextColumn Header="{l:T TwoFactor.Col.Server}" Binding="{Binding Entry.RemoteServer}" IsReadOnly="True" Width="110" />
                                 <DataGridTextColumn Header="{l:T TwoFactor.Col.TwoFactor}" Binding="{Binding Entry.EffectiveTwoFactor}" IsReadOnly="True" Width="90" />
-                                <DataGridTextColumn Header="{l:T TwoFactor.Col.Email}" Binding="{Binding Entry.EmailTo}" IsReadOnly="True" Width="*" />
+                                <DataGridTextColumn Header="{l:T TwoFactor.Col.Email}" Binding="{Binding Entry.EmailTo}" IsReadOnly="True" Width="220" />
                                 <DataGridTextColumn Header="{l:T TwoFactor.Col.Token}" Binding="{Binding Entry.FortiToken}" IsReadOnly="True" Width="130" />
                                 <DataGridTextColumn Header="{l:T TwoFactor.Col.Profile}" Binding="{Binding Entry.AccProfile}" IsReadOnly="True" Width="100" />
                             </DataGrid.Columns>
@@ -152,11 +152,11 @@
                         <DataGrid Grid.Row="1" ItemsSource="{Binding DryRun}" AutoGenerateColumns="False" IsReadOnly="True" HeadersVisibility="Column"
                                   GridLinesVisibility="Horizontal" EnableRowVirtualization="True" AutomationProperties.Name="{l:T TwoFactor.DryRun}">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="{l:T TwoFactor.Col.Account}" Binding="{Binding Account}" Width="*" />
+                                <DataGridTextColumn Header="{l:T TwoFactor.Col.Account}" Binding="{Binding Account}" Width="170" />
                                 <DataGridTextColumn Header="{l:T TwoFactor.Col.Kind}" Binding="{Binding Kind}" Width="110" />
                                 <DataGridTextColumn Header="{l:T TwoFactor.Col.Action}" Binding="{Binding Action}" Width="80" />
-                                <DataGridTextColumn Header="{l:T TwoFactor.Col.EmailBefore}" Binding="{Binding EmailBefore}" Width="*" />
-                                <DataGridTextColumn Header="{l:T TwoFactor.Col.EmailAfter}" Binding="{Binding EmailAfter}" Width="*" />
+                                <DataGridTextColumn Header="{l:T TwoFactor.Col.EmailBefore}" Binding="{Binding EmailBefore}" Width="200" />
+                                <DataGridTextColumn Header="{l:T TwoFactor.Col.EmailAfter}" Binding="{Binding EmailAfter}" Width="200" />
                                 <DataGridTextColumn Header="{l:T TwoFactor.Col.TwoFactorBefore}" Binding="{Binding TwoFactorBefore}" Width="90" />
                                 <DataGridTextColumn Header="{l:T TwoFactor.Col.TwoFactorAfter}" Binding="{Binding TwoFactorAfter}" Width="90" />
                             </DataGrid.Columns>

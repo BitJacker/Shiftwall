@@ -381,7 +381,7 @@ Confronta l'impronta con quella mostrata dal FortiGate (Sistema › Certificati)
   <data name="TwoFactor.Filter.Radius" xml:space="preserve"><value>Solo RADIUS</value></data>
   <data name="TwoFactor.SelectAll" xml:space="preserve"><value>Seleziona visibili</value></data>
   <data name="TwoFactor.SelectNone" xml:space="preserve"><value>Togli selezione</value></data>
-  <data name="TwoFactor.Edit.Email" xml:space="preserve"><value>Email (o parte prima di @ con il dominio predefinito)</value></data>
+  <data name="TwoFactor.Edit.Email" xml:space="preserve"><value>Email</value></data>
   <data name="TwoFactor.Edit.Action" xml:space="preserve"><value>Azione</value></data>
   <data name="TwoFactor.Action.Set" xml:space="preserve"><value>Imposta email e attiva 2FA email</value></data>
   <data name="TwoFactor.Action.Modify" xml:space="preserve"><value>Modifica email</value></data>
@@ -396,7 +396,7 @@ Confronta l'impronta con quella mostrata dal FortiGate (Sistema › Certificati)
   <data name="TwoFactor.ClearRequests" xml:space="preserve"><value>Svuota modifiche</value></data>
   <data name="TwoFactor.Requests" xml:space="preserve"><value>Modifiche richieste: {0}. Account che cambieranno: {1}. Righe saltate: {2}.</value></data>
   <data name="TwoFactor.Options" xml:space="preserve"><value>Opzioni</value></data>
-  <data name="TwoFactor.Domain" xml:space="preserve"><value>Dominio predefinito (es. azienda.it)</value></data>
+  <data name="TwoFactor.Domain" xml:space="preserve"><value>Dominio predefinito (es. azienda.it): completa le email scritte senza @</value></data>
   <data name="TwoFactor.Template" xml:space="preserve"><value>Regola email (facoltativa)</value></data>
   <data name="TwoFactor.TemplateHelp" xml:space="preserve"><value>Usata quando l'email è vuota: {name}.{surname}@azienda.it divide il nome utente su . _ - (prima parte = nome, ultima = cognome); {username} è il nome intero.</value></data>
   <data name="TwoFactor.CreateMissing" xml:space="preserve"><value>Crea gli utenti locali mancanti (es. utenti di directory come utenti locali di tipo ldap)</value></data>

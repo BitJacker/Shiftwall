@@ -381,7 +381,7 @@ Compare the fingerprint with the one shown by the FortiGate (System › Certific
   <data name="TwoFactor.Filter.Radius" xml:space="preserve"><value>RADIUS only</value></data>
   <data name="TwoFactor.SelectAll" xml:space="preserve"><value>Select shown</value></data>
   <data name="TwoFactor.SelectNone" xml:space="preserve"><value>Clear selection</value></data>
-  <data name="TwoFactor.Edit.Email" xml:space="preserve"><value>Email (or part before @ with the default domain)</value></data>
+  <data name="TwoFactor.Edit.Email" xml:space="preserve"><value>Email</value></data>
   <data name="TwoFactor.Edit.Action" xml:space="preserve"><value>Action</value></data>
   <data name="TwoFactor.Action.Set" xml:space="preserve"><value>Set email and enable email 2FA</value></data>
   <data name="TwoFactor.Action.Modify" xml:space="preserve"><value>Change email</value></data>
@@ -396,7 +396,7 @@ Compare the fingerprint with the one shown by the FortiGate (System › Certific
   <data name="TwoFactor.ClearRequests" xml:space="preserve"><value>Clear changes</value></data>
   <data name="TwoFactor.Requests" xml:space="preserve"><value>Changes requested: {0}. Accounts that will change: {1}. Rows skipped: {2}.</value></data>
   <data name="TwoFactor.Options" xml:space="preserve"><value>Options</value></data>
-  <data name="TwoFactor.Domain" xml:space="preserve"><value>Default domain (e.g. company.com)</value></data>
+  <data name="TwoFactor.Domain" xml:space="preserve"><value>Default domain (e.g. company.com): completes emails written without @</value></data>
   <data name="TwoFactor.Template" xml:space="preserve"><value>Email rule (optional)</value></data>
   <data name="TwoFactor.TemplateHelp" xml:space="preserve"><value>Used when the email is empty: {name}.{surname}@company.com splits the user name on . _ - (first part = name, last = surname); {username} is the whole name.</value></data>
   <data name="TwoFactor.CreateMissing" xml:space="preserve"><value>Create missing local users (e.g. directory users as local users of type ldap)</value></data>
