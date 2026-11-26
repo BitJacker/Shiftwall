@@ -61,6 +61,7 @@ internal static class ScreenshotRun
                 continue;
             }
 
+            await Settle();
             var tabs = Descendants<TabControl>(window).Where(t => t.IsVisible && t.Items.Count == 4).ToList();
             foreach (var t in tabs)
             {

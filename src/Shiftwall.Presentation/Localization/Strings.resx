@@ -665,7 +665,7 @@ Compare the fingerprint with the one shown by the FortiGate (System › Certific
     <value>Create on the target as</value>
   </data>
   <data name="Rebuild.Create.Switch" xml:space="preserve">
-    <value>Switch (Shiftwall chooses hardware or software)</value>
+    <value>Switch (type chosen by Shiftwall)</value>
   </data>
   <data name="Rebuild.Create.Hardware" xml:space="preserve">
     <value>Hardware switch</value>
@@ -704,7 +704,7 @@ Compare the fingerprint with the one shown by the FortiGate (System › Certific
     <value>Security profiles not on the target</value>
   </data>
   <data name="Rebuild.Profiles.Defaults" xml:space="preserve">
-    <value>Apply the FortiOS 8.0 default profiles</value>
+    <value>Apply the 8.0 defaults</value>
   </data>
   <data name="Rebuild.Profiles.Disable" xml:space="preserve">
     <value>Write the policy disabled</value>

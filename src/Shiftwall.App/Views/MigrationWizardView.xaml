@@ -106,7 +106,7 @@
                                 <Grid Margin="0,0,0,10">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="220" />
-                                        <ColumnDefinition Width="200" />
+                                        <ColumnDefinition Width="250" />
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
@@ -178,7 +178,7 @@
                             <TextBlock DockPanel.Dock="Top" Text="{l:T Wizard.Mapping.SourcePorts}" Style="{StaticResource SectionTitle}" Margin="0,0,0,4" />
                             <TextBlock DockPanel.Dock="Top" Text="{l:T Wizard.Mapping.Hint}" Style="{StaticResource Muted}" FontSize="12" Margin="0,0,0,6" />
                             <ListBox ItemsSource="{Binding SourcePorts}" HorizontalContentAlignment="Stretch" AutomationProperties.Name="{l:T Wizard.Mapping.SourcePorts}"
-                                     VirtualizingPanel.IsVirtualizing="True">
+                                     VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.ScrollUnit="Pixel" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate DataType="{x:Type vm:SourcePortItem}">
                                         <Border x:Name="BlockingMarker" AllowDrop="True" Drop="OnPortDrop" DragOver="OnPortDragOver" Background="Transparent" Padding="4" CornerRadius="4">
@@ -204,18 +204,18 @@
                                                 <ComboBox Grid.Column="2" Margin="6,0" IsEditable="True" IsEnabled="{Binding CanEditTarget}"
                                                           ItemsSource="{Binding DataContext.TargetChoices, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                                           Text="{Binding Target, UpdateSourceTrigger=LostFocus}" AutomationProperties.Name="{Binding Name}" />
-                                                <WrapPanel Grid.Row="1" Grid.ColumnSpan="4" Margin="0,4,0,0" Visibility="{Binding IsSwitch, Converter={StaticResource BoolToVisibility}}">
-                                                    <TextBlock Text="{Binding SwitchInfo}" FontSize="12" Style="{StaticResource Muted}" VerticalAlignment="Center" TextWrapping="Wrap" Margin="0,0,8,0" MaxWidth="420" />
-                                                    <ComboBox Width="250" DisplayMemberPath="Text" SelectedValuePath="Value" SelectedValue="{Binding Action}"
+                                                <StackPanel Grid.Row="1" Grid.ColumnSpan="4" Margin="0,4,0,0" Visibility="{Binding IsSwitch, Converter={StaticResource BoolToVisibility}}">
+                                                    <TextBlock Text="{Binding SwitchInfo}" FontSize="12" Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,0,0,4" />
+                                                    <ComboBox MinWidth="260" HorizontalAlignment="Left" DisplayMemberPath="Text" SelectedValuePath="Value" SelectedValue="{Binding Action}"
                                                               ItemsSource="{Binding DataContext.SwitchActionChoices, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                                               ToolTip="{l:T Rebuild.Switch.Action}" AutomationProperties.Name="{l:T Rebuild.Switch.Action}" />
-                                                </WrapPanel>
+                                                </StackPanel>
                                                 <Button Grid.Column="3" Command="{Binding DataContext.UnmapCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                                         CommandParameter="{Binding}" ToolTip="{l:T Wizard.Mapping.Unmap}" Padding="6,2"
                                                         FontFamily="{StaticResource IconFont}" Content="&#xE711;" AutomationProperties.Name="{l:T Wizard.Mapping.Unmap}" />
                                                 <WrapPanel Grid.Row="2" Grid.ColumnSpan="4" Margin="0,4,0,2"
                                                            Visibility="{Binding DataContext.IsRebuild, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BoolToVisibility}}">
-                                                    <ComboBox Width="150" Margin="0,0,6,0" DisplayMemberPath="Text" SelectedValuePath="Value" SelectedValue="{Binding Addressing.Mode}"
+                                                    <ComboBox MinWidth="200" Margin="0,0,6,4" DisplayMemberPath="Text" SelectedValuePath="Value" SelectedValue="{Binding Addressing.Mode}"
                                                               ItemsSource="{Binding DataContext.AddressingChoices, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                                               ToolTip="{l:T Rebuild.Addressing}" AutomationProperties.Name="{l:T Rebuild.Addressing}" />
                                                     <StackPanel Orientation="Horizontal" Visibility="{Binding Addressing.IsStatic, Converter={StaticResource BoolToVisibility}}">
@@ -234,11 +234,11 @@
                                                             <TextBlock FontSize="12" VerticalAlignment="Center" Margin="0,0,6,0">
                                                                 <Run Text="{l:T Rebuild.Create.Title}" /> <Run Text="'" /><Run Text="{Binding Target, Mode=OneWay}" FontFamily="{StaticResource MonoFont}" /><Run Text="'" />
                                                             </TextBlock>
-                                                            <ComboBox Width="300" DisplayMemberPath="Text" SelectedValuePath="Value" SelectedValue="{Binding CreateKind}"
+                                                            <ComboBox MinWidth="240" DisplayMemberPath="Text" SelectedValuePath="Value" SelectedValue="{Binding CreateKind}"
                                                                       Visibility="{Binding ShowsSwitchKind, Converter={StaticResource BoolToVisibility}}"
                                                                       ItemsSource="{Binding DataContext.SwitchKindChoices, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                                                       AutomationProperties.Name="{l:T Rebuild.Create.Title}" />
-                                                            <ComboBox Width="300" DisplayMemberPath="Text" SelectedValuePath="Value" SelectedValue="{Binding CreateKind}"
+                                                            <ComboBox MinWidth="240" DisplayMemberPath="Text" SelectedValuePath="Value" SelectedValue="{Binding CreateKind}"
                                                                       Visibility="{Binding ShowsAnyKind, Converter={StaticResource BoolToVisibility}}"
                                                                       ItemsSource="{Binding DataContext.CreateKindChoices, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                                                       AutomationProperties.Name="{l:T Rebuild.Create.Title}" />

@@ -665,7 +665,7 @@ Confronta l'impronta con quella mostrata dal FortiGate (Sistema › Certificati)
     <value>Crea sulla destinazione come</value>
   </data>
   <data name="Rebuild.Create.Switch" xml:space="preserve">
-    <value>Switch (Shiftwall sceglie hardware o software)</value>
+    <value>Switch (tipo scelto da Shiftwall)</value>
   </data>
   <data name="Rebuild.Create.Hardware" xml:space="preserve">
     <value>Switch hardware</value>
@@ -704,7 +704,7 @@ Confronta l'impronta con quella mostrata dal FortiGate (Sistema › Certificati)
     <value>Profili di sicurezza assenti sulla destinazione</value>
   </data>
   <data name="Rebuild.Profiles.Defaults" xml:space="preserve">
-    <value>Applica i profili predefiniti di FortiOS 8.0</value>
+    <value>Applica i predefiniti 8.0</value>
   </data>
   <data name="Rebuild.Profiles.Disable" xml:space="preserve">
     <value>Crea la policy disattivata</value>
