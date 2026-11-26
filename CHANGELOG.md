@@ -7,11 +7,6 @@ The format is based on [Keep a Changelog 1.1.0](https://keepachangelog.com/en/1.
 
 ## [Unreleased]
 
-### Fixed
-
-- Email 2FA: generated passwords could contain `?` and `#`, which cannot be typed or pasted as is in the FortiOS CLI.
-  They now use the same CLI-safe generator as the rebuild mode.
-
 ## [0.1.0] - not yet released (pre-release)
 
 First public version, published as a GitHub pre-release. The date is set when the `v0.1.0` tag is created, after
@@ -32,6 +27,8 @@ testing in a lab.
   Script) and for the terminal; passwords typed or generated per migration and saved only encrypted; SSL VPN tunnel
   mode converted to IPsec dial-up (FortiClient, IKEv2, EAP); interface mapping with logical targets (e.g. the `lan`
   switch of a 40F) and per-interface addressing (kept, static, DHCP). Guides: `docs/load-scripts.md`, `docs/LAB-TEST.md`.
+- Email 2FA and rebuild passwords are generated from characters the FortiOS CLI accepts as typed or pasted (no `?`, `#`,
+  quotes, backslash or spaces; CLI basics, Special characters).
 - Batch conversion of several sites with the same mapping template, with a simulation mode.
 - Model database with 112 models (desktop to data center, from the Hardware Acceleration guide) and 96 FortiOS releases (6.2.0 – 8.0.2). Every datum cites its official Fortinet
   source and verification date; unverified data shows a warning. An updated database can be imported and is validated

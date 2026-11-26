@@ -28,7 +28,7 @@
   <data name="Common.Next" xml:space="preserve"><value>Avanti</value></data>
   <data name="Common.Browse" xml:space="preserve"><value>Sfoglia…</value></data>
   <data name="Wizard.Title" xml:space="preserve"><value>Migrazione configurazione</value></data>
-  <data name="Wizard.Simulation" xml:space="preserve"><value>Simulazione: nessun file viene scritto finché non premi "Salva configurazione" nell'ultimo passo.</value></data>
+  <data name="Wizard.Simulation" xml:space="preserve"><value>Simulazione: nessun file viene scritto finché non premi un pulsante "Salva" nell'ultimo passo.</value></data>
   <data name="Step.Load" xml:space="preserve"><value>1  Carica</value></data>
   <data name="Step.PreChecks" xml:space="preserve"><value>2  Controlli</value></data>
   <data name="Step.Mapping" xml:space="preserve"><value>3  Mappatura</value></data>

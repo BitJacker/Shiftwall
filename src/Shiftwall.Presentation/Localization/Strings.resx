@@ -28,7 +28,7 @@
   <data name="Common.Next" xml:space="preserve"><value>Next</value></data>
   <data name="Common.Browse" xml:space="preserve"><value>Browse…</value></data>
   <data name="Wizard.Title" xml:space="preserve"><value>Configuration migration</value></data>
-  <data name="Wizard.Simulation" xml:space="preserve"><value>Simulation: no file is written until you press "Save configuration" in the last step.</value></data>
+  <data name="Wizard.Simulation" xml:space="preserve"><value>Simulation: no file is written until you press a "Save" button in the last step.</value></data>
   <data name="Step.Load" xml:space="preserve"><value>1  Load</value></data>
   <data name="Step.PreChecks" xml:space="preserve"><value>2  Pre-checks</value></data>
   <data name="Step.Mapping" xml:space="preserve"><value>3  Mapping</value></data>
