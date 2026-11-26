@@ -56,3 +56,39 @@ lines needed to reproduce it. The fix comes with a test that reproduces the erro
   without the custom profiles, which are listed in the report.
 - SSL VPN is converted to IPsec dial-up following Fortinet's "FortiClient as dialup client" example: it is marked
   "to review" and must be tested with FortiClient before production.
+
+## Trying the scripts on a FortiGate-VM (legal, documented, limited)
+
+Fortinet documents a **permanent evaluation licence** for FortiGate-VM: it is free, does not expire and needs only a
+FortiCloud account ([8.0.2 Administration Guide: Permanent trial mode for FortiGate-VM](https://docs.fortinet.com/document/fortigate/8.0.2/administration-guide/441460/permanent-trial-mode-for-fortigate-vm)).
+Its documented limits decide what such a test can prove:
+
+| Limit of the evaluation licence (same page) | Consequence for a Shiftwall script |
+|---|---|
+| One free evaluation copy per FortiCloud account | One lab VM per account |
+| 1 CPU and 2 GB of memory | Enough to load a configuration |
+| **At most three interfaces, three firewall policies and three routes** | A full script does not fit: from the fourth policy or route FortiOS refuses the command. Load the parts one at a time and expect those refusals |
+| No FortiCare and no FortiGuard support | Profiles load, signatures are not updated |
+
+What a VM can prove: the syntax of every command that is not about the hardware (addresses, services, schedules, users,
+IPsec, DNS, the first three policies and routes) and the Return codes of the parts. What it cannot prove: everything that
+depends on the 40F hardware. A FortiGate-VM has ports named `port1`, `port2`… and no hardware switch, so the `switch` part
+(`config system virtual-switch`) and the interface names `wan`, `lan`, `lan1`–`lan3` do not exist there. That part, the
+port moves and the management change must be tested on the real 40F.
+
+Procedure (KVM example; VMware, Hyper-V and Proxmox have equivalent guides on docs.fortinet.com):
+
+1. Download the new-deployment package `FGT_VM64_KVM-8.0.x-buildXXXX-FORTINET.out.kvm.zip` (not the `.out` upgrade image)
+   from the Fortinet support site, VM images section, with the same firmware build as the real 40F
+   ([8.0.0 KVM Administration Guide: Downloading the FortiGate-VM deployment package](https://docs.fortinet.com/document/fortigate-private-cloud/8.0.0/kvm-administration-guide/961760/downloading-the-fortigate-vm-deployment-package)).
+2. Create the VM with 1 vCPU, 2 GB RAM and three network interfaces, as the KVM guide describes; add the log disk.
+3. At the console, apply the evaluation licence: `execute vm-license-options account-id <your FortiCloud email>`,
+   `execute vm-license-options account-password <password>`, `execute vm-license` (the VM restarts). Check with
+   `get system status`: `License Status: Valid`.
+4. Take a backup of the VM factory configuration and load it in Shiftwall as the target, so the interface names are the
+   VM ones (`port1`…); map the source interfaces to them. The switch variants do not apply on a VM.
+5. Run the parts in order (System > Configuration > Scripts, or paste the terminal blocks) and note every Return code
+   as described above. Refusals caused by the three-policy/three-route limit are expected and are not Shiftwall errors.
+6. Delete the VM after the test: it held a copy of the (anonymised) configuration.
+
+Never use a real customer backup on a lab VM that is reachable from other networks; use the anonymised backup.
