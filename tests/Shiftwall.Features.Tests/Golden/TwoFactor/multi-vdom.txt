@@ -1,0 +1,85 @@
+===== 2fa-users-001.txt
+# Shiftwall - email two-factor authentication - batch 1 of 1 (local users)
+# Source backup: lab-vdom.conf (FortiOS 7.4.9)
+# Accounts in this file: 2
+#   VDOM root: 1
+#   - user0001
+#   VDOM branch: 1
+#   - user0015
+# Rollback script: rollback-users-001.txt
+# Run it from Configuration > Scripts > Run Script (FortiOS Administration Guide, "Configuration scripts").
+config vdom
+    edit "root"
+        config user local
+            edit "user0001"
+                set email-to "user0001@example.com"
+                set two-factor email
+            next
+        end
+    next
+    edit "branch"
+        config user local
+            edit "user0015"
+                set email-to "user0015@example.com"
+                set two-factor email
+            next
+        end
+    next
+end
+===== 2fa-admins-001.txt
+# Shiftwall - email two-factor authentication - batch 1 of 1 (administrators)
+# Source backup: lab-vdom.conf (FortiOS 7.4.9)
+# Accounts in this file: 1
+#   - netops
+# Rollback script: rollback-admins-001.txt
+# Run it from Configuration > Scripts > Run Script (FortiOS Administration Guide, "Configuration scripts").
+config global
+    config system admin
+        edit "netops"
+            set two-factor email
+        next
+    end
+end
+===== rollback-users-001.txt
+# Shiftwall - email two-factor authentication - ROLLBACK of batch 1 of 1 (local users)
+# Source backup: lab-vdom.conf (FortiOS 7.4.9)
+# Accounts in this file: 2
+#   VDOM root: 1
+#   - user0001
+#   VDOM branch: 1
+#   - user0015
+# Restores the values read from the backup before the batch. Batch script: 2fa-users-001.txt
+# Run it from Configuration > Scripts > Run Script (FortiOS Administration Guide, "Configuration scripts").
+config vdom
+    edit "root"
+        config user local
+            edit "user0001"
+                unset two-factor
+                unset email-to
+            next
+        end
+    next
+    edit "branch"
+        config user local
+            edit "user0015"
+                unset two-factor
+                unset email-to
+            next
+        end
+    next
+end
+===== rollback-admins-001.txt
+# Shiftwall - email two-factor authentication - ROLLBACK of batch 1 of 1 (administrators)
+# Source backup: lab-vdom.conf (FortiOS 7.4.9)
+# Accounts in this file: 1
+#   - netops
+# Restores the values read from the backup before the batch. Batch script: 2fa-admins-001.txt
+# Run it from Configuration > Scripts > Run Script (FortiOS Administration Guide, "Configuration scripts").
+config global
+    config system admin
+        edit "netops"
+            set two-factor fortitoken
+            set email-to "netops@example.com"
+        next
+    end
+end

@@ -171,4 +171,67 @@
   <data name="Snippet.HostBits" xml:space="preserve"><value>"{0}" ha bit di host impostati: usa l'indirizzo di rete.</value></data>
   <data name="Snippet.Distance" xml:space="preserve"><value>La distanza deve essere tra 1 e 255.</value></data>
   <data name="Snippet.Import" xml:space="preserve"><value>{0}</value></data>
+  <data name="TwoFactor.RowPrefix" xml:space="preserve"><value>Riga {0}: {1}</value></data>
+  <data name="TwoFactor.EmailServerMissing" xml:space="preserve"><value>Nella configurazione manca il server email (config system email-server con un server): il FortiGate non potrebbe inviare i codici. Configuralo (server, porta, autenticazione, SMTPS o STARTTLS), riesporta il backup e ricaricalo.</value></data>
+  <data name="TwoFactor.RemoteGroup" xml:space="preserve"><value>Il gruppo "{0}" autentica utenti di {1}: quegli utenti di directory non sono utenti locali e non possono ricevere i codici email finché non vengono creati come utenti locali di tipo ldap/radius.</value></data>
+  <data name="TwoFactor.EmptyUsername" xml:space="preserve"><value>username vuoto.</value></data>
+  <data name="TwoFactor.EmailCompleted" xml:space="preserve"><value>{0}: email completata come {1}.</value></data>
+  <data name="TwoFactor.Ambiguous" xml:space="preserve"><value>"{0}" corrisponde a più account ({1}): compila la colonna ambito (utente/admin) o vdom.</value></data>
+  <data name="TwoFactor.AdminNotFound" xml:space="preserve"><value>L'amministratore "{0}" non esiste nella configurazione (questo strumento non crea amministratori).</value></data>
+  <data name="TwoFactor.DirectoryOnly" xml:space="preserve"><value>"{0}" non è un utente locale (forse esiste solo in AD/LDAP). Per usare i codici email deve esistere come utente locale di tipo ldap: attiva "Crea gli utenti locali mancanti" e compila tipo=ldap e server_remoto.</value></data>
+  <data name="TwoFactor.UnknownAccount" xml:space="preserve"><value>"{0}" non esiste nella configurazione. Per crearlo attiva "Crea gli utenti locali mancanti" e compila tipo (e server_remoto per ldap/radius).</value></data>
+  <data name="TwoFactor.TypeRequired" xml:space="preserve"><value>"{0}": per creare l'utente, tipo deve essere password, ldap, radius o tacacs+ (trovato "{1}").</value></data>
+  <data name="TwoFactor.VdomRequired" xml:space="preserve"><value>"{0}": backup multi-VDOM, la colonna vdom deve indicare una VDOM esistente (trovato "{1}"; disponibili: {2}).</value></data>
+  <data name="TwoFactor.RemoteServerRequired" xml:space="preserve"><value>"{0}": un utente {1} richiede server_remoto.</value></data>
+  <data name="TwoFactor.UnknownRemoteServer" xml:space="preserve"><value>Il server {1} "{0}" non esiste nella configurazione.</value></data>
+  <data name="TwoFactor.WillCreate" xml:space="preserve"><value>"{0}" sarà creato come utente locale di tipo {1}.</value></data>
+  <data name="TwoFactor.WillCreatePassword" xml:space="preserve"><value>"{0}" sarà creato come utente locale di tipo {1}, disattivato; la sua password casuale va solo nel file cifrato.</value></data>
+  <data name="TwoFactor.Conflict" xml:space="preserve"><value>{0}: righe in conflitto ({1}). Tienine una.</value></data>
+  <data name="TwoFactor.Duplicate" xml:space="preserve"><value>{0}: uguale alla riga {1}, ignorata.</value></data>
+  <data name="TwoFactor.EmailRequired" xml:space="preserve"><value>{0}: per questa azione serve un'email.</value></data>
+  <data name="TwoFactor.EmailTooLong" xml:space="preserve"><value>{0}: l'email supera {1} caratteri (limite FortiOS di email-to).</value></data>
+  <data name="TwoFactor.InvalidEmail" xml:space="preserve"><value>{0}: "{1}" non è un indirizzo email valido.</value></data>
+  <data name="TwoFactor.NoChange" xml:space="preserve"><value>{0}: già come richiesto, saltato.</value></data>
+  <data name="TwoFactor.DisableToken" xml:space="preserve"><value>{0}: la 2FA ({1}) sarà disattivata: l'account entrerà solo con la password.</value></data>
+  <data name="TwoFactor.TokenConfirm" xml:space="preserve"><value>{0} ha il FortiToken {1}: passando ai codici email il token non viene più usato (il seriale resta assegnato). Conferma questa riga.</value></data>
+  <data name="TwoFactor.TokenConfirmed" xml:space="preserve"><value>{0}: passaggio da FortiToken {1} a email confermato.</value></data>
+  <data name="TwoFactor.SharedEmail" xml:space="preserve"><value>L'email {0} è usata da più account: {1}.</value></data>
+  <data name="TwoFactor.AdminExternalEmail" xml:space="preserve"><value>L'amministratore {0} riceve i codici su un indirizzo esterno ({1}).</value></data>
+  <data name="TwoFactor.AllSuperAdmins" xml:space="preserve"><value>Tutti i super_admin userebbero i codici email ({0}): se il server di posta non funziona nessuno può entrare. Lasciane fuori almeno uno.</value></data>
+  <data name="TwoFactor.BreakGlass" xml:space="preserve"><value>Tieni un amministratore "break-glass" (accesso di emergenza, password robusta conservata offline) fuori dalla 2FA email.</value></data>
+  <data name="TwoFactor.TestOneAdmin" xml:space="preserve"><value>{0} amministratori in questa esecuzione: prova prima su un solo amministratore e verifica che l'email arrivi.</value></data>
+  <data name="TwoFactor.AdminConfirm" xml:space="preserve"><value>Gli script modificano {0} amministratore/i ({1}): conferma due volte prima di generare.</value></data>
+  <data name="TwoFactor.AdminConfirmed" xml:space="preserve"><value>Modifiche a {0} amministratore/i confermate due volte ({1}).</value></data>
+  <data name="TwoFactor.EmptyFile" xml:space="preserve"><value>Il file è vuoto.</value></data>
+  <data name="TwoFactor.MissingColumn" xml:space="preserve"><value>Manca la colonna "{0}".</value></data>
+  <data name="TwoFactor.InvalidAction" xml:space="preserve"><value>Azione sconosciuta "{0}" (set, modifica, rimuovi, abilita2fa, disabilita2fa).</value></data>
+  <data name="TwoFactor.InvalidScope" xml:space="preserve"><value>Ambito sconosciuto "{0}" (utente o admin).</value></data>
+  <data name="TwoFactor.Report.Title" xml:space="preserve"><value>Autenticazione a due fattori via email - report</value></data>
+  <data name="TwoFactor.Report.Source" xml:space="preserve"><value>Backup sorgente</value></data>
+  <data name="TwoFactor.Report.Summary" xml:space="preserve"><value>Account modificati: {0} (amministratori: {1}, nuovi utenti locali: {2}). Righe saltate: {3}.</value></data>
+  <data name="TwoFactor.Report.Passwords" xml:space="preserve"><value>Password di {0} nuovi utenti: solo nel file cifrato, mai in questo report.</value></data>
+  <data name="TwoFactor.Report.Accounts" xml:space="preserve"><value>Account</value></data>
+  <data name="TwoFactor.Report.Changes" xml:space="preserve"><value>Modifiche</value></data>
+  <data name="TwoFactor.Report.Findings" xml:space="preserve"><value>Controlli</value></data>
+  <data name="TwoFactor.Report.Col.Kind" xml:space="preserve"><value>Tipo account</value></data>
+  <data name="TwoFactor.Report.Col.Name" xml:space="preserve"><value>Nome</value></data>
+  <data name="TwoFactor.Report.Col.Type" xml:space="preserve"><value>Autenticazione</value></data>
+  <data name="TwoFactor.Report.Col.Server" xml:space="preserve"><value>Server remoto</value></data>
+  <data name="TwoFactor.Report.Col.Action" xml:space="preserve"><value>Azione</value></data>
+  <data name="TwoFactor.Report.Col.EmailBefore" xml:space="preserve"><value>Email prima</value></data>
+  <data name="TwoFactor.Report.Col.EmailAfter" xml:space="preserve"><value>Email dopo</value></data>
+  <data name="TwoFactor.Report.Col.TwoFactorBefore" xml:space="preserve"><value>2FA prima</value></data>
+  <data name="TwoFactor.Report.Col.TwoFactorAfter" xml:space="preserve"><value>2FA dopo</value></data>
+  <data name="TwoFactor.Report.Col.Severity" xml:space="preserve"><value>Livello</value></data>
+  <data name="TwoFactor.Report.Col.Row" xml:space="preserve"><value>Riga</value></data>
+  <data name="TwoFactor.Report.Col.Message" xml:space="preserve"><value>Messaggio</value></data>
+  <data name="TwoFactor.Report.Created" xml:space="preserve"><value>creato</value></data>
+  <data name="TwoFactor.Report.Modified" xml:space="preserve"><value>modificato</value></data>
+  <data name="TwoFactor.Report.Admin" xml:space="preserve"><value>amministratore</value></data>
+  <data name="TwoFactor.Report.User" xml:space="preserve"><value>utente locale</value></data>
+  <data name="TwoFactor.Report.Severity.Info" xml:space="preserve"><value>Informazione</value></data>
+  <data name="TwoFactor.Report.Severity.Warning" xml:space="preserve"><value>Avviso</value></data>
+  <data name="TwoFactor.Report.Severity.NeedsConfirmation" xml:space="preserve"><value>Da confermare</value></data>
+  <data name="TwoFactor.Report.Severity.Error" xml:space="preserve"><value>Errore</value></data>
+  <data name="TwoFactor.Report.Disclaimer" xml:space="preserve"><value>Generato da Shiftwall, offline. Prova in laboratorio prima della produzione; conserva gli script di rollback.</value></data>
 </root>

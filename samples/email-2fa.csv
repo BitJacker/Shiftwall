@@ -1,0 +1,8 @@
+username,email,tipo,server_remoto,azione,ambito,vdom
+user0001,user0001@example.com,,,set,utente,
+user0002,,,,set,utente,
+user0007,,,,abilita2fa,utente,
+user0008,nuova.email@example.com,,,modifica,utente,
+user0009,,,,rimuovi,utente,
+anna.verdi,anna.verdi@example.com,ldap,AD-LAB,set,utente,
+netops,it-security@example.com,,,abilita2fa,admin,
