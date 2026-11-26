@@ -377,4 +377,10 @@
   <data name="RB-075" xml:space="preserve">
     <value>Policy {0} had security profiles ({1}) but utm-status was not enabled on the source (5.2 default: disable, CLI Reference 5.2 p. 100), so they were not applied: the policy is rebuilt without profiles, as it worked.</value>
   </data>
+  <data name="RB-076" xml:space="preserve">
+    <value>LDAP users of the SSL VPN ({0}, server {1}) cannot log in to the IPsec dial-up as it is: with IKEv2 FortiClient must use EAP-TTLS against an LDAPS server, which needs the CA certificate of the AD server imported, 'set secure ldaps' and 'set ca-cert' on the LDAP server, FortiClient 7.4.3 or later and the configuration synchronised from FortiClient EMS (Administration Guide 8.0.2, Add LDAP user authentication). LDAP servers without LDAPS: {2}. Configure it by hand before giving the VPN to these users.</value>
+  </data>
+  <data name="RB-077" xml:space="preserve">
+    <value>The SSL VPN portal {0} had web mode enabled: web mode (now Agentless VPN) is not available on {1} with FortiOS 8.0 (Release Notes 8.0.2) and is not migrated. Users who connected from a browser need FortiClient.</value>
+  </data>
 </root>

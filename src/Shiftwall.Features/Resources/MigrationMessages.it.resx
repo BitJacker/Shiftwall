@@ -377,4 +377,10 @@
   <data name="RB-075" xml:space="preserve">
     <value>La policy {0} aveva profili di sicurezza ({1}) ma sulla sorgente utm-status non era attivo (default 5.2: disable, CLI Reference 5.2 p. 100), quindi non venivano applicati: la policy è ricostruita senza profili, come funzionava.</value>
   </data>
+  <data name="RB-076" xml:space="preserve">
+    <value>Gli utenti LDAP della SSL VPN ({0}, server {1}) così non entrano nel dial-up IPsec: con IKEv2 FortiClient deve usare EAP-TTLS verso un server LDAPS. Servono il certificato della CA del server AD importato, 'set secure ldaps' e 'set ca-cert' sul server LDAP, FortiClient 7.4.3 o successivo e la configurazione sincronizzata da FortiClient EMS (Administration Guide 8.0.2, Add LDAP user authentication). Server LDAP senza LDAPS: {2}. Configuralo a mano prima di dare la VPN a questi utenti.</value>
+  </data>
+  <data name="RB-077" xml:space="preserve">
+    <value>Il portale SSL VPN {0} aveva il web mode attivo: il web mode (oggi Agentless VPN) non esiste sul {1} con FortiOS 8.0 (Release Notes 8.0.2) e non viene migrato. Chi si collegava dal browser deve usare FortiClient.</value>
+  </data>
 </root>

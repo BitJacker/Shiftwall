@@ -102,3 +102,16 @@ public sealed class VerifierFindingsTests
         Assert.DoesNotContain(twice.Changes, c => c.Name == "sw2" && c.Ports.Contains("lan1"));
     }
 }
+
+/// <summary>Findings of the independent review: what the SSL VPN loses on the way to the dial-up.</summary>
+public sealed class ReviewFindingsTests
+{
+    [Fact]
+    public void LdapUsersAndWebMode_AreReportedWithTheirSources()
+    {
+        var r = RebuildEngine.Run(RebuildFixtures.Office110C());
+        var ldap = Assert.Single(r.Findings, f => f.Code == RebuildCodes.LdapDialupNeedsLdaps);
+        Assert.Equal(["anna.bianchi", "AD-Ufficio", "AD-Ufficio"], ldap.Arguments);
+        Assert.Contains(r.Findings, f => f.Code == RebuildCodes.WebModeLost && f.Arguments[0] == "full-access");
+    }
+}

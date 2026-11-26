@@ -109,6 +109,9 @@ with what is weak.
 | CLI of the dial-up tunnel (IKEv2, EAP, mode-cfg, proposals `aes128-sha256 aes256-sha256 aes128gcm-prfsha256 aes256gcm-prfsha384 chacha20poly1305-prfsha256`, DH 20 21, split include, `assign-ip-from name`) | [8.0.2 Administration Guide: FortiClient as dialup client](https://docs.fortinet.com/document/fortigate/8.0.2/administration-guide/785501/forticlient-as-dialup-client) (the page writes `es128-sha256`, an evident typo for `aes128-sha256`, which is the value in the 8.0 CLI Reference) |
 | `dns-mode manual` with `ipv4-dns-server1/2` when the SSL VPN had DNS servers (the guide example uses `dns-mode auto`) | 8.0 CLI Reference, `vpn ipsec phase1-interface` |
 | FortiClient 7.4.4 and later do not support IKEv1 | SSL VPN to IPsec VPN migration, Part 2 |
+| LDAP users on the IKEv2 dial-up: FortiClient must use EAP-TTLS against an LDAPS server (CA of the AD server, `set secure ldaps`, `set ca-cert`), FortiClient 7.4.3 or later, configuration synchronised from FortiClient EMS (RB-076) | [8.0.2 Administration Guide: Add LDAP user authentication](https://docs.fortinet.com/document/fortigate/8.0.2/administration-guide/173316/add-ldap-user-authentication) |
+| Web mode (Agentless VPN) not available on 2 GB models: not migrated (RB-077) | [8.0.2 Release Notes: Agentless VPN not supported on some models](https://docs.fortinet.com/document/fortigate/8.0.2/fortios-release-notes/877104/agentless-vpn-formerly-ssl-vpn-web-mode-not-supported-on-some-fortigate-series-models) |
+| 5.2 policy: `utm-status` default `disable` (p. 100), `ssl-ssh-profile` no default (p. 99) | FortiOS 5.2 CLI Reference PDF |
 
 ## Script format and loading
 

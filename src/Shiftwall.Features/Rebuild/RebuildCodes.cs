@@ -78,4 +78,6 @@ public static class RebuildCodes
     public const string ReusedTypedCredential = "RB-073";
     public const string DuplicateVlan = "RB-074";
     public const string ProfilesInactiveOnSource = "RB-075";
+    public const string LdapDialupNeedsLdaps = "RB-076";
+    public const string WebModeLost = "RB-077";
 }

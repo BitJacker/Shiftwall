@@ -16,6 +16,11 @@ FortiGate 40F vero (o in parte su una FortiGate-VM, vedi `docs/LAB-TEST.md`) pri
 | Script GUI: dimensione massima di un file e comportamento in caso di errore a metà | Non documentato nelle fonti trovate; Shiftwall tiene le parti piccole (max 800 righe) | Annotare i Return code di ogni parte |
 | Fine riga e codifica accettate da "Run Script" | Shiftwall scrive LF e UTF-8 senza BOM; non trovata una fonte che lo fissi | Esecuzione delle parti sul 40F |
 | `execute batch` | Esiste ma il comportamento non è documentato: Shiftwall non lo usa | — |
+| Se "Run Script" completa la parte anche quando la sessione HTTPS cade a metà | Non documentato | Eseguire le parti di gestione dalla console o annotare cosa succede |
+| Server DHCP di fabbrica: id e interfacce (`delete 1` sul server di `lan`) | Dalla fixture sintetica; con il backup vero Shiftwall usa gli id veri e non li riusa | `show system dhcp server` sul 40F prima di eseguire |
+| Ispezione SSL della policy 1: la 5.2 non ha un default per `ssl-ssh-profile` (p. 99), la 8.0 usa `no-inspection` | Non è documentato se in 5.2 l'HTTPS veniva comunque ispezionato, né quanto il web filter flow filtri HTTPS senza ispezione | Provare la navigazione HTTPS su un sito bloccato; se serve, `set ssl-ssh-profile "certificate-inspection"` |
+| Contenuto del profilo web filter `default` della 8.0 | La documentazione elenca solo il nome | Controllare il profilo sul 40F e ricreare `Ufficio-Web` se serve |
+| DPD del tunnel sito-sito: in 5.2 `dpd enable` con intervallo 5 s, in 8.0 `on-demand` e intervallo non specificato nella CLI Reference | Nessuna fonte per l'intervallo 8.0 | Verificare con l'altra sede che il tunnel si rialzi |
 
 ## Traduzioni con limiti noti
 

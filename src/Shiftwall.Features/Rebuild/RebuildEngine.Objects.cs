@@ -745,8 +745,37 @@ public sealed partial class RebuildEngine
         }
     }
 
+    /// <summary>
+    /// What the SSL VPN loses on the way to the IPsec dial-up: LDAP users need EAP-TTLS with an LDAPS server (Administration
+    /// Guide 8.0.2, Add LDAP user authentication), and web mode does not exist on 2 GB models (Release Notes 8.0.2).
+    /// </summary>
+    private void SslVpnLosses(ConfigDocument doc, SslVpnInfo ssl)
+    {
+        if (!ssl.Present || !_opt.ConvertSslVpn) return;
+        var groups = ssl.Policies.SelectMany(p => p.Field("groups")?.Values ?? []).ToHashSet(StringComparer.Ordinal);
+        var members = BlocksOf(doc, "user group").SelectMany(b => b.Entries).Where(g => groups.Contains(g.Key)).SelectMany(g => g.Field("member")?.Values ?? []).ToHashSet(StringComparer.Ordinal);
+        var ldapServers = BlocksOf(doc, "user ldap").SelectMany(b => b.Entries).ToDictionary(e => e.Key, StringComparer.Ordinal);
+        var ldapUsers = BlocksOf(doc, "user local").SelectMany(b => b.Entries)
+            .Where(u => members.Contains(u.Key) && u.Field("type")?.Values.FirstOrDefault() == "ldap").ToList();
+        var servers = ldapUsers.Select(u => u.Field("ldap-server")?.Values.FirstOrDefault()).Concat(members.Where(ldapServers.ContainsKey))
+            .OfType<string>().Distinct(StringComparer.Ordinal).ToList();
+        var plain = servers.Where(n => ldapServers.TryGetValue(n, out var e) && e.Field("secure")?.Values.FirstOrDefault() != "ldaps").ToList();
+        if (servers.Count > 0)
+        {
+            _findings.Add(MigrationFinding.Warning(RebuildCodes.LdapDialupNeedsLdaps,
+                string.Join(", ", ldapUsers.Select(u => u.Key).DefaultIfEmpty("-")), string.Join(", ", servers), plain.Count > 0 ? string.Join(", ", plain) : "-"));
+        }
+
+        var webMode = BlocksOf(doc, "vpn ssl web portal").SelectMany(b => b.Entries).Where(p => p.Field("web-mode")?.Values.FirstOrDefault() == "enable").Select(p => p.Key).ToList();
+        if (webMode.Count > 0)
+        {
+            _findings.Add(MigrationFinding.Warning(RebuildCodes.WebModeLost, string.Join(", ", webMode), _req.Target.ModelId ?? "?"));
+        }
+    }
+
     private void AddFindings(SslVpnInfo ssl)
     {
+        SslVpnLosses(_req.Source, ssl);
         WeakVpnFindings();
         CheckVlanIds();
         foreach (var g in _secrets.Where(x => !x.Generated && x.Category is SecretCategory.VpnPsk or SecretCategory.Admin or SecretCategory.LocalUser).GroupBy(x => x.Category).Where(g => g.Count() > 1))
