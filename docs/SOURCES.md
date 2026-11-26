@@ -20,6 +20,12 @@ Accepted hosts: `docs.fortinet.com`, `www.fortinet.com`, `community.fortinet.com
 The sources of the toolbox (security audit rules, CSV import, anonymization, Backup from LAN and the Email 2FA
 page: CLI syntax per FortiOS version, REST endpoints, timers) are in [toolbox-sources.md](toolbox-sources.md).
 
+## Rebuild mode
+
+The CLI schemas (data/schemas), the translation rules between versions (data/rules) and every official page
+used by the rebuild mode (special notices of the target, SSL VPN to IPsec migration, script loading, CLI special
+characters, password policy) are listed in [rebuild-sources.md](rebuild-sources.md).
+
 ## Upgrade paths
 
 Fortinet publishes supported upgrade paths only through the interactive Upgrade Path Tool. Shiftwall does not scrape it and lists no paths: the app opens the official tool in the browser instead.

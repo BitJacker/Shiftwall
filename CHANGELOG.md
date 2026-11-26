@@ -7,6 +7,11 @@ The format is based on [Keep a Changelog 1.1.0](https://keepachangelog.com/en/1.
 
 ## [Unreleased]
 
+### Fixed
+
+- Email 2FA: generated passwords could contain `?` and `#`, which cannot be typed or pasted as is in the FortiOS CLI.
+  They now use the same CLI-safe generator as the rebuild mode.
+
 ## [0.1.0] - not yet released (pre-release)
 
 First public version, published as a GitHub pre-release. The date is set when the `v0.1.0` tag is created, after
@@ -20,6 +25,13 @@ testing in a lab.
   the `config-version` section of the header only, validation of the result, before/after diff, HTML report,
   print/PDF and a manual checklist. Mapping templates can be saved and reused. The interface mapping is suggested by
   name and role (WAN to WAN, LAN ports in order, e.g. FortiGate 50E `lan1` → 60F `internal1`) and must be checked.
+- Rebuild mode for different FortiOS versions, first pair 5.2 → 8.0: CLI schemas built from the official CLI
+  Reference (`tools/cli-schema`), translation rules with sources (`data/rules`) and a test that fails when a schema
+  difference has no rule; output checked on the target schema, objects written in dependency order with the
+  management interface last, references checked before export, final lint before saving; scripts for the GUI (Run
+  Script) and for the terminal; passwords typed or generated per migration and saved only encrypted; SSL VPN tunnel
+  mode converted to IPsec dial-up (FortiClient, IKEv2, EAP); interface mapping with logical targets (e.g. the `lan`
+  switch of a 40F) and per-interface addressing (kept, static, DHCP). Guides: `docs/load-scripts.md`, `docs/LAB-TEST.md`.
 - Batch conversion of several sites with the same mapping template, with a simulation mode.
 - Model database with 112 models (desktop to data center, from the Hardware Acceleration guide) and 96 FortiOS releases (6.2.0 – 8.0.2). Every datum cites its official Fortinet
   source and verification date; unverified data shows a warning. An updated database can be imported and is validated

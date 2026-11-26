@@ -42,6 +42,13 @@ ufficiale Fortinet.
   da verificare a mano.
 - Template di mappatura riutilizzabili e conversione in blocco di più sedi, con modalità simulazione.
 - I valori `ENC` (password, chiavi pre-condivise, chiavi private) sono copiati byte per byte e verificati dopo.
+- **Modalità ricostruzione** per versioni di FortiOS diverse (prima coppia: **5.2 → 8.0**, es. FortiGate 110C → 40F):
+  la configurazione viene riscritta come script CLI pulito con la sintassi della destinazione. Ogni parametro passa da
+  regole di traduzione con fonti ufficiali ed è controllato sullo schema CLI della versione di destinazione; quello
+  che non passa va in "da fare a mano" con il motivo. I valori `ENC` non vengono mai copiati: le password si scrivono
+  due volte oppure vengono generate nuove per ogni migrazione, mostrate una volta e salvate solo cifrate. La SSL VPN
+  diventa IPsec dial-up per FortiClient. Due versioni: parti numerate per la GUI (Run Script) e blocchi piccoli per il
+  terminale. Vedi [docs/load-scripts.md](docs/load-scripts.md) e [docs/LAB-TEST.md](docs/LAB-TEST.md).
 
 ### Toolbox
 

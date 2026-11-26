@@ -39,6 +39,13 @@ never leave your PC, and every model datum it uses comes from an official Fortin
 - Validates the result, shows a before/after diff, exports an HTML report, prints to PDF and produces a manual checklist.
 - Reusable mapping templates and batch conversion of many sites, with a simulation mode.
 - `ENC` values (passwords, pre-shared keys, private keys) are copied byte for byte and checked afterwards.
+- **Rebuild mode** for different FortiOS versions (first pair: **5.2 → 8.0**, e.g. FortiGate 110C → 40F): the
+  configuration is rewritten as a clean CLI script in the target syntax. Every parameter goes through translation
+  rules with official sources and is checked on the CLI schema of the target version; what does not pass is listed
+  "to do by hand" with the reason. `ENC` values are never copied: passwords are typed twice or generated new for each
+  migration, shown once and saved only encrypted. SSL VPN becomes IPsec dial-up for FortiClient. Two deliverables:
+  numbered parts for the GUI (Run Script) and small blocks for the terminal. See [docs/load-scripts.md](docs/load-scripts.md)
+  and [docs/LAB-TEST.md](docs/LAB-TEST.md).
 
 ### Toolbox
 
@@ -243,7 +250,9 @@ Generated from the bundled database. Every datum has an official Fortinet source
 
 ## Known limits
 
-- Source and target must run the same FortiOS version: Shiftwall does not translate syntax between versions.
+- Restore mode needs the same FortiOS version on source and target. Rebuild mode covers 5.2 → 8.0 only for now
+  (interfaces, zones, objects, VIPs, users, IPsec, routes, policies, DHCP, DNS, administrators); security profiles and
+  other sections are listed for manual work. It has not been run on a real FortiGate yet: test it in a lab first.
 - Encrypted, YAML or password-masked backups cannot be used.
 - Factory-default switch membership is not documented publicly for most models: load the factory-default backup.
 - Upgrade paths are not computed; Fortinet's upgrade tool is linked instead.
