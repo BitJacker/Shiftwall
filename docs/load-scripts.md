@@ -41,8 +41,13 @@ Source: FortiOS 8.0.2 Administration Guide, [Configuration scripts](https://docs
 3. Click **Run Script**, select `gui-001-….txt` and click **OK**. The script runs immediately and the
    **Script Execution History** table shows whether it ran successfully.
 4. Repeat with `gui-002`, `gui-003`… **in order**. Stop at the first part that fails and read the error (below).
-5. The part called `management` changes the interface you are connected to: after it the connection drops.
-   Reconnect to the new address and run the last part (`management-dhcp`).
+5. Where the connection drops depends on the port your PC is on:
+   - the first part (`switch`) takes ports out of the factory switch: if your PC is on one of them, the connection drops
+     at once. Before starting, connect the PC to a port that the report does not list as removed (or use the console);
+   - the part `management` changes the new management interface; the part `factory-management` (only when the plan
+     changes the interface you are connected to on the factory configuration, e.g. `lan`) comes after it, and after it
+     the connection drops. Move the cable to a port of the new management interface, give the PC a static address in
+     its subnet, reconnect to the new address and run the last part (`management-dhcp`).
 
 ## Option 2: terminal (CLI Console or SSH)
 
@@ -52,8 +57,9 @@ Source: FortiOS 8.0.2 Administration Guide, [Connecting to the CLI](https://docs
 - **SSH (e.g. PuTTY)**: SSH must be allowed on the interface you connect to; host = its IP address, port 22.
 
 Open `cli-001-….txt` in a text editor, copy the whole block, paste it in the console and press Enter. Wait for the
-prompt, check that no error was printed, then go on with `cli-002`. When you reach the `management` block, the
-session drops after the address change: reconnect to the new address and paste the last block.
+prompt, check that no error was printed, then go on with `cli-002`. The session drops at the `management` or
+`factory-management` block (or at the first block, if your PC is on a port taken out of a switch): reconnect as described
+in step 5 of the GUI procedure and paste the remaining blocks.
 
 Shiftwall does not use `execute batch start` / `execute batch end`: the command exists in the
 [FortiOS 8.0 CLI Reference](https://docs.fortinet.com/document/fortigate/8.0.0/cli-reference/219031151/execute-batch),
