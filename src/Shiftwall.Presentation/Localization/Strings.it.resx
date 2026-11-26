@@ -634,4 +634,70 @@ Confronta l'impronta con quella mostrata dal FortiGate (Sistema › Certificati)
   <data name="Rebuild.Hide" xml:space="preserve">
     <value>Le ho salvate: nascondi</value>
   </data>
+  <data name="Rebuild.Switch.Action" xml:space="preserve">
+    <value>Switch</value>
+  </data>
+  <data name="Rebuild.Switch.Map" xml:space="preserve">
+    <value>Mappa su un'interfaccia esistente</value>
+  </data>
+  <data name="Rebuild.Switch.Recreate" xml:space="preserve">
+    <value>Ricrea sulla destinazione</value>
+  </data>
+  <data name="Rebuild.Switch.Split" xml:space="preserve">
+    <value>Spezza in porte separate</value>
+  </data>
+  <data name="Rebuild.Switch.Hardware" xml:space="preserve">
+    <value>Switch hardware, porte: {0}</value>
+  </data>
+  <data name="Rebuild.Switch.Software" xml:space="preserve">
+    <value>Software switch, porte: {0}</value>
+  </data>
+  <data name="Rebuild.Switch.Internal" xml:space="preserve">
+    <value>Switch interno (modalità switch, default della 5.2): il backup non elenca le porte</value>
+  </data>
+  <data name="Rebuild.Switch.NoMembers" xml:space="preserve">
+    <value>non elencate nel backup</value>
+  </data>
+  <data name="Rebuild.Switch.SplitHint" xml:space="preserve">
+    <value>La prima porta scelta prende l'indirizzo; le altre restano senza.</value>
+  </data>
+  <data name="Rebuild.Create.Title" xml:space="preserve">
+    <value>Crea sulla destinazione come</value>
+  </data>
+  <data name="Rebuild.Create.Switch" xml:space="preserve">
+    <value>Switch (Shiftwall sceglie hardware o software)</value>
+  </data>
+  <data name="Rebuild.Create.Hardware" xml:space="preserve">
+    <value>Switch hardware</value>
+  </data>
+  <data name="Rebuild.Create.Software" xml:space="preserve">
+    <value>Software switch</value>
+  </data>
+  <data name="Rebuild.Create.Vlan" xml:space="preserve">
+    <value>VLAN</value>
+  </data>
+  <data name="Rebuild.Create.Ports" xml:space="preserve">
+    <value>Porte della destinazione</value>
+  </data>
+  <data name="Rebuild.Create.Parent" xml:space="preserve">
+    <value>Interfaccia padre</value>
+  </data>
+  <data name="Rebuild.Create.VlanId" xml:space="preserve">
+    <value>VLAN ID</value>
+  </data>
+  <data name="Rebuild.Port.Free" xml:space="preserve">
+    <value>libera</value>
+  </data>
+  <data name="Rebuild.Port.InSwitch" xml:space="preserve">
+    <value>nello switch {0}</value>
+  </data>
+  <data name="Rebuild.Port.Used" xml:space="preserve">
+    <value>usata da {0}</value>
+  </data>
+  <data name="Rebuild.Port.ChosenBy" xml:space="preserve">
+    <value>→ {0}</value>
+  </data>
+  <data name="Rebuild.Port.Switch" xml:space="preserve">
+    <value>switch: {0}</value>
+  </data>
 </root>

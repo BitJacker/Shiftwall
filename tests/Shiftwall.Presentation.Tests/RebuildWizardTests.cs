@@ -56,6 +56,75 @@ public sealed class RebuildWizardTests : IDisposable
     }
 
     [Fact]
+    public async Task SourceSwitch_IsAnItemOfItsOwn_AndCanBeRecreatedWithChosenPorts()
+    {
+        await LoadAsync();
+        var internalRow = _vm.Row("internal")!;
+        Assert.True(internalRow.IsSwitch);
+        Assert.False(_vm.Row("wan1")!.IsSwitch);
+        Assert.Equal(["a", "lan1", "lan2", "lan3", "wan"], internalRow.PortChoices.Select(p => p.Port));
+        Assert.Contains("nello switch lan", internalRow.PortChoices.Single(p => p.Port == "lan1").Status);
+        Assert.Contains(_vm.TargetPorts, t => t.Name == "lan" && t.Status.Contains("lan1", StringComparison.Ordinal));
+
+        internalRow.Action = SwitchAction.Recreate;
+        Assert.Equal("internal", internalRow.Target);
+        Assert.True(internalRow.ShowsPorts);
+        internalRow.PortChoices.Single(p => p.Port == "lan1").IsChecked = true;
+        internalRow.PortChoices.Single(p => p.Port == "lan2").IsChecked = true;
+        _vm.Row("wan2")!.Target = "lan";
+        _vm.ManagementInterface = "internal";
+        await _vm.ReanalyzeAsync();
+
+        Assert.Contains("→ internal", internalRow.PortChoices.Single(p => p.Port == "lan1").Status);
+        Assert.Contains(_vm.MappingFindings, m => m.Code == RebuildCodes.HardwareSwitchChosen);
+        Assert.DoesNotContain(_vm.MappingFindings, m => m.Severity == ItemSeverity.Error);
+
+        await _vm.RunRebuildAsync();
+        Assert.False(_vm.RebuildResult!.IsBlocked);
+        Assert.Contains("edit \"internal\"\n        set physical-switch \"sw0\"", _vm.RebuildResult.FullScript());
+    }
+
+    [Fact]
+    public async Task SourceSwitch_Split_TakesTheFirstPort_AndBadChoicesShowUpBeforeRunning()
+    {
+        await LoadAsync();
+        var internalRow = _vm.Row("internal")!;
+        internalRow.Action = SwitchAction.Split;
+        internalRow.PortChoices.Single(p => p.Port == "lan1").IsChecked = true;
+        internalRow.PortChoices.Single(p => p.Port == "lan2").IsChecked = true;
+        Assert.Equal("lan1", internalRow.Target);
+        Assert.False(internalRow.CanEditTarget);
+
+        _vm.Row("wan2")!.Target = "lan3"; // the switch "lan" would be left without ports
+        await _vm.ReanalyzeAsync();
+        Assert.Contains(_vm.MappingFindings, m => m.Code == RebuildCodes.SwitchWouldBeEmpty);
+
+        _vm.Row("wan2")!.Target = "lan";
+        await _vm.ReanalyzeAsync();
+        Assert.DoesNotContain(_vm.MappingFindings, m => m.Code == RebuildCodes.SwitchWouldBeEmpty);
+        Assert.Contains(_vm.MappingFindings, m => m.Code == RebuildCodes.SplitPortNoAddress);
+    }
+
+    [Fact]
+    public async Task TypedName_OffersToCreateIt_AsAVlan()
+    {
+        await LoadAsync();
+        var row = _vm.Row("wan2")!;
+        row.Target = "guest";
+        await _vm.ReanalyzeAsync();
+        Assert.True(row.NeedsCreate);
+        Assert.True(row.ShowsAnyKind);
+
+        row.CreateKind = NewInterfaceKind.Vlan;
+        row.VlanParent = "lan";
+        row.VlanId = "30";
+        await _vm.ReanalyzeAsync();
+        Assert.DoesNotContain(_vm.MappingFindings, m => m.Severity == ItemSeverity.Error);
+        await _vm.RunRebuildAsync();
+        Assert.Contains("edit \"guest\"\n        set vdom \"root\"\n        set interface \"lan\"\n        set vlanid 30", _vm.RebuildResult!.FullScript());
+    }
+
+    [Fact]
     public async Task FullFlow_SavesGuiAndTerminalScripts_AndTheEncryptedPasswords()
     {
         await LoadAsync();

@@ -324,7 +324,7 @@ public sealed partial class MigrationWizardViewModel : ObservableObject
 
     private void RebuildPorts()
     {
-        var previous = SourcePorts.ToDictionary(s => s.Name, s => s.Target, StringComparer.Ordinal);
+        var previous = SourcePorts.ToDictionary(s => s.Name, s => (s.Target, s.Action, s.CreateKind, Ports: s.CheckedPorts), StringComparer.Ordinal);
         SourcePorts.Clear();
         TargetPorts.Clear();
         var target = Target.BuildProfile();
@@ -334,13 +334,24 @@ public sealed partial class MigrationWizardViewModel : ObservableObject
         var names = TargetInterfaceNames(target);
         foreach (var t in names) TargetPorts.Add(new TargetPortItem(t));
         var targetNames = names.ToHashSet(StringComparer.Ordinal);
-        var suggested = InterfaceMapping.Suggest(_source.PhysicalInterfaces.Select(p => (p.Name, probe.UsageCount.GetValueOrDefault(p.Name))), names, lanFallback: !IsRebuild);
-        var keepPrevious = previous.Count > 0 && previous.Values.All(v => v is null || targetNames.Contains(v));
-        foreach (var p in _source.PhysicalInterfaces)
+        var rows = IsRebuild ? [.. RebuildSourceRows()] : _source.PhysicalInterfaces.Select(p => (p.Name, (string?)null)).ToList();
+        var suggested = InterfaceMapping.Suggest(rows.Select(r => (r.Name, probe.UsageCount.GetValueOrDefault(r.Name))), names, lanFallback: !IsRebuild);
+        var keepPrevious = previous.Count > 0 && previous.Values.All(v => v.Target is null || targetNames.Contains(v.Target) || v.Action != SwitchAction.Map);
+        var ports = IsRebuild && CurrentRebuildTarget() is { } rt ? SwitchPlanner.PhysicalPorts(rt) : [];
+        foreach (var (name, info) in rows)
         {
-            var row = new SourcePortItem(p.Name, probe.UsageCount.GetValueOrDefault(p.Name));
-            row.Target = keepPrevious && previous.TryGetValue(p.Name, out var prev) ? prev : suggested[p.Name];
-            row.PropertyChanged += OnSourcePortChanged;
+            var row = new SourcePortItem(name, probe.UsageCount.GetValueOrDefault(name), info);
+            var prev = keepPrevious ? previous.GetValueOrDefault(name) : default;
+            var had = keepPrevious && previous.ContainsKey(name);
+            row.Target = had ? prev.Target : suggested[name];
+            if (had)
+            {
+                row.Action = row.IsSwitch ? prev.Action : SwitchAction.Map;
+                row.CreateKind = prev.CreateKind;
+            }
+
+            FillPortChoices(row, ports, had ? prev.Ports : null);
+            HookRow(row);
             SourcePorts.Add(row);
         }
 
@@ -386,9 +397,9 @@ public sealed partial class MigrationWizardViewModel : ObservableObject
             {
                 s.IsBlocking = false;
                 if (s.IsUsed && !s.IsMapped) MappingFindings.Add(MessageItem.From(MigrationFinding.Warning(RebuildCodes.InterfaceNotMapped, s.Name)));
-                if (s.Target is { } t && TargetPorts.All(p => p.Name != t)) MappingFindings.Add(new MessageItem(ItemSeverity.Warning, "RB-TYPED", () => Loc.F("Rebuild.TypedTarget", t)));
             }
 
+            PublishSwitchLayout();
             foreach (var t in TargetPorts) t.AssignedFrom = SourcePorts.FirstOrDefault(s => s.Target == t.Name)?.Name;
         }
         else if (_analysis is not null)

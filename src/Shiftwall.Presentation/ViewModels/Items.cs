@@ -1,3 +1,4 @@
+using System.Collections.ObjectModel;
 using Shiftwall.Core.Config;
 using Shiftwall.Features.Migration;
 using Shiftwall.Presentation.Localization;
@@ -42,11 +43,42 @@ public sealed class MessageItem : ObservableObject
         () => f.Format(Loc.Instance.Culture));
 }
 
-/// <summary>A source physical port in the mapping step.</summary>
-public sealed class SourcePortItem(string name, int uses) : ObservableObject
+/// <summary>What the rebuild does with a logical switch of the source (section 6b).</summary>
+public enum SwitchAction
+{
+    /// <summary>On an interface or switch that already exists on the target.</summary>
+    Map,
+
+    /// <summary>Created again on the target with the chosen ports.</summary>
+    Recreate,
+
+    /// <summary>Each chosen port becomes an interface of its own; the address goes on the first one.</summary>
+    Split,
+}
+
+/// <summary>A target port offered with a checkbox, with what it is now and what the plan does with it.</summary>
+public sealed class PortChoiceItem(string port) : ObservableObject
+{
+    private bool _checked;
+    private string _status = "";
+
+    public string Port { get; } = port;
+
+    public bool IsChecked { get => _checked; set => Set(ref _checked, value); }
+
+    public string Status { get => _status; set => Set(ref _status, value); }
+}
+
+/// <summary>A source interface in the mapping step: a physical port, or a logical switch (rebuild mode).</summary>
+public sealed class SourcePortItem(string name, int uses, string? switchInfo = null) : ObservableObject
 {
     private string? _target;
     private bool _blocking;
+    private SwitchAction _action;
+    private Features.Rebuild.NewInterfaceKind _createKind;
+    private bool _needsCreate;
+    private string _vlanParent = "";
+    private string _vlanId = "";
 
     public string Name { get; } = name;
 
@@ -54,12 +86,17 @@ public sealed class SourcePortItem(string name, int uses) : ObservableObject
 
     public bool IsUsed => Uses > 0;
 
+    /// <summary>Kind and members of a source logical switch, null for a plain port.</summary>
+    public string? SwitchInfo { get; } = switchInfo;
+
+    public bool IsSwitch => SwitchInfo is not null;
+
     public string? Target
     {
         get => _target;
         set
         {
-            if (Set(ref _target, string.IsNullOrEmpty(value) ? null : value)) OnPropertyChanged(nameof(IsMapped));
+            if (Set(ref _target, string.IsNullOrWhiteSpace(value) ? null : value.Trim())) OnPropertyChanged(nameof(IsMapped));
         }
     }
 
@@ -70,12 +107,77 @@ public sealed class SourcePortItem(string name, int uses) : ObservableObject
 
     /// <summary>Addressing on the target (rebuild mode only).</summary>
     public AddressingItem Addressing { get; } = new();
+
+    public SwitchAction Action
+    {
+        get => _action;
+        set
+        {
+            if (Set(ref _action, value)) RaisePanel();
+        }
+    }
+
+    /// <summary>What a name that does not exist on the target becomes.</summary>
+    public Features.Rebuild.NewInterfaceKind CreateKind
+    {
+        get => _createKind;
+        set
+        {
+            if (Set(ref _createKind, value)) RaisePanel();
+        }
+    }
+
+    /// <summary>The target typed by hand does not exist on the target: the row offers to create it.</summary>
+    public bool NeedsCreate
+    {
+        get => _needsCreate;
+        set
+        {
+            if (Set(ref _needsCreate, value)) RaisePanel();
+        }
+    }
+
+    public string VlanParent { get => _vlanParent; set => Set(ref _vlanParent, value ?? ""); }
+
+    public string VlanId { get => _vlanId; set => Set(ref _vlanId, value ?? ""); }
+
+    public bool IsSplit => IsSwitch && _action == SwitchAction.Split;
+
+    public bool IsRecreate => IsSwitch && _action == SwitchAction.Recreate;
+
+    /// <summary>The target combo is driven by the chosen ports when the switch is split.</summary>
+    public bool CanEditTarget => !IsSplit;
+
+    public bool ShowsPanel => IsRecreate || IsSplit || NeedsCreate;
+
+    /// <summary>Kind choice limited to switches (recreated switch).</summary>
+    public bool ShowsSwitchKind => IsRecreate;
+
+    /// <summary>Kind choice with VLAN (name typed in the manual field).</summary>
+    public bool ShowsAnyKind => !IsRecreate && !IsSplit && NeedsCreate;
+
+    public bool ShowsVlan => ShowsAnyKind && _createKind == Features.Rebuild.NewInterfaceKind.Vlan;
+
+    public bool ShowsPorts => IsSplit || ((IsRecreate || ShowsAnyKind) && _createKind != Features.Rebuild.NewInterfaceKind.Vlan);
+
+    public ObservableCollection<PortChoiceItem> PortChoices { get; } = [];
+
+    public IReadOnlyList<string> CheckedPorts => [.. PortChoices.Where(p => p.IsChecked).Select(p => p.Port)];
+
+    private void RaisePanel()
+    {
+        foreach (var n in new[] { nameof(IsSplit), nameof(IsRecreate), nameof(CanEditTarget), nameof(ShowsPanel), nameof(ShowsSwitchKind), nameof(ShowsAnyKind), nameof(ShowsVlan), nameof(ShowsPorts) })
+        {
+            OnPropertyChanged(n);
+        }
+    }
 }
 
-/// <summary>A target physical port in the mapping step.</summary>
+/// <summary>A target interface in the mapping step, with its state (free, in a switch, used by the factory configuration).</summary>
 public sealed class TargetPortItem(string name) : ObservableObject
 {
     private string? _assignedFrom;
+    private string _status = "";
 
     public string Name { get; } = name;
 
@@ -89,6 +191,8 @@ public sealed class TargetPortItem(string name) : ObservableObject
     }
 
     public bool IsFree => _assignedFrom is null;
+
+    public string Status { get => _status; set => Set(ref _status, value); }
 }
 
 /// <summary>A row of the batch result table.</summary>

@@ -21,6 +21,22 @@ public enum NewInterfaceKind
 /// </summary>
 public sealed record NewInterfacePlan(string Name, NewInterfaceKind Kind, IReadOnlyList<string> Ports, string? Parent = null, int? VlanId = null);
 
+/// <summary>How a logical switch of the source groups its ports.</summary>
+public enum SourceSwitchKind
+{
+    /// <summary>config system virtual-switch, or an interface of type hard-switch.</summary>
+    Hardware,
+
+    /// <summary>config system switch-interface (interface of type switch).</summary>
+    Software,
+
+    /// <summary>The "internal" interface of older models with internal-switch-mode switch or hub (5.2 default: switch, CLI Reference p. 524).</summary>
+    InternalSwitchMode,
+}
+
+/// <summary>A logical switch of the source, with its member ports when the backup lists them.</summary>
+public sealed record SourceSwitch(string Name, SourceSwitchKind Kind, IReadOnlyList<string> Members);
+
 /// <summary>What a target port is before the plan and what the plan does with it.</summary>
 public enum PortState
 {
@@ -332,6 +348,32 @@ public static partial class SwitchPlanner
 
     [GeneratedRegex("^[A-Za-z0-9_.-]+$")]
     private static partial Regex NameRegex();
+
+    /// <summary>Logical switches of the source configuration, each shown as an item of its own in the mapping.</summary>
+    public static IReadOnlyList<SourceSwitch> SourceSwitches(ConfigDocument doc)
+    {
+        ArgumentNullException.ThrowIfNull(doc);
+        var result = new List<SourceSwitch>();
+        foreach (var e in doc.GlobalScope.Block("system virtual-switch")?.Entries ?? [])
+        {
+            result.Add(new SourceSwitch(e.Key, SourceSwitchKind.Hardware, [.. e.Block("port")?.Entries.Select(p => p.Key) ?? []]));
+        }
+
+        foreach (var (name, members) in SoftwareSwitches(doc)) result.Add(new SourceSwitch(name, SourceSwitchKind.Software, members));
+        var declared = InterfaceInventory.Declared(doc);
+        foreach (var i in declared.Where(i => i.Type == "hard-switch" && result.All(r => r.Name != i.Name)))
+        {
+            result.Add(new SourceSwitch(i.Name, SourceSwitchKind.Hardware, []));
+        }
+
+        var mode = doc.GlobalScope.Block("system global")?.Field("internal-switch-mode")?.Values.FirstOrDefault() ?? "switch";
+        if (mode != "interface" && declared.FirstOrDefault(i => i.Name == "internal" && i.Type == "physical") is { } internalPort && result.All(r => r.Name != "internal"))
+        {
+            result.Add(new SourceSwitch(internalPort.Name, SourceSwitchKind.InternalSwitchMode, []));
+        }
+
+        return result;
+    }
 
     /// <summary>Software switches of the factory-default backup (config system switch-interface).</summary>
     public static Dictionary<string, List<string>> SoftwareSwitches(ConfigDocument? backup)

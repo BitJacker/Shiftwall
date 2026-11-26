@@ -178,13 +178,7 @@ public sealed partial class MigrationWizardViewModel
         IsBusy = true;
         try
         {
-            var plans = SourcePorts.Select(s => new InterfacePlan(
-                s.Name,
-                s.Target,
-                s.Addressing.Mode,
-                s.Addressing.Address,
-                string.IsNullOrWhiteSpace(s.Addressing.Gateway) ? null : s.Addressing.Gateway.Trim(),
-                s.Addressing.NameServers.Split([' ', ',', ';'], StringSplitOptions.RemoveEmptyEntries))).ToList();
+            var (plans, created) = BuildPlans();
             var secrets = new SecretPlan
             {
                 Generate = _generatePasswords,
@@ -196,7 +190,8 @@ public sealed partial class MigrationWizardViewModel
                 RebuildTargets.From(target, Target.IsBackupMode ? Target.Backup?.Document : null),
                 plans,
                 secrets,
-                new RebuildOptions(string.IsNullOrEmpty(_currentAdmin) ? "admin" : _currentAdmin, _managementInterface));
+                new RebuildOptions(string.IsNullOrEmpty(_currentAdmin) ? "admin" : _currentAdmin, _managementInterface),
+                created);
             _rebuild = await Task.Run(() => RebuildEngine.Run(request));
             PublishRebuild();
             SavedPath = null;

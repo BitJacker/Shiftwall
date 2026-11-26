@@ -187,6 +187,8 @@
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
                                                 <TextBlock VerticalAlignment="Center" FontFamily="{StaticResource MonoFont}">
                                                     <Run Text="{Binding Name, Mode=OneWay}" />
@@ -194,13 +196,19 @@
                                                 <TextBlock Grid.Column="1" VerticalAlignment="Center" FontSize="12" Style="{StaticResource Muted}">
                                                     <Run Text="{Binding Uses, Mode=OneWay}" /> <Run Text="{l:T Wizard.Mapping.Uses}" />
                                                 </TextBlock>
-                                                <ComboBox Grid.Column="2" Margin="6,0" IsEditable="True"
+                                                <ComboBox Grid.Column="2" Margin="6,0" IsEditable="True" IsEnabled="{Binding CanEditTarget}"
                                                           ItemsSource="{Binding DataContext.TargetChoices, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                                           Text="{Binding Target, UpdateSourceTrigger=LostFocus}" AutomationProperties.Name="{Binding Name}" />
+                                                <WrapPanel Grid.Row="1" Grid.ColumnSpan="4" Margin="0,4,0,0" Visibility="{Binding IsSwitch, Converter={StaticResource BoolToVisibility}}">
+                                                    <TextBlock Text="{Binding SwitchInfo}" FontSize="12" Style="{StaticResource Muted}" VerticalAlignment="Center" TextWrapping="Wrap" Margin="0,0,8,0" MaxWidth="420" />
+                                                    <ComboBox Width="250" DisplayMemberPath="Text" SelectedValuePath="Value" SelectedValue="{Binding Action}"
+                                                              ItemsSource="{Binding DataContext.SwitchActionChoices, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                              ToolTip="{l:T Rebuild.Switch.Action}" AutomationProperties.Name="{l:T Rebuild.Switch.Action}" />
+                                                </WrapPanel>
                                                 <Button Grid.Column="3" Command="{Binding DataContext.UnmapCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                                         CommandParameter="{Binding}" ToolTip="{l:T Wizard.Mapping.Unmap}" Padding="6,2"
                                                         FontFamily="{StaticResource IconFont}" Content="&#xE711;" AutomationProperties.Name="{l:T Wizard.Mapping.Unmap}" />
-                                                <WrapPanel Grid.Row="1" Grid.ColumnSpan="4" Margin="0,4,0,2"
+                                                <WrapPanel Grid.Row="2" Grid.ColumnSpan="4" Margin="0,4,0,2"
                                                            Visibility="{Binding DataContext.IsRebuild, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BoolToVisibility}}">
                                                     <ComboBox Width="150" Margin="0,0,6,0" DisplayMemberPath="Text" SelectedValuePath="Value" SelectedValue="{Binding Addressing.Mode}"
                                                               ItemsSource="{Binding DataContext.AddressingChoices, RelativeSource={RelativeSource AncestorType=UserControl}}"
@@ -214,6 +222,49 @@
                                                         <TextBox Width="140" Text="{Binding Addressing.NameServers, UpdateSourceTrigger=LostFocus}" AutomationProperties.Name="{l:T Rebuild.Dns}" />
                                                     </StackPanel>
                                                 </WrapPanel>
+                                                <Border Grid.Row="3" Grid.ColumnSpan="4" Margin="0,4,0,2" Padding="8" CornerRadius="4" BorderThickness="1"
+                                                        BorderBrush="{StaticResource SubtleBorderBrush}" Visibility="{Binding ShowsPanel, Converter={StaticResource BoolToVisibility}}">
+                                                    <StackPanel>
+                                                        <WrapPanel Visibility="{Binding IsSplit, Converter={StaticResource InverseBoolToVisibility}}">
+                                                            <TextBlock FontSize="12" VerticalAlignment="Center" Margin="0,0,6,0">
+                                                                <Run Text="{l:T Rebuild.Create.Title}" /> <Run Text="'" /><Run Text="{Binding Target, Mode=OneWay}" FontFamily="{StaticResource MonoFont}" /><Run Text="'" />
+                                                            </TextBlock>
+                                                            <ComboBox Width="300" DisplayMemberPath="Text" SelectedValuePath="Value" SelectedValue="{Binding CreateKind}"
+                                                                      Visibility="{Binding ShowsSwitchKind, Converter={StaticResource BoolToVisibility}}"
+                                                                      ItemsSource="{Binding DataContext.SwitchKindChoices, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                                      AutomationProperties.Name="{l:T Rebuild.Create.Title}" />
+                                                            <ComboBox Width="300" DisplayMemberPath="Text" SelectedValuePath="Value" SelectedValue="{Binding CreateKind}"
+                                                                      Visibility="{Binding ShowsAnyKind, Converter={StaticResource BoolToVisibility}}"
+                                                                      ItemsSource="{Binding DataContext.CreateKindChoices, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                                      AutomationProperties.Name="{l:T Rebuild.Create.Title}" />
+                                                        </WrapPanel>
+                                                        <TextBlock Text="{l:T Rebuild.Switch.SplitHint}" FontSize="12" Style="{StaticResource Muted}" TextWrapping="Wrap"
+                                                                   Visibility="{Binding IsSplit, Converter={StaticResource BoolToVisibility}}" />
+                                                        <WrapPanel Margin="0,6,0,0" Visibility="{Binding ShowsVlan, Converter={StaticResource BoolToVisibility}}">
+                                                            <TextBlock Text="{l:T Rebuild.Create.Parent}" FontSize="12" VerticalAlignment="Center" Margin="0,0,4,0" />
+                                                            <ComboBox Width="150" IsEditable="True" Margin="0,0,10,0" Text="{Binding VlanParent, UpdateSourceTrigger=LostFocus}"
+                                                                      ItemsSource="{Binding DataContext.TargetChoices, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                                      AutomationProperties.Name="{l:T Rebuild.Create.Parent}" />
+                                                            <TextBlock Text="{l:T Rebuild.Create.VlanId}" FontSize="12" VerticalAlignment="Center" Margin="0,0,4,0" />
+                                                            <TextBox Width="70" Text="{Binding VlanId, UpdateSourceTrigger=LostFocus}" AutomationProperties.Name="{l:T Rebuild.Create.VlanId}" />
+                                                        </WrapPanel>
+                                                        <StackPanel Margin="0,6,0,0" Visibility="{Binding ShowsPorts, Converter={StaticResource BoolToVisibility}}">
+                                                            <TextBlock Text="{l:T Rebuild.Create.Ports}" FontSize="12" FontWeight="SemiBold" Margin="0,0,0,2" />
+                                                            <ItemsControl ItemsSource="{Binding PortChoices}">
+                                                                <ItemsControl.ItemTemplate>
+                                                                    <DataTemplate DataType="{x:Type vm:PortChoiceItem}">
+                                                                        <DockPanel Margin="0,1">
+                                                                            <CheckBox IsChecked="{Binding IsChecked}" Width="90" AutomationProperties.Name="{Binding Port}">
+                                                                                <TextBlock Text="{Binding Port}" FontFamily="{StaticResource MonoFont}" />
+                                                                            </CheckBox>
+                                                                            <TextBlock Text="{Binding Status}" FontSize="12" Style="{StaticResource Muted}" TextWrapping="Wrap" VerticalAlignment="Center" />
+                                                                        </DockPanel>
+                                                                    </DataTemplate>
+                                                                </ItemsControl.ItemTemplate>
+                                                            </ItemsControl>
+                                                        </StackPanel>
+                                                    </StackPanel>
+                                                </Border>
                                             </Grid>
                                         </Border>
                                         <DataTemplate.Triggers>
@@ -237,10 +288,15 @@
                                                 <ColumnDefinition Width="*" />
                                                 <ColumnDefinition Width="Auto" />
                                             </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
                                             <TextBlock Text="{Binding Name}" FontFamily="{StaticResource MonoFont}" />
                                             <TextBlock Grid.Column="1" FontSize="12" Style="{StaticResource Muted}">
                                                 <Run Text="←" /> <Run Text="{Binding AssignedFrom, Mode=OneWay}" />
                                             </TextBlock>
+                                            <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Status}" FontSize="12" Style="{StaticResource Muted}" TextWrapping="Wrap" />
                                         </Grid>
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>
