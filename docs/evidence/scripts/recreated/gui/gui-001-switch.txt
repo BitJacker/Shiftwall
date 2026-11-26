@@ -1,0 +1,31 @@
+# Shiftwall - 110C to 40F - part 1 of 17 (switch)
+# Run the parts in order: admin menu > Configuration > Scripts > Run Script.
+config system virtual-switch
+    edit "lan"
+        config port
+            delete "lan1"
+            delete "lan2"
+        end
+    next
+end
+config system interface
+    edit "lan1"
+        set mode static
+        set ip 0.0.0.0 0.0.0.0
+    next
+    edit "lan2"
+        set mode static
+        set ip 0.0.0.0 0.0.0.0
+    next
+end
+config system virtual-switch
+    edit "internal"
+        set physical-switch "sw0"
+        config port
+            edit "lan1"
+            next
+            edit "lan2"
+            next
+        end
+    next
+end

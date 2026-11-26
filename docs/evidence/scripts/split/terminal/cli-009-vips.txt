@@ -1,0 +1,16 @@
+config firewall vip
+    edit "VIP-RDP"
+        set extip 203.0.113.11
+        set extintf "wan"
+        set portforward enable
+        set mappedip "192.168.10.20"
+        set extport 3389
+        set mappedport 3389
+    next
+end
+config firewall ippool
+    edit "Pool-Uscita"
+        set startip 203.0.113.12
+        set endip 203.0.113.12
+    next
+end

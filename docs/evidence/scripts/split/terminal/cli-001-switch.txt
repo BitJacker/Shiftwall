@@ -1,0 +1,8 @@
+config system virtual-switch
+    edit "lan"
+        config port
+            delete "lan1"
+            delete "lan2"
+        end
+    next
+end

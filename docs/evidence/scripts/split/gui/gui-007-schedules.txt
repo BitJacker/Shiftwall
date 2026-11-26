@@ -1,0 +1,7 @@
+# Shiftwall - 110C to 40F - part 7 of 17 (schedules)
+# Run the parts in order: admin menu > Configuration > Scripts > Run Script.
+config firewall schedule recurring
+    edit "always"
+        set day sunday monday tuesday wednesday thursday friday saturday
+    next
+end

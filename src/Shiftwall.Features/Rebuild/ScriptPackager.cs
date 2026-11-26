@@ -20,9 +20,9 @@ public static class ScriptPackager
     public const int DefaultGuiMaxLines = 800;
     public const int DefaultTerminalMaxLines = 40;
 
-    public static IReadOnlyList<ScriptFile> ForGui(IReadOnlyList<ScriptSection> sections, string title, int maxLines = DefaultGuiMaxLines)
+    public static IReadOnlyList<ScriptFile> ForGui(IReadOnlyList<ScriptSection> sections, string title, int maxLines = DefaultGuiMaxLines, bool maskSecrets = false)
     {
-        var chunks = Chunk(sections, maxLines);
+        var chunks = Chunk(sections, maxLines, maskSecrets);
         var files = new List<ScriptFile>();
         for (var i = 0; i < chunks.Count; i++)
         {
@@ -37,9 +37,9 @@ public static class ScriptPackager
         return files;
     }
 
-    public static IReadOnlyList<ScriptFile> ForTerminal(IReadOnlyList<ScriptSection> sections, int maxLines = DefaultTerminalMaxLines)
+    public static IReadOnlyList<ScriptFile> ForTerminal(IReadOnlyList<ScriptSection> sections, int maxLines = DefaultTerminalMaxLines, bool maskSecrets = false)
     {
-        var chunks = Chunk(sections, maxLines);
+        var chunks = Chunk(sections, maxLines, maskSecrets);
         return [.. chunks.Select((c, i) => new ScriptFile($"cli-{i + 1:000}-{c.Key}.txt", c.Text, i + 1, chunks.Count, c.Key))];
     }
 
@@ -47,7 +47,7 @@ public static class ScriptPackager
 
     /// <summary>Packs blocks into chunks of at most <paramref name="maxLines"/> lines. A table that does not fit is
     /// split between entries, repeating its config line. Sections are never mixed in one chunk.</summary>
-    private static List<(string Key, string Text)> Chunk(IReadOnlyList<ScriptSection> sections, int maxLines)
+    private static List<(string Key, string Text)> Chunk(IReadOnlyList<ScriptSection> sections, int maxLines, bool mask)
     {
         var result = new List<(string, string)>();
         foreach (var section in sections.Where(s => !s.IsEmpty).OrderBy(s => s.Order))
@@ -64,7 +64,7 @@ public static class ScriptPackager
 
             foreach (var block in section.Blocks)
             {
-                foreach (var piece in Pieces(block, maxLines))
+                foreach (var piece in Pieces(block, maxLines, mask))
                 {
                     var n = piece.Count(c => c == '\n');
                     if (lines > 0 && lines + n > maxLines) Flush();
@@ -79,9 +79,9 @@ public static class ScriptPackager
         return result;
     }
 
-    private static IEnumerable<string> Pieces(CliBlock block, int maxLines)
+    private static IEnumerable<string> Pieces(CliBlock block, int maxLines, bool mask)
     {
-        var whole = CliRenderer.Render(block);
+        var whole = CliRenderer.Render(block, mask);
         if (whole.Count(c => c == '\n') <= maxLines || !block.IsTable || block.Entries.Count <= 1)
         {
             yield return whole;
@@ -95,10 +95,10 @@ public static class ScriptPackager
         {
             var single = new CliBlock(block.Path, true);
             single.Entries.Add(e);
-            var n = CliRenderer.Render(single).Count(c => c == '\n') - 2;
+            var n = CliRenderer.Render(single, mask).Count(c => c == '\n') - 2;
             if (part.Entries.Count > 0 && lines + n > maxLines)
             {
-                yield return CliRenderer.Render(part);
+                yield return CliRenderer.Render(part, mask);
                 part = new CliBlock(block.Path, true);
                 lines = 2;
             }
@@ -107,6 +107,6 @@ public static class ScriptPackager
             lines += n;
         }
 
-        if (part.Entries.Count > 0 || part.Deletes.Count > 0) yield return CliRenderer.Render(part);
+        if (part.Entries.Count > 0 || part.Deletes.Count > 0) yield return CliRenderer.Render(part, mask);
     }
 }

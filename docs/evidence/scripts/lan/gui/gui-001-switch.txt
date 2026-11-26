@@ -1,0 +1,9 @@
+# Shiftwall - 110C to 40F - part 1 of 16 (switch)
+# Run the parts in order: admin menu > Configuration > Scripts > Run Script.
+config system virtual-switch
+    edit "lan"
+        config port
+            delete "lan3"
+        end
+    next
+end

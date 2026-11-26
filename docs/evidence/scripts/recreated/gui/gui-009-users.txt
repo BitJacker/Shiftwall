@@ -1,0 +1,26 @@
+# Shiftwall - 110C to 40F - part 9 of 17 (users)
+# Run the parts in order: admin menu > Configuration > Scripts > Run Script.
+config user ldap
+    edit "AD-Ufficio"
+        set server "192.168.10.5"
+        set cnid "sAMAccountName"
+        set dn "dc=example,dc=com"
+        set type regular
+        set username "cn=fortigate,cn=Users,dc=example,dc=com"
+    next
+end
+config user local
+    edit "mario.rossi"
+        set type password
+        set passwd ********
+    next
+    edit "anna.bianchi"
+        set type ldap
+        set ldap-server "AD-Ufficio"
+    next
+end
+config user group
+    edit "VPN-Utenti"
+        set member "mario.rossi" "anna.bianchi"
+    next
+end

@@ -1,0 +1,10 @@
+# Shiftwall - 110C to 40F - part 13 of 17 (admins)
+# Run the parts in order: admin menu > Configuration > Scripts > Run Script.
+config system admin
+    edit "tecnico"
+        set accprofile "super_admin"
+        set vdom "root"
+        set trusthost1 192.168.10.0 255.255.255.0
+        set password ********
+    next
+end

@@ -141,6 +141,7 @@ public sealed partial class RebuildEngine
     private readonly HashSet<string> _noDefaultRoute = new(StringComparer.Ordinal);
     private SwitchLayout _layout = new();
     private readonly List<PolicyProfiles> _profiles = [];
+    private int _referencesChecked;
 
     private RebuildEngine(RebuildRequest req, CliSchema target, RuleSet rules)
     {
@@ -179,7 +180,7 @@ public sealed partial class RebuildEngine
         var script = CliRenderer.Render(sections.Where(s => !s.IsEmpty).SelectMany(s => s.Blocks));
         var lint = CliLint.Check(script, target, allowComments: false);
         var counts = e._counts.Select(kv => new ObjectCount(kv.Key, kv.Value.Source, kv.Value.Rebuilt, kv.Value.Converted, kv.Value.Manual)).ToList();
-        return new RebuildResult(sections, e._manual, counts, e._applied, e._secrets, e._findings, lint, target) { Profiles = e._profiles };
+        return new RebuildResult(sections, e._manual, counts, e._applied, e._secrets, e._findings, lint, target) { Profiles = e._profiles, ReferencesChecked = e._referencesChecked };
     }
 
     // ------------------------------------------------------------------ build
@@ -364,6 +365,7 @@ public sealed partial class RebuildEngine
                 foreach (var set in entry.Sets)
                 {
                     if (!References.TryGetValue((b.Path, set.Param), out var kind)) continue;
+                    _referencesChecked += set.Values.Count;
                     foreach (var v in set.Values.Where(v => !Exists(kind, v)))
                     {
                         _findings.Add(MigrationFinding.Error(RebuildCodes.BrokenReference, b.Path, entry.Key ?? "", set.Param, v));

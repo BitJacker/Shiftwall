@@ -1,0 +1,12 @@
+config system dhcp server
+    delete 1
+end
+config system interface
+    edit "lan"
+        set vdom "root"
+        set mode static
+        set ip 192.168.10.1 255.255.255.0
+        set allowaccess ping https ssh fgfm
+        set alias "LAN Ufficio"
+    next
+end

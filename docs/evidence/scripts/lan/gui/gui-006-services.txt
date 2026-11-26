@@ -1,0 +1,45 @@
+# Shiftwall - 110C to 40F - part 6 of 16 (services)
+# Run the parts in order: admin menu > Configuration > Scripts > Run Script.
+config firewall service category
+    edit "General"
+    next
+    edit "Web Access"
+    next
+end
+config firewall service custom
+    edit "ALL"
+        set category "General"
+        set protocol IP
+    next
+    edit "HTTP"
+        set category "Web Access"
+        set tcp-portrange 80
+    next
+    edit "HTTPS"
+        set category "Web Access"
+        set tcp-portrange 443
+    next
+    edit "DNS"
+        set category "General"
+        set tcp-portrange 53
+        set udp-portrange 53
+    next
+    edit "PING"
+        set category "General"
+        set protocol ICMP
+        set icmptype 8
+    next
+    edit "RDP"
+        set protocol TCP/UDP/UDP-Lite/SCTP
+        set tcp-portrange 3389
+    next
+    edit "Gestionale-8443"
+        set protocol TCP/UDP/UDP-Lite/SCTP
+        set tcp-portrange 8443
+    next
+end
+config firewall service group
+    edit "Web"
+        set member "HTTP" "HTTPS"
+    next
+end

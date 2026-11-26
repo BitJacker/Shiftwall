@@ -1,0 +1,10 @@
+config router static
+    edit 1
+        set device "wan"
+        set gateway 203.0.113.9
+    next
+    edit 2
+        set device "to-sede2"
+        set dst 10.20.0.0 255.255.255.0
+    next
+end

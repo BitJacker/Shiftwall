@@ -1,0 +1,25 @@
+# Shiftwall - 110C to 40F - part 2 of 16 (interfaces)
+# Run the parts in order: admin menu > Configuration > Scripts > Run Script.
+config system interface
+    edit "wan"
+        set vdom "root"
+        set mode static
+        set ip 203.0.113.10 255.255.255.248
+        set allowaccess ping https
+        set alias "Fibra"
+    next
+    edit "lan3"
+        set vdom "root"
+        set mode dhcp
+        set defaultgw disable
+        set allowaccess ping
+    next
+    edit "vlan20-ospiti"
+        set vdom "root"
+        set mode static
+        set ip 192.168.20.1 255.255.255.0
+        set allowaccess ping
+        set interface "lan"
+        set vlanid 20
+    next
+end

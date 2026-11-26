@@ -1,0 +1,5 @@
+config system zone
+    edit "OSPITI"
+        set interface "vlan20-ospiti"
+    next
+end

@@ -1,0 +1,9 @@
+config system global
+    set admintimeout 30
+    set hostname "FGT110C-UFFICIO"
+end
+config system dns
+    set protocol cleartext
+    set primary 192.0.2.53
+    set secondary 198.51.100.53
+end

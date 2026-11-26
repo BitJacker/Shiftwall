@@ -131,7 +131,10 @@ public sealed record RebuildResult(
 
     public string FullScript(bool maskSecrets = false) => CliRenderer.Render(Sections.Where(s => !s.IsEmpty).OrderBy(s => s.Order).SelectMany(s => s.Blocks), maskSecrets);
 
-    public IReadOnlyList<ScriptFile> GuiFiles(string title) => ScriptPackager.ForGui(Sections, title);
+    public IReadOnlyList<ScriptFile> GuiFiles(string title, bool maskSecrets = false) => ScriptPackager.ForGui(Sections, title, maskSecrets: maskSecrets);
 
-    public IReadOnlyList<ScriptFile> TerminalFiles() => ScriptPackager.ForTerminal(Sections);
+    public IReadOnlyList<ScriptFile> TerminalFiles(bool maskSecrets = false) => ScriptPackager.ForTerminal(Sections, maskSecrets: maskSecrets);
+
+    /// <summary>Names checked by the final reference check (every one exists in the script or on the target).</summary>
+    public int ReferencesChecked { get; init; }
 }
