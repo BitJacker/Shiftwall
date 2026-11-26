@@ -36,6 +36,11 @@ internal static class DocsGenerator
         sb.AppendLine($"- Upgrade paths: {(db.UpgradePaths.Paths.Count == 0 ? "none listed — see below" : db.UpgradePaths.Paths.Count.ToString(CultureInfo.InvariantCulture))}");
         sb.AppendLine();
 
+        sb.AppendLine("## Toolbox");
+        sb.AppendLine();
+        sb.AppendLine("The sources of the toolbox (security audit rules, CSV import, anonymization, Backup from LAN and the Email 2FA");
+        sb.AppendLine("page: CLI syntax per FortiOS version, REST endpoints, timers) are in [toolbox-sources.md](toolbox-sources.md).");
+        sb.AppendLine();
         sb.AppendLine("## Upgrade paths");
         sb.AppendLine();
         var up = db.UpgradePaths.PublishedInConsultableForm;

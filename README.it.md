@@ -53,6 +53,10 @@ ufficiale Fortinet.
 - **Riepilogo VPN**: fase 1 e 2 IPsec di una sede, o il confronto fra due sedi.
 - **Anonimizza config**: per condividere una configurazione in sicurezza; una mappa protetta da password (AES-256-GCM)
   la ripristina.
+- **Email 2FA**: imposta in blocco email e autenticazione a due fattori via email su centinaia di utenti locali e
+  amministratori, da un elenco CSV/Excel o dalla tabella. Scrive script CLI a lotti, ognuno con il suo rollback, dopo
+  aver controllato server email, utenti con FortiToken e rischio di blocco degli admin. Esempio:
+  [samples/email-2fa.csv](samples/email-2fa.csv).
 - **Snippet CLI**: VLAN, policy, VIP, rotta statica e utente locale, come CLI pronta da rivedere.
 - **Pianifica upgrade**: apre l'upgrade tool ufficiale Fortinet, senza percorsi inventati.
 - **Backup da LAN** (facoltativo, disattivato di default): scarica un backup tramite la REST API di FortiOS da un

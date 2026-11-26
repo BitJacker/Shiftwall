@@ -28,6 +28,12 @@ testing in a lab.
   delete script, policy and object export to Excel/CSV, CSV import to CLI script, IPsec VPN summary and two-site
   comparison, anonymization with a reversible map encrypted with AES-256-GCM, CLI snippet generator, upgrade planning
   (links to Fortinet's official upgrade tool).
+- *Email 2FA* page: bulk `email-to` and `two-factor email` for local users (per VDOM) and administrators, from the
+  table or a CSV/Excel list (`samples/email-2fa.csv`). Validation (emails, unknown or ambiguous accounts, duplicates,
+  FortiToken holders confirmed row by row, never every super_admin, missing email server blocks), dry run, CLI scripts
+  in batches (default 500) with a rollback each, optional email expiry timers, random passwords of new users only in an
+  encrypted file, HTML/CSV report and account export. Optional read-only list from the LAN (GET on cmdb user/local and
+  system/admin). Sources in `docs/toolbox-sources.md`.
 - Optional *Backup from LAN* page (off by default): downloads a backup through the FortiOS REST API from a private IP
   address, with certificate fingerprint confirmation; the API token is never stored.
 - English and Italian user interface, light and dark theme.

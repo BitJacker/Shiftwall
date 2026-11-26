@@ -49,6 +49,9 @@ never leave your PC, and every model datum it uses comes from an official Fortin
 - **Import from CSV**: addresses, services, their groups and VIPs to a CLI script, with validation.
 - **VPN summary**: IPsec phase 1 and 2 of one site, or a comparison of two sites.
 - **Anonymize config**: share a configuration safely; a password-protected map (AES-256-GCM) restores it.
+- **Email 2FA**: sets the email and email two-factor authentication on hundreds of local users and administrators at
+  once, from a CSV/Excel list or the table. Writes CLI scripts in batches, each with its rollback, after checking the
+  email server, FortiToken holders and lock-out of administrators. Sample list: [samples/email-2fa.csv](samples/email-2fa.csv).
 - **CLI snippets**: VLAN, policy, VIP, static route and local user, as ready-to-review CLI.
 - **Upgrade planning**: opens Fortinet's official upgrade tool, with no invented paths.
 - **Backup from LAN** (optional, off by default): downloads a backup through the FortiOS REST API from a private address.

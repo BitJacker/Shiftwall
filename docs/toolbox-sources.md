@@ -68,6 +68,95 @@ RFC 6598 (100.64.0.0/10) for private IPv4, RFC 3849 (2001:db8::/32) for IPv6.
   The API parameters `password` and `encrypt_mode=sensitive` come from [kb1].
 - Fortinet's complete API reference (FNDN) requires a Fortinet account and was not consulted.
 
+## Email two-factor authentication (Email 2FA page)
+
+Checked on 2026-11-26.
+
+**CLI syntax.** `config user local` and `config system admin` both have `two-factor` with the option `email`
+("Email authentication code" / "Send a two-factor authentication code to the configured email-to email address") and
+`email-to` (string, maximum length 63) in every FortiOS version Shiftwall supports. `fortitoken` (maximum 16) and the
+`type` options `password`, `radius`, `tacacs+`, `ldap` (plus `saml` from 7.6) are the same. `config system global`
+has `two-factor-email-expiry` (30 – 300 s, default 60) and `remoteauthtimeout` (1 – 300 s, default 5).
+
+| FortiOS | user local | system admin | system global | system email-server |
+|---|---|---|---|---|
+| 6.2.16 | [link][u6216] | [link][a6216] | [link][g6216] | [link][e6216] |
+| 6.4.15 | [link][u6415] | [link][a6415] | [link][g6415] | [link][e6415] |
+| 6.4.16 | [link][u6416] | [link][a6416] | [link][g6416] | [link][e6416] |
+| 7.0.17 | [link][u7017] | [link][a7017] | [link][g7017] | [link][e7017] |
+| 7.2.12 | [link][u7212] | [link][a7212] | [link][g7212] | [link][e7212] |
+| 7.4.9 | [link][u749] | [link][a749] | [link][g749] | [link][e749] |
+| 7.6.6 | [link][u766] | [link][a766] | [link][g766] | [link][e766] |
+| 8.0.0 | [link][u800] | [link][a800] | [link][g800] | [link][e800] |
+
+**Email server.** `config system email-server` has `server`, `port`, `authenticate`, `username`, `password` and
+`security` (`none`, `starttls`, `smtps`). From 7.6 the reference notes that `server` is blank when unset but
+`fortinet-notifications.com` after a factory reset (port 465, security `smtps`): a backup without the block does not
+tell which applies, so Shiftwall blocks generation until the server is configured explicitly.
+
+**Timers.** Fortinet Community, [Technical Tip: Email Two-Factor Authentication on FortiGate][tt2fa]: "config system
+global / set two-factor-email-expiry 300 / set remoteauthtimeout 300 / end". Shiftwall adds this block only when the
+option is enabled.
+
+**Running the scripts.** FortiOS Administration Guide, [Configuration scripts][scripts] (6.4.0, 7.6.6 and 8.0.0 read
+the same): text files of CLI commands, lines starting with `#` are comments, run from *Configuration > Scripts >
+Run Script*. No size limit is documented on that page, so the default batch is 500 accounts and can be changed.
+
+**Reading through the LAN (read only).** The cmdb paths mirror the CLI tables ([Using APIs][apis764]:
+`api/v2/cmdb/firewall/address`, token in the `Authorization: Bearer` header). The two endpoints used appear in
+Fortinet Community technical tips: `/api/v2/cmdb/system/admin` in [How to show super admin user via REST API Admin][ttadmin]
+(a REST API administrator without the super_admin profile gets `"results":[ ]`, so Shiftwall warns when the list is
+empty) and `/api/v2/cmdb/user/local` in [How to change local user's password using API][ttpasswd].
+
+**Writing through the LAN: not implemented.** The write behaviour of these endpoints is documented only in Fortinet's
+API reference (FNDN, account required), and [ttpasswd] reports that a PUT on `user.local` cannot change the password
+(HTTP 403). Changes are made only with the generated scripts.
+
+**Not documented, decided with the project owner.**
+- Switching an account from FortiToken to email codes: the reference does not say whether the token serial must be
+  removed. The scripts leave `fortitoken` as it is (the rollback sets `two-factor fortitoken` again); each such account
+  must be confirmed row by row.
+- New local users of type password are created with `set status disable` and no password in the script: the random
+  password and the CLI lines that set it are in the encrypted `.swsecret` file.
+
+[u6216]: https://docs.fortinet.com/document/fortigate/6.2.16/cli-reference/109120963/config-user-local
+[a6216]: https://docs.fortinet.com/document/fortigate/6.2.16/cli-reference/390485493/config-system-admin
+[g6216]: https://docs.fortinet.com/document/fortigate/6.2.16/cli-reference/339914554/config-system-global
+[e6216]: https://docs.fortinet.com/document/fortigate/6.2.16/cli-reference/328340547/config-system-email-server
+[u6415]: https://docs.fortinet.com/document/fortigate/6.4.15/cli-reference/443620/config-user-local
+[a6415]: https://docs.fortinet.com/document/fortigate/6.4.15/cli-reference/14620/config-system-admin
+[g6415]: https://docs.fortinet.com/document/fortigate/6.4.15/cli-reference/1620/config-system-global
+[e6415]: https://docs.fortinet.com/document/fortigate/6.4.15/cli-reference/94620/config-system-email-server
+[u6416]: https://docs.fortinet.com/document/fortigate/6.4.16/cli-reference/109120963/config-user-local
+[a6416]: https://docs.fortinet.com/document/fortigate/6.4.16/cli-reference/390485493/config-system-admin
+[g6416]: https://docs.fortinet.com/document/fortigate/6.4.16/cli-reference/339914554/config-system-global
+[e6416]: https://docs.fortinet.com/document/fortigate/6.4.16/cli-reference/328340547/config-system-email-server
+[u7017]: https://docs.fortinet.com/document/fortigate/7.0.17/cli-reference/109120963/config-user-local
+[a7017]: https://docs.fortinet.com/document/fortigate/7.0.17/cli-reference/390485493/config-system-admin
+[g7017]: https://docs.fortinet.com/document/fortigate/7.0.17/cli-reference/339914554/config-system-global
+[e7017]: https://docs.fortinet.com/document/fortigate/7.0.17/cli-reference/328340547/config-system-email-server
+[u7212]: https://docs.fortinet.com/document/fortigate/7.2.12/cli-reference/109120963/config-user-local
+[a7212]: https://docs.fortinet.com/document/fortigate/7.2.12/cli-reference/390485493/config-system-admin
+[g7212]: https://docs.fortinet.com/document/fortigate/7.2.12/cli-reference/339914554/config-system-global
+[e7212]: https://docs.fortinet.com/document/fortigate/7.2.12/cli-reference/328340547/config-system-email-server
+[u749]: https://docs.fortinet.com/document/fortigate/7.4.9/cli-reference/109120963/config-user-local
+[a749]: https://docs.fortinet.com/document/fortigate/7.4.9/cli-reference/390485493/config-system-admin
+[g749]: https://docs.fortinet.com/document/fortigate/7.4.9/cli-reference/339914554/config-system-global
+[e749]: https://docs.fortinet.com/document/fortigate/7.4.9/cli-reference/328340547/config-system-email-server
+[u766]: https://docs.fortinet.com/document/fortigate/7.6.6/cli-reference/109120963/config-user-local
+[a766]: https://docs.fortinet.com/document/fortigate/7.6.6/cli-reference/390485493/config-system-admin
+[g766]: https://docs.fortinet.com/document/fortigate/7.6.6/cli-reference/339914554/config-system-global
+[e766]: https://docs.fortinet.com/document/fortigate/7.6.6/cli-reference/328340547/config-system-email-server
+[u800]: https://docs.fortinet.com/document/fortigate/8.0.0/cli-reference/109120963/config-user-local
+[a800]: https://docs.fortinet.com/document/fortigate/8.0.0/cli-reference/390485493/config-system-admin
+[g800]: https://docs.fortinet.com/document/fortigate/8.0.0/cli-reference/339914554/config-system-global
+[e800]: https://docs.fortinet.com/document/fortigate/8.0.0/cli-reference/328340547/config-system-email-server
+[tt2fa]: https://community.fortinet.com/fortigate-3/technical-tip-email-two-factor-authentication-on-fortigate-96851
+[scripts]: https://docs.fortinet.com/document/fortigate/7.6.6/administration-guide/780930/configuration-scripts
+[apis764]: https://docs.fortinet.com/document/fortigate/7.6.4/administration-guide/940602/using-apis
+[ttadmin]: https://community.fortinet.com/fortigate-3/technical-tip-how-to-show-super-admin-user-via-rest-api-admin-149554
+[ttpasswd]: https://community.fortinet.com/fortigate-3/technical-tip-how-to-change-local-user-s-password-using-api-199327
+
 [bp]: https://fortinetweb.s3.amazonaws.com/docs.fortinet.com/v2/attachments/32eccc66-2e05-11f1-b31d-02356ffb40d9/FortiOS-8.0.0-Best_Practices.pdf
 [cli]: https://fortinetweb.s3.amazonaws.com/docs.fortinet.com/v2/attachments/1c34e924-cbe3-11f1-8c5a-8e4c95ff11ac/FortiOS-7.6.8-CLI_Reference.pdf
 [ssl]: https://docs.fortinet.com/document/fortigate/7.4.10/cli-reference/114404382
