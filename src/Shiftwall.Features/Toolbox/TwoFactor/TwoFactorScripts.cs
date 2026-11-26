@@ -182,22 +182,8 @@ public static class TwoFactorScripts
     }
 
     /// <summary>20 characters from upper, lower, digits and symbols (no quotes, backslash or space), each class present.</summary>
-    public static string NewPassword()
-    {
-        const string upper = "ABCDEFGHJKLMNPQRSTUVWXYZ";
-        const string lower = "abcdefghijkmnopqrstuvwxyz";
-        const string digits = "23456789";
-        const string symbols = "!#$%&*+-=?@^_~";
-        const string all = upper + lower + digits + symbols;
-        var chars = new char[20];
-        chars[0] = RandomNumberGenerator.GetItems<char>(upper, 1)[0];
-        chars[1] = RandomNumberGenerator.GetItems<char>(lower, 1)[0];
-        chars[2] = RandomNumberGenerator.GetItems<char>(digits, 1)[0];
-        chars[3] = RandomNumberGenerator.GetItems<char>(symbols, 1)[0];
-        RandomNumberGenerator.GetItems<char>(all, 16).CopyTo(chars.AsSpan(4));
-        RandomNumberGenerator.Shuffle(chars.AsSpan());
-        return new string(chars);
-    }
+    /// <summary>A strong random password that is safe for the FortiOS CLI (see <see cref="Rebuild.CliPassword"/>).</summary>
+    public static string NewPassword() => Rebuild.CliPassword.Generate();
 }
 
 /// <summary>

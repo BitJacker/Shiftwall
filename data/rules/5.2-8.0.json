@@ -954,6 +954,29 @@
     "cli-5.2"
    ],
    "note": "Placeholder text of the 5.2 PDF syntax block, not a real option."
+  },
+  {
+   "id": "D007",
+   "kind": "default-change",
+   "path": "system dns",
+   "param": "protocol",
+   "value": "cleartext",
+   "note": "FortiOS 5.2 has no DNS protocol setting (CLI Reference 5.2): DNS is always cleartext. Written explicitly so that the servers of the source keep working even if the target uses DNS over TLS out of the box.",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ]
+  },
+  {
+   "id": "M002",
+   "kind": "remove-no-equivalent",
+   "path": "system global",
+   "param": "timezone",
+   "note": "5.2 uses a numeric time zone index; 8.0 expects a time zone database name (e.g. Europe/Rome). No official table maps one to the other: set it by hand.",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ]
   }
  ]
 }

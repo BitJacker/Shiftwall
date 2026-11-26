@@ -65,4 +65,139 @@
   <data name="Report.Blocked" xml:space="preserve"><value>Migration blocked: resolve the errors above.</value></data>
   <data name="Report.Uses" xml:space="preserve"><value>References</value></data>
   <data name="MIG-035" xml:space="preserve"><value>The config-version line was not found in the source or the target backup: the header was not changed. Replace the config-version value by hand before restoring.</value></data>
+  <data name="RB-001" xml:space="preserve">
+    <value>Multi-VDOM configurations are not supported by the rebuild yet: use the restore mode or rebuild one VDOM at a time.</value>
+  </data>
+  <data name="RB-002" xml:space="preserve">
+    <value>'{0}' is not available on the target version and has no equivalent: {1}</value>
+  </data>
+  <data name="RB-003" xml:space="preserve">
+    <value>'{0}' is not written as is: {1}</value>
+  </data>
+  <data name="RB-004" xml:space="preserve">
+    <value>'{0}' holds an encrypted value (ENC): it is never copied. Set it by hand.</value>
+  </data>
+  <data name="RB-005" xml:space="preserve">
+    <value>The object refers to '{1}' ({0}), which is not in the script: it stays out until '{1}' is migrated.</value>
+  </data>
+  <data name="RB-006" xml:space="preserve">
+    <value>'{0}' does not exist in the FortiOS {1} CLI Reference.</value>
+  </data>
+  <data name="RB-007" xml:space="preserve">
+    <value>The value of '{0}' is not accepted by FortiOS {2} ({1}).</value>
+  </data>
+  <data name="RB-008" xml:space="preserve">
+    <value>The value of '{0}' contains ? or a tab, which cannot be pasted into the CLI (CLI basics, Special characters). Type it by hand.</value>
+  </data>
+  <data name="RB-009" xml:space="preserve">
+    <value>The section '{0}' does not exist in FortiOS {1}.</value>
+  </data>
+  <data name="RB-010" xml:space="preserve">
+    <value>The group '{0}' contains itself through other groups: not exported.</value>
+  </data>
+  <data name="RB-011" xml:space="preserve">
+    <value>'{0}' needs a password of the category '{1}' (ENC values are never copied). Choose one in the passwords step.</value>
+  </data>
+  <data name="RB-012" xml:space="preserve">
+    <value>Two source interfaces are mapped to the target interface '{0}'.</value>
+  </data>
+  <data name="RB-013" xml:space="preserve">
+    <value>Removing the mapped ports would leave the switch '{0}' empty: a switch must keep at least one port.</value>
+  </data>
+  <data name="RB-014" xml:space="preserve">
+    <value>The ports {0} are removed from the switch '{1}' so they can be used on their own. If the address object of the switch blocks the change, see the report.</value>
+  </data>
+  <data name="RB-015" xml:space="preserve">
+    <value>Interfaces of type '{0}' are not rebuilt automatically.</value>
+  </data>
+  <data name="RB-016" xml:space="preserve">
+    <value>The interface '{0}' is used on the source but is not mapped to a target interface: everything that uses it stays out of the script.</value>
+  </data>
+  <data name="RB-017" xml:space="preserve">
+    <value>The interface '{0}' is not mapped (it has no address on the source).</value>
+  </data>
+  <data name="RB-018" xml:space="preserve">
+    <value>The name '{0}' already exists on the target: rename the interface on the source plan.</value>
+  </data>
+  <data name="RB-019" xml:space="preserve">
+    <value>The address '{1}' typed for '{0}' is not valid (use a.b.c.d/nn or a.b.c.d m.m.m.m).</value>
+  </data>
+  <data name="RB-020" xml:space="preserve">
+    <value>The management interface '{0}' would have neither HTTPS nor SSH access after the script: you would lock yourself out.</value>
+  </data>
+  <data name="RB-021" xml:space="preserve">
+    <value>The changes to the management interface '{0}' are in the last part: after it the connection drops, reconnect to the new address to run the rest.</value>
+  </data>
+  <data name="RB-022" xml:space="preserve">
+    <value>'{0}' is a policy-based IPsec VPN: rebuild it as a route-based (interface) VPN by hand.</value>
+  </data>
+  <data name="RB-023" xml:space="preserve">
+    <value>IPsec tunnels: proposals, DH groups and IKE version are written explicitly with the old defaults. Check them with the administrator of the other side.</value>
+  </data>
+  <data name="RB-024" xml:space="preserve">
+    <value>The gateway {0} is not in the subnet of '{1}'.</value>
+  </data>
+  <data name="RB-025" xml:space="preserve">
+    <value>Security profiles not migrated, recreate and assign them: {0}</value>
+  </data>
+  <data name="RB-026" xml:space="preserve">
+    <value>'{0}' is the administrator you use to run the script: it is not changed by the script. Changing its password asks for the current one (Administration Guide, Default administrator password): do it by hand at the end.</value>
+  </data>
+  <data name="RB-027" xml:space="preserve">
+    <value>The factory DHCP servers of the target are not known (no factory-default backup): check System &gt; DHCP Server after running the script.</value>
+  </data>
+  <data name="RB-028" xml:space="preserve">
+    <value>Section '{0}' ({1} objects) is not rebuilt: review it and recreate what you need.</value>
+  </data>
+  <data name="RB-029" xml:space="preserve">
+    <value>The script is meant for a FortiGate with its factory configuration and the firmware of the target version.</value>
+  </data>
+  <data name="RB-030" xml:space="preserve">
+    <value>The management interface is not set: the changes to the interface you are connected to may cut the connection.</value>
+  </data>
+  <data name="RB-031" xml:space="preserve">
+    <value>{0} is a 2 GB RAM model: no SSL VPN web mode, no proxy-based features (Release Notes 8.0.2, Special notices).</value>
+  </data>
+  <data name="RB-032" xml:space="preserve">
+    <value>{0} passwords and keys are new: see the password summary, change them at first login and give the new VPN keys to the other side.</value>
+  </data>
+  <data name="RB-033" xml:space="preserve">
+    <value>No factory-default backup of the target: interface names come from the model database. Load the backup of the new FortiGate for the best result.</value>
+  </data>
+  <data name="RB-034" xml:space="preserve">
+    <value>SSL VPN is not converted: on the target it is not available.</value>
+  </data>
+  <data name="RB-035" xml:space="preserve">
+    <value>The SSL VPN policy {0} could not be converted to IPsec dial-up.</value>
+  </data>
+  <data name="RB-036" xml:space="preserve">
+    <value>The SSL VPN listen interface ({0}) is not mapped: the IPsec dial-up conversion is not possible.</value>
+  </data>
+  <data name="RB-037" xml:space="preserve">
+    <value>SSL VPN users are in more than one group or set as users ({0}): the conversion uses one group. Use 'Inherit from policy' in the VPN wizard (see the migration guide).</value>
+  </data>
+  <data name="RB-038" xml:space="preserve">
+    <value>No SSL VPN address pool ({0}): set the dial-up client range by hand.</value>
+  </data>
+  <data name="RB-039" xml:space="preserve">
+    <value>SSL VPN converted to IPsec dial-up '{0}' (IKEv2, EAP, group '{1}', clients {2}). TO REVIEW before production.</value>
+  </data>
+  <data name="RB-040" xml:space="preserve">
+    <value>FortiClient: create an IPsec VPN connection to '{0}' (remote gateway = WAN address, pre-shared key from the password summary, IKE version 2, EAP with username and password). FortiClient 7.4.4 and later do not support IKEv1.</value>
+  </data>
+  <data name="RB-041" xml:space="preserve">
+    <value>Rebuild mode: the source ({0}) and the target ({1}) are on different FortiOS versions, so the configuration is rewritten as a clean script in the target syntax.</value>
+  </data>
+  <data name="RB-042" xml:space="preserve">
+    <value>Restore mode: source ({0}) and target ({1}) are on the same version, so the backup is kept as it is with the interfaces renamed.</value>
+  </data>
+  <data name="RB-043" xml:space="preserve">
+    <value>You forced the mode '{0}': it is not the one Shiftwall would choose for these versions.</value>
+  </data>
+  <data name="RB-044" xml:space="preserve">
+    <value>Only hostname, time zone, admin timeout and admin ports are taken from 'system global'. Not migrated: {0}</value>
+  </data>
+  <data name="RB-045" xml:space="preserve">
+    <value>Broken reference in the script: {0} '{1}', {2} = '{3}' does not exist. The script is not exported (please report this as a Shiftwall bug).</value>
+  </data>
 </root>
