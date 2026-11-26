@@ -20,6 +20,29 @@ testing in a lab.
   the `config-version` section of the header only, validation of the result, before/after diff, HTML report,
   print/PDF and a manual checklist. Mapping templates can be saved and reused. The interface mapping is suggested by
   name and role (WAN to WAN, LAN ports in order, e.g. FortiGate 50E `lan1` → 60F `internal1`) and must be checked.
+- Rebuild mode for different FortiOS versions, first pair 5.2 → 8.0: CLI schemas built from the official CLI
+  Reference (`tools/cli-schema`), translation rules with sources (`data/rules`) and a test that fails when a schema
+  difference has no rule; output checked on the target schema, objects written in dependency order with the
+  management interface last, references checked before export, final lint before saving; scripts for the GUI (Run
+  Script) and for the terminal; passwords typed or generated per migration and saved only encrypted; SSL VPN tunnel
+  mode converted to IPsec dial-up (FortiClient, IKEv2, EAP); interface mapping with logical targets (e.g. the `lan`
+  switch of a 40F) and per-interface addressing (kept, static, DHCP). Guides: `docs/load-scripts.md`, `docs/LAB-TEST.md`.
+- Rebuild mode, switches and ports: every logical switch of the source is an item of its own in the mapping and can be
+  mapped to an existing interface, recreated with the chosen target ports or split into separate ports; a name typed
+  in the mapping that does not exist on the target can be created as a switch or a VLAN. Every target port shows
+  whether it is free, in a switch or used by the factory configuration. A hardware switch is used when the model's
+  switch chip holds all the ports (FortiGate 40F, SOC4), a software switch otherwise, with the reason; a factory switch
+  is never emptied. Changes to the interface the PC is connected to come after the new management interface.
+- Rebuild mode, security profiles: no policy that had profiles on the source leaves without protection. Custom profiles
+  are replaced by the documented FortiOS 8.0 preloaded profile of the same kind, or the policy is written disabled
+  (option in the wizard); a table lists original and applied profiles per policy.
+- Rebuild mode, report: weak site-to-site IPsec settings (IKEv1, DH groups and algorithms not recommended) kept for
+  compatibility and reported with the best practices; LDAP users of a converted SSL VPN (EAP-TTLS with LDAPS needed)
+  and lost web mode are reported. Generated passwords are different for every object.
+- `docs/evidence`: scripts, counts, schema validation, rules with sources and tests, review results, test coverage,
+  screenshots of the wizard and the list of what is not verified, all from synthetic fixtures.
+- Email 2FA and rebuild passwords are generated from characters the FortiOS CLI accepts as typed or pasted (no `?`, `#`,
+  quotes, backslash or spaces; CLI basics, Special characters).
 - Batch conversion of several sites with the same mapping template, with a simulation mode.
 - Model database with 112 models (desktop to data center, from the Hardware Acceleration guide) and 96 FortiOS releases (6.2.0 – 8.0.2). Every datum cites its official Fortinet
   source and verification date; unverified data shows a warning. An updated database can be imported and is validated
@@ -28,6 +51,12 @@ testing in a lab.
   delete script, policy and object export to Excel/CSV, CSV import to CLI script, IPsec VPN summary and two-site
   comparison, anonymization with a reversible map encrypted with AES-256-GCM, CLI snippet generator, upgrade planning
   (links to Fortinet's official upgrade tool).
+- *Email 2FA* page: bulk `email-to` and `two-factor email` for local users (per VDOM) and administrators, from the
+  table or a CSV/Excel list (`samples/email-2fa.csv`). Validation (emails, unknown or ambiguous accounts, duplicates,
+  FortiToken holders confirmed row by row, never every super_admin, missing email server blocks), dry run, CLI scripts
+  in batches (default 500) with a rollback each, optional email expiry timers, random passwords of new users only in an
+  encrypted file, HTML/CSV report and account export. Optional read-only list from the LAN (GET on cmdb user/local and
+  system/admin). Sources in `docs/toolbox-sources.md`.
 - Optional *Backup from LAN* page (off by default): downloads a backup through the FortiOS REST API from a private IP
   address, with certificate fingerprint confirmation; the API token is never stored.
 - English and Italian user interface, light and dark theme.

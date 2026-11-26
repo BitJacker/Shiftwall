@@ -1,0 +1,72 @@
+# Shiftwall - 110C to 40F - part 10 of 16 (ipsec)
+# Run the parts in order: admin menu > Configuration > Scripts > Run Script.
+config vpn ipsec phase1-interface
+    edit "to-sede2"
+        set interface "wan"
+        set ike-version 1
+        set dhgrp 14 5
+        set peertype any
+        set proposal aes128-sha256 aes256-sha256 3des-sha256 aes128-sha1 aes256-sha1 3des-sha1
+        set keepalive 5
+        set remote-gw 198.51.100.20
+        set psksecret ********
+    next
+end
+config system interface
+    edit "to-sede2"
+        set vdom "root"
+        set ip 169.254.1.1 255.255.255.255
+        set remote-ip 169.254.1.2 255.255.255.255
+    next
+end
+config vpn ipsec phase2-interface
+    edit "to-sede2-p2"
+        set phase1name "to-sede2"
+        set dhgrp 14 5
+        set proposal aes128-sha1 aes256-sha1 3des-sha1 aes128-sha256 aes256-sha256 3des-sha256
+        set src-subnet 192.168.10.0 255.255.255.0
+        set dst-subnet 10.20.0.0 255.255.255.0
+    next
+end
+config firewall address
+    edit "dialup_vpn_range"
+        set type iprange
+        set start-ip 10.212.134.200
+        set end-ip 10.212.134.210
+    next
+end
+config firewall addrgrp
+    edit "dialup_vpn_split"
+        set member "LAN-Ufficio"
+    next
+end
+config vpn ipsec phase1-interface
+    edit "dialup_vpn"
+        set type dynamic
+        set interface "wan"
+        set ike-version 2
+        set peertype any
+        set net-device disable
+        set mode-cfg enable
+        set proposal aes128-sha256 aes256-sha256 aes128gcm-prfsha256 aes256gcm-prfsha384 chacha20poly1305-prfsha256
+        set dhgrp 20 21
+        set eap enable
+        set eap-identity send-request
+        set wizard-type dialup-forticlient
+        set authusrgrp "VPN-Utenti"
+        set assign-ip-from name
+        set dns-mode manual
+        set ipv4-dns-server1 192.168.10.5
+        set ipv4-split-include "dialup_vpn_split"
+        set ipv4-name "dialup_vpn_range"
+        set save-password enable
+        set psksecret ********
+    next
+end
+config vpn ipsec phase2-interface
+    edit "dialup_vpn"
+        set phase1name "dialup_vpn"
+        set proposal aes128-sha256 aes256-sha256 aes128gcm aes256gcm chacha20poly1305
+        set dhgrp 20 21
+    next
+end

@@ -1,0 +1,26 @@
+# Shiftwall - 110C to 40F - part 5 of 17 (addresses)
+# Run the parts in order: admin menu > Configuration > Scripts > Run Script.
+config firewall address
+    edit "all"
+    next
+    edit "LAN-Ufficio"
+        set associated-interface "lan1"
+        set subnet 192.168.10.0 255.255.255.0
+    next
+    edit "Server Web (DMZ)"
+        set comment "Città: Milano - server dell\'ufficio"
+        set subnet 192.168.10.20 255.255.255.255
+    next
+    edit "Sede2-LAN"
+        set subnet 10.20.0.0 255.255.255.0
+    next
+    edit "www.example.com"
+        set type fqdn
+        set fqdn "www.example.com"
+    next
+end
+config firewall addrgrp
+    edit "Server-Interni"
+        set member "Server Web (DMZ)" "LAN-Ufficio"
+    next
+end

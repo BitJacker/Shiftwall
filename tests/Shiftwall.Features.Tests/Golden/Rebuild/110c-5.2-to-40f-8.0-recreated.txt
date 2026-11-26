@@ -1,0 +1,455 @@
+config system virtual-switch
+    edit "lan"
+        config port
+            delete "lan1"
+            delete "lan2"
+        end
+    next
+end
+config system interface
+    edit "lan1"
+        set mode static
+        set ip 0.0.0.0 0.0.0.0
+    next
+    edit "lan2"
+        set mode static
+        set ip 0.0.0.0 0.0.0.0
+    next
+end
+config system virtual-switch
+    edit "internal"
+        set physical-switch "sw0"
+        config port
+            edit "lan1"
+            next
+            edit "lan2"
+            next
+        end
+    next
+end
+config system interface
+    edit "wan"
+        set vdom "root"
+        set mode static
+        set ip 203.0.113.10 255.255.255.248
+        set allowaccess ping https
+        set alias "Fibra"
+    next
+    edit "vlan20-ospiti"
+        set vdom "root"
+        set mode static
+        set ip 192.168.20.1 255.255.255.0
+        set allowaccess ping
+        set interface "internal"
+        set vlanid 20
+    next
+end
+config system zone
+    edit "OSPITI"
+        set interface "vlan20-ospiti"
+    next
+end
+config system global
+    set admintimeout 30
+    set hostname "FGT110C-UFFICIO"
+end
+config system dns
+    set protocol cleartext
+    set primary 192.0.2.53
+    set secondary 198.51.100.53
+end
+config firewall address
+    edit "all"
+    next
+    edit "LAN-Ufficio"
+        set associated-interface "internal"
+        set subnet 192.168.10.0 255.255.255.0
+    next
+    edit "Server Web (DMZ)"
+        set comment "Città: Milano - server dell\'ufficio"
+        set subnet 192.168.10.20 255.255.255.255
+    next
+    edit "Sede2-LAN"
+        set subnet 10.20.0.0 255.255.255.0
+    next
+    edit "www.example.com"
+        set type fqdn
+        set fqdn "www.example.com"
+    next
+end
+config firewall addrgrp
+    edit "Server-Interni"
+        set member "Server Web (DMZ)" "LAN-Ufficio"
+    next
+end
+config firewall service category
+    edit "General"
+    next
+    edit "Web Access"
+    next
+end
+config firewall service custom
+    edit "ALL"
+        set category "General"
+        set protocol IP
+    next
+    edit "HTTP"
+        set category "Web Access"
+        set tcp-portrange 80
+    next
+    edit "HTTPS"
+        set category "Web Access"
+        set tcp-portrange 443
+    next
+    edit "DNS"
+        set category "General"
+        set tcp-portrange 53
+        set udp-portrange 53
+    next
+    edit "PING"
+        set category "General"
+        set protocol ICMP
+        set icmptype 8
+    next
+    edit "RDP"
+        set protocol TCP/UDP/UDP-Lite/SCTP
+        set tcp-portrange 3389
+    next
+    edit "Gestionale-8443"
+        set protocol TCP/UDP/UDP-Lite/SCTP
+        set tcp-portrange 8443
+    next
+end
+config firewall service group
+    edit "Web"
+        set member "HTTP" "HTTPS"
+    next
+end
+config firewall schedule recurring
+    edit "always"
+        set day sunday monday tuesday wednesday thursday friday saturday
+    next
+end
+config firewall vip
+    edit "VIP-RDP"
+        set extip 203.0.113.11
+        set extintf "wan"
+        set portforward enable
+        set mappedip "192.168.10.20"
+        set extport 3389
+        set mappedport 3389
+    next
+end
+config firewall ippool
+    edit "Pool-Uscita"
+        set startip 203.0.113.12
+        set endip 203.0.113.12
+    next
+end
+config user ldap
+    edit "AD-Ufficio"
+        set server "192.168.10.5"
+        set cnid "sAMAccountName"
+        set dn "dc=example,dc=com"
+        set type regular
+        set username "cn=fortigate,cn=Users,dc=example,dc=com"
+    next
+end
+config user local
+    edit "mario.rossi"
+        set type password
+        set passwd ********
+    next
+    edit "anna.bianchi"
+        set type ldap
+        set ldap-server "AD-Ufficio"
+    next
+end
+config user group
+    edit "VPN-Utenti"
+        set member "mario.rossi" "anna.bianchi"
+    next
+end
+config vpn ipsec phase1-interface
+    edit "to-sede2"
+        set interface "wan"
+        set ike-version 1
+        set dhgrp 14 5
+        set peertype any
+        set proposal aes128-sha256 aes256-sha256 3des-sha256 aes128-sha1 aes256-sha1 3des-sha1
+        set keepalive 5
+        set remote-gw 198.51.100.20
+        set psksecret ********
+    next
+end
+config system interface
+    edit "to-sede2"
+        set vdom "root"
+        set ip 169.254.1.1 255.255.255.255
+        set remote-ip 169.254.1.2 255.255.255.255
+    next
+end
+config vpn ipsec phase2-interface
+    edit "to-sede2-p2"
+        set phase1name "to-sede2"
+        set dhgrp 14 5
+        set proposal aes128-sha1 aes256-sha1 3des-sha1 aes128-sha256 aes256-sha256 3des-sha256
+        set src-subnet 192.168.10.0 255.255.255.0
+        set dst-subnet 10.20.0.0 255.255.255.0
+    next
+end
+config firewall address
+    edit "dialup_vpn_range"
+        set type iprange
+        set start-ip 10.212.134.200
+        set end-ip 10.212.134.210
+    next
+end
+config firewall addrgrp
+    edit "dialup_vpn_split"
+        set member "LAN-Ufficio"
+    next
+end
+config vpn ipsec phase1-interface
+    edit "dialup_vpn"
+        set type dynamic
+        set interface "wan"
+        set ike-version 2
+        set peertype any
+        set net-device disable
+        set mode-cfg enable
+        set proposal aes128-sha256 aes256-sha256 aes128gcm-prfsha256 aes256gcm-prfsha384 chacha20poly1305-prfsha256
+        set dhgrp 20 21
+        set eap enable
+        set eap-identity send-request
+        set wizard-type dialup-forticlient
+        set authusrgrp "VPN-Utenti"
+        set assign-ip-from name
+        set dns-mode manual
+        set ipv4-dns-server1 192.168.10.5
+        set ipv4-split-include "dialup_vpn_split"
+        set ipv4-name "dialup_vpn_range"
+        set save-password enable
+        set psksecret ********
+    next
+end
+config vpn ipsec phase2-interface
+    edit "dialup_vpn"
+        set phase1name "dialup_vpn"
+        set proposal aes128-sha256 aes256-sha256 aes128gcm aes256gcm chacha20poly1305
+        set dhgrp 20 21
+    next
+end
+config router static
+    edit 1
+        set device "wan"
+        set gateway 203.0.113.9
+    next
+    edit 2
+        set device "to-sede2"
+        set dst 10.20.0.0 255.255.255.0
+    next
+end
+config firewall policy
+    edit 1
+        set srcintf "internal"
+        set dstintf "wan"
+        set srcaddr "all"
+        set dstaddr "all"
+        set action accept
+        set schedule "always"
+        set service "ALL"
+        set utm-status enable
+        set av-profile "default"
+        set webfilter-profile "default"
+        set logtraffic all
+        set nat enable
+    next
+    edit 2
+        set srcintf "wan"
+        set dstintf "internal"
+        set srcaddr "all"
+        set dstaddr "VIP-RDP"
+        set action accept
+        set schedule "always"
+        set service "RDP"
+    next
+    edit 3
+        set name "dialup_vpn 3"
+        set srcintf "dialup_vpn"
+        set dstintf "internal"
+        set action accept
+        set srcaddr "dialup_vpn_range"
+        set dstaddr "LAN-Ufficio"
+        set schedule "always"
+        set service "ALL"
+        set nat enable
+    next
+    edit 4
+        set srcintf "internal"
+        set dstintf "to-sede2"
+        set srcaddr "LAN-Ufficio"
+        set dstaddr "Sede2-LAN"
+        set action accept
+        set schedule "always"
+        set service "ALL"
+    next
+    edit 5
+        set srcintf "to-sede2"
+        set dstintf "internal"
+        set srcaddr "Sede2-LAN"
+        set dstaddr "LAN-Ufficio"
+        set action accept
+        set schedule "always"
+        set service "ALL"
+    next
+    edit 6
+        set srcintf "OSPITI"
+        set dstintf "lan"
+        set srcaddr "all"
+        set dstaddr "all"
+        set action accept
+        set schedule "always"
+        set service "Web" "DNS"
+        set nat enable
+        set comments "Ospiti: solo web (porta wan2)"
+    next
+end
+config system admin
+    edit "tecnico"
+        set accprofile "super_admin"
+        set vdom "root"
+        set trusthost1 192.168.10.0 255.255.255.0
+        set password ********
+    next
+end
+config system dhcp server
+    edit 2
+        set dns-service default
+        set default-gateway 192.168.20.1
+        set netmask 255.255.255.0
+        set interface "vlan20-ospiti"
+        config ip-range
+            edit 1
+                set start-ip 192.168.20.100
+                set end-ip 192.168.20.150
+            next
+        end
+    next
+end
+config system interface
+    edit "internal"
+        set vdom "root"
+        set mode static
+        set ip 192.168.10.1 255.255.255.0
+        set allowaccess ping https ssh fgfm
+        set alias "LAN Ufficio"
+    next
+end
+config system dhcp server
+    delete 1
+end
+config system interface
+    edit "lan"
+        set vdom "root"
+        set mode dhcp
+        set defaultgw disable
+        set allowaccess ping
+    next
+end
+config system dhcp server
+    edit 3
+        set dns-service default
+        set default-gateway 192.168.10.1
+        set netmask 255.255.255.0
+        set interface "internal"
+        config ip-range
+            edit 1
+                set start-ip 192.168.10.100
+                set end-ip 192.168.10.200
+            next
+        end
+    next
+end
+#### MANUAL
+system global | system global | RB-002 | 'timezone' is not available on the target version and has no equivalent: 5.2 uses a numeric time zone index; 8.0 expects a time zone database name (e.g. Europe/Rome). No official table maps one to the other: set it by hand.
+firewall service custom | Gestionale-8443 | RB-002 | 'visibility' is not available on the target version and has no equivalent: Documented in the old CLI Reference, absent from the new one.
+user ldap | AD-Ufficio | RB-011 | 'password' needs a password of the category 'ldap-radius' (ENC values are never copied). Choose one in the passwords step.
+firewall policy | 1 | RB-025 | Custom security profiles not on the target: webfilter-profile Ufficio-Web. Recreate them by hand if you need their settings (see the policy row in the profiles table).
+system admin | admin | RB-026 | 'admin' is the administrator you use to run the script: it is not changed by the script. Changing its password asks for the current one (Administration Guide, Default administrator password): do it by hand at the end.
+system accprofile | system accprofile | RB-028 | Section 'system accprofile' (1 objects) is not rebuilt: review it and recreate what you need.
+webfilter profile | webfilter profile | RB-028 | Section 'webfilter profile' (1 objects) is not rebuilt: review it and recreate what you need.
+#### COUNTS
+system interface: 6 -> 5 rebuilt, 1 converted, 0 manual
+system zone: 1 -> 1 rebuilt, 0 converted, 0 manual
+system global: 1 -> 1 rebuilt, 0 converted, 0 manual
+system dns: 1 -> 1 rebuilt, 0 converted, 0 manual
+firewall address: 6 -> 5 rebuilt, 1 converted, 0 manual
+firewall addrgrp: 1 -> 1 rebuilt, 0 converted, 0 manual
+firewall service category: 2 -> 2 rebuilt, 0 converted, 0 manual
+firewall service custom: 7 -> 7 rebuilt, 0 converted, 0 manual
+firewall service group: 1 -> 1 rebuilt, 0 converted, 0 manual
+firewall schedule recurring: 1 -> 1 rebuilt, 0 converted, 0 manual
+firewall vip: 1 -> 1 rebuilt, 0 converted, 0 manual
+firewall ippool: 1 -> 1 rebuilt, 0 converted, 0 manual
+user ldap: 1 -> 1 rebuilt, 0 converted, 0 manual
+user local: 2 -> 2 rebuilt, 0 converted, 0 manual
+user group: 1 -> 1 rebuilt, 0 converted, 0 manual
+vpn ipsec phase1-interface: 1 -> 1 rebuilt, 0 converted, 0 manual
+vpn ipsec phase2-interface: 1 -> 1 rebuilt, 0 converted, 0 manual
+router static: 2 -> 2 rebuilt, 0 converted, 0 manual
+firewall policy: 6 -> 5 rebuilt, 1 converted, 0 manual
+system admin: 2 -> 1 rebuilt, 0 converted, 1 manual
+system dhcp server: 2 -> 2 rebuilt, 0 converted, 0 manual
+system accprofile: 1 -> 0 rebuilt, 0 converted, 1 manual
+vpn ssl settings: 1 -> 0 rebuilt, 1 converted, 0 manual
+vpn ssl web portal: 1 -> 0 rebuilt, 1 converted, 0 manual
+webfilter profile: 1 -> 0 rebuilt, 0 converted, 1 manual
+#### FINDINGS
+Warning RB-014 The ports lan1, lan2 are removed from the switch 'lan' so they can be used on their own: this is the first command of the script, so do not connect your PC to those ports while running it.
+Info RB-060 Switch 'internal' (lan1, lan2) is created as a hardware switch (config system virtual-switch): on FG-40F these ports are on the same switch chip, so traffic between them stays in hardware (Hardware Acceleration 8.0.2, FortiGate 40F fast path architecture).
+Warning RB-023 IPsec tunnels: proposals, DH groups and IKE version are written explicitly with the old defaults. Dead peer detection: the 5.2 default (enable) becomes the 8.0 default (on-demand). Check them with the administrator of the other side.
+Warning RB-039 SSL VPN converted to IPsec dial-up 'dialup_vpn' (IKEv2, EAP, group 'VPN-Utenti', clients 10.212.134.200-10.212.134.210). TO REVIEW before production.
+Warning RB-040 FortiClient: create an IPsec VPN connection to 'dialup_vpn' (remote gateway = WAN address, pre-shared key from the password summary, IKE version 2, EAP with username and password). Users authenticated by LDAP need EAP-TTLS, supported by FortiClient and EMS 7.4.3 and later (SSL VPN to IPsec VPN migration guide, LDAP-based user authentication). FortiClient 7.4.4 and later do not support IKEv1.
+Warning RB-069 Policy 1: the custom profiles webfilter-profile Ufficio-Web do not exist on the target and are replaced by the preloaded FortiOS 8.0 profiles webfilter-profile default, so the policy keeps a protection of the same kind. Recreate the custom profiles if you need their exact settings.
+Warning RB-052 Policy 6 sends traffic out of 'lan', which takes no default route from DHCP/PPPoE (defaultgw disable, as on 5.2) and has no static route: FortiOS chooses the outgoing interface from the routing table, so the policy may never match. Add a route or a policy route through 'lan' if needed (the source had the same behaviour).
+Warning RB-076 LDAP users of the SSL VPN (anna.bianchi, server AD-Ufficio) cannot log in to the IPsec dial-up as it is: with IKEv2 FortiClient must use EAP-TTLS against an LDAPS server, which needs the CA certificate of the AD server imported, 'set secure ldaps' and 'set ca-cert' on the LDAP server, FortiClient 7.4.3 or later and the configuration synchronised from FortiClient EMS (Administration Guide 8.0.2, Add LDAP user authentication). LDAP servers without LDAPS: AD-Ufficio. Configure it by hand before giving the VPN to these users.
+Warning RB-077 The SSL VPN portal full-access had web mode enabled: web mode (now Agentless VPN) is not available on FG-40F with FortiOS 8.0 (Release Notes 8.0.2) and is not migrated. Users who connected from a browser need FortiClient.
+Warning RB-072 IPsec tunnel 'to-sede2' uses settings that Fortinet does not recommend (IKEv1; phase1 DH 14 5; phase1 3des-sha256 aes128-sha1 aes256-sha1 3des-sha1; phase2 to-sede2-p2 DH 14 5; phase2 to-sede2-p2 aes128-sha1 aes256-sha1 3des-sha1 3des-sha256): kept for compatibility with the other site, to be updated together with it (IKEv2, DH groups 19-21, AES-GCM or AES with SHA-256). Sources: FortiOS 8.0 Administration Guide, Phase 1 and Phase 2 configuration (DES, 3DES, MD5 and SHA1 not recommended; DH groups 1, 2, 5, 14, 22-27 insecure for Security Rating Insights); FortiOS 8.0 Best Practices, IPsec VPN remote access (prefer IKEv2).
+Info RB-029 The script is meant for a FortiGate with its factory configuration and the firmware of the target version.
+Warning RB-031 FG-40F is a 2 GB RAM model: no SSL VPN web mode, no proxy-based features (Release Notes 8.0.2, Special notices).
+Warning RB-032 4 passwords and keys are new: see the password summary, change them at first login and give the new VPN keys to the other side.
+Warning RB-068 Your PC is connected to 'lan' (management on the factory configuration), and the script changes 'lan' too: those changes are in the part 'factory-management', after the part of the new management interface 'internal'. Connect the PC to a port that stays in 'lan' (not one taken out of the switch). After that part the connection drops: move the cable to a port of 'internal', give the PC a static address in the subnet of 'internal', reconnect and run the last part.
+#### RULES
+S002 system interface 'wan1' snmp-index
+S002 system interface 'wan2' snmp-index
+D010 system interface 'wan2' defaultgw
+S002 system interface 'internal' snmp-index
+S002 system interface 'vlan20-ospiti' snmp-index
+M002 system global 'system global' timezone
+D007 system dns 'system dns' protocol
+S001 firewall address 'all' uuid
+S001 firewall address 'LAN-Ufficio' uuid
+S001 firewall address 'Server Web (DMZ)' uuid
+S001 firewall address 'Sede2-LAN' uuid
+S001 firewall address 'www.example.com' uuid
+S001 firewall addrgrp 'Server-Interni' uuid
+V001 firewall service custom 'RDP' protocol
+V001 firewall service custom 'Gestionale-8443' protocol
+R034 firewall service custom 'Gestionale-8443' visibility
+S001 firewall vip 'VIP-RDP' uuid
+D001 vpn ipsec phase1-interface 'to-sede2' ike-version
+D002 vpn ipsec phase1-interface 'to-sede2' dhgrp
+D003 vpn ipsec phase1-interface 'to-sede2' peertype
+D004 vpn ipsec phase1-interface 'to-sede2' proposal
+D012 vpn ipsec phase1-interface 'to-sede2' keepalive
+F001 system interface 'to-sede2' remote-ip
+S002 system interface 'to-sede2' snmp-index
+D005 vpn ipsec phase2-interface 'to-sede2-p2' dhgrp
+D006 vpn ipsec phase2-interface 'to-sede2-p2' proposal
+S001 firewall policy '1' uuid
+P001 firewall policy '1' webfilter-profile
+S001 firewall policy '2' uuid
+S001 firewall policy '4' uuid
+S001 firewall policy '5' uuid
+S001 firewall policy '6' uuid

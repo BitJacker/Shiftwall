@@ -1,0 +1,40 @@
+config vpn ipsec phase1-interface
+    edit "to-sede2"
+        set interface "wan"
+        set ike-version 1
+        set dhgrp 14 5
+        set peertype any
+        set proposal aes128-sha256 aes256-sha256 3des-sha256 aes128-sha1 aes256-sha1 3des-sha1
+        set keepalive 5
+        set remote-gw 198.51.100.20
+        set psksecret ********
+    next
+end
+config system interface
+    edit "to-sede2"
+        set vdom "root"
+        set ip 169.254.1.1 255.255.255.255
+        set remote-ip 169.254.1.2 255.255.255.255
+    next
+end
+config vpn ipsec phase2-interface
+    edit "to-sede2-p2"
+        set phase1name "to-sede2"
+        set dhgrp 14 5
+        set proposal aes128-sha1 aes256-sha1 3des-sha1 aes128-sha256 aes256-sha256 3des-sha256
+        set src-subnet 192.168.10.0 255.255.255.0
+        set dst-subnet 10.20.0.0 255.255.255.0
+    next
+end
+config firewall address
+    edit "dialup_vpn_range"
+        set type iprange
+        set start-ip 10.212.134.200
+        set end-ip 10.212.134.210
+    next
+end
+config firewall addrgrp
+    edit "dialup_vpn_split"
+        set member "LAN-Ufficio"
+    next
+end

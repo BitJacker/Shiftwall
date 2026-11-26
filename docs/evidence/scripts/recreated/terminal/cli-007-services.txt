@@ -1,0 +1,5 @@
+config firewall service group
+    edit "Web"
+        set member "HTTP" "HTTPS"
+    next
+end

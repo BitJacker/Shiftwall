@@ -1,0 +1,36 @@
+config firewall policy
+    edit 1
+        set srcintf "internal"
+        set dstintf "wan"
+        set srcaddr "all"
+        set dstaddr "all"
+        set action accept
+        set schedule "always"
+        set service "ALL"
+        set utm-status enable
+        set av-profile "default"
+        set webfilter-profile "default"
+        set logtraffic all
+        set nat enable
+    next
+    edit 2
+        set srcintf "wan"
+        set dstintf "internal"
+        set srcaddr "all"
+        set dstaddr "VIP-RDP"
+        set action accept
+        set schedule "always"
+        set service "RDP"
+    next
+    edit 3
+        set name "dialup_vpn 3"
+        set srcintf "dialup_vpn"
+        set dstintf "internal"
+        set action accept
+        set srcaddr "dialup_vpn_range"
+        set dstaddr "LAN-Ufficio"
+        set schedule "always"
+        set service "ALL"
+        set nat enable
+    next
+end

@@ -65,7 +65,7 @@ jobs:
           "first run: $($m.FirstRunMs) ms`nwarm median: $($m.WarmMedianMs) ms ($($m.WarmRunsMs))`nsize: $($m.SizeMB) MB" | Set-Content startup.txt
           $b = [System.Windows.Forms.Screen]::PrimaryScreen.Bounds
           # One screenshot of the start page and of every toolbox page (empty state), to review the layout.
-          foreach ($page in "migration","compare","audit","cleanup","export","import","vpn","anonymize","snippets","upgrade","lan") {
+          foreach ($page in "migration","compare","audit","cleanup","export","import","vpn","anonymize","twofactor","snippets","upgrade","lan") {
             $q = Start-Process -FilePath publish\Shiftwall.exe -ArgumentList "--page",$page -PassThru
             $sw = [Diagnostics.Stopwatch]::StartNew()
             while ($q.MainWindowHandle -eq 0 -and $sw.Elapsed.TotalSeconds -lt 30) { Start-Sleep -Milliseconds 100; $q.Refresh() }
@@ -77,6 +77,13 @@ jobs:
             Stop-Process $q
             Start-Sleep -Seconds 1
           }
+          # Every step of the rebuild wizard with the synthetic 110C -> 40F fixtures, in the three switch variants.
+          $fx = "tests/Shiftwall.Features.Tests/Rebuild/Fixtures"
+          $w = Start-Process -FilePath publish\Shiftwall.exe -ArgumentList "--wizard-screenshots","$fx/110c-5.2-office.fgtcfg","$fx/40f-8.0-target-synthetic.fgtcfg","wizard-shots" -PassThru
+          if (-not $w.WaitForExit(300000)) { Stop-Process $w; throw "Wizard screenshots did not finish in 5 minutes" }
+          if ($w.ExitCode -ne 0) { throw "Wizard screenshots failed with exit code $($w.ExitCode)" }
+          $count = (Get-ChildItem wizard-shots -Filter *.png).Count
+          if ($count -lt 20) { throw "Only $count wizard screenshots" }
       - name: SHA256
         shell: pwsh
         run: (Get-FileHash publish\Shiftwall.exe -Algorithm SHA256).Hash.ToLowerInvariant() + "  Shiftwall.exe" | Out-File -Encoding ascii publish\SHA256SUMS.txt
@@ -98,5 +105,6 @@ jobs:
           name: smoke-test
           path: |
             screenshot-*.png
+            wizard-shots/*.png
             startup.txt
           retention-days: 14

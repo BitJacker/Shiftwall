@@ -342,16 +342,23 @@ public sealed class CleanupViewModel : ObservableObject
             found = await Task.Run(() => UnusedObjects.Find(doc, exclude));
         }
 
-        if (version != _version) return;
-        Items.Clear();
-        _suppress = true;
-        foreach (var o in found) Items.Add(new UnusedItem(o, Regenerate));
-        _suppress = false;
+        // Without a UI synchronization context (tests, background callers) two runs can resume at the same time:
+        // the list is rebuilt under a lock, and only by the latest run.
+        lock (_itemsLock)
+        {
+            if (version != _version) return;
+            Items.Clear();
+            _suppress = true;
+            foreach (var o in found) Items.Add(new UnusedItem(o, Regenerate));
+            _suppress = false;
+            Regenerate();
+        }
 
         SelectAllCommand.RaiseCanExecuteChanged();
         SelectNoneCommand.RaiseCanExecuteChanged();
-        Regenerate();
     }
+
+    private readonly object _itemsLock = new();
 
     private void SetAll(bool value)
     {
@@ -364,7 +371,8 @@ public sealed class CleanupViewModel : ObservableObject
     private void Regenerate()
     {
         if (_suppress) return;
-        var selected = Items.Where(i => i.IsSelected).Select(i => i.Object).ToList();
+        List<UnusedObject> selected;
+        lock (_itemsLock) selected = [.. Items.Where(i => i.IsSelected).Select(i => i.Object)];
         Script = selected.Count == 0 || Config.Document is null ? "" : UnusedObjects.Script(selected, Config.Document.IsMultiVdom, ToolOutput.ScriptHeader("Nav.Cleanup", Config.Path));
         OnPropertyChanged(nameof(Summary));
     }

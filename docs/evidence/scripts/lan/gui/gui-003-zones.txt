@@ -1,0 +1,7 @@
+# Shiftwall - 110C to 40F - part 3 of 16 (zones)
+# Run the parts in order: admin menu > Configuration > Scripts > Run Script.
+config system zone
+    edit "OSPITI"
+        set interface "vlan20-ospiti"
+    next
+end

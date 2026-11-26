@@ -1,0 +1,11 @@
+config system dhcp server
+    delete 1
+end
+config system interface
+    edit "lan"
+        set vdom "root"
+        set mode dhcp
+        set defaultgw disable
+        set allowaccess ping
+    next
+end

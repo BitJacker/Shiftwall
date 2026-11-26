@@ -16,5 +16,6 @@
   <ItemGroup>
     <None Include="..\Shiftwall.Features.Tests\Golden\Migration\*.fgtcfg;..\Shiftwall.Features.Tests\Golden\Migration\*.json" LinkBase="Golden" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\Shiftwall.Features.Tests\Golden\Toolbox\*.fgtcfg" LinkBase="Golden\Toolbox" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\Shiftwall.Features.Tests\Rebuild\Fixtures\*.fgtcfg" LinkBase="Rebuild" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>

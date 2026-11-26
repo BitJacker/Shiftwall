@@ -11,6 +11,10 @@
     <PackageReference Include="DiffPlex" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="..\..\data\schemas\*.json" LogicalName="Shiftwall.Schemas.%(Filename)%(Extension)" />
+    <EmbeddedResource Include="..\..\data\rules\*.json" LogicalName="Shiftwall.Rules.%(Filename)%(Extension)" />
+  </ItemGroup>
+  <ItemGroup>
     <InternalsVisibleTo Include="Shiftwall.Features.Tests" />
   </ItemGroup>
 </Project>

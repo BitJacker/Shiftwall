@@ -28,7 +28,7 @@
   <data name="Common.Next" xml:space="preserve"><value>Next</value></data>
   <data name="Common.Browse" xml:space="preserve"><value>Browse…</value></data>
   <data name="Wizard.Title" xml:space="preserve"><value>Configuration migration</value></data>
-  <data name="Wizard.Simulation" xml:space="preserve"><value>Simulation: no file is written until you press "Save configuration" in the last step.</value></data>
+  <data name="Wizard.Simulation" xml:space="preserve"><value>Simulation: no file is written until you press a "Save" button in the last step.</value></data>
   <data name="Step.Load" xml:space="preserve"><value>1  Load</value></data>
   <data name="Step.PreChecks" xml:space="preserve"><value>2  Pre-checks</value></data>
   <data name="Step.Mapping" xml:space="preserve"><value>3  Mapping</value></data>
@@ -357,4 +357,386 @@ Compare the fingerprint with the one shown by the FortiGate (System › Certific
   <data name="Error.FileTooLarge" xml:space="preserve"><value>"{0}" is {1} MB: larger than the {2} MB accepted for this kind of file. Check that it is the right file.</value></data>
   <data name="Error.PathTooLong" xml:space="preserve"><value>The path is too long for Windows. Move the file to a shorter folder path.</value></data>
   <data name="Error.Crypto" xml:space="preserve"><value>Encryption error: the file is damaged or the password is wrong.</value></data>
+  <data name="Nav.TwoFactor" xml:space="preserve"><value>Email 2FA</value></data>
+  <data name="TwoFactor.Title" xml:space="preserve"><value>Email two-factor authentication</value></data>
+  <data name="TwoFactor.Intro" xml:space="preserve"><value>Set the email and email two-factor authentication (two-factor email, email-to) on local users and administrators in bulk. Shiftwall reads a backup and writes CLI scripts in batches, each with its rollback: nothing is sent to the FortiGate.</value></data>
+  <data name="TwoFactor.Pick" xml:space="preserve"><value>Open the backup of the FortiGate</value></data>
+  <data name="TwoFactor.LoadFirst" xml:space="preserve"><value>Load a backup (or read the list from the LAN) to see the accounts.</value></data>
+  <data name="TwoFactor.Summary" xml:space="preserve"><value>{0} local users, {1} administrators. Without email: {2}. With email 2FA: {3}. With FortiToken: {4}.</value></data>
+  <data name="TwoFactor.EmailServer.Title" xml:space="preserve"><value>Email server</value></data>
+  <data name="TwoFactor.EmailServer.Ok" xml:space="preserve"><value>Configured: {0}, port {1}, security {2}.</value></data>
+  <data name="TwoFactor.EmailServer.Missing" xml:space="preserve"><value>Missing: the backup has no config system email-server with a server. Generation is blocked: configure the server (address, port, authentication, SMTPS or STARTTLS), export the backup again and reload it. Example:</value></data>
+  <data name="TwoFactor.EmailServer.FromLan" xml:space="preserve"><value>Not read through the LAN: load the backup to check it.</value></data>
+  <data name="TwoFactor.CopySnippet" xml:space="preserve"><value>Copy example</value></data>
+  <data name="TwoFactor.Accounts" xml:space="preserve"><value>Accounts</value></data>
+  <data name="TwoFactor.Search" xml:space="preserve"><value>Search</value></data>
+  <data name="TwoFactor.FilterLabel" xml:space="preserve"><value>Show</value></data>
+  <data name="TwoFactor.Filter.All" xml:space="preserve"><value>All</value></data>
+  <data name="TwoFactor.Filter.NoEmail" xml:space="preserve"><value>Without email</value></data>
+  <data name="TwoFactor.Filter.NoTwoFactor" xml:space="preserve"><value>Without 2FA</value></data>
+  <data name="TwoFactor.Filter.WithFortiToken" xml:space="preserve"><value>With FortiToken</value></data>
+  <data name="TwoFactor.Filter.AdminsOnly" xml:space="preserve"><value>Administrators only</value></data>
+  <data name="TwoFactor.Filter.UsersOnly" xml:space="preserve"><value>Local users only</value></data>
+  <data name="TwoFactor.Filter.Ldap" xml:space="preserve"><value>LDAP only</value></data>
+  <data name="TwoFactor.Filter.Radius" xml:space="preserve"><value>RADIUS only</value></data>
+  <data name="TwoFactor.SelectAll" xml:space="preserve"><value>Select shown</value></data>
+  <data name="TwoFactor.SelectNone" xml:space="preserve"><value>Clear selection</value></data>
+  <data name="TwoFactor.Edit.Email" xml:space="preserve"><value>Email</value></data>
+  <data name="TwoFactor.Edit.Action" xml:space="preserve"><value>Action</value></data>
+  <data name="TwoFactor.Action.Set" xml:space="preserve"><value>Set email and enable email 2FA</value></data>
+  <data name="TwoFactor.Action.Modify" xml:space="preserve"><value>Change email</value></data>
+  <data name="TwoFactor.Action.Remove" xml:space="preserve"><value>Remove email</value></data>
+  <data name="TwoFactor.Action.EnableTwoFactor" xml:space="preserve"><value>Enable email 2FA</value></data>
+  <data name="TwoFactor.Action.DisableTwoFactor" xml:space="preserve"><value>Disable 2FA</value></data>
+  <data name="TwoFactor.AddSelected" xml:space="preserve"><value>Apply to selected</value></data>
+  <data name="TwoFactor.Import" xml:space="preserve"><value>Import CSV / Excel…</value></data>
+  <data name="TwoFactor.ImportPick" xml:space="preserve"><value>Open the list of changes (CSV or Excel)</value></data>
+  <data name="TwoFactor.ImportFailed" xml:space="preserve"><value>The file could not be read: save it as CSV (UTF-8) or .xlsx and try again.</value></data>
+  <data name="TwoFactor.SaveTemplate" xml:space="preserve"><value>Save CSV template…</value></data>
+  <data name="TwoFactor.ClearRequests" xml:space="preserve"><value>Clear changes</value></data>
+  <data name="TwoFactor.Requests" xml:space="preserve"><value>Changes requested: {0}. Accounts that will change: {1}. Rows skipped: {2}.</value></data>
+  <data name="TwoFactor.Options" xml:space="preserve"><value>Options</value></data>
+  <data name="TwoFactor.Domain" xml:space="preserve"><value>Default domain (e.g. company.com): completes emails written without @</value></data>
+  <data name="TwoFactor.Template" xml:space="preserve"><value>Email rule (optional)</value></data>
+  <data name="TwoFactor.TemplateHelp" xml:space="preserve"><value>Used when the email is empty: {name}.{surname}@company.com splits the user name on . _ - (first part = name, last = surname); {username} is the whole name.</value></data>
+  <data name="TwoFactor.CreateMissing" xml:space="preserve"><value>Create missing local users (e.g. directory users as local users of type ldap)</value></data>
+  <data name="TwoFactor.BatchSize" xml:space="preserve"><value>Accounts per script</value></data>
+  <data name="TwoFactor.BatchHelp" xml:space="preserve"><value>No documented size limit was found for configuration scripts: 500 by default.</value></data>
+  <data name="TwoFactor.Timers" xml:space="preserve"><value>Add two-factor-email-expiry and remoteauthtimeout at 300 seconds (Fortinet KB) to every script</value></data>
+  <data name="TwoFactor.TokenTitle" xml:space="preserve"><value>Accounts with FortiToken</value></data>
+  <data name="TwoFactor.TokenHelp" xml:space="preserve"><value>These accounts stop using their token. Confirm them one by one.</value></data>
+  <data name="TwoFactor.AdminTitle" xml:space="preserve"><value>Administrators</value></data>
+  <data name="TwoFactor.AdminConfirm1" xml:space="preserve"><value>I have read the warnings about administrators</value></data>
+  <data name="TwoFactor.AdminConfirm2" xml:space="preserve"><value>I keep a break-glass administrator and I will test one administrator first, checking that the email arrives</value></data>
+  <data name="TwoFactor.AdminFinalConfirm" xml:space="preserve"><value>The scripts change {0} administrator(s). Generate them?</value></data>
+  <data name="TwoFactor.VaultTitle" xml:space="preserve"><value>Passwords of new users</value></data>
+  <data name="TwoFactor.VaultHelp" xml:space="preserve"><value>New local users of type password get a random password, saved only in an encrypted file (same protection as the anonymization map). Choose its password.</value></data>
+  <data name="TwoFactor.VaultPassword" xml:space="preserve"><value>File password</value></data>
+  <data name="TwoFactor.VaultConfirm" xml:space="preserve"><value>Repeat the password</value></data>
+  <data name="TwoFactor.Generate" xml:space="preserve"><value>Generate scripts…</value></data>
+  <data name="TwoFactor.GenerateHelp" xml:space="preserve"><value>Writes the batches, a rollback for each one, and the HTML/CSV report into a folder.</value></data>
+  <data name="TwoFactor.PickFolder" xml:space="preserve"><value>Folder for the scripts and the report</value></data>
+  <data name="TwoFactor.Generated" xml:space="preserve"><value>{0} scripts and {1} rollbacks written to {2}.</value></data>
+  <data name="TwoFactor.ExportInventory" xml:space="preserve"><value>Export list (Excel/CSV)…</value></data>
+  <data name="TwoFactor.ExportPick" xml:space="preserve"><value>Save the list of accounts</value></data>
+  <data name="TwoFactor.Findings" xml:space="preserve"><value>Checks</value></data>
+  <data name="TwoFactor.DryRun" xml:space="preserve"><value>Simulation (nothing is written)</value></data>
+  <data name="TwoFactor.Col.Account" xml:space="preserve"><value>Account</value></data>
+  <data name="TwoFactor.Col.Kind" xml:space="preserve"><value>Kind</value></data>
+  <data name="TwoFactor.Col.Type" xml:space="preserve"><value>Authentication</value></data>
+  <data name="TwoFactor.Col.Server" xml:space="preserve"><value>Remote server</value></data>
+  <data name="TwoFactor.Col.TwoFactor" xml:space="preserve"><value>2FA</value></data>
+  <data name="TwoFactor.Col.Email" xml:space="preserve"><value>Email</value></data>
+  <data name="TwoFactor.Col.Token" xml:space="preserve"><value>FortiToken</value></data>
+  <data name="TwoFactor.Col.Action" xml:space="preserve"><value>Action</value></data>
+  <data name="TwoFactor.Col.EmailBefore" xml:space="preserve"><value>Email before</value></data>
+  <data name="TwoFactor.Col.EmailAfter" xml:space="preserve"><value>Email after</value></data>
+  <data name="TwoFactor.Col.TwoFactorBefore" xml:space="preserve"><value>2FA before</value></data>
+  <data name="TwoFactor.Col.TwoFactorAfter" xml:space="preserve"><value>2FA after</value></data>
+  <data name="TwoFactor.Col.Profile" xml:space="preserve"><value>Profile</value></data>
+  <data name="TwoFactor.Create" xml:space="preserve"><value>create</value></data>
+  <data name="TwoFactor.Modify" xml:space="preserve"><value>modify</value></data>
+  <data name="TwoFactor.Lan.Title" xml:space="preserve"><value>Read the list from the LAN (optional, read only)</value></data>
+  <data name="TwoFactor.Lan.Help" xml:space="preserve"><value>GET on /api/v2/cmdb/user/local and /api/v2/cmdb/system/admin with a REST API token. Nothing is written to the FortiGate. Enable the LAN function in the Backup from LAN page first.</value></data>
+  <data name="TwoFactor.Lan.Vdoms" xml:space="preserve"><value>VDOMs (comma separated, empty = single VDOM)</value></data>
+  <data name="TwoFactor.Lan.Read" xml:space="preserve"><value>Read accounts</value></data>
+  <data name="TwoFactor.Lan.ReadOk" xml:space="preserve"><value>{0} accounts read.</value></data>
+  <data name="TwoFactor.Lan.AdminsEmpty" xml:space="preserve"><value>The administrator list is empty: Fortinet notes that a REST API administrator gets it only with the super_admin profile.</value></data>
+  <data name="TwoFactor.Lan.BackupNeeded" xml:space="preserve"><value>List read through the LAN: you can filter and export it, but the scripts need the backup (rollback values and email server come from it). Download it from the Backup from LAN page.</value></data>
+  <data name="TwoFactor.Lan.Disabled" xml:space="preserve"><value>The LAN function is disabled.</value></data>
+  <data name="TwoFactor.Sources" xml:space="preserve"><value>Syntax: FortiOS CLI Reference 6.2 – 8.0 (config user local, config system admin, config system global). Timers: Fortinet Community, "Technical Tip: Email Two-Factor Authentication on FortiGate". Upload: FortiOS Administration Guide, "Configuration scripts".</value></data>
+  <data name="Rebuild.Mode.Title" xml:space="preserve">
+    <value>Migration mode</value>
+  </data>
+  <data name="Rebuild.Mode.Label" xml:space="preserve">
+    <value>Mode</value>
+  </data>
+  <data name="Rebuild.Mode.Auto" xml:space="preserve">
+    <value>Automatic (recommended)</value>
+  </data>
+  <data name="Rebuild.Mode.Restore" xml:space="preserve">
+    <value>Restore: same backup, interfaces renamed</value>
+  </data>
+  <data name="Rebuild.Mode.Rebuild" xml:space="preserve">
+    <value>Rebuild: clean script in the target syntax</value>
+  </data>
+  <data name="Rebuild.NoRules" xml:space="preserve">
+    <value>Shiftwall has no verified translation rules from FortiOS {0} to {1} yet: the rebuild is not available for this pair.</value>
+  </data>
+  <data name="Rebuild.Settings" xml:space="preserve">
+    <value>Rebuild settings</value>
+  </data>
+  <data name="Rebuild.Management" xml:space="preserve">
+    <value>Interface you connect to</value>
+  </data>
+  <data name="Rebuild.Management.Hint" xml:space="preserve">
+    <value>Its changes go in the last part of the script, so the connection drops only at the end.</value>
+  </data>
+  <data name="Rebuild.CurrentAdmin" xml:space="preserve">
+    <value>Administrator running the script</value>
+  </data>
+  <data name="Rebuild.CurrentAdmin.Hint" xml:space="preserve">
+    <value>Not changed by the script: the CLI asks for its current password. Change it by hand at the end.</value>
+  </data>
+  <data name="Rebuild.Passwords" xml:space="preserve">
+    <value>Passwords (ENC values are never copied)</value>
+  </data>
+  <data name="Rebuild.Passwords.Hint" xml:space="preserve">
+    <value>Type a password twice for a category, or let Shiftwall generate a new random one for this migration (administrators, local users, VPN keys). LDAP/RADIUS secrets and PPPoE passwords must match the real ones: type them, or set them by hand later.</value>
+  </data>
+  <data name="Rebuild.Generate" xml:space="preserve">
+    <value>Generate the passwords I leave empty</value>
+  </data>
+  <data name="Rebuild.Secret.Admin" xml:space="preserve">
+    <value>Administrators</value>
+  </data>
+  <data name="Rebuild.Secret.LocalUser" xml:space="preserve">
+    <value>Local users</value>
+  </data>
+  <data name="Rebuild.Secret.VpnPsk" xml:space="preserve">
+    <value>VPN pre-shared keys</value>
+  </data>
+  <data name="Rebuild.Secret.Server" xml:space="preserve">
+    <value>LDAP / RADIUS servers</value>
+  </data>
+  <data name="Rebuild.Secret.Pppoe" xml:space="preserve">
+    <value>PPPoE (provider)</value>
+  </data>
+  <data name="Rebuild.Secret.Other" xml:space="preserve">
+    <value>Other secrets</value>
+  </data>
+  <data name="Rebuild.Secret.Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Rebuild.Secret.Confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="Rebuild.Secret.Mismatch" xml:space="preserve">
+    <value>The two passwords are different.</value>
+  </data>
+  <data name="Rebuild.Secret.Invalid" xml:space="preserve">
+    <value>Fix the passwords marked in red, or leave them empty.</value>
+  </data>
+  <data name="Rebuild.Secret.Problem.TooShort" xml:space="preserve">
+    <value>at least 12 characters</value>
+  </data>
+  <data name="Rebuild.Secret.Problem.MissingUpper" xml:space="preserve">
+    <value>an upper-case letter</value>
+  </data>
+  <data name="Rebuild.Secret.Problem.MissingLower" xml:space="preserve">
+    <value>a lower-case letter</value>
+  </data>
+  <data name="Rebuild.Secret.Problem.MissingDigit" xml:space="preserve">
+    <value>a number</value>
+  </data>
+  <data name="Rebuild.Secret.Problem.MissingSymbol" xml:space="preserve">
+    <value>a symbol among ! $ % &amp; * + - = @ ^ _ ~</value>
+  </data>
+  <data name="Rebuild.Secret.Problem.ForbiddenCharacter" xml:space="preserve">
+    <value>no ? # ' " \ &lt; &gt; ( ), spaces or tabs (CLI special characters)</value>
+  </data>
+  <data name="Rebuild.Secret.Problem.NotAscii" xml:space="preserve">
+    <value>only plain ASCII characters</value>
+  </data>
+  <data name="Rebuild.Addressing" xml:space="preserve">
+    <value>Addressing on the target</value>
+  </data>
+  <data name="Rebuild.Addressing.Keep" xml:space="preserve">
+    <value>As on the source</value>
+  </data>
+  <data name="Rebuild.Addressing.Static" xml:space="preserve">
+    <value>Static</value>
+  </data>
+  <data name="Rebuild.Addressing.Dhcp" xml:space="preserve">
+    <value>DHCP</value>
+  </data>
+  <data name="Rebuild.Address" xml:space="preserve">
+    <value>IP/mask</value>
+  </data>
+  <data name="Rebuild.Gateway" xml:space="preserve">
+    <value>Gateway</value>
+  </data>
+  <data name="Rebuild.Dns" xml:space="preserve">
+    <value>DNS</value>
+  </data>
+  <data name="Rebuild.TypedTarget" xml:space="preserve">
+    <value>'{0}' is not an interface of the target: load the factory-default backup of the new FortiGate, or pick a name from the list.</value>
+  </data>
+  <data name="Rebuild.Counts" xml:space="preserve">
+    <value>Objects</value>
+  </data>
+  <data name="Rebuild.Manual" xml:space="preserve">
+    <value>To do by hand</value>
+  </data>
+  <data name="Rebuild.Script" xml:space="preserve">
+    <value>Script (passwords hidden)</value>
+  </data>
+  <data name="Rebuild.Col.Object" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="Rebuild.Col.Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Rebuild.Col.Source" xml:space="preserve">
+    <value>Source</value>
+  </data>
+  <data name="Rebuild.Col.Rebuilt" xml:space="preserve">
+    <value>In the script</value>
+  </data>
+  <data name="Rebuild.Col.Converted" xml:space="preserve">
+    <value>Converted</value>
+  </data>
+  <data name="Rebuild.Col.Manual" xml:space="preserve">
+    <value>By hand</value>
+  </data>
+  <data name="Rebuild.Col.Reason" xml:space="preserve">
+    <value>Why and what to do</value>
+  </data>
+  <data name="Rebuild.LintError" xml:space="preserve">
+    <value>Final check failed at line {0}: {1} {2}</value>
+  </data>
+  <data name="Rebuild.LintBlocked" xml:space="preserve">
+    <value>{0} did not pass the final check and was not saved: {1}</value>
+  </data>
+  <data name="Rebuild.Save.Title" xml:space="preserve">
+    <value>Save the scripts</value>
+  </data>
+  <data name="Rebuild.Save.Hint" xml:space="preserve">
+    <value>Two versions with the same commands: one for the GUI (admin menu &gt; Configuration &gt; Scripts &gt; Run Script, parts in order) and one for the terminal (CLI Console or SSH, small blocks to paste one at a time). Run them on the new FortiGate with its factory configuration.</value>
+  </data>
+  <data name="Rebuild.Save.Gui" xml:space="preserve">
+    <value>Save for GUI</value>
+  </data>
+  <data name="Rebuild.Save.Terminal" xml:space="preserve">
+    <value>Save for terminal</value>
+  </data>
+  <data name="Rebuild.Save.Secrets" xml:space="preserve">
+    <value>Save encrypted</value>
+  </data>
+  <data name="Rebuild.Saved" xml:space="preserve">
+    <value>{0} files saved in {1}.</value>
+  </data>
+  <data name="Rebuild.Guide" xml:space="preserve">
+    <value>Step-by-step guide and how to read the errors: docs/load-scripts.md and docs/LAB-TEST.md in the Shiftwall repository.</value>
+  </data>
+  <data name="Rebuild.PasswordsOnce" xml:space="preserve">
+    <value>New passwords (shown only now)</value>
+  </data>
+  <data name="Rebuild.PasswordsOnce.Hint" xml:space="preserve">
+    <value>These accounts and keys get these passwords. Change them at the first login and give the new VPN keys to whoever manages the other side. They are not in the report or in the logs: save them encrypted if you need them later.</value>
+  </data>
+  <data name="Rebuild.Vault.Label" xml:space="preserve">
+    <value>File password (12+ characters)</value>
+  </data>
+  <data name="Rebuild.Vault.TooShort" xml:space="preserve">
+    <value>The file password must have at least 12 characters.</value>
+  </data>
+  <data name="Rebuild.Hide" xml:space="preserve">
+    <value>I saved them: hide</value>
+  </data>
+  <data name="Rebuild.Switch.Action" xml:space="preserve">
+    <value>Switch</value>
+  </data>
+  <data name="Rebuild.Switch.Map" xml:space="preserve">
+    <value>Map to an existing interface</value>
+  </data>
+  <data name="Rebuild.Switch.Recreate" xml:space="preserve">
+    <value>Recreate on the target</value>
+  </data>
+  <data name="Rebuild.Switch.Split" xml:space="preserve">
+    <value>Split into separate ports</value>
+  </data>
+  <data name="Rebuild.Switch.Hardware" xml:space="preserve">
+    <value>Hardware switch, ports: {0}</value>
+  </data>
+  <data name="Rebuild.Switch.Software" xml:space="preserve">
+    <value>Software switch, ports: {0}</value>
+  </data>
+  <data name="Rebuild.Switch.Internal" xml:space="preserve">
+    <value>Internal switch (switch mode, 5.2 default): the backup does not list its ports</value>
+  </data>
+  <data name="Rebuild.Switch.NoMembers" xml:space="preserve">
+    <value>not listed in the backup</value>
+  </data>
+  <data name="Rebuild.Switch.SplitHint" xml:space="preserve">
+    <value>The first port chosen takes the address; the others stay without one.</value>
+  </data>
+  <data name="Rebuild.Create.Title" xml:space="preserve">
+    <value>Create on the target as</value>
+  </data>
+  <data name="Rebuild.Create.Switch" xml:space="preserve">
+    <value>Switch (type chosen by Shiftwall)</value>
+  </data>
+  <data name="Rebuild.Create.Hardware" xml:space="preserve">
+    <value>Hardware switch</value>
+  </data>
+  <data name="Rebuild.Create.Software" xml:space="preserve">
+    <value>Software switch</value>
+  </data>
+  <data name="Rebuild.Create.Vlan" xml:space="preserve">
+    <value>VLAN</value>
+  </data>
+  <data name="Rebuild.Create.Ports" xml:space="preserve">
+    <value>Target ports</value>
+  </data>
+  <data name="Rebuild.Create.Parent" xml:space="preserve">
+    <value>Parent interface</value>
+  </data>
+  <data name="Rebuild.Create.VlanId" xml:space="preserve">
+    <value>VLAN ID</value>
+  </data>
+  <data name="Rebuild.Port.Free" xml:space="preserve">
+    <value>free</value>
+  </data>
+  <data name="Rebuild.Port.InSwitch" xml:space="preserve">
+    <value>in switch {0}</value>
+  </data>
+  <data name="Rebuild.Port.Used" xml:space="preserve">
+    <value>used by {0}</value>
+  </data>
+  <data name="Rebuild.Port.ChosenBy" xml:space="preserve">
+    <value>→ {0}</value>
+  </data>
+  <data name="Rebuild.Port.Switch" xml:space="preserve">
+    <value>switch: {0}</value>
+  </data>
+  <data name="Rebuild.Profiles" xml:space="preserve">
+    <value>Security profiles not on the target</value>
+  </data>
+  <data name="Rebuild.Profiles.Defaults" xml:space="preserve">
+    <value>Apply the 8.0 defaults</value>
+  </data>
+  <data name="Rebuild.Profiles.Disable" xml:space="preserve">
+    <value>Write the policy disabled</value>
+  </data>
+  <data name="Rebuild.Profiles.Hint" xml:space="preserve">
+    <value>No policy leaves without protection: with the defaults, a profile with no documented default disables the policy anyway.</value>
+  </data>
+  <data name="Rebuild.Profiles.Tab" xml:space="preserve">
+    <value>Profiles</value>
+  </data>
+  <data name="Rebuild.Profiles.Disabled" xml:space="preserve">
+    <value>disabled</value>
+  </data>
+  <data name="Rebuild.Profiles.Enabled" xml:space="preserve">
+    <value>enabled</value>
+  </data>
+  <data name="Rebuild.Col.Policy" xml:space="preserve">
+    <value>Policy</value>
+  </data>
+  <data name="Rebuild.Col.OriginalProfiles" xml:space="preserve">
+    <value>Profiles on the source</value>
+  </data>
+  <data name="Rebuild.Col.AppliedProfiles" xml:space="preserve">
+    <value>Profiles written</value>
+  </data>
+  <data name="Rebuild.Col.Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Rebuild.FindingsTab" xml:space="preserve">
+    <value>Warnings ({0})</value>
+  </data>
+  <data name="Rebuild.Summary" xml:space="preserve">
+    <value>Errors: {0} · warnings: {1} · manual items: {2}. Read the Warnings tab before saving.</value>
+  </data>
 </root>

@@ -1,0 +1,67 @@
+# Shiftwall - 110C to 40F - part 12 of 17 (policies)
+# Run the parts in order: admin menu > Configuration > Scripts > Run Script.
+config firewall policy
+    edit 1
+        set srcintf "lan1"
+        set dstintf "wan"
+        set srcaddr "all"
+        set dstaddr "all"
+        set action accept
+        set schedule "always"
+        set service "ALL"
+        set utm-status enable
+        set av-profile "default"
+        set webfilter-profile "default"
+        set logtraffic all
+        set nat enable
+    next
+    edit 2
+        set srcintf "wan"
+        set dstintf "lan1"
+        set srcaddr "all"
+        set dstaddr "VIP-RDP"
+        set action accept
+        set schedule "always"
+        set service "RDP"
+    next
+    edit 3
+        set name "dialup_vpn 3"
+        set srcintf "dialup_vpn"
+        set dstintf "lan1"
+        set action accept
+        set srcaddr "dialup_vpn_range"
+        set dstaddr "LAN-Ufficio"
+        set schedule "always"
+        set service "ALL"
+        set nat enable
+    next
+    edit 4
+        set srcintf "lan1"
+        set dstintf "to-sede2"
+        set srcaddr "LAN-Ufficio"
+        set dstaddr "Sede2-LAN"
+        set action accept
+        set schedule "always"
+        set service "ALL"
+    next
+    edit 5
+        set srcintf "to-sede2"
+        set dstintf "lan1"
+        set srcaddr "Sede2-LAN"
+        set dstaddr "LAN-Ufficio"
+        set action accept
+        set schedule "always"
+        set service "ALL"
+    next
+    edit 6
+        set srcintf "OSPITI"
+        set dstintf "lan"
+        set srcaddr "all"
+        set dstaddr "all"
+        set action accept
+        set schedule "always"
+        set service "Web" "DNS"
+        set nat enable
+        set comments "Ospiti: solo web (porta wan2)"
+    next
+end

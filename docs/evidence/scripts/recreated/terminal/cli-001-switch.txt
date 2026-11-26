@@ -1,0 +1,29 @@
+config system virtual-switch
+    edit "lan"
+        config port
+            delete "lan1"
+            delete "lan2"
+        end
+    next
+end
+config system interface
+    edit "lan1"
+        set mode static
+        set ip 0.0.0.0 0.0.0.0
+    next
+    edit "lan2"
+        set mode static
+        set ip 0.0.0.0 0.0.0.0
+    next
+end
+config system virtual-switch
+    edit "internal"
+        set physical-switch "sw0"
+        config port
+            edit "lan1"
+            next
+            edit "lan2"
+            next
+        end
+    next
+end

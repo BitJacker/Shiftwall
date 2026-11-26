@@ -1,0 +1,8 @@
+config system admin
+    edit "tecnico"
+        set accprofile "super_admin"
+        set vdom "root"
+        set trusthost1 192.168.10.0 255.255.255.0
+        set password ********
+    next
+end

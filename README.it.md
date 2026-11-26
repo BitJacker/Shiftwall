@@ -42,6 +42,13 @@ ufficiale Fortinet.
   da verificare a mano.
 - Template di mappatura riutilizzabili e conversione in blocco di più sedi, con modalità simulazione.
 - I valori `ENC` (password, chiavi pre-condivise, chiavi private) sono copiati byte per byte e verificati dopo.
+- **Modalità ricostruzione** per versioni di FortiOS diverse (prima coppia: **5.2 → 8.0**, es. FortiGate 110C → 40F):
+  la configurazione viene riscritta come script CLI pulito con la sintassi della destinazione. Ogni parametro passa da
+  regole di traduzione con fonti ufficiali ed è controllato sullo schema CLI della versione di destinazione; quello
+  che non passa va in "da fare a mano" con il motivo. I valori `ENC` non vengono mai copiati: le password si scrivono
+  due volte oppure vengono generate nuove per ogni migrazione, mostrate una volta e salvate solo cifrate. La SSL VPN
+  diventa IPsec dial-up per FortiClient. Due versioni: parti numerate per la GUI (Run Script) e blocchi piccoli per il
+  terminale. Vedi [docs/load-scripts.md](docs/load-scripts.md) e [docs/LAB-TEST.md](docs/LAB-TEST.md).
 
 ### Toolbox
 
@@ -53,6 +60,10 @@ ufficiale Fortinet.
 - **Riepilogo VPN**: fase 1 e 2 IPsec di una sede, o il confronto fra due sedi.
 - **Anonimizza config**: per condividere una configurazione in sicurezza; una mappa protetta da password (AES-256-GCM)
   la ripristina.
+- **Email 2FA**: imposta in blocco email e autenticazione a due fattori via email su centinaia di utenti locali e
+  amministratori, da un elenco CSV/Excel o dalla tabella. Scrive script CLI a lotti, ognuno con il suo rollback, dopo
+  aver controllato server email, utenti con FortiToken e rischio di blocco degli admin. Esempio:
+  [samples/email-2fa.csv](samples/email-2fa.csv).
 - **Snippet CLI**: VLAN, policy, VIP, rotta statica e utente locale, come CLI pronta da rivedere.
 - **Pianifica upgrade**: apre l'upgrade tool ufficiale Fortinet, senza percorsi inventati.
 - **Backup da LAN** (facoltativo, disattivato di default): scarica un backup tramite la REST API di FortiOS da un

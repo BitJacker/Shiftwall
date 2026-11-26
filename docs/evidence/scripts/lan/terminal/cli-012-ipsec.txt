@@ -1,0 +1,30 @@
+config vpn ipsec phase1-interface
+    edit "dialup_vpn"
+        set type dynamic
+        set interface "wan"
+        set ike-version 2
+        set peertype any
+        set net-device disable
+        set mode-cfg enable
+        set proposal aes128-sha256 aes256-sha256 aes128gcm-prfsha256 aes256gcm-prfsha384 chacha20poly1305-prfsha256
+        set dhgrp 20 21
+        set eap enable
+        set eap-identity send-request
+        set wizard-type dialup-forticlient
+        set authusrgrp "VPN-Utenti"
+        set assign-ip-from name
+        set dns-mode manual
+        set ipv4-dns-server1 192.168.10.5
+        set ipv4-split-include "dialup_vpn_split"
+        set ipv4-name "dialup_vpn_range"
+        set save-password enable
+        set psksecret ********
+    next
+end
+config vpn ipsec phase2-interface
+    edit "dialup_vpn"
+        set phase1name "dialup_vpn"
+        set proposal aes128-sha256 aes256-sha256 aes128gcm aes256gcm chacha20poly1305
+        set dhgrp 20 21
+    next
+end

@@ -1,0 +1,555 @@
+===== 2fa-users-001.txt
+# Shiftwall - email two-factor authentication - batch 1 of 3 (local users)
+# Source backup: lab-50.conf (FortiOS 7.4.9)
+# Accounts in this file: 20
+#   - user0001
+#   - user0002
+#   - user0004
+#   - user0005
+#   - user0006
+#   - user0007
+#   - user0008
+#   - user0009
+#   - user0010
+#   - user0011
+#   - user0012
+#   - user0013
+#   - user0014
+#   - user0015
+#   - user0016
+#   - user0017
+#   - user0018
+#   - user0019
+#   - user0020
+#   - user0021
+# Rollback script: rollback-users-001.txt
+# Run it from Configuration > Scripts > Run Script (FortiOS Administration Guide, "Configuration scripts").
+config system global
+    set two-factor-email-expiry 300
+    set remoteauthtimeout 300
+end
+config user local
+    edit "user0001"
+        set email-to "user0001@example.com"
+        set two-factor email
+    next
+    edit "user0002"
+        set email-to "user0002@example.com"
+        set two-factor email
+    next
+    edit "user0004"
+        set email-to "user0004@example.com"
+        set two-factor email
+    next
+    edit "user0005"
+        set email-to "user0005@example.com"
+        set two-factor email
+    next
+    edit "user0006"
+        set email-to "user0006@example.com"
+        set two-factor email
+    next
+    edit "user0007"
+        set two-factor email
+    next
+    edit "user0008"
+        set email-to "user0008@example.com"
+        set two-factor email
+    next
+    edit "user0009"
+        set email-to "user0009@example.com"
+        set two-factor email
+    next
+    edit "user0010"
+        set email-to "user0010@example.com"
+        set two-factor email
+    next
+    edit "user0011"
+        set email-to "user0011@example.com"
+        set two-factor email
+    next
+    edit "user0012"
+        set email-to "user0012@example.com"
+        set two-factor email
+    next
+    edit "user0013"
+        set email-to "user0013@example.com"
+        set two-factor email
+    next
+    edit "user0014"
+        set two-factor email
+    next
+    edit "user0015"
+        set email-to "user0015@example.com"
+        set two-factor email
+    next
+    edit "user0016"
+        set email-to "user0016@example.com"
+        set two-factor email
+    next
+    edit "user0017"
+        set email-to "user0017@example.com"
+        set two-factor email
+    next
+    edit "user0018"
+        set email-to "user0018@example.com"
+        set two-factor email
+    next
+    edit "user0019"
+        set email-to "user0019@example.com"
+        set two-factor email
+    next
+    edit "user0020"
+        set email-to "user0020@example.com"
+        set two-factor email
+    next
+    edit "user0021"
+        set two-factor email
+    next
+end
+===== 2fa-users-002.txt
+# Shiftwall - email two-factor authentication - batch 2 of 3 (local users)
+# Source backup: lab-50.conf (FortiOS 7.4.9)
+# Accounts in this file: 20
+#   - user0022
+#   - user0023
+#   - user0024
+#   - user0025
+#   - user0026
+#   - user0027
+#   - user0028
+#   - user0029
+#   - user0030
+#   - user0031
+#   - user0032
+#   - user0033
+#   - user0034
+#   - user0035
+#   - user0036
+#   - user0037
+#   - user0038
+#   - user0039
+#   - user0040
+#   - user0041
+# Rollback script: rollback-users-002.txt
+# Run it from Configuration > Scripts > Run Script (FortiOS Administration Guide, "Configuration scripts").
+config system global
+    set two-factor-email-expiry 300
+    set remoteauthtimeout 300
+end
+config user local
+    edit "user0022"
+        set email-to "user0022@example.com"
+        set two-factor email
+    next
+    edit "user0023"
+        set email-to "user0023@example.com"
+        set two-factor email
+    next
+    edit "user0024"
+        set email-to "user0024@example.com"
+        set two-factor email
+    next
+    edit "user0025"
+        set email-to "user0025@example.com"
+        set two-factor email
+    next
+    edit "user0026"
+        set email-to "user0026@example.com"
+        set two-factor email
+    next
+    edit "user0027"
+        set email-to "user0027@example.com"
+        set two-factor email
+    next
+    edit "user0028"
+        set two-factor email
+    next
+    edit "user0029"
+        set email-to "user0029@example.com"
+        set two-factor email
+    next
+    edit "user0030"
+        set email-to "user0030@example.com"
+        set two-factor email
+    next
+    edit "user0031"
+        set email-to "user0031@example.com"
+        set two-factor email
+    next
+    edit "user0032"
+        set email-to "user0032@example.com"
+        set two-factor email
+    next
+    edit "user0033"
+        set email-to "user0033@example.com"
+        set two-factor email
+    next
+    edit "user0034"
+        set email-to "user0034@example.com"
+        set two-factor email
+    next
+    edit "user0035"
+        set two-factor email
+    next
+    edit "user0036"
+        set email-to "user0036@example.com"
+        set two-factor email
+    next
+    edit "user0037"
+        set email-to "user0037@example.com"
+        set two-factor email
+    next
+    edit "user0038"
+        set email-to "user0038@example.com"
+        set two-factor email
+    next
+    edit "user0039"
+        set email-to "user0039@example.com"
+        set two-factor email
+    next
+    edit "user0040"
+        set email-to "user0040@example.com"
+        set two-factor email
+    next
+    edit "user0041"
+        set email-to "user0041@example.com"
+        set two-factor email
+    next
+end
+===== 2fa-users-003.txt
+# Shiftwall - email two-factor authentication - batch 3 of 3 (local users)
+# Source backup: lab-50.conf (FortiOS 7.4.9)
+# Accounts in this file: 9
+#   - user0042
+#   - user0043
+#   - user0044
+#   - user0045
+#   - user0046
+#   - user0047
+#   - user0048
+#   - user0049
+#   - user0050
+# Rollback script: rollback-users-003.txt
+# Run it from Configuration > Scripts > Run Script (FortiOS Administration Guide, "Configuration scripts").
+config system global
+    set two-factor-email-expiry 300
+    set remoteauthtimeout 300
+end
+config user local
+    edit "user0042"
+        set two-factor email
+    next
+    edit "user0043"
+        set email-to "user0043@example.com"
+        set two-factor email
+    next
+    edit "user0044"
+        set email-to "user0044@example.com"
+        set two-factor email
+    next
+    edit "user0045"
+        set email-to "user0045@example.com"
+        set two-factor email
+    next
+    edit "user0046"
+        set email-to "user0046@example.com"
+        set two-factor email
+    next
+    edit "user0047"
+        set email-to "user0047@example.com"
+        set two-factor email
+    next
+    edit "user0048"
+        set email-to "user0048@example.com"
+        set two-factor email
+    next
+    edit "user0049"
+        set two-factor email
+    next
+    edit "user0050"
+        set email-to "user0050@example.com"
+        set two-factor email
+    next
+end
+===== rollback-users-001.txt
+# Shiftwall - email two-factor authentication - ROLLBACK of batch 1 of 3 (local users)
+# Source backup: lab-50.conf (FortiOS 7.4.9)
+# Accounts in this file: 20
+#   - user0001
+#   - user0002
+#   - user0004
+#   - user0005
+#   - user0006
+#   - user0007
+#   - user0008
+#   - user0009
+#   - user0010
+#   - user0011
+#   - user0012
+#   - user0013
+#   - user0014
+#   - user0015
+#   - user0016
+#   - user0017
+#   - user0018
+#   - user0019
+#   - user0020
+#   - user0021
+# Restores the values read from the backup before the batch. Batch script: 2fa-users-001.txt
+# Run it from Configuration > Scripts > Run Script (FortiOS Administration Guide, "Configuration scripts").
+config system global
+    unset two-factor-email-expiry
+    unset remoteauthtimeout
+end
+config user local
+    edit "user0021"
+        unset two-factor
+        set email-to "user0021@example.com"
+    next
+    edit "user0020"
+        unset two-factor
+        unset email-to
+    next
+    edit "user0019"
+        unset two-factor
+        unset email-to
+    next
+    edit "user0018"
+        unset two-factor
+        unset email-to
+    next
+    edit "user0017"
+        unset two-factor
+        unset email-to
+    next
+    edit "user0016"
+        unset two-factor
+        unset email-to
+    next
+    edit "user0015"
+        unset two-factor
+        unset email-to
+    next
+    edit "user0014"
+        unset two-factor
+        set email-to "user0014@example.com"
+    next
+    edit "user0013"
+        unset two-factor
+        unset email-to
+    next
+    edit "user0012"
+        unset two-factor
+        unset email-to
+    next
+    edit "user0011"
+        unset two-factor
+        unset email-to
+    next
+    edit "user0010"
+        unset two-factor
+        unset email-to
+    next
+    edit "user0009"
+        unset two-factor
+        unset email-to
+    next
+    edit "user0008"
+        unset two-factor
+        unset email-to
+    next
+    edit "user0007"
+        unset two-factor
+        set email-to "user0007@example.com"
+    next
+    edit "user0006"
+        unset two-factor
+        unset email-to
+    next
+    edit "user0005"
+        unset two-factor
+        unset email-to
+    next
+    edit "user0004"
+        unset two-factor
+        unset email-to
+    next
+    edit "user0002"
+        unset two-factor
+        unset email-to
+    next
+    edit "user0001"
+        unset two-factor
+        unset email-to
+    next
+end
+===== rollback-users-002.txt
+# Shiftwall - email two-factor authentication - ROLLBACK of batch 2 of 3 (local users)
+# Source backup: lab-50.conf (FortiOS 7.4.9)
+# Accounts in this file: 20
+#   - user0022
+#   - user0023
+#   - user0024
+#   - user0025
+#   - user0026
+#   - user0027
+#   - user0028
+#   - user0029
+#   - user0030
+#   - user0031
+#   - user0032
+#   - user0033
+#   - user0034
+#   - user0035
+#   - user0036
+#   - user0037
+#   - user0038
+#   - user0039
+#   - user0040
+#   - user0041
+# Restores the values read from the backup before the batch. Batch script: 2fa-users-002.txt
+# Run it from Configuration > Scripts > Run Script (FortiOS Administration Guide, "Configuration scripts").
+config system global
+    unset two-factor-email-expiry
+    unset remoteauthtimeout
+end
+config user local
+    edit "user0041"
+        unset two-factor
+        unset email-to
+    next
+    edit "user0040"
+        unset two-factor
+        unset email-to
+    next
+    edit "user0039"
+        unset two-factor
+        unset email-to
+    next
+    edit "user0038"
+        unset two-factor
+        unset email-to
+    next
+    edit "user0037"
+        unset two-factor
+        unset email-to
+    next
+    edit "user0036"
+        unset two-factor
+        unset email-to
+    next
+    edit "user0035"
+        unset two-factor
+        set email-to "user0035@example.com"
+    next
+    edit "user0034"
+        unset two-factor
+        unset email-to
+    next
+    edit "user0033"
+        unset two-factor
+        unset email-to
+    next
+    edit "user0032"
+        unset two-factor
+        unset email-to
+    next
+    edit "user0031"
+        unset two-factor
+        unset email-to
+    next
+    edit "user0030"
+        unset two-factor
+        unset email-to
+    next
+    edit "user0029"
+        unset two-factor
+        unset email-to
+    next
+    edit "user0028"
+        unset two-factor
+        set email-to "user0028@example.com"
+    next
+    edit "user0027"
+        unset two-factor
+        unset email-to
+    next
+    edit "user0026"
+        unset two-factor
+        unset email-to
+    next
+    edit "user0025"
+        unset two-factor
+        unset email-to
+    next
+    edit "user0024"
+        unset two-factor
+        unset email-to
+    next
+    edit "user0023"
+        unset two-factor
+        unset email-to
+    next
+    edit "user0022"
+        unset two-factor
+        unset email-to
+    next
+end
+===== rollback-users-003.txt
+# Shiftwall - email two-factor authentication - ROLLBACK of batch 3 of 3 (local users)
+# Source backup: lab-50.conf (FortiOS 7.4.9)
+# Accounts in this file: 9
+#   - user0042
+#   - user0043
+#   - user0044
+#   - user0045
+#   - user0046
+#   - user0047
+#   - user0048
+#   - user0049
+#   - user0050
+# Restores the values read from the backup before the batch. Batch script: 2fa-users-003.txt
+# Run it from Configuration > Scripts > Run Script (FortiOS Administration Guide, "Configuration scripts").
+config system global
+    unset two-factor-email-expiry
+    unset remoteauthtimeout
+end
+config user local
+    edit "user0050"
+        unset two-factor
+        unset email-to
+    next
+    edit "user0049"
+        unset two-factor
+        set email-to "user0049@example.com"
+    next
+    edit "user0048"
+        unset two-factor
+        unset email-to
+    next
+    edit "user0047"
+        unset two-factor
+        unset email-to
+    next
+    edit "user0046"
+        unset two-factor
+        unset email-to
+    next
+    edit "user0045"
+        unset two-factor
+        unset email-to
+    next
+    edit "user0044"
+        unset two-factor
+        unset email-to
+    next
+    edit "user0043"
+        unset two-factor
+        unset email-to
+    next
+    edit "user0042"
+        unset two-factor
+        set email-to "user0042@example.com"
+    next
+end

@@ -1,0 +1,13 @@
+# Shiftwall - 110C to 40F - part 16 of 17 (factory-management)
+# Run the parts in order: admin menu > Configuration > Scripts > Run Script.
+config system dhcp server
+    delete 1
+end
+config system interface
+    edit "lan"
+        set vdom "root"
+        set mode dhcp
+        set defaultgw disable
+        set allowaccess ping
+    next
+end

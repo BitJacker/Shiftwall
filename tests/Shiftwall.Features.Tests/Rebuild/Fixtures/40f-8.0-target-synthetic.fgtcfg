@@ -1,0 +1,126 @@
+#config-version=FGT40F-8.0.2-FW-build0100-260101:opmode=0:vdom=0:user=admin
+#conf_file_ver=8012345678901234
+#buildno=0100
+#global_vdom=1
+#shiftwall-fixture: SYNTHETIC stand-in for a factory-default backup, written for the tests. It is NOT a real FortiGate 40F factory configuration.
+config system global
+    set hostname "FortiGate-40F"
+end
+config system accprofile
+    edit "prof_admin"
+    next
+end
+config system interface
+    edit "wan"
+        set vdom "root"
+        set mode dhcp
+        set allowaccess ping fgfm
+        set type physical
+        set role wan
+    next
+    edit "lan"
+        set vdom "root"
+        set ip 192.168.1.99 255.255.255.0
+        set allowaccess ping https ssh fgfm
+        set type hard-switch
+        set role lan
+    next
+    edit "a"
+        set vdom "root"
+        set type physical
+    next
+    edit "lan1"
+        set vdom "root"
+        set type physical
+    next
+    edit "lan2"
+        set vdom "root"
+        set type physical
+    next
+    edit "lan3"
+        set vdom "root"
+        set type physical
+    next
+end
+config system virtual-switch
+    edit "lan"
+        set physical-switch "sw0"
+        config port
+            edit "lan1"
+            next
+            edit "lan2"
+            next
+            edit "lan3"
+            next
+        end
+    next
+end
+config system dhcp server
+    edit 1
+        set dns-service default
+        set default-gateway 192.168.1.99
+        set netmask 255.255.255.0
+        set interface "lan"
+        config ip-range
+            edit 1
+                set start-ip 192.168.1.110
+                set end-ip 192.168.1.210
+            next
+        end
+    next
+end
+#shiftwall-fixture: the profiles below are the preloaded names documented in the FortiOS 8.0 Administration Guide (antivirus, web filter, application control, IPS, SSL/SSH inspection); their settings are not reproduced.
+config antivirus profile
+    edit "default"
+    next
+    edit "wifi-default"
+    next
+end
+config webfilter profile
+    edit "default"
+    next
+    edit "monitor-all"
+    next
+    edit "wifi-default"
+    next
+end
+config application list
+    edit "default"
+    next
+    edit "wifi-default"
+    next
+    edit "block-high-risk"
+    next
+end
+config ips sensor
+    edit "all_default"
+    next
+    edit "all_default_pass"
+    next
+    edit "default"
+    next
+    edit "high_security"
+    next
+    edit "protect_client"
+    next
+    edit "protect_email_server"
+    next
+    edit "protect_http_server"
+    next
+    edit "wifi-default"
+    next
+end
+config firewall ssl-ssh-profile
+    edit "certificate-inspection"
+    next
+    edit "deep-inspection"
+    next
+    edit "no-inspection"
+    next
+    edit "custom-deep-inspection"
+    next
+end
+config firewall profile-protocol-options
+    edit "default"
+    next
+end

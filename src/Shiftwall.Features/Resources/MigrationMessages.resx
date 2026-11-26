@@ -65,4 +65,322 @@
   <data name="Report.Blocked" xml:space="preserve"><value>Migration blocked: resolve the errors above.</value></data>
   <data name="Report.Uses" xml:space="preserve"><value>References</value></data>
   <data name="MIG-035" xml:space="preserve"><value>The config-version line was not found in the source or the target backup: the header was not changed. Replace the config-version value by hand before restoring.</value></data>
+  <data name="RB-001" xml:space="preserve">
+    <value>Multi-VDOM configurations are not supported by the rebuild yet: use the restore mode or rebuild one VDOM at a time.</value>
+  </data>
+  <data name="RB-002" xml:space="preserve">
+    <value>'{0}' is not available on the target version and has no equivalent: {1}</value>
+  </data>
+  <data name="RB-003" xml:space="preserve">
+    <value>'{0}' is not written as is: {1}</value>
+  </data>
+  <data name="RB-004" xml:space="preserve">
+    <value>'{0}' holds an encrypted value (ENC): it is never copied. Set it by hand.</value>
+  </data>
+  <data name="RB-005" xml:space="preserve">
+    <value>The object refers to '{1}' ({0}), which is not in the script: it stays out until '{1}' is migrated.</value>
+  </data>
+  <data name="RB-006" xml:space="preserve">
+    <value>'{0}' does not exist in the FortiOS {1} CLI Reference.</value>
+  </data>
+  <data name="RB-007" xml:space="preserve">
+    <value>The value of '{0}' is not accepted by FortiOS {2} ({1}).</value>
+  </data>
+  <data name="RB-008" xml:space="preserve">
+    <value>The value of '{0}' contains ? or a tab, which cannot be pasted into the CLI (CLI basics, Special characters). Type it by hand.</value>
+  </data>
+  <data name="RB-009" xml:space="preserve">
+    <value>The section '{0}' does not exist in FortiOS {1}.</value>
+  </data>
+  <data name="RB-010" xml:space="preserve">
+    <value>The group '{0}' contains itself through other groups: not exported.</value>
+  </data>
+  <data name="RB-011" xml:space="preserve">
+    <value>'{0}' needs a password of the category '{1}' (ENC values are never copied). Choose one in the passwords step.</value>
+  </data>
+  <data name="RB-012" xml:space="preserve">
+    <value>Two source interfaces are mapped to the target interface '{0}'.</value>
+  </data>
+  <data name="RB-013" xml:space="preserve">
+    <value>With this plan switch '{0}' would be left without ports, and a switch cannot be emptied: to free all its ports it must be deleted after removing its references by hand (policies, DHCP server, the address object made by "Create address object matching subnet"), as the Fortinet Technical Tip "How to delete the default virtual hardware switch" explains. Shiftwall does not delete it: keep at least one port in the switch or delete it yourself before running the script.</value>
+  </data>
+  <data name="RB-014" xml:space="preserve">
+    <value>The ports {0} are removed from the switch '{1}' so they can be used on their own: this is the first command of the script, so do not connect your PC to those ports while running it.</value>
+  </data>
+  <data name="RB-015" xml:space="preserve">
+    <value>Interfaces of type '{0}' are not rebuilt automatically.</value>
+  </data>
+  <data name="RB-016" xml:space="preserve">
+    <value>The interface '{0}' is used on the source but is not mapped to a target interface: everything that uses it stays out of the script.</value>
+  </data>
+  <data name="RB-017" xml:space="preserve">
+    <value>The interface '{0}' is not mapped (it has no address on the source).</value>
+  </data>
+  <data name="RB-018" xml:space="preserve">
+    <value>The name '{0}' already exists on the target: rename the interface on the source plan.</value>
+  </data>
+  <data name="RB-019" xml:space="preserve">
+    <value>The address '{1}' typed for '{0}' is not valid (use a.b.c.d/nn or a.b.c.d m.m.m.m).</value>
+  </data>
+  <data name="RB-020" xml:space="preserve">
+    <value>The management interface '{0}' would have neither HTTPS nor SSH access after the script: you would lock yourself out.</value>
+  </data>
+  <data name="RB-021" xml:space="preserve">
+    <value>The changes to the management interface '{0}' are in the part 'management', near the end: if your PC is connected to '{0}', the connection drops after that part. Give your PC a static address in the new subnet of '{0}' (its DHCP server comes only with the last part), reconnect to the new address and run the remaining parts (the last one is the DHCP server of '{0}').</value>
+  </data>
+  <data name="RB-022" xml:space="preserve">
+    <value>'{0}' is a policy-based IPsec VPN: rebuild it as a route-based (interface) VPN by hand.</value>
+  </data>
+  <data name="RB-023" xml:space="preserve">
+    <value>IPsec tunnels: proposals, DH groups and IKE version are written explicitly with the old defaults. Dead peer detection: the 5.2 default (enable) becomes the 8.0 default (on-demand). Check them with the administrator of the other side.</value>
+  </data>
+  <data name="RB-024" xml:space="preserve">
+    <value>The gateway {0} is not in the subnet of '{1}'.</value>
+  </data>
+  <data name="RB-025" xml:space="preserve">
+    <value>Custom security profiles not on the target: {0}. Recreate them by hand if you need their settings (see the policy row in the profiles table).</value>
+  </data>
+  <data name="RB-026" xml:space="preserve">
+    <value>'{0}' is the administrator you use to run the script: it is not changed by the script. Changing its password asks for the current one (Administration Guide, Default administrator password): do it by hand at the end.</value>
+  </data>
+  <data name="RB-027" xml:space="preserve">
+    <value>The factory DHCP servers of the target are not known (no factory-default backup): check System &gt; DHCP Server after running the script.</value>
+  </data>
+  <data name="RB-028" xml:space="preserve">
+    <value>Section '{0}' ({1} objects) is not rebuilt: review it and recreate what you need.</value>
+  </data>
+  <data name="RB-029" xml:space="preserve">
+    <value>The script is meant for a FortiGate with its factory configuration and the firmware of the target version.</value>
+  </data>
+  <data name="RB-030" xml:space="preserve">
+    <value>The management interface is not set: the changes to the interface you are connected to may cut the connection.</value>
+  </data>
+  <data name="RB-031" xml:space="preserve">
+    <value>{0} is a 2 GB RAM model: no SSL VPN web mode, no proxy-based features (Release Notes 8.0.2, Special notices).</value>
+  </data>
+  <data name="RB-032" xml:space="preserve">
+    <value>{0} passwords and keys are new: see the password summary, change them at first login and give the new VPN keys to the other side.</value>
+  </data>
+  <data name="RB-033" xml:space="preserve">
+    <value>No factory-default backup of the target: interface names come from the model database. Load the backup of the new FortiGate for the best result.</value>
+  </data>
+  <data name="RB-034" xml:space="preserve">
+    <value>SSL VPN is not converted: on the target it is not available.</value>
+  </data>
+  <data name="RB-035" xml:space="preserve">
+    <value>The SSL VPN policy {0} could not be converted to IPsec dial-up.</value>
+  </data>
+  <data name="RB-036" xml:space="preserve">
+    <value>The SSL VPN listen interface ({0}) is not mapped: the IPsec dial-up conversion is not possible.</value>
+  </data>
+  <data name="RB-037" xml:space="preserve">
+    <value>SSL VPN users are in more than one group or set as users ({0}): the conversion uses one group. Use 'Inherit from policy' in the VPN wizard (see the migration guide).</value>
+  </data>
+  <data name="RB-038" xml:space="preserve">
+    <value>No SSL VPN address pool ({0}): set the dial-up client range by hand.</value>
+  </data>
+  <data name="RB-039" xml:space="preserve">
+    <value>SSL VPN converted to IPsec dial-up '{0}' (IKEv2, EAP, group '{1}', clients {2}). TO REVIEW before production.</value>
+  </data>
+  <data name="RB-040" xml:space="preserve">
+    <value>FortiClient: create an IPsec VPN connection to '{0}' (remote gateway = WAN address, pre-shared key from the password summary, IKE version 2, EAP with username and password). Users authenticated by LDAP need EAP-TTLS, supported by FortiClient and EMS 7.4.3 and later (SSL VPN to IPsec VPN migration guide, LDAP-based user authentication). FortiClient 7.4.4 and later do not support IKEv1.</value>
+  </data>
+  <data name="RB-041" xml:space="preserve">
+    <value>Rebuild mode: the source ({0}) and the target ({1}) are on different FortiOS versions, so the configuration is rewritten as a clean script in the target syntax.</value>
+  </data>
+  <data name="RB-042" xml:space="preserve">
+    <value>Restore mode: source ({0}) and target ({1}) are on the same version, so the backup is kept as it is with the interfaces renamed.</value>
+  </data>
+  <data name="RB-043" xml:space="preserve">
+    <value>You forced the mode '{0}': it is not the one Shiftwall would choose for these versions.</value>
+  </data>
+  <data name="RB-044" xml:space="preserve">
+    <value>Only hostname, time zone, admin timeout and admin ports are taken from 'system global'. Not migrated: {0}</value>
+  </data>
+  <data name="RB-045" xml:space="preserve">
+    <value>Broken reference in the script: {0} '{1}', {2} = '{3}' does not exist. The script is not exported (please report this as a Shiftwall bug).</value>
+  </data>
+  <data name="RBC-001" xml:space="preserve">
+    <value>Start from the factory configuration, on the firmware of the target version (check System &gt; Firmware).</value>
+  </data>
+  <data name="RBC-002" xml:space="preserve">
+    <value>Make a backup of the factory configuration first: it is your way back.</value>
+  </data>
+  <data name="RBC-003" xml:space="preserve">
+    <value>Run the GUI parts in order (admin menu &gt; Configuration &gt; Scripts &gt; Run Script) or paste the terminal blocks one at a time; read every error before going on (see docs/LAB-TEST.md).</value>
+  </data>
+  <data name="RBC-004" xml:space="preserve">
+    <value>Run the management part last; then reconnect to the new address and run the last part.</value>
+  </data>
+  <data name="RBC-005" xml:space="preserve">
+    <value>Test internet access from the LAN and the main policies (one per direction).</value>
+  </data>
+  <data name="RBC-006" xml:space="preserve">
+    <value>Test every VPN: site-to-site tunnels with the new keys on the other side, dial-up with FortiClient.</value>
+  </data>
+  <data name="RBC-007" xml:space="preserve">
+    <value>Change the passwords at the first login and set the password of the administrator you used, by hand.</value>
+  </data>
+  <data name="RBC-008" xml:space="preserve">
+    <value>Do the manual work listed in the report, then make a backup of the new configuration.</value>
+  </data>
+  <data name="RBR.Title" xml:space="preserve">
+    <value>Shiftwall rebuild report</value>
+  </data>
+  <data name="RBR.Disclaimer" xml:space="preserve">
+    <value>Shiftwall is not affiliated with Fortinet. Modified configurations are not supported by Fortinet TAC: always test in a lab before production.</value>
+  </data>
+  <data name="RBR.Findings" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="RBR.Counts" xml:space="preserve">
+    <value>Objects, source → target</value>
+  </data>
+  <data name="RBR.Object" xml:space="preserve">
+    <value>Object</value>
+  </data>
+  <data name="RBR.Source" xml:space="preserve">
+    <value>Source</value>
+  </data>
+  <data name="RBR.Rebuilt" xml:space="preserve">
+    <value>In the script</value>
+  </data>
+  <data name="RBR.Converted" xml:space="preserve">
+    <value>Converted</value>
+  </data>
+  <data name="RBR.Manual" xml:space="preserve">
+    <value>Manual</value>
+  </data>
+  <data name="RBR.ManualWork" xml:space="preserve">
+    <value>Manual work (not in the script)</value>
+  </data>
+  <data name="RBR.Rules" xml:space="preserve">
+    <value>Translation rules applied</value>
+  </data>
+  <data name="RBR.Param" xml:space="preserve">
+    <value>Parameter</value>
+  </data>
+  <data name="RBR.Checklist" xml:space="preserve">
+    <value>Checklist on the real FortiGate</value>
+  </data>
+  <data name="RBR.Script" xml:space="preserve">
+    <value>Script (passwords hidden)</value>
+  </data>
+  <data name="RB-046" xml:space="preserve">
+    <value>RADIUS servers ({0}): FortiOS 8.0 requires the Message-Authenticator attribute by default (require-message-authenticator enable, 8.0 CLI Reference). If the RADIUS server does not send it, authentication fails: update the server, or set it to disable knowing the risk.</value>
+  </data>
+  <data name="RB-047" xml:space="preserve">
+    <value>Line {line}: the section '{0}' is nested inside another one (a missing 'end' in the file). The rebuild stops: fix the source backup first.</value>
+  </data>
+  <data name="RB-048" xml:space="preserve">
+    <value>The source file has structural errors (see the Load step): the rebuild needs a complete, balanced configuration.</value>
+  </data>
+  <data name="RB-049" xml:space="preserve">
+    <value>The password typed for '{0}' contains characters the CLI cannot take (CLI basics, Special characters).</value>
+  </data>
+  <data name="RB-050" xml:space="preserve">
+    <value>'{0}' appears twice in the source: only the first one is written, the second is for manual review.</value>
+  </data>
+  <data name="RB-051" xml:space="preserve">
+    <value>The name '{0}' cannot be written in a script (empty, or with ?, tab or a line break): rename it by hand.</value>
+  </data>
+  <data name="RB-052" xml:space="preserve">
+    <value>Policy {0} sends traffic out of '{1}', which takes no default route from DHCP/PPPoE (defaultgw disable, as on 5.2) and has no static route: FortiOS chooses the outgoing interface from the routing table, so the policy may never match. Add a route or a policy route through '{1}' if needed (the source had the same behaviour).</value>
+  </data>
+  <data name="RB-053" xml:space="preserve">
+    <value>Port '{0}' is chosen twice ({1} and {2}): a port can belong to one interface or one switch only.</value>
+  </data>
+  <data name="RB-054" xml:space="preserve">
+    <value>'{0}' (chosen for {1}) is not a physical port of the target.</value>
+  </data>
+  <data name="RB-055" xml:space="preserve">
+    <value>Port '{0}' is used by the factory configuration ({1}) and cannot go into switch '{2}': a port added to a switch must not be referenced by any configuration (Administration Guide 8.0, Hardware switch / Software switch). Remove that reference by hand first or choose another port.</value>
+  </data>
+  <data name="RB-056" xml:space="preserve">
+    <value>Port '{0}' is split from '{1}' and has no address: the address, the child VLANs, the zone and the DHCP server stay on '{2}'. Configure the port by hand if you need it.</value>
+  </data>
+  <data name="RB-057" xml:space="preserve">
+    <value>'{0}' is not a valid name for a new interface: at most 15 characters, letters, digits, '-', '_' and '.'.</value>
+  </data>
+  <data name="RB-058" xml:space="preserve">
+    <value>Switch '{0}' has no ports: choose at least one target port.</value>
+  </data>
+  <data name="RB-059" xml:space="preserve">
+    <value>Switch '{0}' is rebuilt with the ports {1}: ports taken out are removed with config port / delete, new ones are added with config port / edit.</value>
+  </data>
+  <data name="RB-060" xml:space="preserve">
+    <value>Switch '{0}' ({1}) is created as a hardware switch (config system virtual-switch): on {2} these ports are on the same switch chip, so traffic between them stays in hardware (Hardware Acceleration 8.0.2, FortiGate 40F fast path architecture).</value>
+  </data>
+  <data name="RB-061" xml:space="preserve">
+    <value>Switch '{0}' ({1}): Shiftwall has no official source on the switch chip of model {2}, so a hardware switch cannot be verified.</value>
+  </data>
+  <data name="RB-062" xml:space="preserve">
+    <value>Switch '{0}' ({1}) cannot be a hardware switch: see the reason above. Choose a software switch or other ports.</value>
+  </data>
+  <data name="RB-063" xml:space="preserve">
+    <value>Switch '{0}' ({1}) is created as a software switch although a hardware switch is possible: packets between its ports are processed by the CPU instead of the switch hardware (Administration Guide 8.0, Software switch).</value>
+  </data>
+  <data name="RB-064" xml:space="preserve">
+    <value>VLAN '{0}' is not valid: the parent interface '{1}' must exist on the target or be created by the plan, and the VLAN ID '{2}' must be 1-4094.</value>
+  </data>
+  <data name="RB-065" xml:space="preserve">
+    <value>Switch '{0}' ({1}): on {2} these ports are not all on the same switch chip, so a hardware switch is not possible.</value>
+  </data>
+  <data name="RB-066" xml:space="preserve">
+    <value>Switch '{0}' ({1}): the name of the physical switch ('set physical-switch') is unknown without the factory-default backup of the target, so a hardware switch is not written. Load the factory-default backup to get one.</value>
+  </data>
+  <data name="RB-067" xml:space="preserve">
+    <value>Switch '{0}' ({1}) is created as a software switch (config system switch-interface): packets between its ports are processed by the CPU, not by the switch hardware (Administration Guide 8.0, Software switch).</value>
+  </data>
+  <data name="RB-068" xml:space="preserve">
+    <value>Your PC is connected to '{0}' (management on the factory configuration), and the script changes '{0}' too: those changes are in the part 'factory-management', after the part of the new management interface '{1}'. Connect the PC to a port that stays in '{0}' (not one taken out of the switch). After that part the connection drops: move the cable to a port of '{1}', give the PC a static address in the subnet of '{1}', reconnect and run the last part.</value>
+  </data>
+  <data name="RB-069" xml:space="preserve">
+    <value>Policy {0}: the custom profiles {1} do not exist on the target and are replaced by the preloaded FortiOS 8.0 profiles {2}, so the policy keeps a protection of the same kind. Recreate the custom profiles if you need their exact settings.</value>
+  </data>
+  <data name="RB-070" xml:space="preserve">
+    <value>Policy {0} is written disabled (set status disable): its security profiles {1} are not carried over and the policy must not run without protection. Check it, assign the profiles and enable it.</value>
+  </data>
+  <data name="RB-071" xml:space="preserve">
+    <value>The preloaded profile names (antivirus, web filter, application control and IPS 'default', SSL/SSH 'certificate-inspection') come from the FortiOS 8.0 Administration Guide and are not checked on the device without its factory-default backup.</value>
+  </data>
+  <data name="RBR.Profiles" xml:space="preserve">
+    <value>Security profiles per policy</value>
+  </data>
+  <data name="RBR.Policy" xml:space="preserve">
+    <value>Policy</value>
+  </data>
+  <data name="RBR.ProfilesOriginal" xml:space="preserve">
+    <value>Profiles on the source</value>
+  </data>
+  <data name="RBR.ProfilesApplied" xml:space="preserve">
+    <value>Profiles written</value>
+  </data>
+  <data name="RBR.Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="RBR.Disabled" xml:space="preserve">
+    <value>disabled (set status disable): check it</value>
+  </data>
+  <data name="RBR.Enabled" xml:space="preserve">
+    <value>enabled</value>
+  </data>
+  <data name="RB-072" xml:space="preserve">
+    <value>IPsec tunnel '{0}' uses settings that Fortinet does not recommend ({1}): kept for compatibility with the other site, to be updated together with it (IKEv2, DH groups 19-21, AES-GCM or AES with SHA-256). Sources: FortiOS 8.0 Administration Guide, Phase 1 and Phase 2 configuration (DES, 3DES, MD5 and SHA1 not recommended; DH groups 1, 2, 5, 14, 22-27 insecure for Security Rating Insights); FortiOS 8.0 Best Practices, IPsec VPN remote access (prefer IKEv2).</value>
+  </data>
+  <data name="RB-073" xml:space="preserve">
+    <value>The {0} password you typed is used for several objects: {1}. Shiftwall generates a different one for each object; a typed one is shared. The dial-up VPN key is given to every user, so it should not be the key of a site-to-site tunnel.</value>
+  </data>
+  <data name="RB-074" xml:space="preserve">
+    <value>VLAN ID {0} is used twice on '{1}' ({2} and {3}): FortiOS accepts one VLAN per ID on an interface.</value>
+  </data>
+  <data name="RB-075" xml:space="preserve">
+    <value>Policy {0} had security profiles ({1}) but utm-status was not enabled on the source (5.2 default: disable, CLI Reference 5.2 p. 100), so they were not applied: the policy is rebuilt without profiles, as it worked.</value>
+  </data>
+  <data name="RB-076" xml:space="preserve">
+    <value>LDAP users of the SSL VPN ({0}, server {1}) cannot log in to the IPsec dial-up as it is: with IKEv2 FortiClient must use EAP-TTLS against an LDAPS server, which needs the CA certificate of the AD server imported, 'set secure ldaps' and 'set ca-cert' on the LDAP server, FortiClient 7.4.3 or later and the configuration synchronised from FortiClient EMS (Administration Guide 8.0.2, Add LDAP user authentication). LDAP servers without LDAPS: {2}. Configure it by hand before giving the VPN to these users.</value>
+  </data>
+  <data name="RB-077" xml:space="preserve">
+    <value>The SSL VPN portal {0} had web mode enabled: web mode (now Agentless VPN) is not available on {1} with FortiOS 8.0 (Release Notes 8.0.2) and is not migrated. Users who connected from a browser need FortiClient.</value>
+  </data>
 </root>

@@ -1,0 +1,16 @@
+# Shiftwall - 110C to 40F - part 17 of 17 (management-dhcp)
+# Run the parts in order: admin menu > Configuration > Scripts > Run Script.
+config system dhcp server
+    edit 3
+        set dns-service default
+        set default-gateway 192.168.10.1
+        set netmask 255.255.255.0
+        set interface "lan1"
+        config ip-range
+            edit 1
+                set start-ip 192.168.10.100
+                set end-ip 192.168.10.200
+            next
+        end
+    next
+end

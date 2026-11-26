@@ -1,0 +1,26 @@
+===== 2fa-users-001.txt
+# Shiftwall - email two-factor authentication - batch 1 of 1 (local users)
+# Source backup: lab-1.conf (FortiOS 7.4.9)
+# Accounts in this file: 1
+#   - user0001
+# Rollback script: rollback-users-001.txt
+# Run it from Configuration > Scripts > Run Script (FortiOS Administration Guide, "Configuration scripts").
+config user local
+    edit "user0001"
+        set email-to "user0001@example.com"
+        set two-factor email
+    next
+end
+===== rollback-users-001.txt
+# Shiftwall - email two-factor authentication - ROLLBACK of batch 1 of 1 (local users)
+# Source backup: lab-1.conf (FortiOS 7.4.9)
+# Accounts in this file: 1
+#   - user0001
+# Restores the values read from the backup before the batch. Batch script: 2fa-users-001.txt
+# Run it from Configuration > Scripts > Run Script (FortiOS Administration Guide, "Configuration scripts").
+config user local
+    edit "user0001"
+        unset two-factor
+        unset email-to
+    next
+end

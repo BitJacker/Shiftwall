@@ -9,7 +9,28 @@ public partial class MigrationWizardView : UserControl
 {
     private const string PortFormat = "Shiftwall.TargetPort";
 
-    public MigrationWizardView() => InitializeComponent();
+    public MigrationWizardView()
+    {
+        InitializeComponent();
+        DataContextChanged += (_, e) =>
+        {
+            if (e.OldValue is MigrationWizardViewModel old) old.SecretsCleared -= OnSecretsCleared;
+            if (e.NewValue is MigrationWizardViewModel vm) vm.SecretsCleared += OnSecretsCleared;
+        };
+    }
+
+    /// <summary>Clears every password box of the page (passwords, confirmations, file password).</summary>
+    private void OnSecretsCleared(object? sender, EventArgs e) => ClearPasswordBoxes(this);
+
+    private static void ClearPasswordBoxes(DependencyObject parent)
+    {
+        for (var i = 0; i < System.Windows.Media.VisualTreeHelper.GetChildrenCount(parent); i++)
+        {
+            var child = System.Windows.Media.VisualTreeHelper.GetChild(parent, i);
+            if (child is PasswordBox box) box.Clear();
+            else ClearPasswordBoxes(child);
+        }
+    }
 
     private MigrationWizardViewModel? Vm => DataContext as MigrationWizardViewModel;
 
@@ -49,5 +70,19 @@ public partial class MigrationWizardView : UserControl
         {
             vm.Map(row.Name, target);
         }
+    }
+
+    /// <summary>Password boxes cannot be bound: their content goes to the row and is never stored elsewhere.</summary>
+    private void OnSecretChanged(object sender, RoutedEventArgs e)
+    {
+        if (sender is not PasswordBox { DataContext: SecretRow row } box) return;
+        if (Equals(box.Tag, "confirm")) row.SetConfirm(box.Password);
+        else row.SetPassword(box.Password);
+        Vm?.NextCommand.RaiseCanExecuteChanged();
+    }
+
+    private void OnVaultPasswordChanged(object sender, RoutedEventArgs e)
+    {
+        if (sender is PasswordBox box) Vm?.SetVaultPassword(box.Password);
     }
 }
