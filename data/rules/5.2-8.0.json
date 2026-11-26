@@ -136,7 +136,7 @@
    "path": "vpn ipsec phase2-interface",
    "param": "dhgrp",
    "value": "14 5",
-   "note": "Default 14 5 for phase2-interface in 5.2 (CLI Reference 5.2 p. 805, section pp. 804-811), 20 in 8.0.",
+   "note": "Default 14 5 for phase2-interface in 5.2 (CLI Reference 5.2 p. 805, section pp. 804-812), 20 in 8.0.",
    "sources": [
     "cli-5.2",
     "cli-8.0"
@@ -1007,7 +1007,7 @@
      "starttls"
     ]
    },
-   "note": "FortiOS 5.2 has no server-identity-check (CLI Reference 5.2, user ldap): the certificate name of an LDAPS/STARTTLS server was not checked. 8.0 checks it by default. Written as disable to keep the old behaviour; enable it once the server certificate matches.",
+   "note": "FortiOS 5.2 has no server-identity-check setting (CLI Reference 5.2, user ldap, pp. 723-725); 8.0 checks the server certificate name by default. Written as disable to keep the 5.2 behaviour (to confirm in the lab); enable it once the server certificate matches.",
    "sources": [
     "cli-5.2",
     "cli-8.0"

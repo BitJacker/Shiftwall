@@ -22,14 +22,18 @@ Every difference between the two schemas on the paths Shiftwall rebuilds has a r
 |---|---|---|
 | V001 | `firewall service custom` `protocol TCP/UDP/SCTP` → `TCP/UDP/UDP-Lite/SCTP` | [7.6.0 New Features: Support UDP-Lite traffic](https://docs.fortinet.com/document/fortigate/7.6.0/new-features/927041/support-udp-lite-traffic), both CLI References |
 | D001–D004 | phase1-interface: `ike-version 1`, `dhgrp 14 5`, `peertype any`, 5.2 default proposals written explicitly (8.0 defaults: 2, 20, peer) | CLI Reference 5.2 pp. 787–793 (Default column), 8.0 CLI Reference |
-| D005–D006 | phase2-interface: `dhgrp 14 5` and 5.2 default proposals written explicitly | CLI Reference 5.2 pp. 805 and 809 (phase2-interface, pp. 804–811), 8.0 CLI Reference |
+| D005–D006 | phase2-interface: `dhgrp 14 5` and 5.2 default proposals written explicitly | CLI Reference 5.2 pp. 805 and 809 (phase2-interface, pp. 804–812), 8.0 CLI Reference |
 | D007 | `system dns` `protocol cleartext` written explicitly (5.2 has no DNS protocol setting; 8.0 default is also cleartext) | CLI Reference 5.2 p. 495, 8.0 CLI Reference |
 | M001 | `dpd enable` (5.2) has no documented equivalent among `disable/on-idle/on-demand`: manual | both CLI References |
 | M002 | `system global` `timezone`: index in 5.2, time zone name in 8.0: manual | both CLI References |
 | E001 | `user group` `sslvpn-portal`: replaced by the SSL VPN → IPsec conversion | Release Notes below |
 | E002–E003 | `dlp-sensor`, `spamfilter-profile` are absent in 8.0 (which has `dlp-profile`, `emailfilter-profile`); custom security profiles are not rebuilt (design choice) and are listed for manual work | 8.0 CLI Reference |
 | D008 | Deny policies: `match-vip disable` written explicitly (5.2 default disable, 8.0 enable) | CLI Reference 5.2 p. 157, 8.0 CLI Reference |
-| D009 | LDAPS/STARTTLS servers: `server-identity-check disable` written explicitly (5.2 has no certificate name check, 8.0 checks by default); enable it once the certificate matches | CLI Reference 5.2 (user ldap), 8.0 CLI Reference |
+| D009 | LDAPS/STARTTLS servers: `server-identity-check disable` written explicitly (5.2 has no such setting; 8.0 checks the certificate name by default; to confirm in the lab); enable it once the certificate matches | CLI Reference 5.2 pp. 723–725 (user ldap), 8.0 CLI Reference |
+| D010 | DHCP/PPPoE interfaces: `defaultgw disable` written explicitly (5.2 default disable, 8.0 enable with distance 5) | CLI Reference 5.2 p. 552, 8.0 CLI Reference |
+| D011 | When the source takes the gateway from DHCP/PPPoE: `distance 1` (5.2 default 1, 8.0 default 5) | CLI Reference 5.2 p. 553, 8.0 CLI Reference |
+| F001 | Tunnel `remote-ip` gets the host mask `255.255.255.255` (5.2 bare address, 8.0 `ipv4-classnet-host`) | CLI Reference 5.2 p. 561, 8.0 CLI Reference |
+| R007 | `icmp-redirect` (5.2) absent in 8.0; `icmp-send-redirect` looks equivalent but no official page maps them: manual | CLI Reference 5.2 pp. 546/555, 8.0 CLI Reference |
 | S001–S003 | Not copied: object UUIDs (assigned automatically, 8.0 CLI Reference), `snmp-index`, `macaddr` (device-specific: a design choice) | 8.0 CLI Reference |
 | S004–S005 | Not copied: admin dashboards (`config dashboard`, `dashboard-tab`), absent from 8.0 `system admin` | CLI Reference 5.2 and 8.0 |
 | R… / X… | Parameters and option values documented in 5.2 and absent from 8.0: manual | both CLI References |
