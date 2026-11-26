@@ -17,13 +17,15 @@ public enum AddressingMode
 /// <param name="Address">For <see cref="AddressingMode.Static"/>: "a.b.c.d/nn" or "a.b.c.d m.m.m.m".</param>
 /// <param name="NameServers">For <see cref="AddressingMode.Static"/>: DNS servers written in system dns.</param>
 /// <param name="Gateway">For <see cref="AddressingMode.Static"/>: default gateway, written as a static default route.</param>
+/// <param name="SplitPorts">A source switch split into separate ports: the other target ports, taken out of their switches and left without an address.</param>
 public sealed record InterfacePlan(
     string Source,
     string? Target,
     AddressingMode Mode = AddressingMode.KeepSource,
     string? Address = null,
     string? Gateway = null,
-    IReadOnlyList<string>? NameServers = null);
+    IReadOnlyList<string>? NameServers = null,
+    IReadOnlyList<string>? SplitPorts = null);
 
 public enum SecretCategory
 {
@@ -78,7 +80,8 @@ public sealed record RebuildRequest(
     RebuildTarget Target,
     IReadOnlyList<InterfacePlan> Interfaces,
     SecretPlan Secrets,
-    RebuildOptions? Options = null);
+    RebuildOptions? Options = null,
+    IReadOnlyList<NewInterfacePlan>? NewInterfaces = null);
 
 /// <summary>Something Shiftwall did not put in the script, with the reason and what to do.</summary>
 /// <param name="Original">Source text of the object or line, with ENC values masked.</param>

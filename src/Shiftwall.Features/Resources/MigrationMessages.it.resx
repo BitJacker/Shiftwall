@@ -102,7 +102,7 @@
     <value>Due interfacce sorgente sono mappate sulla stessa interfaccia di destinazione '{0}'.</value>
   </data>
   <data name="RB-013" xml:space="preserve">
-    <value>Togliendo le porte mappate lo switch '{0}' resterebbe vuoto: uno switch deve avere almeno una porta.</value>
+    <value>Con questo piano lo switch '{0}' resterebbe senza porte, e uno switch non si può svuotare: per liberare tutte le sue porte va eliminato, dopo aver tolto a mano i suoi riferimenti (policy, server DHCP, oggetto indirizzo creato da "Create address object matching subnet"), come spiega il Technical Tip Fortinet "How to delete the default virtual hardware switch". Shiftwall non lo elimina: lascia almeno una porta nello switch o eliminalo tu prima di eseguire lo script.</value>
   </data>
   <data name="RB-014" xml:space="preserve">
     <value>Le porte {0} vengono tolte dallo switch '{1}' per usarle da sole: è il primo comando dello script, quindi non collegare il PC a quelle porte mentre lo esegui.</value>
@@ -126,7 +126,7 @@
     <value>Dopo lo script l'interfaccia di gestione '{0}' non avrebbe né HTTPS né SSH: resteresti chiuso fuori.</value>
   </data>
   <data name="RB-021" xml:space="preserve">
-    <value>Le modifiche all'interfaccia di gestione '{0}' sono nella penultima parte: dopo, la connessione cade. Dai al PC un indirizzo statico nella nuova subnet di '{0}' (il suo server DHCP viene sostituito solo dall'ultima parte), ricollegati al nuovo indirizzo ed esegui l'ultima parte (server DHCP di '{0}').</value>
+    <value>Le modifiche all'interfaccia di gestione '{0}' sono nella parte 'management', verso la fine: se il PC è collegato a '{0}', dopo quella parte la connessione cade. Dai al PC un indirizzo statico nella nuova subnet di '{0}' (il suo server DHCP arriva solo con l'ultima parte), ricollegati al nuovo indirizzo ed esegui le parti rimanenti (l'ultima è il server DHCP di '{0}').</value>
   </data>
   <data name="RB-022" xml:space="preserve">
     <value>'{0}' è una VPN IPsec policy-based: ricostruiscila a mano come VPN route-based (interfaccia).</value>
@@ -286,5 +286,53 @@
   </data>
   <data name="RB-052" xml:space="preserve">
     <value>La policy {0} manda il traffico verso '{1}', che non prende la rotta di default dal DHCP/PPPoE (defaultgw disable, come sulla 5.2) e non ha rotte statiche: FortiOS sceglie l'interfaccia di uscita dalla tabella di routing, quindi la policy potrebbe non essere mai usata. Se serve aggiungi una rotta o una policy route verso '{1}' (la sorgente si comportava allo stesso modo).</value>
+  </data>
+  <data name="RB-053" xml:space="preserve">
+    <value>La porta '{0}' è scelta due volte ({1} e {2}): una porta può appartenere a una sola interfaccia o a un solo switch.</value>
+  </data>
+  <data name="RB-054" xml:space="preserve">
+    <value>'{0}' (scelta per {1}) non è una porta fisica della destinazione.</value>
+  </data>
+  <data name="RB-055" xml:space="preserve">
+    <value>La porta '{0}' è usata dalla configurazione di fabbrica ({1}) e non può entrare nello switch '{2}': una porta aggiunta a uno switch non deve essere referenziata da nessuna configurazione (Administration Guide 8.0, Hardware switch / Software switch). Togli prima quel riferimento a mano o scegli un'altra porta.</value>
+  </data>
+  <data name="RB-056" xml:space="preserve">
+    <value>La porta '{0}' è separata da '{1}' e resta senza indirizzo (l'indirizzo resta su '{2}'): configurala a mano se ti serve.</value>
+  </data>
+  <data name="RB-057" xml:space="preserve">
+    <value>'{0}' non è un nome valido per una nuova interfaccia: al massimo 15 caratteri, lettere, cifre, '-', '_' e '.'.</value>
+  </data>
+  <data name="RB-058" xml:space="preserve">
+    <value>Lo switch '{0}' non ha porte: scegli almeno una porta della destinazione.</value>
+  </data>
+  <data name="RB-059" xml:space="preserve">
+    <value>Lo switch '{0}' viene ricostruito con le porte {1}: le porte tolte si rimuovono con config port / delete, le nuove si aggiungono con config port / edit.</value>
+  </data>
+  <data name="RB-060" xml:space="preserve">
+    <value>Lo switch '{0}' ({1}) viene creato come switch hardware (config system virtual-switch): sul {2} queste porte sono sullo stesso chip switch, quindi il traffico tra loro resta nell'hardware (Hardware Acceleration 8.0.2, FortiGate 40F fast path architecture).</value>
+  </data>
+  <data name="RB-061" xml:space="preserve">
+    <value>Switch '{0}' ({1}): Shiftwall non ha una fonte ufficiale sul chip switch del modello {2}, quindi uno switch hardware non è verificabile.</value>
+  </data>
+  <data name="RB-062" xml:space="preserve">
+    <value>Lo switch '{0}' ({1}) non può essere hardware: vedi il motivo sopra. Scegli uno software switch o altre porte.</value>
+  </data>
+  <data name="RB-063" xml:space="preserve">
+    <value>Lo switch '{0}' ({1}) viene creato come software switch anche se uno switch hardware è possibile: i pacchetti tra le sue porte li elabora la CPU invece dell'hardware dello switch (Administration Guide 8.0, Software switch).</value>
+  </data>
+  <data name="RB-064" xml:space="preserve">
+    <value>La VLAN '{0}' non è valida: l'interfaccia padre '{1}' deve esistere sulla destinazione o essere creata dal piano, e il VLAN ID '{2}' deve essere tra 1 e 4094.</value>
+  </data>
+  <data name="RB-065" xml:space="preserve">
+    <value>Switch '{0}' ({1}): sul {2} queste porte non sono tutte sullo stesso chip switch, quindi uno switch hardware non è possibile.</value>
+  </data>
+  <data name="RB-066" xml:space="preserve">
+    <value>Switch '{0}' ({1}): senza il backup di fabbrica della destinazione non si conosce il nome dello switch fisico ('set physical-switch'), quindi lo switch hardware non viene scritto. Carica il backup di fabbrica per averlo.</value>
+  </data>
+  <data name="RB-067" xml:space="preserve">
+    <value>Lo switch '{0}' ({1}) viene creato come software switch (config system switch-interface): i pacchetti tra le sue porte li elabora la CPU, non l'hardware dello switch (Administration Guide 8.0, Software switch).</value>
+  </data>
+  <data name="RB-068" xml:space="preserve">
+    <value>Il PC è collegato a '{0}' (gestione della configurazione di fabbrica) e lo script modifica anche '{0}': queste modifiche sono nella parte 'factory-management', dopo quella della nuova interfaccia di gestione '{1}'. Collega il PC a una porta che resta in '{0}' (non a una di quelle tolte dallo switch). Dopo quella parte la connessione cade: sposta il cavo su una porta di '{1}', dai al PC un indirizzo statico nella subnet di '{1}', ricollegati ed esegui l'ultima parte.</value>
   </data>
 </root>

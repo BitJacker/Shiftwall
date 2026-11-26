@@ -55,4 +55,20 @@ public static class RebuildCodes
     public const string DuplicateKey = "RB-050";
     public const string InvalidKey = "RB-051";
     public const string PolicyWithoutRoute = "RB-052";
+    public const string PortUsedTwice = "RB-053";
+    public const string NotAPort = "RB-054";
+    public const string PortUsedOnTarget = "RB-055";
+    public const string SplitPortNoAddress = "RB-056";
+    public const string InvalidNewName = "RB-057";
+    public const string SwitchWithoutPorts = "RB-058";
+    public const string SwitchPortsChanged = "RB-059";
+    public const string HardwareSwitchChosen = "RB-060";
+    public const string SwitchChipUnknown = "RB-061";
+    public const string HardwareSwitchNotPossible = "RB-062";
+    public const string SoftwareSwitchForced = "RB-063";
+    public const string InvalidVlan = "RB-064";
+    public const string SwitchDifferentChips = "RB-065";
+    public const string SwitchNoPhysicalSwitch = "RB-066";
+    public const string SoftwareSwitchUsed = "RB-067";
+    public const string FactoryManagementChanged = "RB-068";
 }

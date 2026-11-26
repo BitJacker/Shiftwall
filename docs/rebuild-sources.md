@@ -58,6 +58,22 @@ Every difference between the two schemas on the paths Shiftwall rebuilds has a r
 
 The interface names actually used are always read from the source backup.
 
+## Switches and ports (section 6b)
+
+| Fact used by Shiftwall | Source |
+|---|---|
+| 40F: WAN, A and 1–3 are all connected to the SOC4; `config system virtual-switch` can create a hardware switch with any front panel interface connected to the SOC4; a port added to a hardware switch must have mode static and must not be used by any other configuration | [8.0.2 Hardware Acceleration: FortiGate 40F fast path architecture](https://docs.fortinet.com/document/fortigate/8.0.2/hardware-acceleration/965349/fortigate-40f-fast-path-architecture) |
+| Ports are removed with `config system virtual-switch` / `edit <switch>` / `config port` / `delete <port>` and added with `config port` / `edit <port>` / `next`, with `set physical-switch` on the switch; a port added to a hardware switch must not be referenced and must have IP 0.0.0.0/0.0.0.0; hardware switch traffic is processed by the switch hardware | [8.0.2 Administration Guide: Hardware switch](https://docs.fortinet.com/document/fortigate/8.0.2/administration-guide/100999/hardware-switch) |
+| Software switch: `config system switch-interface` / `set vdom` / `set member` / `set type switch`, then `config system interface` / `set type switch` / `set ip`; members must not be referenced and must have IP 0.0.0.0/0.0.0.0; packets are processed in software by the CPU | [8.0.0 Administration Guide: Software switch](https://docs.fortinet.com/document/fortigate/8.0.0/administration-guide/277799/software-switch) |
+| A hardware switch cannot be emptied: to free all its ports it must be deleted, after removing its references (policy, DHCP server, the address made by "Create address object matching subnet"). Shiftwall never deletes it and blocks the export instead (RB-013) | [Fortinet Community Technical Tip: How to delete the default virtual hardware switch](https://community.fortinet.com/fortigate-3/technical-tip-how-to-delete-the-default-virtual-hardware-switch-98088) (staff article, not product documentation) |
+| Name of the physical switch (`set physical-switch`) | Read from the factory-default backup of the target. The Administration Guide example uses `sw0`, but it is not documented per model: without the backup Shiftwall writes a software switch (RB-066) |
+| Interface names: at most 15 characters | 8.0 CLI Reference, `config system interface`, `config system virtual-switch`, `config system switch-interface` (data/schemas/8.0.json) |
+| VLAN on a parent interface: `set interface`, `set vlanid` (1–4094) | 8.0 CLI Reference, `config system interface` (data/schemas/8.0.json) |
+| 5.2: `internal-switch-mode` default `switch` (the internal ports form one switch with one address) | FortiOS 5.2 CLI Reference PDF, p. 524 |
+
+Models with a hardware-switch chip table in Shiftwall: only FG-40F (the only one with a source above). For any other model a
+new switch is a software switch, with a warning (RB-061).
+
 ## SSL VPN → IPsec dial-up
 
 | What | Source |

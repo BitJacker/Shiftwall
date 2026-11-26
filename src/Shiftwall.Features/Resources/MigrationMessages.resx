@@ -102,7 +102,7 @@
     <value>Two source interfaces are mapped to the target interface '{0}'.</value>
   </data>
   <data name="RB-013" xml:space="preserve">
-    <value>Removing the mapped ports would leave the switch '{0}' empty: a switch must keep at least one port.</value>
+    <value>With this plan switch '{0}' would be left without ports, and a switch cannot be emptied: to free all its ports it must be deleted after removing its references by hand (policies, DHCP server, the address object made by "Create address object matching subnet"), as the Fortinet Technical Tip "How to delete the default virtual hardware switch" explains. Shiftwall does not delete it: keep at least one port in the switch or delete it yourself before running the script.</value>
   </data>
   <data name="RB-014" xml:space="preserve">
     <value>The ports {0} are removed from the switch '{1}' so they can be used on their own: this is the first command of the script, so do not connect your PC to those ports while running it.</value>
@@ -126,7 +126,7 @@
     <value>The management interface '{0}' would have neither HTTPS nor SSH access after the script: you would lock yourself out.</value>
   </data>
   <data name="RB-021" xml:space="preserve">
-    <value>The changes to the management interface '{0}' are in the next-to-last part: after it the connection drops. Give your PC a static address in the new subnet of '{0}' (its DHCP server is replaced only by the last part), reconnect to the new address and run the last part (DHCP server of '{0}').</value>
+    <value>The changes to the management interface '{0}' are in the part 'management', near the end: if your PC is connected to '{0}', the connection drops after that part. Give your PC a static address in the new subnet of '{0}' (its DHCP server comes only with the last part), reconnect to the new address and run the remaining parts (the last one is the DHCP server of '{0}').</value>
   </data>
   <data name="RB-022" xml:space="preserve">
     <value>'{0}' is a policy-based IPsec VPN: rebuild it as a route-based (interface) VPN by hand.</value>
@@ -286,5 +286,53 @@
   </data>
   <data name="RB-052" xml:space="preserve">
     <value>Policy {0} sends traffic out of '{1}', which takes no default route from DHCP/PPPoE (defaultgw disable, as on 5.2) and has no static route: FortiOS chooses the outgoing interface from the routing table, so the policy may never match. Add a route or a policy route through '{1}' if needed (the source had the same behaviour).</value>
+  </data>
+  <data name="RB-053" xml:space="preserve">
+    <value>Port '{0}' is chosen twice ({1} and {2}): a port can belong to one interface or one switch only.</value>
+  </data>
+  <data name="RB-054" xml:space="preserve">
+    <value>'{0}' (chosen for {1}) is not a physical port of the target.</value>
+  </data>
+  <data name="RB-055" xml:space="preserve">
+    <value>Port '{0}' is used by the factory configuration ({1}) and cannot go into switch '{2}': a port added to a switch must not be referenced by any configuration (Administration Guide 8.0, Hardware switch / Software switch). Remove that reference by hand first or choose another port.</value>
+  </data>
+  <data name="RB-056" xml:space="preserve">
+    <value>Port '{0}' is split from '{1}' and has no address (the address stays on '{2}'): configure it by hand if you need it.</value>
+  </data>
+  <data name="RB-057" xml:space="preserve">
+    <value>'{0}' is not a valid name for a new interface: at most 15 characters, letters, digits, '-', '_' and '.'.</value>
+  </data>
+  <data name="RB-058" xml:space="preserve">
+    <value>Switch '{0}' has no ports: choose at least one target port.</value>
+  </data>
+  <data name="RB-059" xml:space="preserve">
+    <value>Switch '{0}' is rebuilt with the ports {1}: ports taken out are removed with config port / delete, new ones are added with config port / edit.</value>
+  </data>
+  <data name="RB-060" xml:space="preserve">
+    <value>Switch '{0}' ({1}) is created as a hardware switch (config system virtual-switch): on {2} these ports are on the same switch chip, so traffic between them stays in hardware (Hardware Acceleration 8.0.2, FortiGate 40F fast path architecture).</value>
+  </data>
+  <data name="RB-061" xml:space="preserve">
+    <value>Switch '{0}' ({1}): Shiftwall has no official source on the switch chip of model {2}, so a hardware switch cannot be verified.</value>
+  </data>
+  <data name="RB-062" xml:space="preserve">
+    <value>Switch '{0}' ({1}) cannot be a hardware switch: see the reason above. Choose a software switch or other ports.</value>
+  </data>
+  <data name="RB-063" xml:space="preserve">
+    <value>Switch '{0}' ({1}) is created as a software switch although a hardware switch is possible: packets between its ports are processed by the CPU instead of the switch hardware (Administration Guide 8.0, Software switch).</value>
+  </data>
+  <data name="RB-064" xml:space="preserve">
+    <value>VLAN '{0}' is not valid: the parent interface '{1}' must exist on the target or be created by the plan, and the VLAN ID '{2}' must be 1-4094.</value>
+  </data>
+  <data name="RB-065" xml:space="preserve">
+    <value>Switch '{0}' ({1}): on {2} these ports are not all on the same switch chip, so a hardware switch is not possible.</value>
+  </data>
+  <data name="RB-066" xml:space="preserve">
+    <value>Switch '{0}' ({1}): the name of the physical switch ('set physical-switch') is unknown without the factory-default backup of the target, so a hardware switch is not written. Load the factory-default backup to get one.</value>
+  </data>
+  <data name="RB-067" xml:space="preserve">
+    <value>Switch '{0}' ({1}) is created as a software switch (config system switch-interface): packets between its ports are processed by the CPU, not by the switch hardware (Administration Guide 8.0, Software switch).</value>
+  </data>
+  <data name="RB-068" xml:space="preserve">
+    <value>Your PC is connected to '{0}' (management on the factory configuration), and the script changes '{0}' too: those changes are in the part 'factory-management', after the part of the new management interface '{1}'. Connect the PC to a port that stays in '{0}' (not one taken out of the switch). After that part the connection drops: move the cable to a port of '{1}', give the PC a static address in the subnet of '{1}', reconnect and run the last part.</value>
   </data>
 </root>

@@ -63,26 +63,109 @@ public sealed partial class RebuildEngine
         foreach (var t in targets) _findings.Add(MigrationFinding.Error(RebuildCodes.DuplicateTarget, t));
     }
 
-    /// <summary>Removes from a target switch the ports that the plan uses as interfaces of their own.</summary>
-    private void RebuildSwitchPorts()
+    /// <summary>
+    /// Switches and ports of the target (section 6b): ports leave their factory switches first, then the ports that go
+    /// into a switch are set to static with IP 0.0.0.0/0.0.0.0, then switches are created or get their new ports.
+    /// Everything that uses a switch comes later in the script.
+    /// </summary>
+    private void RebuildSwitches(ConfigDocument doc)
     {
-        foreach (var sw in _req.Target.Switches)
+        _layout = SwitchPlanner.Plan(_req.Target, _req.Interfaces, _req.NewInterfaces ?? []);
+        _findings.AddRange(_layout.Findings);
+        CountSourceSwitches(doc);
+        if (_layout.HasErrors) return;
+
+        foreach (var c in _layout.Changes.Where(c => c.Existing && c.Removed.Count > 0))
         {
-            var taken = sw.Members.Where(m => _ifMap.ContainsValue(m)).ToList();
-            if (taken.Count == 0) continue;
-            if (taken.Count >= sw.Members.Count)
+            var entry = new CliEntry(c.Name);
+            if (c.Hardware)
             {
-                _findings.Add(MigrationFinding.Error(RebuildCodes.SwitchWouldBeEmpty, sw.Name));
-                continue;
+                var ports = new CliBlock("port", true);
+                ports.Deletes.AddRange(c.Removed);
+                entry.Subs.Add(ports);
+                BlockIn("switch", "system virtual-switch").Entries.Add(entry);
+            }
+            else
+            {
+                entry.Sets.Add(new CliSet("member", [.. c.Remaining.Except(c.Ports)], true));
+                BlockIn("switch", "system switch-interface").Entries.Add(entry);
             }
 
-            var entry = new CliEntry(sw.Name);
-            var ports = new CliBlock("port", true);
-            ports.Deletes.AddRange(taken);
-            entry.Subs.Add(ports);
-            BlockIn("switch", "system virtual-switch").Entries.Add(entry);
-            _findings.Add(MigrationFinding.Warning(RebuildCodes.PortsRemovedFromSwitch, string.Join(", ", taken), sw.Name));
-            foreach (var t in taken) _known[Ref.Interface].Add(t);
+            foreach (var r in c.Removed) _known[Ref.Interface].Add(r);
+        }
+
+        foreach (var port in _layout.Prepared)
+        {
+            var entry = new CliEntry(port);
+            entry.Sets.Add(new CliSet("mode", ["static"], false));
+            entry.Sets.Add(new CliSet("ip", ["0.0.0.0", "0.0.0.0"], false));
+            BlockIn("switch", "system interface").Entries.Add(entry);
+        }
+
+        foreach (var c in _layout.Changes.Where(c => c.Ports.Count > 0))
+        {
+            var entry = new CliEntry(c.Name);
+            if (c.Hardware)
+            {
+                if (!c.Existing && c.PhysicalSwitch is { } ps) entry.Sets.Add(new CliSet("physical-switch", [ps], true));
+                var ports = new CliBlock("port", true);
+                foreach (var p in c.Ports) ports.Entries.Add(new CliEntry(p));
+                entry.Subs.Add(ports);
+                BlockIn("switch", "system virtual-switch").Entries.Add(entry);
+            }
+            else
+            {
+                if (!c.Existing) entry.Sets.Add(new CliSet("vdom", ["root"], true));
+                entry.Sets.Add(new CliSet("member", [.. c.Remaining], true));
+                if (!c.Existing) entry.Sets.Add(new CliSet("type", ["switch"], false));
+                BlockIn("switch", "system switch-interface").Entries.Add(entry);
+            }
+
+            _known[Ref.Interface].Add(c.Name);
+        }
+
+        foreach (var v in _layout.Vlans) _known[Ref.Interface].Add(v.Name);
+    }
+
+    /// <summary>Source switch tables: carried over when the switch interface is mapped, otherwise listed as manual work.</summary>
+    private void CountSourceSwitches(ConfigDocument doc)
+    {
+        foreach (var path in new[] { "system virtual-switch", "system switch-interface" })
+        {
+            foreach (var e in BlocksOf(doc, path).SelectMany(b => b.Entries))
+            {
+                Count(path, source: 1);
+                if (_ifMap.TryGetValue(e.Key, out var t) && !string.IsNullOrEmpty(t)) Count(path, converted: 1);
+                else Manual(path, e, RebuildCodes.InterfaceNotMappedUnused, e.Key);
+            }
+        }
+    }
+
+    /// <summary>Extra settings of an interface the plan creates: VLAN parent and ID, or the software switch type.</summary>
+    private void CreatedInterfaceSets(string target, List<CliSet> sets)
+    {
+        var at = sets.FindIndex(s => s.Param == "vdom") + 1;
+        if (_layout.Vlans.FirstOrDefault(v => v.Name == target) is { } vlan)
+        {
+            sets.Insert(at, new CliSet("interface", [vlan.Parent!], true));
+            sets.Insert(at + 1, new CliSet("vlanid", [vlan.VlanId!.Value.ToString(CultureInfo.InvariantCulture)], false));
+        }
+        else if (_layout.Changes.Any(c => c.Name == target && !c.Existing && !c.Hardware))
+        {
+            sets.Insert(at, new CliSet("type", ["switch"], false));
+        }
+    }
+
+    /// <summary>Created interfaces that no source interface is mapped to: written with only what makes them exist.</summary>
+    private void EmitUnmappedCreated()
+    {
+        const string path = "system interface";
+        foreach (var name in _layout.Created.Where(n => !_ifMap.ContainsValue(n)))
+        {
+            var entry = new CliEntry(name);
+            entry.Sets.Add(new CliSet("vdom", ["root"], true));
+            CreatedInterfaceSets(name, entry.Sets);
+            if (entry.Sets.Count > 1) BlockIn("interfaces", path).Entries.Add(entry);
         }
     }
 
@@ -129,8 +212,11 @@ public sealed partial class RebuildEngine
                 }
 
                 var t = Translate(path, [], e, node, target, e.Key, DefaultHook(path), ExistingInterfaceDrop.Union(AddressingParams).ToHashSet());
+                if (t.Fatal is null && _layout.Created.Contains(target) && !t.Entry.Sets.Any(x => x.Param == "vdom")) t.Entry.Sets.Insert(0, new CliSet("vdom", ["root"], true));
                 Addressing(e, target, t);
-                var section = string.Equals(target, _opt.ManagementInterface, StringComparison.Ordinal) ? "management" : "interfaces";
+                if (t.Fatal is null && _layout.Created.Contains(target)) CreatedInterfaceSets(target, t.Entry.Sets);
+                var section = string.Equals(target, _opt.ManagementInterface, StringComparison.Ordinal) ? "management"
+                    : string.Equals(target, FactoryManagement, StringComparison.Ordinal) ? "factory-management" : "interfaces";
                 if (Emit(section, path, t, e.Key, e))
                 {
                     Count(path, rebuilt: 1);
@@ -204,6 +290,7 @@ public sealed partial class RebuildEngine
                     break;
                 case "dhcp":
                     Put("mode", ["dhcp"]);
+                    _readdressed.Add(target);
                     foreach (var p in new[] { "dns-server-override", "priority" })
                     {
                         if (e.Field(p) is { } f && _target.Find("system interface")!.Params.ContainsKey(p)) Put(p, f.Values);
@@ -213,6 +300,7 @@ public sealed partial class RebuildEngine
                     break;
                 case "pppoe":
                     Put("mode", ["pppoe"]);
+                    _readdressed.Add(target);
                     LearnedRoute(e, Put);
                     if (e.Field("username") is { } u) Put("username", u.Values, quote: true);
                     var pw = Password(SecretCategory.Pppoe);
@@ -256,9 +344,11 @@ public sealed partial class RebuildEngine
                 break;
             case AddressingMode.Dhcp:
                 Put("mode", ["dhcp"]);
+                _readdressed.Add(target);
                 break;
             case AddressingMode.Pppoe:
                 Put("mode", ["pppoe"]);
+                _readdressed.Add(target);
                 break;
         }
     }
@@ -290,6 +380,21 @@ public sealed partial class RebuildEngine
         }
 
         put("distance", distance, false);
+    }
+
+    /// <summary>
+    /// The interface the PC is connected to on the factory configuration (static address with HTTPS or SSH access), when
+    /// it is not the new management interface: its changes go after those of the management interface.
+    /// </summary>
+    private string? FactoryManagement => _factoryManagement ??= FindFactoryManagement() ?? "";
+
+    private string? _factoryManagement;
+
+    private string? FindFactoryManagement()
+    {
+        var e = (_req.Target.DefaultBackup?.GlobalScope.Block("system interface")?.Entries ?? [])
+            .FirstOrDefault(x => x.Field("ip") is not null && (x.Field("allowaccess")?.Values ?? []).Any(a => a is "https" or "ssh"));
+        return e is null || e.Key == _opt.ManagementInterface ? null : e.Key;
     }
 
     private void ManagementChecks(string target, CliEntry entry)
@@ -485,10 +590,10 @@ public sealed partial class RebuildEngine
         foreach (var (id, intf) in defaults ?? [])
         {
             if (intf is null || !_readdressed.Contains(intf)) continue;
-            var section = intf == _opt.ManagementInterface ? "management" : "dhcp";
-            var block = intf == _opt.ManagementInterface ? new CliBlock(path, true) : BlockIn(section, path);
+            var section = intf == _opt.ManagementInterface ? "management" : intf == FactoryManagement ? "factory-management" : "dhcp";
+            var block = section == "dhcp" ? BlockIn(section, path) : new CliBlock(path, true);
             block.Deletes.Add(id);
-            if (intf == _opt.ManagementInterface) _sections["management"].Blocks.Insert(0, block);
+            if (section != "dhcp") _sections[section].Blocks.Insert(0, block);
         }
 
         var usedIds = new HashSet<string>(defaults?.Where(x => x.Interface is null || !_readdressed.Contains(x.Interface)).Select(x => x.Id) ?? [], StringComparer.Ordinal);
@@ -500,7 +605,7 @@ public sealed partial class RebuildEngine
             var key = usedIds.Contains(e.Key) ? (++next).ToString(CultureInfo.InvariantCulture) : e.Key;
             var t = Translate(path, [], e, node, key, e.Key, DefaultHook(path));
             var intf = t.Entry.Sets.FirstOrDefault(s => s.Param == "interface")?.Values.FirstOrDefault();
-            var section = intf is not null && intf == _opt.ManagementInterface ? "management-dhcp" : "dhcp";
+            var section = intf is not null && (intf == _opt.ManagementInterface || intf == FactoryManagement) ? "management-dhcp" : "dhcp";
             if (Emit(section, path, t, e.Key, e)) Count(path, rebuilt: 1);
             else Count(path, manual: 1);
         }

@@ -114,6 +114,7 @@ public sealed partial class RebuildEngine
     private readonly HashSet<string> _readdressed = new(StringComparer.Ordinal);
     private readonly HashSet<(string Path, string Key)> _emittedKeys = [];
     private readonly HashSet<string> _noDefaultRoute = new(StringComparer.Ordinal);
+    private SwitchLayout _layout = new();
 
     private RebuildEngine(RebuildRequest req, CliSchema target, RuleSet rules)
     {
@@ -208,12 +209,14 @@ public sealed partial class RebuildEngine
         Section(110, "admins");
         Section(120, "dhcp");
         Section(130, "management");
+        Section(135, "factory-management");
         Section(140, "management-dhcp");
 
         var ssl = SslVpnInfo.Read(doc);
         PlanInterfaces(doc, ssl);
-        RebuildSwitchPorts();
+        RebuildSwitches(doc);
         RebuildInterfaces(doc, ssl);
+        EmitUnmappedCreated();
         Simple(doc, "system zone", "zones", Ref.Interface, register: Ref.Interface);
         RebuildGlobal(doc);
         Simple(doc, "system dns", "dns");
@@ -241,6 +244,7 @@ public sealed partial class RebuildEngine
         RebuildDhcp(doc);
         ReportOtherSections(doc, ssl);
         AddFindings(ssl);
+        if (!_sections["factory-management"].IsEmpty) _findings.Add(MigrationFinding.Warning(RebuildCodes.FactoryManagementChanged, FactoryManagement!, _opt.ManagementInterface ?? "-"));
     }
 
     /// <summary>Only the general settings that do not depend on the hardware are taken from "system global".</summary>
@@ -293,7 +297,7 @@ public sealed partial class RebuildEngine
     /// <summary>Tables whose entries can be the target of each kind of reference.</summary>
     private static readonly Dictionary<Ref, string[]> Definitions = new()
     {
-        [Ref.Interface] = ["system interface", "system zone", "vpn ipsec phase1-interface"],
+        [Ref.Interface] = ["system interface", "system zone", "vpn ipsec phase1-interface", "system virtual-switch", "system switch-interface"],
         [Ref.Address] = ["firewall address", "firewall addrgrp"],
         [Ref.AddressOrVip] = ["firewall address", "firewall addrgrp", "firewall vip", "firewall vipgrp"],
         [Ref.Service] = ["firewall service custom", "firewall service group"],
