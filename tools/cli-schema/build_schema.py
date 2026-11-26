@@ -293,7 +293,10 @@ def count(node):
 
 
 def is_syntax_start(lines, i):
-    # A syntax block starts with "config x y" and, within a few lines, has "edit", "set" or "config".
+    # A syntax block follows a "Syntax" heading and, within a few lines, has "edit", "set" or "config".
+    # Change-log tables ("What's new") also contain "config x y" lines: they have no heading.
+    if not any(lines[k].strip().startswith("Syntax") or lines[k].strip() == "Command" for k in range(max(0, i - 6), i)):
+        return False
     for k in range(i + 1, min(i + 4, len(lines))):
         s = lines[k].strip()
         if s.startswith(("edit ", "set ", "config ", "unset ")) or s == "end":
@@ -365,6 +368,8 @@ def parse_pdf_block(lines, i):
             stack[-1]["edit"] = True
             stack[-1]["key"] = s[5:].strip()
             last = None
+        elif word == "config" and re.search(r"\.{3,}", s):
+            break  # table-of-contents line
         elif word == "config":
             # the 5.2 reference sometimes omits the "end" of a sub-table: a sibling starts at the same indentation
             while len(stack) > 1 and indent <= indents[-1]:
@@ -376,6 +381,10 @@ def parse_pdf_block(lines, i):
             indents.append(indent)
             last = None
         elif s == "end":
+            # close by indentation: an "end" closes the block opened at (or right above) its column
+            while len(stack) > 1 and indents[-1] > indent + 1:
+                stack.pop()
+                indents.pop()
             stack.pop()
             if len(indents) > 1:
                 indents.pop()

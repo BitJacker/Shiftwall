@@ -36,7 +36,9 @@ def walk(a, b, path, sub=()):
 
 def covered(rules, path, sub, param, kind, value):
     for r in rules:
-        if r["path"] != path or r.get("sub", []) != sub:
+        if r["kind"] == "default-change":
+            continue  # a default change never covers a removed parameter or value (same as RuleCoverageTests)
+        if r["path"] != "*" and (r["path"] != path or r.get("sub", []) != sub):
             continue
         if kind == "table" and r.get("table") == param:
             return True
