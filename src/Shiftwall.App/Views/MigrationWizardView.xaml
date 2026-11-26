@@ -364,13 +364,16 @@
                 </Grid>
                 <Grid Visibility="{Binding IsRebuild, Converter={StaticResource BoolToVisibility}}">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" MaxHeight="170" />
+                        <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <ItemsControl ItemsSource="{Binding RebuildFindings}" ItemTemplate="{StaticResource MessageTemplate}" />
-                    </ScrollViewer>
-                    <TabControl Grid.Row="1" Margin="0,8,0,0">
+                    <TextBlock Text="{Binding RebuildSummary}" TextWrapping="Wrap" Margin="0,0,0,4" />
+                    <TabControl x:Name="RebuildTabs" Grid.Row="1" Margin="0,8,0,0">
+                        <TabItem Header="{Binding FindingsTabHeader}">
+                            <ScrollViewer VerticalScrollBarVisibility="Visible">
+                                <ItemsControl ItemsSource="{Binding RebuildFindings}" ItemTemplate="{StaticResource MessageTemplate}" Margin="0,4,8,0" />
+                            </ScrollViewer>
+                        </TabItem>
                         <TabItem Header="{l:T Rebuild.Counts}">
                             <DataGrid ItemsSource="{Binding Counts}" AutoGenerateColumns="False" IsReadOnly="True" HeadersVisibility="Column"
                                       AutomationProperties.Name="{l:T Rebuild.Counts}">

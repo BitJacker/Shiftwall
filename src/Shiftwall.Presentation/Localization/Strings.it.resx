@@ -733,4 +733,10 @@ Confronta l'impronta con quella mostrata dal FortiGate (Sistema › Certificati)
   <data name="Rebuild.Col.Status" xml:space="preserve">
     <value>Stato</value>
   </data>
+  <data name="Rebuild.FindingsTab" xml:space="preserve">
+    <value>Avvisi ({0})</value>
+  </data>
+  <data name="Rebuild.Summary" xml:space="preserve">
+    <value>Errori: {0} · avvisi: {1} · da fare a mano: {2}. Leggi la scheda Avvisi prima di salvare.</value>
+  </data>
 </root>

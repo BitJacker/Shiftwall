@@ -733,4 +733,10 @@ Compare the fingerprint with the one shown by the FortiGate (System › Certific
   <data name="Rebuild.Col.Status" xml:space="preserve">
     <value>Status</value>
   </data>
+  <data name="Rebuild.FindingsTab" xml:space="preserve">
+    <value>Warnings ({0})</value>
+  </data>
+  <data name="Rebuild.Summary" xml:space="preserve">
+    <value>Errors: {0} · warnings: {1} · manual items: {2}. Read the Warnings tab before saving.</value>
+  </data>
 </root>

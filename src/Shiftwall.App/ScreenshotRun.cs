@@ -62,7 +62,7 @@ internal static class ScreenshotRun
             }
 
             await Settle();
-            var tabs = Descendants<TabControl>(window).Where(t => t.IsVisible && t.Items.Count == 4).ToList();
+            var tabs = Descendants<TabControl>(window).Where(t => t.IsVisible && t.Name == "RebuildTabs").ToList();
             foreach (var t in tabs)
             {
                 for (var i = 0; i < t.Items.Count; i++)

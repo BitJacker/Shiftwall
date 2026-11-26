@@ -60,6 +60,13 @@ public sealed partial class MigrationWizardViewModel
 
     public ObservableCollection<ProfileRow> ProfileRows { get; } = [];
 
+    /// <summary>Header of the findings tab, with the count ("Avvisi (14)").</summary>
+    public string FindingsTabHeader => Loc.F("Rebuild.FindingsTab", RebuildFindings.Count);
+
+    /// <summary>One line above the tabs: how many errors, warnings and manual items the rebuild produced.</summary>
+    public string RebuildSummary => _rebuild is null ? ""
+        : Loc.F("Rebuild.Summary", RebuildFindings.Count(f => f.Severity == ItemSeverity.Error), RebuildFindings.Count(f => f.Severity == ItemSeverity.Warning), ManualRows.Count);
+
     public IReadOnlyList<Choice<ProfileHandling>> ProfileChoices { get; } =
     [
         new(ProfileHandling.ApplyDefaults, "Rebuild.Profiles.Defaults"),
@@ -236,6 +243,8 @@ public sealed partial class MigrationWizardViewModel
 
         foreach (var k in RebuildReport.Checklist) Checklist.Add(new MessageItem(ItemSeverity.Info, k, () => MigrationText.Get(k, Loc.Instance.Culture)));
         ScriptPreview = _rebuild.FullScript(maskSecrets: true);
+        OnPropertyChanged(nameof(FindingsTabHeader));
+        OnPropertyChanged(nameof(RebuildSummary));
         PasswordSummary = _rebuild.Secrets.Count == 0 ? null : RebuildVault.Summary(_rebuild.Secrets, c => Loc.T("Rebuild.Secret." + c));
         RaiseCommands();
     }
@@ -335,6 +344,8 @@ public sealed partial class MigrationWizardViewModel
         ManualRows.Clear();
         ProfileRows.Clear();
         RebuildFindings.Clear();
+        OnPropertyChanged(nameof(FindingsTabHeader));
+        OnPropertyChanged(nameof(RebuildSummary));
         ScriptPreview = "";
         PasswordSummary = null;
         foreach (var s in Secrets)
