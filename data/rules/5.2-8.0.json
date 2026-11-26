@@ -136,7 +136,7 @@
    "path": "vpn ipsec phase2-interface",
    "param": "dhgrp",
    "value": "14 5",
-   "note": "Default 14 5 in 5.2 (p. 798), 20 in 8.0.",
+   "note": "Default 14 5 for phase2-interface in 5.2 (CLI Reference 5.2 p. 805, section pp. 804-811), 20 in 8.0.",
    "sources": [
     "cli-5.2",
     "cli-8.0"
@@ -148,7 +148,7 @@
    "path": "vpn ipsec phase2-interface",
    "param": "proposal",
    "value": "aes128-sha1 aes256-sha1 3des-sha1 aes128-sha256 aes256-sha256 3des-sha256",
-   "note": "5.2 default proposal list (p. 800). All six values are valid in 8.0.",
+   "note": "5.2 default proposal list for phase2-interface (CLI Reference 5.2 p. 809). All six values are valid in 8.0.",
    "sources": [
     "cli-5.2",
     "cli-8.0"
@@ -235,10 +235,10 @@
    "kind": "remove-with-equivalent",
    "path": "firewall policy",
    "param": "dlp-sensor",
-   "note": "UTM profiles are not migrated: the policy is created without the profile and the profile is listed for manual work.",
+   "note": "Absent in 8.0, which has dlp-profile and emailfilter-profile instead (8.0 CLI Reference). Security profiles are not rebuilt (design choice): the policy is created without the profile and the profile is listed for manual work.",
    "sources": [
-    "cli-8.0",
-    "rn-8.0.2-proxy-2gb"
+    "cli-5.2",
+    "cli-8.0"
    ]
   },
   {
@@ -246,10 +246,10 @@
    "kind": "remove-with-equivalent",
    "path": "firewall policy",
    "param": "spamfilter-profile",
-   "note": "UTM profiles are not migrated: the policy is created without the profile and the profile is listed for manual work.",
+   "note": "Absent in 8.0, which has dlp-profile and emailfilter-profile instead (8.0 CLI Reference). Security profiles are not rebuilt (design choice): the policy is created without the profile and the profile is listed for manual work.",
    "sources": [
-    "cli-8.0",
-    "rn-8.0.2-proxy-2gb"
+    "cli-5.2",
+    "cli-8.0"
    ]
   },
   {
@@ -327,7 +327,7 @@
     "cli-5.2",
     "cli-8.0"
    ],
-   "note": "Documented in the old CLI Reference, absent from the new one."
+   "note": "Documented in 5.2, absent from 8.0. 8.0 has icmp-send-redirect (sending of ICMP redirects, default enable), which looks equivalent, but no official page maps one to the other: set it by hand if needed."
   },
   {
    "id": "R008",
@@ -961,7 +961,7 @@
    "path": "system dns",
    "param": "protocol",
    "value": "cleartext",
-   "note": "FortiOS 5.2 has no DNS protocol setting (CLI Reference 5.2): DNS is always cleartext. Written explicitly so that the servers of the source keep working even if the target uses DNS over TLS out of the box.",
+   "note": "FortiOS 5.2 has no DNS protocol setting (CLI Reference 5.2 p. 495): DNS is always cleartext. The 8.0 CLI default is also cleartext; it is written explicitly so the result does not depend on how the factory configuration of the target sets it.",
    "sources": [
     "cli-5.2",
     "cli-8.0"
@@ -973,6 +973,79 @@
    "path": "system global",
    "param": "timezone",
    "note": "5.2 uses a numeric time zone index; 8.0 expects a time zone database name (e.g. Europe/Rome). No official table maps one to the other: set it by hand.",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ]
+  },
+  {
+   "id": "D008",
+   "kind": "default-change",
+   "path": "firewall policy",
+   "param": "match-vip",
+   "value": "disable",
+   "when": {
+    "action": [
+     "deny"
+    ]
+   },
+   "note": "Default disable in 5.2 (CLI Reference 5.2 p. 157), enable in 8.0. Written explicitly on deny policies so they keep not matching traffic to virtual IPs.",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ]
+  },
+  {
+   "id": "D009",
+   "kind": "default-change",
+   "path": "user ldap",
+   "param": "server-identity-check",
+   "value": "disable",
+   "when": {
+    "secure": [
+     "ldaps",
+     "starttls"
+    ]
+   },
+   "note": "FortiOS 5.2 has no server-identity-check (CLI Reference 5.2, user ldap): the certificate name of an LDAPS/STARTTLS server was not checked. 8.0 checks it by default. Written as disable to keep the old behaviour; enable it once the server certificate matches.",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ]
+  },
+  {
+   "id": "D010",
+   "kind": "default-change",
+   "path": "system interface",
+   "param": "defaultgw",
+   "value": "disable",
+   "note": "Default disable in 5.2 (CLI Reference 5.2 p. 552: get the gateway from the DHCP or PPPoE server), enable in 8.0 (distance 5). Written explicitly so that a DHCP/PPPoE port does not take the default route from the static WAN. To confirm in the lab.",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "by_code": true
+  },
+  {
+   "id": "D011",
+   "kind": "default-change",
+   "path": "system interface",
+   "param": "distance",
+   "value": "1",
+   "note": "Distance of the learned default route: 1 in 5.2 (CLI Reference 5.2 p. 553), 5 in 8.0. Written when the source takes the gateway from DHCP/PPPoE.",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "by_code": true
+  },
+  {
+   "id": "F001",
+   "kind": "value-format",
+   "path": "system interface",
+   "param": "remote-ip",
+   "value": "255.255.255.255",
+   "note": "5.2 takes a bare address (remote-ip <ipv4>, CLI Reference 5.2 p. 561); 8.0 takes address and mask (ipv4-classnet-host). The host mask is written explicitly so the remote end stays a single address.",
    "sources": [
     "cli-5.2",
     "cli-8.0"

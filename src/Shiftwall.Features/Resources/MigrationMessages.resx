@@ -105,7 +105,7 @@
     <value>Removing the mapped ports would leave the switch '{0}' empty: a switch must keep at least one port.</value>
   </data>
   <data name="RB-014" xml:space="preserve">
-    <value>The ports {0} are removed from the switch '{1}' so they can be used on their own. If the address object of the switch blocks the change, see the report.</value>
+    <value>The ports {0} are removed from the switch '{1}' so they can be used on their own: this is the first command of the script, so do not connect your PC to those ports while running it.</value>
   </data>
   <data name="RB-015" xml:space="preserve">
     <value>Interfaces of type '{0}' are not rebuilt automatically.</value>
@@ -126,13 +126,13 @@
     <value>The management interface '{0}' would have neither HTTPS nor SSH access after the script: you would lock yourself out.</value>
   </data>
   <data name="RB-021" xml:space="preserve">
-    <value>The changes to the management interface '{0}' are in the last part: after it the connection drops, reconnect to the new address to run the rest.</value>
+    <value>The changes to the management interface '{0}' are in the last part: after it the connection drops. The factory DHCP server is replaced only by the very last part, so give your PC a static address in the new subnet of '{0}', reconnect to the new address and run the last part.</value>
   </data>
   <data name="RB-022" xml:space="preserve">
     <value>'{0}' is a policy-based IPsec VPN: rebuild it as a route-based (interface) VPN by hand.</value>
   </data>
   <data name="RB-023" xml:space="preserve">
-    <value>IPsec tunnels: proposals, DH groups and IKE version are written explicitly with the old defaults. Check them with the administrator of the other side.</value>
+    <value>IPsec tunnels: proposals, DH groups and IKE version are written explicitly with the old defaults. Dead peer detection: the 5.2 default (enable) becomes the 8.0 default (on-demand). Check them with the administrator of the other side.</value>
   </data>
   <data name="RB-024" xml:space="preserve">
     <value>The gateway {0} is not in the subnet of '{1}'.</value>
@@ -183,7 +183,7 @@
     <value>SSL VPN converted to IPsec dial-up '{0}' (IKEv2, EAP, group '{1}', clients {2}). TO REVIEW before production.</value>
   </data>
   <data name="RB-040" xml:space="preserve">
-    <value>FortiClient: create an IPsec VPN connection to '{0}' (remote gateway = WAN address, pre-shared key from the password summary, IKE version 2, EAP with username and password). FortiClient 7.4.4 and later do not support IKEv1.</value>
+    <value>FortiClient: create an IPsec VPN connection to '{0}' (remote gateway = WAN address, pre-shared key from the password summary, IKE version 2, EAP with username and password). Users authenticated by LDAP need EAP-TTLS, supported by FortiClient and EMS 7.4.3 and later (SSL VPN to IPsec VPN migration guide, LDAP-based user authentication). FortiClient 7.4.4 and later do not support IKEv1.</value>
   </data>
   <data name="RB-041" xml:space="preserve">
     <value>Rebuild mode: the source ({0}) and the target ({1}) are on different FortiOS versions, so the configuration is rewritten as a clean script in the target syntax.</value>
@@ -265,5 +265,8 @@
   </data>
   <data name="RBR.Script" xml:space="preserve">
     <value>Script (passwords hidden)</value>
+  </data>
+  <data name="RB-046" xml:space="preserve">
+    <value>RADIUS servers ({0}): FortiOS 8.0 requires the Message-Authenticator attribute by default (require-message-authenticator enable, 8.0 CLI Reference). If the RADIUS server does not send it, authentication fails: update the server, or set it to disable knowing the risk.</value>
   </data>
 </root>

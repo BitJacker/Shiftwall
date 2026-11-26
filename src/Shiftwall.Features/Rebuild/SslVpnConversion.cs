@@ -160,6 +160,8 @@ public sealed partial class RebuildEngine
         Checked("vpn ipsec phase1-interface", p1, "assign-ip-from", ["name"]);
         if (ssl.NameServers.Count > 0)
         {
+            // Not in the guide example (dns-mode auto): dns-mode manual and ipv4-dns-server1/2 are documented in the
+            // 8.0 CLI Reference, config vpn ipsec phase1-interface. They keep the DNS servers the SSL VPN gave to clients.
             Checked("vpn ipsec phase1-interface", p1, "dns-mode", ["manual"]);
             Checked("vpn ipsec phase1-interface", p1, "ipv4-dns-server1", [ssl.NameServers[0]]);
             if (ssl.NameServers.Count > 1) Checked("vpn ipsec phase1-interface", p1, "ipv4-dns-server2", [ssl.NameServers[1]]);

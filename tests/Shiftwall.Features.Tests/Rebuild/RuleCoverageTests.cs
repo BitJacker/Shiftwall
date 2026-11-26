@@ -67,7 +67,7 @@ public sealed class RuleCoverageTests
     public void EveryRuleHasAnOfficialSource_AndAValidKind(string from, string to)
     {
         var rules = RuleSet.Load(from, to);
-        string[] kinds = ["rename", "value-map", "default-change", "remove-no-equivalent", "remove-with-equivalent", "skip", "not-a-difference"];
+        string[] kinds = ["rename", "value-map", "value-format", "default-change", "remove-no-equivalent", "remove-with-equivalent", "skip", "not-a-difference"];
         Assert.All(rules.Rules, r =>
         {
             Assert.Contains(r.Kind, kinds);

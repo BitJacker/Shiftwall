@@ -9,7 +9,28 @@ public partial class MigrationWizardView : UserControl
 {
     private const string PortFormat = "Shiftwall.TargetPort";
 
-    public MigrationWizardView() => InitializeComponent();
+    public MigrationWizardView()
+    {
+        InitializeComponent();
+        DataContextChanged += (_, e) =>
+        {
+            if (e.OldValue is MigrationWizardViewModel old) old.SecretsCleared -= OnSecretsCleared;
+            if (e.NewValue is MigrationWizardViewModel vm) vm.SecretsCleared += OnSecretsCleared;
+        };
+    }
+
+    /// <summary>Clears every password box of the page (passwords, confirmations, file password).</summary>
+    private void OnSecretsCleared(object? sender, EventArgs e) => ClearPasswordBoxes(this);
+
+    private static void ClearPasswordBoxes(DependencyObject parent)
+    {
+        for (var i = 0; i < System.Windows.Media.VisualTreeHelper.GetChildrenCount(parent); i++)
+        {
+            var child = System.Windows.Media.VisualTreeHelper.GetChild(parent, i);
+            if (child is PasswordBox box) box.Clear();
+            else ClearPasswordBoxes(child);
+        }
+    }
 
     private MigrationWizardViewModel? Vm => DataContext as MigrationWizardViewModel;
 

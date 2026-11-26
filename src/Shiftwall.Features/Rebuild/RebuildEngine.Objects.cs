@@ -193,14 +193,16 @@ public sealed partial class RebuildEngine
                     break;
                 case "dhcp":
                     Put("mode", ["dhcp"]);
-                    foreach (var p in new[] { "defaultgw", "dns-server-override", "distance", "priority" })
+                    foreach (var p in new[] { "dns-server-override", "priority" })
                     {
                         if (e.Field(p) is { } f && _target.Find("system interface")!.Params.ContainsKey(p)) Put(p, f.Values);
                     }
 
+                    LearnedRoute(e, Put);
                     break;
                 case "pppoe":
                     Put("mode", ["pppoe"]);
+                    LearnedRoute(e, Put);
                     if (e.Field("username") is { } u) Put("username", u.Values, quote: true);
                     var pw = Password(SecretCategory.Pppoe);
                     if (pw is null)
@@ -248,6 +250,31 @@ public sealed partial class RebuildEngine
                 Put("mode", ["pppoe"]);
                 break;
         }
+    }
+
+    /// <summary>
+    /// DHCP/PPPoE: the default gateway learned from the server, with the 5.2 defaults written explicitly
+    /// (rules D010 defaultgw disable, D011 distance 1).
+    /// </summary>
+    private void LearnedRoute(EditEntry e, Action<string, IReadOnlyList<string>, bool> put)
+    {
+        var gw = e.Field("defaultgw")?.Values.FirstOrDefault();
+        if (gw is null)
+        {
+            gw = "disable";
+            _applied.Add(new AppliedRule("D010", "system interface", e.Key, "defaultgw"));
+        }
+
+        put("defaultgw", [gw], false);
+        if (gw != "enable") return;
+        var distance = e.Field("distance")?.Values;
+        if (distance is null)
+        {
+            distance = ["1"];
+            _applied.Add(new AppliedRule("D011", "system interface", e.Key, "distance"));
+        }
+
+        put("distance", distance, false);
     }
 
     private void ManagementChecks(string target, CliEntry entry)
@@ -473,5 +500,9 @@ public sealed partial class RebuildEngine
         if (_req.Target.LowMemory) _findings.Add(MigrationFinding.Warning(RebuildCodes.LowMemoryModel, _req.Target.ModelId ?? "?"));
         if (_secrets.Count > 0) _findings.Add(MigrationFinding.Warning(RebuildCodes.SecretsReset, _secrets.Count.ToString(CultureInfo.InvariantCulture)));
         if (_req.Target.DefaultBackup is null) _findings.Add(MigrationFinding.Warning(RebuildCodes.NoDefaultBackup));
+        if (_known[Ref.Radius].Count > 0 && _target.Find("user radius")?.Params.ContainsKey("require-message-authenticator") == true)
+        {
+            _findings.Add(MigrationFinding.Warning(RebuildCodes.RadiusMessageAuthenticator, string.Join(", ", _known[Ref.Radius])));
+        }
     }
 }

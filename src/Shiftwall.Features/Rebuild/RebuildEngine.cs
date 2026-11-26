@@ -91,6 +91,13 @@ public sealed partial class RebuildEngine
         ["ssl-ssh-profile"] = "firewall ssl-ssh-profile",
     };
 
+    /// <summary>Parameter names that hold secrets: masked in every report even when not ENC.</summary>
+    internal static readonly HashSet<string> SecretParams = new(StringComparer.Ordinal)
+    {
+        "password", "passwd", "psksecret", "secret", "secondary-secret", "tertiary-secret", "ppk-secret", "key", "auth-pwd",
+        "priv-pwd", "md5-key", "passphrase", "server-key", "private-key",
+    };
+
     private readonly RebuildRequest _req;
     private readonly RebuildOptions _opt;
     private readonly CliSchema _target;
@@ -348,11 +355,25 @@ public sealed partial class RebuildEngine
             if (!node.Params.TryGetValue(rule.Param, out var p)) continue;
             var values = rule.Value.Split(' ', StringSplitOptions.RemoveEmptyEntries);
             if (CliSchema.Check(p, values) is not null) continue;
+            if (!WhenHolds(rule, t.Entry, node)) continue;
             t.Entry.Sets.Insert(insertAt++, new CliSet(rule.Param, values, IsQuoted(p)));
             _applied.Add(new AppliedRule(rule.Id, path, objectName, rule.Param));
         }
 
         return t;
+    }
+
+    /// <summary>A default-change rule with conditions applies only when the object has those values (or defaults).</summary>
+    private static bool WhenHolds(TranslationRule rule, CliEntry entry, SchemaNode node)
+    {
+        foreach (var (param, allowed) in rule.When)
+        {
+            var value = entry.Sets.FirstOrDefault(s => s.Param == param)?.Values.FirstOrDefault()
+                ?? node.Params.GetValueOrDefault(param)?.Default;
+            if (value is null || !allowed.Contains(value, StringComparer.Ordinal)) return false;
+        }
+
+        return true;
     }
 
     private void TranslateField(string path, IReadOnlyList<string> sub, SchemaNode node, FieldNode f, string objectName, ValueHook? hook, Translation t)
@@ -374,6 +395,14 @@ public sealed partial class RebuildEngine
                 case "rename":
                     _applied.Add(new AppliedRule(rule.Id, path, objectName, param));
                     param = rule.To!;
+                    break;
+                case "value-format":
+                    if (values.Count == 1 && rule.Value is not null)
+                    {
+                        _applied.Add(new AppliedRule(rule.Id, path, objectName, param));
+                        values = [values[0], rule.Value];
+                    }
+
                     break;
                 case "value-map":
                     if (values.Any(rule.Map.ContainsKey))
@@ -516,7 +545,17 @@ public sealed partial class RebuildEngine
         for (var i = 0; i < lines.Length; i++)
         {
             var at = lines[i].IndexOf(" ENC ", StringComparison.Ordinal);
-            if (at >= 0) lines[i] = lines[i][..(at + 5)] + "********";
+            if (at >= 0)
+            {
+                lines[i] = lines[i][..(at + 5)] + "********";
+                continue;
+            }
+
+            var words = lines[i].TrimStart().Split(' ', 3);
+            if (words.Length == 3 && words[0] == "set" && SecretParams.Contains(words[1]))
+            {
+                lines[i] = lines[i][..(lines[i].Length - lines[i].TrimStart().Length)] + "set " + words[1] + " ********";
+            }
         }
 
         return string.Join('\n', lines).TrimEnd('\n');
@@ -623,7 +662,7 @@ public sealed partial class RebuildEngine
 
     private ValueHook? DefaultHook(string path) => (param, values, t) =>
     {
-        if (values.Count == 0 || values[0] != "ENC") return values;
+        if (values.Count == 0) return values;
         var category = (path, param) switch
         {
             ("system admin", "password") => SecretCategory.Admin,
@@ -633,6 +672,17 @@ public sealed partial class RebuildEngine
             ("system interface", "password") => SecretCategory.Pppoe,
             _ => SecretCategory.Other,
         };
+        var hidden = values[0] == "ENC" || values[0] == ConfigInspector.PasswordMaskToken;
+        if (!hidden)
+        {
+            if (category == SecretCategory.Other && !SecretParams.Contains(param)) return values;
+
+            // A secret written in clear in the source: kept (it is the real one), but treated as a secret everywhere.
+            _secrets.Add(new SecretAssignment(category, path, t.Entry.Key ?? path, param, string.Join(' ', values), false));
+            t.Entry.Sets.Add(new CliSet(param, values, QuoteValues: true, Secret: true));
+            return null;
+        }
+
         var password = Password(category);
         var obj = t.Entry.Key ?? path;
         if (password is null)

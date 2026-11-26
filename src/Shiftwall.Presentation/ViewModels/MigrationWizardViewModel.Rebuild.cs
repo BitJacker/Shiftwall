@@ -286,6 +286,8 @@ public sealed partial class MigrationWizardViewModel
         try
         {
             SafeOutput.Write(path, RebuildVault.Encrypt(_rebuild.Secrets, _vaultPassword), ProtectedPaths(), allowOverwrite: true);
+            _vaultPassword = "";
+            SecretsCleared?.Invoke(this, EventArgs.Empty);
             _dialogs.ShowInfo(Loc.F("Wizard.Report.Saved", Path.GetFileName(path)));
         }
         catch (UnsafeOutputException)
@@ -310,8 +312,12 @@ public sealed partial class MigrationWizardViewModel
         }
     }
 
+    /// <summary>Raised when typed passwords are discarded: the view clears its password boxes.</summary>
+    public event EventHandler? SecretsCleared;
+
     private void ResetRebuild()
     {
+        _vaultPassword = "";
         _rebuild = null;
         Counts.Clear();
         ManualRows.Clear();
@@ -323,6 +329,8 @@ public sealed partial class MigrationWizardViewModel
             s.SetPassword("");
             s.SetConfirm("");
         }
+
+        SecretsCleared?.Invoke(this, EventArgs.Empty);
     }
 
     private void RaiseModeProperties()

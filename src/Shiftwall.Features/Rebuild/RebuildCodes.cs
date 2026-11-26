@@ -48,4 +48,5 @@ public static class RebuildCodes
     public const string ModeForced = "RB-043";
     public const string GlobalPartial = "RB-044";
     public const string BrokenReference = "RB-045";
+    public const string RadiusMessageAuthenticator = "RB-046";
 }

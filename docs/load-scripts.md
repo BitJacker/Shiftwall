@@ -48,7 +48,7 @@ Source: FortiOS 8.0.2 Administration Guide, [Configuration scripts](https://docs
 
 Source: FortiOS 8.0.2 Administration Guide, [Connecting to the CLI](https://docs.fortinet.com/document/fortigate/8.0.2/administration-guide/901037/connecting-to-the-cli).
 
-- **CLI Console in the GUI**: click the `>_` icon at the top right of the GUI.
+- **CLI Console in the GUI**: click the `_>` icon at the top right of the GUI (as the Administration Guide calls it).
 - **SSH (e.g. PuTTY)**: SSH must be allowed on the interface you connect to; host = its IP address, port 22.
 
 Open `cli-001-….txt` in a text editor, copy the whole block, paste it in the console and press Enter. Wait for the

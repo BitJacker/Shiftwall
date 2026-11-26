@@ -243,6 +243,9 @@ public sealed class TwoFactorViewModel : ObservableObject
     }
 
     /// <summary>Set from the password boxes (code-behind). Kept in memory only.</summary>
+    /// <summary>Raised after the encrypted file is written: the view clears the file password boxes.</summary>
+    public event EventHandler? VaultCleared;
+
     public void SetVaultPassword(string password, string confirm)
     {
         _vaultPassword = password;
@@ -470,6 +473,11 @@ public sealed class TwoFactorViewModel : ObservableObject
             if (bundle.Passwords.Count > 0)
             {
                 Write(folder, "2fa-new-users" + PasswordVault.Extension, PasswordVault.Encrypt(bundle.Passwords, _inventory, _vaultPassword), protectedPaths);
+                _vaultPassword = "";
+                _vaultConfirm = "";
+                VaultCleared?.Invoke(this, EventArgs.Empty);
+                OnPropertyChanged(nameof(VaultHint));
+                RaiseGenerate();
             }
 
             Status = Loc.F("TwoFactor.Generated", bundle.Scripts.Count, bundle.Rollbacks.Count, folder);

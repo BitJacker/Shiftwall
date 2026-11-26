@@ -22,6 +22,12 @@ public sealed record TranslationRule(
     string Note,
     IReadOnlyList<RuleSource> Sources)
 {
+    /// <summary>For default-change rules: other parameters of the object that must have one of these values.</summary>
+    public IReadOnlyDictionary<string, IReadOnlyList<string>> When { get; init; } = new Dictionary<string, IReadOnlyList<string>>();
+
+    /// <summary>Applied by dedicated engine code (e.g. interface addressing), not by the generic translation.</summary>
+    public bool ByCode { get; init; }
+
     public bool Matches(string path, IReadOnlyList<string> sub) =>
         (Path == "*" || Path == path) && (Path == "*" || Sub.SequenceEqual(sub));
 }
@@ -86,9 +92,19 @@ public sealed class RuleSet
                 foreach (var p in m.EnumerateObject()) map[p.Name] = p.Value.GetString()!;
             }
 
+            var when = new Dictionary<string, IReadOnlyList<string>>(StringComparer.Ordinal);
+            if (e.TryGetProperty("when", out var w))
+            {
+                foreach (var p in w.EnumerateObject()) when[p.Name] = [.. p.Value.EnumerateArray().Select(x => x.GetString()!)];
+            }
+
             rules.Add(new TranslationRule(
                 S("id")!, S("kind")!, S("path")!, L("sub"), S("param"), S("table"), S("to"), map, L("values"), S("value"), S("note") ?? "",
-                [.. L("sources").Select(k => sources.TryGetValue(k, out var src) ? src : throw new InvalidDataException($"Unknown source '{k}' in rule {S("id")}."))]));
+                [.. L("sources").Select(k => sources.TryGetValue(k, out var src) ? src : throw new InvalidDataException($"Unknown source '{k}' in rule {S("id")}."))])
+            {
+                When = when,
+                ByCode = e.TryGetProperty("by_code", out var bc) && bc.GetBoolean(),
+            });
         }
 
         return new RuleSet(
@@ -107,5 +123,5 @@ public sealed class RuleSet
         Rules.FirstOrDefault(r => r.Table == table && r.Matches(path, sub));
 
     public IEnumerable<TranslationRule> Defaults(string path, IReadOnlyList<string> sub) =>
-        Rules.Where(r => r.Kind == "default-change" && r.Matches(path, sub));
+        Rules.Where(r => r.Kind == "default-change" && !r.ByCode && r.Matches(path, sub));
 }

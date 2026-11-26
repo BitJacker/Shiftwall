@@ -105,7 +105,7 @@
     <value>Togliendo le porte mappate lo switch '{0}' resterebbe vuoto: uno switch deve avere almeno una porta.</value>
   </data>
   <data name="RB-014" xml:space="preserve">
-    <value>Le porte {0} vengono tolte dallo switch '{1}' per usarle da sole. Se l'oggetto indirizzo dello switch blocca la modifica, vedi il report.</value>
+    <value>Le porte {0} vengono tolte dallo switch '{1}' per usarle da sole: è il primo comando dello script, quindi non collegare il PC a quelle porte mentre lo esegui.</value>
   </data>
   <data name="RB-015" xml:space="preserve">
     <value>Le interfacce di tipo '{0}' non vengono ricostruite in automatico.</value>
@@ -126,13 +126,13 @@
     <value>Dopo lo script l'interfaccia di gestione '{0}' non avrebbe né HTTPS né SSH: resteresti chiuso fuori.</value>
   </data>
   <data name="RB-021" xml:space="preserve">
-    <value>Le modifiche all'interfaccia di gestione '{0}' sono nell'ultima parte: dopo, la connessione cade; ricollegati al nuovo indirizzo per eseguire il resto.</value>
+    <value>Le modifiche all'interfaccia di gestione '{0}' sono nell'ultima parte: dopo, la connessione cade. Il server DHCP di fabbrica viene sostituito solo dall'ultimissima parte, quindi dai al PC un indirizzo statico nella nuova subnet di '{0}', ricollegati al nuovo indirizzo ed esegui l'ultima parte.</value>
   </data>
   <data name="RB-022" xml:space="preserve">
     <value>'{0}' è una VPN IPsec policy-based: ricostruiscila a mano come VPN route-based (interfaccia).</value>
   </data>
   <data name="RB-023" xml:space="preserve">
-    <value>Tunnel IPsec: proposal, gruppi DH e versione IKE sono scritti in modo esplicito con i vecchi default. Verificali con chi gestisce l'altro lato.</value>
+    <value>Tunnel IPsec: proposal, gruppi DH e versione IKE sono scritti in modo esplicito con i vecchi default. Dead peer detection: il default 5.2 (enable) diventa il default 8.0 (on-demand). Verificali con chi gestisce l'altro lato.</value>
   </data>
   <data name="RB-024" xml:space="preserve">
     <value>Il gateway {0} non è nella subnet di '{1}'.</value>
@@ -183,7 +183,7 @@
     <value>SSL VPN convertita in IPsec dial-up '{0}' (IKEv2, EAP, gruppo '{1}', client {2}). DA RIVEDERE prima della produzione.</value>
   </data>
   <data name="RB-040" xml:space="preserve">
-    <value>FortiClient: crea una connessione IPsec VPN verso '{0}' (gateway remoto = indirizzo WAN, chiave pre-condivisa dal riepilogo password, IKE versione 2, EAP con utente e password). FortiClient 7.4.4 e successivi non supportano IKEv1.</value>
+    <value>FortiClient: crea una connessione IPsec VPN verso '{0}' (gateway remoto = indirizzo WAN, chiave pre-condivisa dal riepilogo password, IKE versione 2, EAP con utente e password). Gli utenti autenticati via LDAP richiedono EAP-TTLS, supportato da FortiClient ed EMS 7.4.3 e successivi (guida SSL VPN to IPsec VPN migration, LDAP-based user authentication). FortiClient 7.4.4 e successivi non supportano IKEv1.</value>
   </data>
   <data name="RB-041" xml:space="preserve">
     <value>Modalità ricostruzione: sorgente ({0}) e destinazione ({1}) hanno versioni di FortiOS diverse, quindi la configurazione viene riscritta come script pulito con la sintassi della destinazione.</value>
@@ -265,5 +265,8 @@
   </data>
   <data name="RBR.Script" xml:space="preserve">
     <value>Script (password nascoste)</value>
+  </data>
+  <data name="RB-046" xml:space="preserve">
+    <value>Server RADIUS ({0}): FortiOS 8.0 richiede per default l'attributo Message-Authenticator (require-message-authenticator enable, CLI reference 8.0). Se il server RADIUS non lo invia, l'autenticazione fallisce: aggiorna il server oppure imposta disable sapendo il rischio.</value>
   </data>
 </root>

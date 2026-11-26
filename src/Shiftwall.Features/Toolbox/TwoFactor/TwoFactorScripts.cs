@@ -181,7 +181,6 @@ public static class TwoFactorScripts
         sb.Append(indent).Append("end\n");
     }
 
-    /// <summary>20 characters from upper, lower, digits and symbols (no quotes, backslash or space), each class present.</summary>
     /// <summary>A strong random password that is safe for the FortiOS CLI (see <see cref="Rebuild.CliPassword"/>).</summary>
     public static string NewPassword() => Rebuild.CliPassword.Generate();
 }

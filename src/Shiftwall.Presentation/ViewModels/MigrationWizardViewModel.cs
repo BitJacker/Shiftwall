@@ -315,6 +315,8 @@ public sealed partial class MigrationWizardViewModel : ObservableObject
         _result = null;
         _analysis = null;
         _rebuild = null;
+        ScriptPreview = "";
+        PasswordSummary = null;
         RaiseModeProperties();
         RebuildPorts();
         Reanalyze();
