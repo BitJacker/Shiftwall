@@ -13,7 +13,8 @@ public sealed record ScriptFile(string FileName, string Text, int Number, int To
 /// "Configuration scripts"); comment lines start with #. No size limit is documented, so parts are kept small.</item>
 /// <item>Terminal: small blocks to paste one at a time in the CLI Console or an SSH client, without comments.</item>
 /// </list>
-/// Every block is complete (config ... end) and uses edit/set only, so running a file twice gives the same result.
+/// Every block is complete (config ... end). Parts with only edit/set give the same result when run twice; the parts
+/// that take ports out of a switch or delete factory DHCP servers use delete and must be run once, in order.
 /// </summary>
 public static class ScriptPackager
 {

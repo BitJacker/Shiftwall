@@ -142,15 +142,16 @@ public static partial class SwitchPlanner
 
         // Who takes each port: a source interface mapped to it, a split, or a switch it goes into.
         var claims = new Dictionary<string, string>(StringComparer.Ordinal);
-        void Claim(string port, string by)
+        bool Claim(string port, string by)
         {
             if (claims.TryGetValue(port, out var other) && other != by)
             {
                 layout.Findings.Add(MigrationFinding.Error(RebuildCodes.PortUsedTwice, port, other, by));
-                return;
+                return false;
             }
 
             claims[port] = by;
+            return true;
         }
 
         foreach (var p in interfaces)
@@ -158,14 +159,14 @@ public static partial class SwitchPlanner
             if (p.Target is { } t && ports.Contains(t)) Claim(t, p.Source);
             foreach (var extra in p.SplitPorts ?? [])
             {
+                if (extra == p.Target) continue; // the port that takes the address is not split from itself
                 if (!ports.Contains(extra))
                 {
                     layout.Findings.Add(MigrationFinding.Error(RebuildCodes.NotAPort, extra, p.Source));
                     continue;
                 }
 
-                Claim(extra, p.Source);
-                layout.Findings.Add(MigrationFinding.Warning(RebuildCodes.SplitPortNoAddress, extra, p.Source, p.Target ?? "-"));
+                if (Claim(extra, p.Source)) layout.Findings.Add(MigrationFinding.Warning(RebuildCodes.SplitPortNoAddress, extra, p.Source, p.Target ?? "-"));
             }
         }
 
@@ -223,8 +224,7 @@ public static partial class SwitchPlanner
                     continue;
                 }
 
-                Claim(port, c.Name);
-                list.Add(port);
+                if (Claim(port, c.Name)) list.Add(port);
             }
 
             wanted[c.Name] = (c, list);
@@ -237,7 +237,9 @@ public static partial class SwitchPlanner
             var keep = wanted.TryGetValue(name, out var w) ? w.Ports : null;
             var gone = members.Where(m => (claims.TryGetValue(m, out var by) && by != name) || (keep is not null && !keep.Contains(m))).ToList();
             var remaining = members.Except(gone).Concat(keep?.Except(members) ?? []).ToList();
-            if (gone.Count > 0 && remaining.Count == 0)
+
+            // Removals are written before additions, and a hardware switch can never be left empty in between.
+            if (gone.Count > 0 && (remaining.Count == 0 || !members.Except(gone).Any()))
             {
                 layout.Findings.Add(MigrationFinding.Error(RebuildCodes.SwitchWouldBeEmpty, name));
                 continue;
@@ -267,6 +269,20 @@ public static partial class SwitchPlanner
                 var add = list.Except(hwMembers).ToList();
                 var gone = removed.GetValueOrDefault(name) ?? [];
                 if (add.Count == 0 && gone.Count == 0) continue;
+                if (isHw && add.Count > 0)
+                {
+                    if (target.ModelId is null || !SwitchChips.TryGetValue(target.ModelId, out var groups))
+                    {
+                        layout.Findings.Add(MigrationFinding.Warning(RebuildCodes.SwitchChipUnknown, name, string.Join(", ", list), target.ModelId ?? "?"));
+                    }
+                    else if (!groups.Any(g => list.All(p => g.Contains(p, StringComparer.Ordinal))))
+                    {
+                        layout.Findings.Add(MigrationFinding.Warning(RebuildCodes.SwitchDifferentChips, name, string.Join(", ", list), target.ModelId));
+                        layout.Findings.Add(MigrationFinding.Error(RebuildCodes.HardwareSwitchNotPossible, name, string.Join(", ", list)));
+                        continue;
+                    }
+                }
+
                 layout.Prepared.AddRange(add.Where(p => !layout.Prepared.Contains(p)));
                 layout.Changes.Add(new SwitchChange(name, isHw, true, add, gone, list, null));
                 layout.Findings.Add(MigrationFinding.Info(RebuildCodes.SwitchPortsChanged, name, string.Join(", ", list)));
@@ -280,6 +296,20 @@ public static partial class SwitchPlanner
             layout.Prepared.AddRange(list.Where(p => !layout.Prepared.Contains(p)));
             layout.Changes.Add(new SwitchChange(name, decision.Hardware, false, list, [], list, decision.Hardware ? physicalSwitch : null));
             layout.Created.Add(name);
+        }
+
+        // A VLAN parent must stay an interface of its own: not a port inside a switch after the plan.
+        foreach (var v in layout.Vlans.ToList())
+        {
+            var parent = v.Parent!;
+            if (!ports.Contains(parent)) continue;
+            var inNew = claims.TryGetValue(parent, out var by) && wanted.ContainsKey(by);
+            var stays = SwitchOf(parent) is { } sw && !(removed.GetValueOrDefault(sw)?.Contains(parent) ?? false);
+            if (inNew || stays)
+            {
+                layout.Findings.Add(MigrationFinding.Error(RebuildCodes.InvalidVlan, v.Name, parent, v.VlanId?.ToString(CultureInfo.InvariantCulture) ?? "-"));
+                layout.Vlans.Remove(v);
+            }
         }
 
         foreach (var v in layout.Vlans) layout.Created.Add(v.Name);

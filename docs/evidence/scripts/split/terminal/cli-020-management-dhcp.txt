@@ -1,5 +1,5 @@
 config system dhcp server
-    edit 1
+    edit 3
         set dns-service default
         set default-gateway 192.168.10.1
         set netmask 255.255.255.0

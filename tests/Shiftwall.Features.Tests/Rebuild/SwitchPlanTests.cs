@@ -129,7 +129,7 @@ public sealed class SwitchPlanTests
     public void PortsOnDifferentChips_OrUnknownModel_GiveASoftwareSwitch_OrAnErrorWhenHardwareIsForced()
     {
         var backup = Parse(File.ReadAllText(Path.Combine(RebuildFixtures.Dir, "40f-8.0-target-synthetic.fgtcfg"))
-            .Replace("    edit \"lan3\"\n", "    edit \"x1\"\n        set type physical\n    next\n    edit \"lan3\"\n", StringComparison.Ordinal));
+            .Replace("\n    edit \"lan3\"\n        set vdom", "\n    edit \"x1\"\n        set type physical\n    next\n    edit \"lan3\"\n        set vdom", StringComparison.Ordinal));
         var target = RebuildFixtures.Target40F() with { DefaultBackup = backup };
         NewInterfacePlan Plan(NewInterfaceKind k) => new("sw1", k, ["lan1", "x1"]);
         var plans = new[] { new InterfacePlan("internal", "sw1") };

@@ -73,21 +73,51 @@ end
 config antivirus profile
     edit "default"
     next
+    edit "wifi-default"
+    next
 end
 config webfilter profile
     edit "default"
+    next
+    edit "monitor-all"
+    next
+    edit "wifi-default"
     next
 end
 config application list
     edit "default"
     next
+    edit "wifi-default"
+    next
+    edit "block-high-risk"
+    next
 end
 config ips sensor
+    edit "all_default"
+    next
+    edit "all_default_pass"
+    next
     edit "default"
+    next
+    edit "high_security"
+    next
+    edit "protect_client"
+    next
+    edit "protect_email_server"
+    next
+    edit "protect_http_server"
+    next
+    edit "wifi-default"
     next
 end
 config firewall ssl-ssh-profile
     edit "certificate-inspection"
+    next
+    edit "deep-inspection"
+    next
+    edit "no-inspection"
+    next
+    edit "custom-deep-inspection"
     next
 end
 config firewall profile-protocol-options

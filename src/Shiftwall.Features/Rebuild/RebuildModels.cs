@@ -47,10 +47,10 @@ public enum SecretCategory
 /// </summary>
 public sealed class SecretPlan
 {
-    /// <summary>Generate a new random password per category for this migration (never a fixed value).</summary>
+    /// <summary>Generate a new random password for every object of the categories that can be generated, new at every run (never a fixed value).</summary>
     public bool Generate { get; init; }
 
-    /// <summary>Passwords typed by the user, per category. They override the generated ones.</summary>
+    /// <summary>Passwords typed by the user, per category: used for every object of the category. They override the generated ones.</summary>
     public IReadOnlyDictionary<SecretCategory, string> Provided { get; init; } = new Dictionary<SecretCategory, string>();
 
     /// <summary>Only these can be generated: the others must match something outside the FortiGate.</summary>

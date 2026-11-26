@@ -49,7 +49,7 @@ public sealed class ProfileTests
 
         // A factory backup without the preloaded web filter profile: the replacement cannot be checked, the policy is disabled.
         var backup = File.ReadAllText(Path.Combine(RebuildFixtures.Dir, "40f-8.0-target-synthetic.fgtcfg"))
-            .Replace("config webfilter profile\n    edit \"default\"\n    next\nend\n", "", StringComparison.Ordinal);
+            .Replace("config webfilter profile\n    edit \"default\"\n    next\n", "config webfilter profile\n", StringComparison.Ordinal);
         var target = RebuildFixtures.Target40F() with { DefaultBackup = ConfigInspector.Inspect(Encoding.UTF8.GetBytes(backup)).Document };
         var r2 = RebuildEngine.Run(RebuildFixtures.Office110C() with { Target = target });
         Assert.Contains("    edit 1\n        set status disable\n", r2.FullScript());

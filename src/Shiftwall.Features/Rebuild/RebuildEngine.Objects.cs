@@ -53,7 +53,8 @@ public sealed partial class RebuildEngine
             .Where(e => CreatedTypes.Contains(e.Field("type")?.Values.FirstOrDefault() ?? InterfaceInventory.DefaultType)).Select(e => e.Key)
             .Concat(BlocksOf(doc, "vpn ipsec phase1-interface").SelectMany(b => b.Entries).Select(e => e.Key))
             .Concat(BlocksOf(doc, "system zone").SelectMany(b => b.Entries).Select(e => e.Key))
-            .Concat(ssl.Present && _opt.ConvertSslVpn ? [_opt.DialupTunnelName] : []);
+            .Concat(ssl.Present && _opt.ConvertSslVpn ? [_opt.DialupTunnelName] : [])
+            .Concat((_req.NewInterfaces ?? []).Select(n => n.Name));
         foreach (var clash in created.GroupBy(n => n, StringComparer.Ordinal).Where(g => g.Count() > 1).Select(g => g.Key))
         {
             _findings.Add(MigrationFinding.Error(RebuildCodes.DuplicateTarget, clash));
@@ -401,7 +402,8 @@ public sealed partial class RebuildEngine
     {
         var access = entry.Sets.FirstOrDefault(s => s.Param == "allowaccess")?.Values ?? [];
         if (!access.Contains("https") && !access.Contains("ssh")) _findings.Add(MigrationFinding.Error(RebuildCodes.ManagementLockout, target));
-        _findings.Add(MigrationFinding.Warning(RebuildCodes.ManagementLast, target));
+        // A management interface created by the script cannot be the one the PC is on: RB-068 explains the order then.
+        if (!_layout.Created.Contains(target)) _findings.Add(MigrationFinding.Warning(RebuildCodes.ManagementLast, target));
     }
 
     // ------------------------------------------------------------------ IPsec
@@ -509,30 +511,36 @@ public sealed partial class RebuildEngine
                 continue;
             }
 
-            var original = new List<string>();
+            // Profiles of the source, read before any rule: a profile removed by a rule (E002, E003) is never lost silently.
+            var original = e.Fields.Where(f => ProfileParams.Contains(f.Name) && f.Values.Count > 0).Select(f => $"{f.Name} {string.Join(' ', f.Values)}").ToList();
+            var originalParams = e.Fields.Where(f => ProfileParams.Contains(f.Name) && f.Values.Count > 0).Select(f => f.Name).ToHashSet(StringComparer.Ordinal);
+
+            // 5.2 default of utm-status is disable (CLI Reference 5.2 p. 100): profiles of a policy without it were not applied.
+            var utmOn = e.Field("utm-status")?.Values.FirstOrDefault() == "enable";
             var applied = new List<string>();
-            var lost = new List<string>();
+            var keptParams = new HashSet<string>(StringComparer.Ordinal);
             ValueHook hook = (param, values, t) =>
             {
                 if (param == "utm-status") return null; // written below only if a profile is kept
                 if (!ProfileParams.Contains(param)) return DefaultHook(path)!(param, values, t);
+                if (!utmOn) return null;
                 var text = $"{param} {string.Join(' ', values)}";
-                original.Add(text);
                 if (ProfileTables.TryGetValue(param, out var table) && values.Count == 1
                     && (ExistsOnTarget(table, values[0]) || (_req.Target.DefaultBackup is null && PreloadedNames.GetValueOrDefault(param)?.Contains(values[0]) == true)))
                 {
                     applied.Add(text);
+                    keptParams.Add(param);
                     return values;
                 }
 
                 if (_opt.Profiles == ProfileHandling.ApplyDefaults && DefaultProfile(param) is { } d)
                 {
                     applied.Add($"{param} {d}");
+                    keptParams.Add(param);
                     _applied.Add(new AppliedRule("P001", path, e.Key, param));
                     return [d];
                 }
 
-                lost.Add(text);
                 return null;
             };
             var t = Translate(path, [], e, node, e.Key, e.Key, hook);
@@ -544,25 +552,33 @@ public sealed partial class RebuildEngine
             }
 
             // No policy that had protection on the source leaves without it: what cannot be protected is disabled.
+            var lost = utmOn ? original.Where(o => !keptParams.Contains(o.Split(' ')[0])).ToList() : [];
             var replaced = applied.Except(original).ToList();
-            var disable = t.Fatal is null && (lost.Count > 0 || (_opt.Profiles == ProfileHandling.DisablePolicy && original.Count > 0 && replaced.Count > 0));
+            var disable = t.Fatal is null && utmOn && (lost.Count > 0 || (_opt.Profiles == ProfileHandling.DisablePolicy && replaced.Count > 0));
             if (disable && !t.Entry.Sets.Any(x => x.Param == "status" && x.Values.SequenceEqual(["disable"])))
             {
                 t.Entry.Sets.RemoveAll(x => x.Param == "status");
                 t.Entry.Sets.Insert(0, new CliSet("status", ["disable"], false));
             }
 
-            if (original.Count > 0 && t.Fatal is null)
+            if (originalParams.Count > 0 && t.Fatal is null)
             {
                 _profiles.Add(new PolicyProfiles(e.Key, original, applied, disable));
                 var custom = original.Where(o => !applied.Contains(o)).ToList();
-                if (custom.Count > 0)
+                if (!utmOn)
                 {
-                    t.FieldItems.Add(Item(path, e.Key, RebuildCodes.ProfilesNotMigrated, [string.Join("; ", custom)], Mask(e.ToText()), _rules.Rules.First(r => r.Id == "E002")));
+                    _findings.Add(MigrationFinding.Info(RebuildCodes.ProfilesInactiveOnSource, e.Key, string.Join("; ", original)));
                 }
+                else
+                {
+                    if (custom.Count > 0)
+                    {
+                        t.FieldItems.Add(Item(path, e.Key, RebuildCodes.ProfilesNotMigrated, [string.Join("; ", custom)], Mask(e.ToText()), _rules.Rules.First(r => r.Id == "P001")));
+                    }
 
-                if (disable) _findings.Add(MigrationFinding.Warning(RebuildCodes.PolicyDisabledForProfiles, e.Key, string.Join("; ", lost.Count > 0 ? lost : custom)));
-                else if (replaced.Count > 0) _findings.Add(MigrationFinding.Warning(RebuildCodes.DefaultProfilesApplied, e.Key, string.Join("; ", custom), string.Join("; ", replaced)));
+                    if (disable) _findings.Add(MigrationFinding.Warning(RebuildCodes.PolicyDisabledForProfiles, e.Key, string.Join("; ", lost.Count > 0 ? lost : custom)));
+                    else if (replaced.Count > 0) _findings.Add(MigrationFinding.Warning(RebuildCodes.DefaultProfilesApplied, e.Key, string.Join("; ", custom), string.Join("; ", replaced)));
+                }
             }
 
             if (Emit("policies", path, t, e.Key, e)) Count(path, rebuilt: 1);
@@ -640,7 +656,8 @@ public sealed partial class RebuildEngine
             if (section != "dhcp") _sections[section].Blocks.Insert(0, block);
         }
 
-        var usedIds = new HashSet<string>(defaults?.Where(x => x.Interface is null || !_readdressed.Contains(x.Interface)).Select(x => x.Id) ?? [], StringComparer.Ordinal);
+        // Factory ids are never reused, even when deleted: running a part twice cannot delete a rebuilt server.
+        var usedIds = new HashSet<string>(defaults?.Select(x => x.Id) ?? [], StringComparer.Ordinal);
         var next = BlocksOf(doc, path).SelectMany(b => b.Entries).Select(e => int.TryParse(e.Key, CultureInfo.InvariantCulture, out var n) ? n : 0)
             .Concat(usedIds.Select(x => int.TryParse(x, CultureInfo.InvariantCulture, out var n) ? n : 0)).DefaultIfEmpty(0).Max();
         foreach (var e in BlocksOf(doc, path).SelectMany(b => b.Entries))
@@ -714,9 +731,28 @@ public sealed partial class RebuildEngine
         }
     }
 
+    /// <summary>VLAN ids must be unique on a parent interface: checked on what the script writes.</summary>
+    private void CheckVlanIds()
+    {
+        var seen = new Dictionary<(string Parent, string Id), string>();
+        foreach (var e in _sections.Values.SelectMany(s => s.Blocks).Where(b => b.Path == "system interface").SelectMany(b => b.Entries))
+        {
+            var parent = e.Sets.FirstOrDefault(x => x.Param == "interface")?.Values.FirstOrDefault();
+            var id = e.Sets.FirstOrDefault(x => x.Param == "vlanid")?.Values.FirstOrDefault();
+            if (parent is null || id is null) continue;
+            if (seen.TryGetValue((parent, id), out var other) && other != e.Key) _findings.Add(MigrationFinding.Error(RebuildCodes.DuplicateVlan, id, parent, other, e.Key ?? ""));
+            else seen[(parent, id)] = e.Key ?? "";
+        }
+    }
+
     private void AddFindings(SslVpnInfo ssl)
     {
         WeakVpnFindings();
+        CheckVlanIds();
+        foreach (var g in _secrets.Where(x => !x.Generated && x.Category is SecretCategory.VpnPsk or SecretCategory.Admin or SecretCategory.LocalUser).GroupBy(x => x.Category).Where(g => g.Count() > 1))
+        {
+            _findings.Add(MigrationFinding.Warning(RebuildCodes.ReusedTypedCredential, CategoryName(g.Key), string.Join(", ", g.Select(x => x.Object))));
+        }
         _findings.Add(MigrationFinding.Info(RebuildCodes.FactoryDefaultTarget));
         if (_opt.ManagementInterface is null) _findings.Add(MigrationFinding.Warning(RebuildCodes.ManagementUnknown));
         if (_req.Target.LowMemory) _findings.Add(MigrationFinding.Warning(RebuildCodes.LowMemoryModel, _req.Target.ModelId ?? "?"));

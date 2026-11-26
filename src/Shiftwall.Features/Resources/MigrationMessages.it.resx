@@ -138,7 +138,7 @@
     <value>Il gateway {0} non è nella subnet di '{1}'.</value>
   </data>
   <data name="RB-025" xml:space="preserve">
-    <value>Profili di sicurezza non migrati, da ricreare e assegnare: {0}</value>
+    <value>Profili di sicurezza personalizzati non presenti sulla destinazione: {0}. Se ti servono le loro impostazioni ricreali a mano (vedi la riga della policy nella tabella dei profili).</value>
   </data>
   <data name="RB-026" xml:space="preserve">
     <value>'{0}' è l'amministratore con cui esegui lo script: lo script non lo modifica. Per cambiargli la password la CLI chiede quella attuale (Administration Guide, Default administrator password): fallo a mano alla fine.</value>
@@ -297,7 +297,7 @@
     <value>La porta '{0}' è usata dalla configurazione di fabbrica ({1}) e non può entrare nello switch '{2}': una porta aggiunta a uno switch non deve essere referenziata da nessuna configurazione (Administration Guide 8.0, Hardware switch / Software switch). Togli prima quel riferimento a mano o scegli un'altra porta.</value>
   </data>
   <data name="RB-056" xml:space="preserve">
-    <value>La porta '{0}' è separata da '{1}' e resta senza indirizzo (l'indirizzo resta su '{2}'): configurala a mano se ti serve.</value>
+    <value>La porta '{0}' è separata da '{1}' e resta senza indirizzo: l'indirizzo, le VLAN figlie, la zona e il server DHCP restano su '{2}'. Configura a mano la porta se ti serve.</value>
   </data>
   <data name="RB-057" xml:space="preserve">
     <value>'{0}' non è un nome valido per una nuova interfaccia: al massimo 15 caratteri, lettere, cifre, '-', '_' e '.'.</value>
@@ -367,5 +367,14 @@
   </data>
   <data name="RB-072" xml:space="preserve">
     <value>Il tunnel IPsec '{0}' usa impostazioni che Fortinet non raccomanda ({1}): mantenuto per compatibilità con l'altra sede, da aggiornare insieme (IKEv2, gruppi DH 19-21, AES-GCM o AES con SHA-256). Fonti: FortiOS 8.0 Administration Guide, Phase 1 e Phase 2 configuration (DES, 3DES, MD5 e SHA1 non raccomandati; gruppi DH 1, 2, 5, 14, 22-27 insicuri per la Security Rating Insights); FortiOS 8.0 Best Practices, IPsec VPN remote access (preferire IKEv2).</value>
+  </data>
+  <data name="RB-073" xml:space="preserve">
+    <value>La password della categoria {0} che hai scritto è usata per più oggetti: {1}. Shiftwall ne genera una diversa per ogni oggetto; una scritta da te è condivisa. La chiave della VPN dial-up la ricevono tutti gli utenti, quindi non dovrebbe essere la chiave di un tunnel sito-sito.</value>
+  </data>
+  <data name="RB-074" xml:space="preserve">
+    <value>Il VLAN ID {0} è usato due volte su '{1}' ({2} e {3}): FortiOS accetta una sola VLAN per ID su un'interfaccia.</value>
+  </data>
+  <data name="RB-075" xml:space="preserve">
+    <value>La policy {0} aveva profili di sicurezza ({1}) ma sulla sorgente utm-status non era attivo (default 5.2: disable, CLI Reference 5.2 p. 100), quindi non venivano applicati: la policy è ricostruita senza profili, come funzionava.</value>
   </data>
 </root>

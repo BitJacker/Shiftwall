@@ -334,7 +334,7 @@ config system interface
     next
 end
 config system dhcp server
-    edit 1
+    edit 3
         set dns-service default
         set default-gateway 192.168.10.1
         set netmask 255.255.255.0
@@ -351,7 +351,7 @@ end
 system global | system global | RB-002 | 'timezone' is not available on the target version and has no equivalent: 5.2 uses a numeric time zone index; 8.0 expects a time zone database name (e.g. Europe/Rome). No official table maps one to the other: set it by hand.
 firewall service custom | Gestionale-8443 | RB-002 | 'visibility' is not available on the target version and has no equivalent: Documented in the old CLI Reference, absent from the new one.
 user ldap | AD-Ufficio | RB-011 | 'password' needs a password of the category 'ldap-radius' (ENC values are never copied). Choose one in the passwords step.
-firewall policy | 1 | RB-025 | Security profiles not migrated, recreate and assign them: webfilter-profile Ufficio-Web
+firewall policy | 1 | RB-025 | Custom security profiles not on the target: webfilter-profile Ufficio-Web. Recreate them by hand if you need their settings (see the policy row in the profiles table).
 system admin | admin | RB-026 | 'admin' is the administrator you use to run the script: it is not changed by the script. Changing its password asks for the current one (Administration Guide, Default administrator password): do it by hand at the end.
 system accprofile | system accprofile | RB-028 | Section 'system accprofile' (1 objects) is not rebuilt: review it and recreate what you need.
 webfilter profile | webfilter profile | RB-028 | Section 'webfilter profile' (1 objects) is not rebuilt: review it and recreate what you need.

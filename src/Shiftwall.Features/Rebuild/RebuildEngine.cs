@@ -134,7 +134,6 @@ public sealed partial class RebuildEngine
     private readonly Dictionary<string, (int Source, int Rebuilt, int Converted, int Manual)> _counts = [];
     private readonly Dictionary<Ref, HashSet<string>> _known = [];
     private readonly Dictionary<string, string> _ifMap = new(StringComparer.Ordinal);
-    private readonly Dictionary<SecretCategory, string> _generated = [];
     private readonly Dictionary<string, ScriptSection> _sections = [];
     private readonly HashSet<string> _readdressed = new(StringComparer.Ordinal);
     private readonly HashSet<(string Path, string Key)> _emittedKeys = [];
@@ -814,13 +813,9 @@ public sealed partial class RebuildEngine
     {
         if (_req.Secrets.Provided.TryGetValue(category, out var p) && !string.IsNullOrEmpty(p)) return p;
         if (!_req.Secrets.Generate || !SecretPlan.CanGenerate(category)) return null;
-        if (!_generated.TryGetValue(category, out var g))
-        {
-            g = CliPassword.Generate();
-            _generated[category] = g;
-        }
 
-        return g;
+        // A new password for every object: two tunnels, users or administrators never share a generated secret.
+        return CliPassword.Generate();
     }
 
     internal static string CategoryName(SecretCategory c) => c switch

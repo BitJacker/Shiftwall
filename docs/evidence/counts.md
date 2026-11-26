@@ -24,7 +24,7 @@ Generato dai test (`EvidenceTests`) sulla fixture sintetica `110c-5.2-office.fgt
 | `vpn ipsec phase1-interface` | 1 | 1 | 0 | 0 | — |
 | `vpn ipsec phase2-interface` | 1 | 1 | 0 | 0 | — |
 | `router static` | 2 | 2 | 0 | 0 | — |
-| `firewall policy` | 6 | 5 | 1 | 0 | policy SSL VPN convertita in policy del tunnel dial-up<br>`1`: Profili di sicurezza non migrati, da ricreare e assegnare: webfilter-profile Ufficio-Web |
+| `firewall policy` | 6 | 5 | 1 | 0 | policy SSL VPN convertita in policy del tunnel dial-up<br>`1`: Profili di sicurezza personalizzati non presenti sulla destinazione: webfilter-profile Ufficio-Web. Se ti servono le loro impostazioni ricreali a mano (vedi la riga della policy nella tabella dei profili). |
 | `system admin` | 2 | 1 | 0 | 1 | `admin`: 'admin' è l'amministratore con cui esegui lo script: lo script non lo modifica. Per cambiargli la password la CLI chiede quella attuale (Administration Guide, Default administrator password): fallo a mano alla fine. |
 | `system dhcp server` | 2 | 2 | 0 | 0 | — |
 | `system accprofile` | 1 | 0 | 0 | 1 | `system accprofile`: La sezione 'system accprofile' (1 oggetti) non viene ricostruita: controllala e ricrea quello che serve. |
@@ -54,7 +54,7 @@ Generato dai test (`EvidenceTests`) sulla fixture sintetica `110c-5.2-office.fgt
 | `vpn ipsec phase1-interface` | 1 | 1 | 0 | 0 | — |
 | `vpn ipsec phase2-interface` | 1 | 1 | 0 | 0 | — |
 | `router static` | 2 | 2 | 0 | 0 | — |
-| `firewall policy` | 6 | 5 | 1 | 0 | policy SSL VPN convertita in policy del tunnel dial-up<br>`1`: Profili di sicurezza non migrati, da ricreare e assegnare: webfilter-profile Ufficio-Web |
+| `firewall policy` | 6 | 5 | 1 | 0 | policy SSL VPN convertita in policy del tunnel dial-up<br>`1`: Profili di sicurezza personalizzati non presenti sulla destinazione: webfilter-profile Ufficio-Web. Se ti servono le loro impostazioni ricreali a mano (vedi la riga della policy nella tabella dei profili). |
 | `system admin` | 2 | 1 | 0 | 1 | `admin`: 'admin' è l'amministratore con cui esegui lo script: lo script non lo modifica. Per cambiargli la password la CLI chiede quella attuale (Administration Guide, Default administrator password): fallo a mano alla fine. |
 | `system dhcp server` | 2 | 2 | 0 | 0 | — |
 | `system accprofile` | 1 | 0 | 0 | 1 | `system accprofile`: La sezione 'system accprofile' (1 oggetti) non viene ricostruita: controllala e ricrea quello che serve. |
@@ -84,7 +84,7 @@ Generato dai test (`EvidenceTests`) sulla fixture sintetica `110c-5.2-office.fgt
 | `vpn ipsec phase1-interface` | 1 | 1 | 0 | 0 | — |
 | `vpn ipsec phase2-interface` | 1 | 1 | 0 | 0 | — |
 | `router static` | 2 | 2 | 0 | 0 | — |
-| `firewall policy` | 6 | 5 | 1 | 0 | policy SSL VPN convertita in policy del tunnel dial-up<br>`1`: Profili di sicurezza non migrati, da ricreare e assegnare: webfilter-profile Ufficio-Web |
+| `firewall policy` | 6 | 5 | 1 | 0 | policy SSL VPN convertita in policy del tunnel dial-up<br>`1`: Profili di sicurezza personalizzati non presenti sulla destinazione: webfilter-profile Ufficio-Web. Se ti servono le loro impostazioni ricreali a mano (vedi la riga della policy nella tabella dei profili). |
 | `system admin` | 2 | 1 | 0 | 1 | `admin`: 'admin' è l'amministratore con cui esegui lo script: lo script non lo modifica. Per cambiargli la password la CLI chiede quella attuale (Administration Guide, Default administrator password): fallo a mano alla fine. |
 | `system dhcp server` | 2 | 2 | 0 | 0 | — |
 | `system accprofile` | 1 | 0 | 0 | 1 | `system accprofile`: La sezione 'system accprofile' (1 oggetti) non viene ricostruita: controllala e ricrea quello che serve. |
@@ -114,7 +114,7 @@ Generato dai test (`EvidenceTests`) sulla fixture sintetica `110c-5.2-office.fgt
 | `vpn ipsec phase1-interface` | 1 | 1 | 0 | 0 | — |
 | `vpn ipsec phase2-interface` | 1 | 1 | 0 | 0 | — |
 | `router static` | 2 | 2 | 0 | 0 | — |
-| `firewall policy` | 6 | 5 | 1 | 0 | policy SSL VPN convertita in policy del tunnel dial-up<br>`1`: Profili di sicurezza non migrati, da ricreare e assegnare: webfilter-profile Ufficio-Web |
+| `firewall policy` | 6 | 5 | 1 | 0 | policy SSL VPN convertita in policy del tunnel dial-up<br>`1`: Profili di sicurezza personalizzati non presenti sulla destinazione: webfilter-profile Ufficio-Web. Se ti servono le loro impostazioni ricreali a mano (vedi la riga della policy nella tabella dei profili). |
 | `system admin` | 2 | 1 | 0 | 1 | `admin`: 'admin' è l'amministratore con cui esegui lo script: lo script non lo modifica. Per cambiargli la password la CLI chiede quella attuale (Administration Guide, Default administrator password): fallo a mano alla fine. |
 | `system dhcp server` | 2 | 2 | 0 | 0 | — |
 | `system accprofile` | 1 | 0 | 0 | 1 | `system accprofile`: La sezione 'system accprofile' (1 oggetti) non viene ricostruita: controllala e ricrea quello che serve. |

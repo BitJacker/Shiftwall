@@ -1039,7 +1039,7 @@
       "path": "system interface",
       "param": "defaultgw",
       "value": "disable",
-      "note": "Default disable in 5.2 (CLI Reference 5.2 p. 552: get the gateway from the DHCP or PPPoE server), enable in 8.0 (distance 5). Written explicitly so that a DHCP/PPPoE port does not take the default route from the static WAN. To confirm in the lab.",
+      "note": "Default disable in 5.2 (CLI Reference 5.2 p. 552: get the gateway from the DHCP or PPPoE server), enable in 8.0 (distance 5). Written explicitly so that a DHCP/PPPoE port does not take the default route from the static WAN.",
       "sources": [
         "cli-5.2",
         "cli-8.0"
