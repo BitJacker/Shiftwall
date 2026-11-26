@@ -25,8 +25,8 @@ public sealed class RebuildWizardTests : IDisposable
 
     private async Task LoadAsync()
     {
-        await _vm.LoadSourceAsync(P("110c-5.2-office.conf"));
-        await _vm.Target.LoadBackupAsync(P("40f-8.0-target-synthetic.conf"));
+        await _vm.LoadSourceAsync(P("110c-5.2-office.fgtcfg"));
+        await _vm.Target.LoadBackupAsync(P("40f-8.0-target-synthetic.fgtcfg"));
         await _vm.ReanalyzeAsync();
     }
 

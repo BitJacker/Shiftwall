@@ -12,7 +12,7 @@ internal static class RebuildFixtures
     /// <summary>FortiGate 40F target from the synthetic stand-in backup (interfaces and switch as a factory 40F would have them).</summary>
     public static RebuildTarget Target40F(bool withBackup = true)
     {
-        var backup = Load("40f-8.0-target-synthetic.conf");
+        var backup = Load("40f-8.0-target-synthetic.fgtcfg");
         return new RebuildTarget(
             "FG-40F",
             "8.0.2",
@@ -24,7 +24,7 @@ internal static class RebuildFixtures
 
     /// <summary>The main case: 110C on 5.2 → 40F on 8.0, internal → lan, wan1 → wan, wan2 → lan3 (taken out of the switch).</summary>
     public static RebuildRequest Office110C(SecretPlan? secrets = null) => new(
-        Load("110c-5.2-office.conf"),
+        Load("110c-5.2-office.fgtcfg"),
         "5.02",
         Target40F(),
         [new InterfacePlan("wan1", "wan"), new InterfacePlan("internal", "lan"), new InterfacePlan("wan2", "lan3")],

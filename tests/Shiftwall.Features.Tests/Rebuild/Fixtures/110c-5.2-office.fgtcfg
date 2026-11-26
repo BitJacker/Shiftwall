@@ -1,0 +1,358 @@
+#config-version=FG110C-5.02-FW-build688-150722:opmode=0:vdom=0:user=admin
+#conf_file_ver=5212345678901234
+#buildno=0688
+#global_vdom=1
+config system global
+    set admintimeout 30
+    set hostname "FGT110C-UFFICIO"
+    set timezone 26
+end
+config system accprofile
+    edit "prof_admin"
+        set admingrp read-write
+        set authgrp read-write
+        set fwgrp read-write
+        set netgrp read-write
+        set sysgrp read-write
+    next
+end
+config system interface
+    edit "wan1"
+        set vdom "root"
+        set ip 203.0.113.10 255.255.255.248
+        set allowaccess ping https
+        set type physical
+        set alias "Fibra"
+        set snmp-index 1
+    next
+    edit "wan2"
+        set vdom "root"
+        set mode dhcp
+        set allowaccess ping
+        set type physical
+        set snmp-index 2
+    next
+    edit "internal"
+        set vdom "root"
+        set ip 192.168.10.1 255.255.255.0
+        set allowaccess ping https ssh fgfm
+        set type physical
+        set alias "LAN Ufficio"
+        set snmp-index 3
+    next
+    edit "ssl.root"
+        set vdom "root"
+        set type tunnel
+        set alias "SSL VPN interface"
+        set snmp-index 4
+    next
+    edit "vlan20-ospiti"
+        set vdom "root"
+        set ip 192.168.20.1 255.255.255.0
+        set allowaccess ping
+        set interface "internal"
+        set vlanid 20
+        set snmp-index 5
+    next
+    edit "to-sede2"
+        set vdom "root"
+        set type tunnel
+        set ip 169.254.1.1 255.255.255.255
+        set remote-ip 169.254.1.2
+        set interface "wan1"
+        set snmp-index 6
+    next
+end
+config system zone
+    edit "OSPITI"
+        set interface "vlan20-ospiti"
+    next
+end
+config system admin
+    edit "admin"
+        set accprofile "super_admin"
+        set vdom "root"
+        set password ENC c3ludGhldGljLWFkbWluLXBhc3N3b3Jk
+    next
+    edit "tecnico"
+        set accprofile "super_admin"
+        set vdom "root"
+        set trusthost1 192.168.10.0 255.255.255.0
+        set password ENC c3ludGhldGljLXRlY25pY28tcGFzc3dvcmQ=
+    next
+end
+config system dns
+    set primary 192.0.2.53
+    set secondary 198.51.100.53
+end
+config system dhcp server
+    edit 1
+        set dns-service default
+        set default-gateway 192.168.10.1
+        set netmask 255.255.255.0
+        set interface "internal"
+        config ip-range
+            edit 1
+                set start-ip 192.168.10.100
+                set end-ip 192.168.10.200
+            next
+        end
+    next
+    edit 2
+        set dns-service default
+        set default-gateway 192.168.20.1
+        set netmask 255.255.255.0
+        set interface "vlan20-ospiti"
+        config ip-range
+            edit 1
+                set start-ip 192.168.20.100
+                set end-ip 192.168.20.150
+            next
+        end
+    next
+end
+config firewall address
+    edit "SSLVPN_TUNNEL_ADDR1"
+        set uuid 0a1b2c3d-0000-4000-8000-000000000001
+        set type iprange
+        set associated-interface "ssl.root"
+        set start-ip 10.212.134.200
+        set end-ip 10.212.134.210
+    next
+    edit "all"
+        set uuid 0a1b2c3d-0000-4000-8000-000000000002
+    next
+    edit "LAN-Ufficio"
+        set uuid 0a1b2c3d-0000-4000-8000-000000000003
+        set associated-interface "internal"
+        set subnet 192.168.10.0 255.255.255.0
+    next
+    edit "Server Web (DMZ)"
+        set uuid 0a1b2c3d-0000-4000-8000-000000000004
+        set comment "Città: Milano - server dell'ufficio"
+        set subnet 192.168.10.20 255.255.255.255
+    next
+    edit "Sede2-LAN"
+        set uuid 0a1b2c3d-0000-4000-8000-000000000005
+        set subnet 10.20.0.0 255.255.255.0
+    next
+    edit "www.example.com"
+        set uuid 0a1b2c3d-0000-4000-8000-000000000006
+        set type fqdn
+        set fqdn "www.example.com"
+    next
+end
+config firewall addrgrp
+    edit "Server-Interni"
+        set uuid 0a1b2c3d-0000-4000-8000-000000000007
+        set member "Server Web (DMZ)" "LAN-Ufficio"
+    next
+end
+config firewall service category
+    edit "General"
+    next
+    edit "Web Access"
+    next
+end
+config firewall service custom
+    edit "ALL"
+        set category "General"
+        set protocol IP
+    next
+    edit "HTTP"
+        set category "Web Access"
+        set tcp-portrange 80
+    next
+    edit "HTTPS"
+        set category "Web Access"
+        set tcp-portrange 443
+    next
+    edit "DNS"
+        set category "General"
+        set tcp-portrange 53
+        set udp-portrange 53
+    next
+    edit "PING"
+        set category "General"
+        set protocol ICMP
+        set icmptype 8
+        unset icmpcode
+    next
+    edit "RDP"
+        set protocol TCP/UDP/SCTP
+        set tcp-portrange 3389
+    next
+    edit "Gestionale-8443"
+        set protocol TCP/UDP/SCTP
+        set tcp-portrange 8443
+        set visibility disable
+    next
+end
+config firewall service group
+    edit "Web"
+        set member "HTTP" "HTTPS"
+    next
+end
+config firewall schedule recurring
+    edit "always"
+        set day sunday monday tuesday wednesday thursday friday saturday
+    next
+end
+config firewall vip
+    edit "VIP-RDP"
+        set uuid 0a1b2c3d-0000-4000-8000-000000000008
+        set extip 203.0.113.11
+        set extintf "wan1"
+        set portforward enable
+        set mappedip 192.168.10.20
+        set extport 3389
+        set mappedport 3389
+    next
+end
+config firewall ippool
+    edit "Pool-Uscita"
+        set startip 203.0.113.12
+        set endip 203.0.113.12
+    next
+end
+config user ldap
+    edit "AD-Ufficio"
+        set server "192.168.10.5"
+        set cnid "sAMAccountName"
+        set dn "dc=example,dc=com"
+        set type regular
+        set username "cn=fortigate,cn=Users,dc=example,dc=com"
+        set password ENC c3ludGhldGljLWxkYXAtYmluZA==
+    next
+end
+config user local
+    edit "mario.rossi"
+        set type password
+        set passwd ENC c3ludGhldGljLXVzZXItb25l
+    next
+    edit "anna.bianchi"
+        set type ldap
+        set ldap-server "AD-Ufficio"
+    next
+end
+config user group
+    edit "VPN-Utenti"
+        set member "mario.rossi" "anna.bianchi"
+    next
+end
+config vpn ssl settings
+    set servercert "Fortinet_Factory"
+    set tunnel-ip-pools "SSLVPN_TUNNEL_ADDR1"
+    set dns-server1 192.168.10.5
+    set source-interface "wan1"
+    set source-address "all"
+    set default-portal "full-access"
+end
+config vpn ssl web portal
+    edit "full-access"
+        set tunnel-mode enable
+        set web-mode enable
+        set ip-pools "SSLVPN_TUNNEL_ADDR1"
+        set split-tunneling enable
+    next
+end
+config vpn ipsec phase1-interface
+    edit "to-sede2"
+        set interface "wan1"
+        set remote-gw 198.51.100.20
+        set psksecret ENC c3ludGhldGljLXBzay1zZWRlMg==
+    next
+end
+config vpn ipsec phase2-interface
+    edit "to-sede2-p2"
+        set phase1name "to-sede2"
+        set src-subnet 192.168.10.0 255.255.255.0
+        set dst-subnet 10.20.0.0 255.255.255.0
+    next
+end
+config webfilter profile
+    edit "Ufficio-Web"
+        set comment "profilo personalizzato"
+    next
+end
+config router static
+    edit 1
+        set device "wan1"
+        set gateway 203.0.113.9
+    next
+    edit 2
+        set device "to-sede2"
+        set dst 10.20.0.0 255.255.255.0
+    next
+end
+config firewall policy
+    edit 1
+        set uuid 0a1b2c3d-0000-4000-8000-000000000009
+        set srcintf "internal"
+        set dstintf "wan1"
+        set srcaddr "all"
+        set dstaddr "all"
+        set action accept
+        set schedule "always"
+        set service "ALL"
+        set utm-status enable
+        set av-profile "default"
+        set webfilter-profile "Ufficio-Web"
+        set logtraffic all
+        set nat enable
+    next
+    edit 2
+        set uuid 0a1b2c3d-0000-4000-8000-000000000010
+        set srcintf "wan1"
+        set dstintf "internal"
+        set srcaddr "all"
+        set dstaddr "VIP-RDP"
+        set action accept
+        set schedule "always"
+        set service "RDP"
+    next
+    edit 3
+        set uuid 0a1b2c3d-0000-4000-8000-000000000011
+        set srcintf "ssl.root"
+        set dstintf "internal"
+        set srcaddr "all"
+        set dstaddr "LAN-Ufficio"
+        set action accept
+        set schedule "always"
+        set service "ALL"
+        set groups "VPN-Utenti"
+        set nat enable
+    next
+    edit 4
+        set uuid 0a1b2c3d-0000-4000-8000-000000000012
+        set srcintf "internal"
+        set dstintf "to-sede2"
+        set srcaddr "LAN-Ufficio"
+        set dstaddr "Sede2-LAN"
+        set action accept
+        set schedule "always"
+        set service "ALL"
+    next
+    edit 5
+        set uuid 0a1b2c3d-0000-4000-8000-000000000013
+        set srcintf "to-sede2"
+        set dstintf "internal"
+        set srcaddr "Sede2-LAN"
+        set dstaddr "LAN-Ufficio"
+        set action accept
+        set schedule "always"
+        set service "ALL"
+    next
+    edit 6
+        set uuid 0a1b2c3d-0000-4000-8000-000000000014
+        set srcintf "OSPITI"
+        set dstintf "wan2"
+        set srcaddr "all"
+        set dstaddr "all"
+        set action accept
+        set schedule "always"
+        set service "Web" "DNS"
+        set nat enable
+        set comments "Ospiti: solo web (porta wan2)"
+    next
+end

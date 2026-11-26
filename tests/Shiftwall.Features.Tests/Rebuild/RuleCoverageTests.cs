@@ -105,3 +105,37 @@ public sealed class RuleCoverageTests
         }
     }
 }
+
+/// <summary>The rebuild fixtures are synthetic: documentation or private addresses and example domains only.</summary>
+public sealed partial class RebuildFixtureTests
+{
+    [Fact]
+    public void Fixtures_AreSynthetic()
+    {
+        var files = Directory.GetFiles(RebuildFixtures.Dir, "*.fgtcfg");
+        Assert.NotEmpty(files);
+        foreach (var f in files)
+        {
+            var text = File.ReadAllText(f);
+            foreach (System.Text.RegularExpressions.Match m in Ipv4().Matches(text))
+            {
+                var b = System.Net.IPAddress.Parse(m.Value).GetAddressBytes();
+                var ok = b[0] == 10 || (b[0] == 172 && b[1] is >= 16 and <= 31) || (b[0] == 192 && b[1] == 168) || (b[0] == 169 && b[1] == 254)
+                    || (b[0] == 192 && b[1] == 0 && b[2] == 2) || (b[0] == 198 && b[1] == 51 && b[2] == 100) || (b[0] == 203 && b[1] == 0 && b[2] == 113)
+                    || b[0] == 255 || m.Value == "0.0.0.0";
+                Assert.True(ok, $"{Path.GetFileName(f)}: {m.Value}");
+            }
+
+            foreach (System.Text.RegularExpressions.Match m in Enc().Matches(text))
+            {
+                Assert.Contains("synthetic", System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(m.Groups[1].Value)), StringComparison.Ordinal);
+            }
+        }
+    }
+
+    [System.Text.RegularExpressions.GeneratedRegex(@"(?<![\d.])(?:\d{1,3}\.){3}\d{1,3}(?![\d.])")]
+    private static partial System.Text.RegularExpressions.Regex Ipv4();
+
+    [System.Text.RegularExpressions.GeneratedRegex(@"ENC ([A-Za-z0-9+/=]+)")]
+    private static partial System.Text.RegularExpressions.Regex Enc();
+}

@@ -23,9 +23,13 @@ TestResults/
 # The only .conf files allowed: synthetic samples, checked by SamplesTests (marker line, documentation IPs).
 !samples/*.conf
 
-# Local-only data (anonymization maps, tokens, user templates)
+# Local-only data (anonymization maps, tokens, user templates, encrypted password summaries)
 *.swmap
 *.swtoken
+*.swsecret
+
+# Real configurations given for tests, anonymized with Shiftwall: local only, never committed.
+tests/private/
 
 # Python tools
 __pycache__/
