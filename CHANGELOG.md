@@ -27,6 +27,20 @@ testing in a lab.
   Script) and for the terminal; passwords typed or generated per migration and saved only encrypted; SSL VPN tunnel
   mode converted to IPsec dial-up (FortiClient, IKEv2, EAP); interface mapping with logical targets (e.g. the `lan`
   switch of a 40F) and per-interface addressing (kept, static, DHCP). Guides: `docs/load-scripts.md`, `docs/LAB-TEST.md`.
+- Rebuild mode, switches and ports: every logical switch of the source is an item of its own in the mapping and can be
+  mapped to an existing interface, recreated with the chosen target ports or split into separate ports; a name typed
+  in the mapping that does not exist on the target can be created as a switch or a VLAN. Every target port shows
+  whether it is free, in a switch or used by the factory configuration. A hardware switch is used when the model's
+  switch chip holds all the ports (FortiGate 40F, SOC4), a software switch otherwise, with the reason; a factory switch
+  is never emptied. Changes to the interface the PC is connected to come after the new management interface.
+- Rebuild mode, security profiles: no policy that had profiles on the source leaves without protection. Custom profiles
+  are replaced by the documented FortiOS 8.0 preloaded profile of the same kind, or the policy is written disabled
+  (option in the wizard); a table lists original and applied profiles per policy.
+- Rebuild mode, report: weak site-to-site IPsec settings (IKEv1, DH groups and algorithms not recommended) kept for
+  compatibility and reported with the best practices; LDAP users of a converted SSL VPN (EAP-TTLS with LDAPS needed)
+  and lost web mode are reported. Generated passwords are different for every object.
+- `docs/evidence`: scripts, counts, schema validation, rules with sources and tests, review results, test coverage,
+  screenshots of the wizard and the list of what is not verified, all from synthetic fixtures.
 - Email 2FA and rebuild passwords are generated from characters the FortiOS CLI accepts as typed or pasted (no `?`, `#`,
   quotes, backslash or spaces; CLI basics, Special characters).
 - Batch conversion of several sites with the same mapping template, with a simulation mode.
