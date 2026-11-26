@@ -41,6 +41,25 @@ public partial class App : Application
         var window = new MainWindow { DataContext = _main };
         MainWindow = window;
         window.Show();
+
+        if (ScreenshotRun.TryParse(e.Args, out var run))
+        {
+            var main = _main;
+            window.Dispatcher.InvokeAsync(async () =>
+            {
+                try
+                {
+                    await ScreenshotRun.RunAsync(window, main, run);
+                    Shutdown(0);
+                }
+                catch (Exception ex)
+                {
+                    LocalLog.Error(ex, "screenshots");
+                    Console.Error.WriteLine(ex);
+                    Shutdown(1);
+                }
+            });
+        }
     }
 
     private static void ApplyTheme(ThemeChoice theme) =>
