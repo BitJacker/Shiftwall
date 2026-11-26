@@ -38,7 +38,7 @@ internal sealed class SslVpnInfo
             info.Pools.AddRange(s.Field("tunnel-ip-pools")?.Values ?? []);
             foreach (var d in new[] { "dns-server1", "dns-server2" })
             {
-                if (s.Field(d)?.Values.FirstOrDefault() is { } ip && ip != "0.0.0.0") info.NameServers.Add(ip);
+                if (s.Field(d)?.Values.FirstOrDefault() is { } ip && ip != "0.0.0.0" && RebuildEngine.TryParseAddress(ip + "/32", out _, out _)) info.NameServers.Add(ip);
             }
         }
 
@@ -202,16 +202,39 @@ public sealed partial class RebuildEngine
             Checked("firewall policy", e, "dstintf", dstintf);
             Checked("firewall policy", e, "action", ["accept"]);
             Checked("firewall policy", e, "srcaddr", [rangeName]);
-            Checked("firewall policy", e, "dstaddr", p.Field("dstaddr")?.Values ?? ["all"]);
-            Checked("firewall policy", e, "schedule", [p.Field("schedule")?.Values.FirstOrDefault() ?? "always"]);
-            Checked("firewall policy", e, "service", p.Field("service")?.Values ?? ["ALL"]);
-            if (p.Field("nat")?.Values.FirstOrDefault() == "enable") Checked("firewall policy", e, "nat", ["enable"]);
-            if (p.Field("logtraffic") is { } log) Checked("firewall policy", e, "logtraffic", log.Values);
+
+            // Values copied from the source policy: checked like any other object; a problem keeps the policy out.
+            var copied = TryChecked("firewall policy", e, "dstaddr", p.Field("dstaddr")?.Values ?? ["all"], Ref.AddressOrVip)
+                && TryChecked("firewall policy", e, "schedule", [p.Field("schedule")?.Values.FirstOrDefault() ?? "always"], Ref.Schedule)
+                && TryChecked("firewall policy", e, "service", p.Field("service")?.Values ?? ["ALL"], Ref.Service)
+                && (p.Field("nat")?.Values.FirstOrDefault() != "enable" || TryChecked("firewall policy", e, "nat", ["enable"], null))
+                && (p.Field("logtraffic") is not { } log || TryChecked("firewall policy", e, "logtraffic", log.Values, null));
+            if (!copied)
+            {
+                _manual.Add(Item("firewall policy", p.Key, RebuildCodes.SslVpnPolicyNotConverted, [p.Key], Mask(p.ToText()), null));
+                Count("firewall policy", converted: -1, manual: 1);
+                continue;
+            }
+
             _convertedPolicies[p] = e;
         }
 
         _findings.Add(MigrationFinding.Warning(RebuildCodes.SslVpnConverted, name, groups[0], start + "-" + end));
         _findings.Add(MigrationFinding.Warning(RebuildCodes.ForticlientChecklist, name));
+    }
+
+    private bool TryChecked(string path, CliEntry e, string param, IReadOnlyList<string> values, Ref? reference)
+    {
+        var p = _target.Find(path)?.Params.GetValueOrDefault(param);
+        if (p is null || CliSchema.Check(p, values) is not null) return false;
+        if (reference is { } r)
+        {
+            Resolve(r, values, out var missing);
+            if (missing is not null) return false;
+        }
+
+        e.Sets.Add(new CliSet(param, values, IsQuoted(p)));
+        return true;
     }
 
     private static string Truncate(string s, int max) => s.Length <= max ? s : s[..max];
@@ -236,7 +259,8 @@ public sealed partial class RebuildEngine
             var a = doc.Blocks.Where(b => b.Path == "firewall address").SelectMany(b => b.Entries).FirstOrDefault(x => x.Key == pool);
             if (a is null) continue;
             var type = a.Field("type")?.Values.FirstOrDefault() ?? "ipmask";
-            if (type == "iprange" && a.Field("start-ip")?.Values.FirstOrDefault() is { } s && a.Field("end-ip")?.Values.FirstOrDefault() is { } e)
+            if (type == "iprange" && a.Field("start-ip")?.Values.FirstOrDefault() is { } s && a.Field("end-ip")?.Values.FirstOrDefault() is { } e
+                && TryParseAddress(s + "/32", out _, out _) && TryParseAddress(e + "/32", out _, out _))
             {
                 start = s;
                 end = e;

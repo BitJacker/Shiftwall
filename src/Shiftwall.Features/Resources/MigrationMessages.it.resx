@@ -269,4 +269,19 @@
   <data name="RB-046" xml:space="preserve">
     <value>Server RADIUS ({0}): FortiOS 8.0 richiede per default l'attributo Message-Authenticator (require-message-authenticator enable, CLI reference 8.0). Se il server RADIUS non lo invia, l'autenticazione fallisce: aggiorna il server oppure imposta disable sapendo il rischio.</value>
   </data>
+  <data name="RB-047" xml:space="preserve">
+    <value>Riga {line}: la sezione '{0}' è annidata dentro un'altra (manca un 'end' nel file). La ricostruzione si ferma: correggi prima il backup sorgente.</value>
+  </data>
+  <data name="RB-048" xml:space="preserve">
+    <value>Il file sorgente ha errori di struttura (vedi il passo Carica): la ricostruzione richiede una configurazione completa e bilanciata.</value>
+  </data>
+  <data name="RB-049" xml:space="preserve">
+    <value>La password scritta per '{0}' contiene caratteri che la CLI non accetta (CLI basics, Special characters).</value>
+  </data>
+  <data name="RB-050" xml:space="preserve">
+    <value>'{0}' compare due volte nella sorgente: viene scritto solo il primo, il secondo va controllato a mano.</value>
+  </data>
+  <data name="RB-051" xml:space="preserve">
+    <value>Il nome '{0}' non si può scrivere in uno script (vuoto, oppure con ?, tab o a capo): rinominalo a mano.</value>
+  </data>
 </root>

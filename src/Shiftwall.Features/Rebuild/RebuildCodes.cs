@@ -49,4 +49,9 @@ public static class RebuildCodes
     public const string GlobalPartial = "RB-044";
     public const string BrokenReference = "RB-045";
     public const string RadiusMessageAuthenticator = "RB-046";
+    public const string NestedBlock = "RB-047";
+    public const string SourceHasErrors = "RB-048";
+    public const string ProvidedPasswordInvalid = "RB-049";
+    public const string DuplicateKey = "RB-050";
+    public const string InvalidKey = "RB-051";
 }

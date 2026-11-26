@@ -112,6 +112,7 @@ public sealed partial class RebuildEngine
     private readonly Dictionary<SecretCategory, string> _generated = [];
     private readonly Dictionary<string, ScriptSection> _sections = [];
     private readonly HashSet<string> _readdressed = new(StringComparer.Ordinal);
+    private readonly HashSet<(string Path, string Key)> _emittedKeys = [];
 
     private RebuildEngine(RebuildRequest req, CliSchema target, RuleSet rules)
     {
@@ -158,11 +159,34 @@ public sealed partial class RebuildEngine
     private void Build()
     {
         var doc = _req.Source;
-        if (doc.IsMultiVdom)
+        if (doc.IsMultiVdom || doc.Block("vdom") is not null || doc.Block("global") is not null)
         {
             _findings.Add(MigrationFinding.Error(RebuildCodes.MultiVdomNotSupported));
             return;
         }
+
+        if (doc.Diagnostics.Any(d => d.Severity == DiagnosticSeverity.Error))
+        {
+            _findings.Add(MigrationFinding.Error(RebuildCodes.SourceHasErrors));
+            return;
+        }
+
+        // A missing "end" balanced by a later one nests whole sections inside others: never rebuilt silently.
+        foreach (var nested in doc.Children.OfType<ConfigContainer>().SelectMany(c => c.Descendants()).OfType<ConfigBlock>().Where(b => b.Path.Contains(' ', StringComparison.Ordinal)))
+        {
+            _findings.Add(new MigrationFinding(RebuildCodes.NestedBlock, FindingSeverity.Error, [nested.Path], nested.Statement.Line));
+        }
+
+        foreach (var (category, password) in _req.Secrets.Provided)
+        {
+            var problems = CliPassword.Check(password);
+            if (problems.Contains(CliPassword.Problem.ForbiddenCharacter) || problems.Contains(CliPassword.Problem.NotAscii))
+            {
+                _findings.Add(MigrationFinding.Error(RebuildCodes.ProvidedPasswordInvalid, CategoryName(category)));
+            }
+        }
+
+        if (_findings.Count > 0) return;
 
         foreach (var t in _req.Target.Interfaces) _known[Ref.Interface].Add(t);
         _known[Ref.Interface].Add("any");
@@ -192,7 +216,7 @@ public sealed partial class RebuildEngine
         Simple(doc, "system zone", "zones", Ref.Interface, register: Ref.Interface);
         RebuildGlobal(doc);
         Simple(doc, "system dns", "dns");
-        Simple(doc, "firewall address", "addresses", register: Ref.Address, skip: n => ssl.IsSslObject("firewall address", n));
+        Simple(doc, "firewall address", "addresses", register: Ref.Address, skip: n => ssl.Present && _opt.ConvertSslVpn && ssl.IsSslObject("firewall address", n));
         Ordered(doc, "firewall addrgrp", "addresses", Ref.Address, "member");
         Simple(doc, "firewall service category", "services", register: Ref.ServiceCategory);
         Simple(doc, "firewall service custom", "services", register: Ref.Service);
@@ -224,13 +248,15 @@ public sealed partial class RebuildEngine
     {
         const string path = "system global";
         var node = _target.Find(path);
-        var block = doc.Block(path);
-        if (node is null || block is null) return;
-        var drop = block.Fields.Select(f => f.Name).Where(n => !GlobalParams.Contains(n)).ToHashSet(StringComparer.Ordinal);
-        var t = Translate(path, [], block, node, null, path, null, drop);
-        Count(path, source: 1, rebuilt: 1);
-        Emit("dns", path, t, path, block);
-        if (drop.Count > 0) _manual.Add(Item(path, path, RebuildCodes.GlobalPartial, [string.Join(", ", drop)], Mask(block.ToText()), null));
+        if (node is null) return;
+        foreach (var block in BlocksOf(doc, path))
+        {
+            var drop = block.Fields.Select(f => f.Name).Where(n => !GlobalParams.Contains(n)).ToHashSet(StringComparer.Ordinal);
+            var t = Translate(path, [], block, node, null, path, null, drop);
+            Count(path, source: 1, rebuilt: 1);
+            Emit("dns", path, t, path, block);
+            if (drop.Count > 0) _manual.Add(Item(path, path, RebuildCodes.GlobalPartial, [string.Join(", ", drop)], Mask(block.ToText()), null));
+        }
     }
 
     private ScriptSection Section(int order, string key)
@@ -454,7 +480,7 @@ public sealed partial class RebuildEngine
             return;
         }
 
-        if (values.Any(v => v.Contains('?', StringComparison.Ordinal) || v.Contains('\t', StringComparison.Ordinal)))
+        if (values.Any(v => v.Contains('?', StringComparison.Ordinal) || v.Contains('\t', StringComparison.Ordinal) || v.Contains('\n', StringComparison.Ordinal) || v.Contains('\r', StringComparison.Ordinal)))
         {
             // "CLI basics": ? and Tab cannot be pasted into the CLI Console or some SSH clients.
             t.FieldItems.Add(Item(path, objectName, RebuildCodes.UnpastableCharacter, [param], Mask(f.Statement.Raw), null));
@@ -539,19 +565,22 @@ public sealed partial class RebuildEngine
         new(path, obj, code, args, original, rule?.Id, rule?.Sources ?? []);
 
     /// <summary>Replaces ENC values with a placeholder: manual items and reports never contain them.</summary>
+    [System.Text.RegularExpressions.GeneratedRegex(@"\sENC\s")]
+    private static partial System.Text.RegularExpressions.Regex EncToken();
+
     internal static string Mask(string text)
     {
         var lines = text.Replace("\r\n", "\n", StringComparison.Ordinal).Split('\n');
         for (var i = 0; i < lines.Length; i++)
         {
-            var at = lines[i].IndexOf(" ENC ", StringComparison.Ordinal);
-            if (at >= 0)
+            var enc = EncToken().Match(lines[i]);
+            if (enc.Success)
             {
-                lines[i] = lines[i][..(at + 5)] + "********";
+                lines[i] = lines[i][..(enc.Index + enc.Length)] + "********";
                 continue;
             }
 
-            var words = lines[i].TrimStart().Split(' ', 3);
+            var words = lines[i].TrimStart().Split([' ', '\t'], 3, StringSplitOptions.RemoveEmptyEntries);
             if (words.Length == 3 && words[0] == "set" && SecretParams.Contains(words[1]))
             {
                 lines[i] = lines[i][..(lines[i].Length - lines[i].TrimStart().Length)] + "set " + words[1] + " ********";
@@ -611,33 +640,57 @@ public sealed partial class RebuildEngine
     private void Ordered(ConfigDocument doc, string path, string section, Ref register, string memberParam)
     {
         var entries = BlocksOf(doc, path).SelectMany(b => b.Entries).ToList();
-        var pending = entries.ToList();
-        var names = entries.Select(e => e.Key).ToHashSet(StringComparer.Ordinal);
-        var progress = true;
-        while (pending.Count > 0 && progress)
+        var byName = new Dictionary<string, List<EditEntry>>(StringComparer.Ordinal);
+        foreach (var e in entries)
         {
-            progress = false;
-            foreach (var e in pending.ToList())
+            if (!byName.TryGetValue(e.Key, out var list)) byName[e.Key] = list = [];
+            list.Add(e);
+        }
+
+        // Kahn's algorithm: a group is written after the groups it contains.
+        var waiting = new Dictionary<EditEntry, int>();
+        var users = new Dictionary<string, List<EditEntry>>(StringComparer.Ordinal);
+        var ready = new Queue<EditEntry>();
+        foreach (var e in entries)
+        {
+            var deps = (e.Field(memberParam)?.Values ?? []).Where(m => m != e.Key && byName.ContainsKey(m)).Distinct(StringComparer.Ordinal).ToList();
+            waiting[e] = deps.Count;
+            foreach (var d in deps)
             {
-                var members = e.Field(memberParam)?.Values ?? [];
-                if (members.Any(m => names.Contains(m) && pending.Any(p => p.Key == m) && m != e.Key)) continue;
-                pending.Remove(e);
-                progress = true;
-                Count(path, source: 1);
-                var t = Translate(path, [], e, _target.Find(path)!, e.Key, e.Key, DefaultHook(path));
-                if (Emit(section, path, t, e.Key, e))
+                if (!users.TryGetValue(d, out var u)) users[d] = u = [];
+                u.Add(e);
+            }
+
+            if (deps.Count == 0) ready.Enqueue(e);
+        }
+
+        var done = new HashSet<EditEntry>();
+        while (ready.Count > 0)
+        {
+            var e = ready.Dequeue();
+            done.Add(e);
+            Count(path, source: 1);
+            var t = Translate(path, [], e, _target.Find(path)!, e.Key, e.Key, DefaultHook(path));
+            if (Emit(section, path, t, e.Key, e))
+            {
+                Count(path, rebuilt: 1);
+                _known[register].Add(e.Key);
+            }
+            else
+            {
+                Count(path, manual: 1);
+            }
+
+            if (byName[e.Key].All(done.Contains) && users.TryGetValue(e.Key, out var dependents))
+            {
+                foreach (var u in dependents)
                 {
-                    Count(path, rebuilt: 1);
-                    _known[register].Add(e.Key);
-                }
-                else
-                {
-                    Count(path, manual: 1);
+                    if (--waiting[u] == 0) ready.Enqueue(u);
                 }
             }
         }
 
-        foreach (var e in pending)
+        foreach (var e in entries.Where(e => !done.Contains(e)))
         {
             Count(path, source: 1, manual: 1);
             _manual.Add(Item(path, e.Key, RebuildCodes.CircularGroup, [e.Key], Mask(e.ToText()), null));
@@ -647,6 +700,19 @@ public sealed partial class RebuildEngine
     /// <summary>Adds the translated entry to the script, or the whole object to the manual list.</summary>
     private bool Emit(string section, string path, Translation t, string objectName, ConfigNode original)
     {
+        if (t.Fatal is null && t.Entry.Key is { } key)
+        {
+            var maxName = _target.Find(path)?.Params.GetValueOrDefault("name")?.MaxLength;
+            if (key.Length == 0 || key.Any(c => c is '?' or '\t' or '\n' or '\r') || (maxName is { } max && !key.All(char.IsAsciiDigit) && key.Length > max))
+            {
+                t.Fatal = (RebuildCodes.InvalidKey, [key.Replace("\t", "TAB", StringComparison.Ordinal)]);
+            }
+            else if (!_emittedKeys.Add((path, key)))
+            {
+                t.Fatal = (RebuildCodes.DuplicateKey, [key]);
+            }
+        }
+
         _manual.AddRange(t.FieldItems);
         if (t.Fatal is { } fatal)
         {

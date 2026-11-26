@@ -48,6 +48,17 @@ public sealed partial class RebuildEngine
 
         if (ssl.Present && _opt.ConvertSslVpn) _ifMap["ssl.root"] = _opt.DialupTunnelName;
 
+        // VLANs, loopbacks, aggregates, tunnels and zones share one name space with the target interfaces.
+        var created = BlocksOf(doc, "system interface").SelectMany(b => b.Entries)
+            .Where(e => CreatedTypes.Contains(e.Field("type")?.Values.FirstOrDefault() ?? InterfaceInventory.DefaultType)).Select(e => e.Key)
+            .Concat(BlocksOf(doc, "vpn ipsec phase1-interface").SelectMany(b => b.Entries).Select(e => e.Key))
+            .Concat(BlocksOf(doc, "system zone").SelectMany(b => b.Entries).Select(e => e.Key))
+            .Concat(ssl.Present && _opt.ConvertSslVpn ? [_opt.DialupTunnelName] : []);
+        foreach (var clash in created.GroupBy(n => n, StringComparer.Ordinal).Where(g => g.Count() > 1).Select(g => g.Key))
+        {
+            _findings.Add(MigrationFinding.Error(RebuildCodes.DuplicateTarget, clash));
+        }
+
         var targets = _ifMap.Values.GroupBy(v => v, StringComparer.Ordinal).Where(g => g.Count() > 1).Select(g => g.Key);
         foreach (var t in targets) _findings.Add(MigrationFinding.Error(RebuildCodes.DuplicateTarget, t));
     }
@@ -306,6 +317,15 @@ public sealed partial class RebuildEngine
 
             if (Emit("ipsec", path, t, e.Key, e)) Count(path, rebuilt: 1);
             else Count(path, manual: 1);
+        }
+
+        foreach (var e in BlocksOf(doc, path).SelectMany(b => b.Entries).Where(e => e.Field("type")?.Values.FirstOrDefault() == "tunnel" && e.Key != "ssl.root" && !_known[Ref.Phase1].Contains(e.Key)))
+        {
+            if (BlocksOf(doc, "vpn ipsec phase1-interface").SelectMany(b => b.Entries).Any(p => p.Key == e.Key))
+            {
+                Count(path, source: 1);
+                Manual(path, e, RebuildCodes.UnresolvedReference, "phase1-interface", e.Key);
+            }
         }
 
         foreach (var b in BlocksOf(doc, "vpn ipsec phase1"))

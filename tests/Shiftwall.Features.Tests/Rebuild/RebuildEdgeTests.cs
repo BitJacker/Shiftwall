@@ -215,4 +215,109 @@ public sealed class RebuildEdgeTests
         Assert.DoesNotContain("dashboard", r.FullScript());
         Assert.True(r.LintPassed);
     }
+
+    [Fact]
+    public void NestedSectionFromAMissingEnd_BlocksTheRebuild()
+    {
+        var r = Run("""
+            config system zone
+                edit "z"
+                next
+            config system admin
+                edit "tecnico"
+                    set accprofile "super_admin"
+                next
+            end
+            end
+
+            """);
+        Assert.Contains(r.Findings, f => f.Code == RebuildCodes.NestedBlock || f.Code == RebuildCodes.SourceHasErrors);
+        Assert.True(r.IsBlocked);
+    }
+
+    [Fact]
+    public void BadKeys_DuplicateKeys_AndMultilineValues_GoToManualWork()
+    {
+        var r = Run("""
+            config firewall address
+                edit "a"
+                    set subnet 10.0.0.0 255.0.0.0
+                next
+                edit "a"
+                    set subnet 10.1.0.0 255.255.0.0
+                next
+                edit "what?"
+                    set subnet 10.2.0.0 255.255.0.0
+                next
+                edit "multi"
+                    set comment "one
+            two"
+                next
+            end
+
+            """);
+        Assert.Contains(r.Manual, m => m.Object == "a" && m.Code == RebuildCodes.DuplicateKey);
+        Assert.Contains(r.Manual, m => m.Object == "what?" && m.Code == RebuildCodes.InvalidKey);
+        Assert.Contains(r.Manual, m => m.Object == "multi" && m.Code == RebuildCodes.UnpastableCharacter);
+        Assert.True(r.LintPassed, string.Join("; ", r.Lint.Select(l => l.Code + " " + l.Line)));
+        Assert.All(r.Counts, c => Assert.Equal(c.Source, c.Rebuilt + c.Converted + c.Manual));
+    }
+
+    [Fact]
+    public void SslPolicyWithAnInvalidValue_GoesToManualWork_WithoutException()
+    {
+        var r = Run("""
+            config firewall address
+                edit "pool"
+                    set type iprange
+                    set start-ip 10.212.134.200
+                    set end-ip 10.212.134.210
+                next
+            end
+            config user local
+                edit "u"
+                    set type password
+                    set passwd ENC c3ludGhldGljLXVzZXI=
+                next
+            end
+            config user group
+                edit "g"
+                    set member "u"
+                next
+            end
+            config vpn ssl settings
+                set tunnel-ip-pools "pool"
+                set source-interface "wan1"
+            end
+            config firewall policy
+                edit 1
+                    set srcintf "ssl.root"
+                    set dstintf "internal"
+                    set srcaddr "all"
+                    set dstaddr "all"
+                    set action accept
+                    set schedule "always"
+                    set service "ALL"
+                    set groups "g"
+                    set logtraffic enable
+                next
+            end
+
+            """);
+        Assert.Contains(r.Manual, m => m.Object == "1" && m.Code == RebuildCodes.SslVpnPolicyNotConverted);
+        Assert.All(r.Counts, c => Assert.Equal(c.Source, c.Rebuilt + c.Converted + c.Manual));
+    }
+
+    [Fact]
+    public void EncValuesSeparatedByTabs_AreMasked()
+    {
+        Assert.DoesNotContain("U0VDUkVU", RebuildEngine.Mask("        set password\tENC\tU0VDUkVU"));
+    }
+
+    [Fact]
+    public void ProvidedPasswordsWithSpecialCharacters_BlockTheRebuild()
+    {
+        var r = Run("", new SecretPlan { Provided = new Dictionary<SecretCategory, string> { [SecretCategory.Admin] = "Bad?Password#2026" } });
+        Assert.Contains(r.Findings, f => f.Code == RebuildCodes.ProvidedPasswordInvalid);
+    }
 }
