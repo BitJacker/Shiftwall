@@ -47,6 +47,7 @@ public sealed class MainViewModel : ObservableObject
             new("import", "Nav.Import", "\uE8B5", new Toolbox.ImportViewModel(dialogs, shell), true),
             new("vpn", "Nav.Vpn", "\uE705", new Toolbox.VpnViewModel(dialogs), true),
             new("anonymize", "Nav.Anonymize", "\uE72E", new Toolbox.AnonymizeViewModel(dialogs), true),
+            new("twofactor", "Nav.TwoFactor", "\uE715", new Toolbox.TwoFactorViewModel(dialogs, shell, settingsStore, _settings), true),
             new("snippets", "Nav.Snippets", "\uE943", new Toolbox.SnippetsViewModel(dialogs, shell), true),
             new("upgrade", "Nav.Upgrade", "\uE895", Upgrade, true),
             new("lan", "Nav.Lan", "\uE968", Lan, true),

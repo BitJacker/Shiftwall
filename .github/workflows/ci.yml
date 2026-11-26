@@ -65,7 +65,7 @@ jobs:
           "first run: $($m.FirstRunMs) ms`nwarm median: $($m.WarmMedianMs) ms ($($m.WarmRunsMs))`nsize: $($m.SizeMB) MB" | Set-Content startup.txt
           $b = [System.Windows.Forms.Screen]::PrimaryScreen.Bounds
           # One screenshot of the start page and of every toolbox page (empty state), to review the layout.
-          foreach ($page in "migration","compare","audit","cleanup","export","import","vpn","anonymize","snippets","upgrade","lan") {
+          foreach ($page in "migration","compare","audit","cleanup","export","import","vpn","anonymize","twofactor","snippets","upgrade","lan") {
             $q = Start-Process -FilePath publish\Shiftwall.exe -ArgumentList "--page",$page -PassThru
             $sw = [Diagnostics.Stopwatch]::StartNew()
             while ($q.MainWindowHandle -eq 0 -and $sw.Elapsed.TotalSeconds -lt 30) { Start-Sleep -Milliseconds 100; $q.Refresh() }

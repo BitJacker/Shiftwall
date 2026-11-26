@@ -1,0 +1,172 @@
+<UserControl x:Class="Shiftwall.App.Views.TwoFactorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:l="clr-namespace:Shiftwall.App.Localization">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top">
+            <TextBlock Text="{l:T TwoFactor.Title}" Style="{StaticResource PageTitle}" />
+            <TextBlock Text="{l:T TwoFactor.Intro}" Style="{StaticResource Muted}" Margin="0,0,0,12" />
+        </StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="380" />
+                <ColumnDefinition Width="16" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Left: source, checks, options, confirmations, generation -->
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+                    <ContentControl Content="{Binding Config}" Focusable="False" />
+                    <TextBlock Text="{Binding Summary}" TextWrapping="Wrap" Margin="0,8,0,0" FontWeight="SemiBold" />
+
+                    <TextBlock Text="{l:T TwoFactor.EmailServer.Title}" Style="{StaticResource SectionTitle}" />
+                    <TextBlock Text="{Binding EmailServerStatus}" TextWrapping="Wrap" />
+                    <StackPanel Visibility="{Binding EmailServerMissing, Converter={StaticResource BoolToVisibility}}">
+                        <TextBox Text="{x:Static vmt:TwoFactorViewModel.EmailServerSnippet}" Style="{StaticResource ScriptBox}" Height="150" Margin="0,6,0,0"
+                                 xmlns:vmt="clr-namespace:Shiftwall.Presentation.ViewModels.Toolbox;assembly=Shiftwall.Presentation" />
+                        <Button Content="{l:T TwoFactor.CopySnippet}" Command="{Binding CopySnippetCommand}" HorizontalAlignment="Left" Margin="0,6,0,0" />
+                    </StackPanel>
+
+                    <Expander Header="{l:T TwoFactor.Lan.Title}" Margin="0,12,0,0">
+                        <StackPanel Margin="0,6,0,0">
+                            <TextBlock Text="{l:T TwoFactor.Lan.Help}" Style="{StaticResource Muted}" FontSize="11" />
+                            <TextBlock Text="{l:T TwoFactor.Lan.Disabled}" Foreground="#C42B1C" Visibility="{Binding LanEnabled, Converter={StaticResource InverseBoolToVisibility}}" Margin="0,4,0,0" />
+                            <TextBlock Text="{l:T Lan.Host}" Style="{StaticResource FieldLabel}" />
+                            <TextBox Text="{Binding LanHost, UpdateSourceTrigger=PropertyChanged}" AutomationProperties.Name="{l:T Lan.Host}" />
+                            <TextBlock Text="{l:T Lan.Port}" Style="{StaticResource FieldLabel}" />
+                            <TextBox Text="{Binding LanPort, UpdateSourceTrigger=PropertyChanged}" Width="80" HorizontalAlignment="Left" AutomationProperties.Name="{l:T Lan.Port}" />
+                            <TextBlock Text="{l:T TwoFactor.Lan.Vdoms}" Style="{StaticResource FieldLabel}" />
+                            <TextBox Text="{Binding LanVdoms, UpdateSourceTrigger=PropertyChanged}" AutomationProperties.Name="{l:T TwoFactor.Lan.Vdoms}" />
+                            <TextBlock Text="{l:T Lan.Token}" Style="{StaticResource FieldLabel}" />
+                            <PasswordBox x:Name="Token" PasswordChanged="OnTokenChanged" AutomationProperties.Name="{l:T Lan.Token}" />
+                            <TextBlock Text="{l:T Lan.TokenHelp}" Style="{StaticResource Muted}" FontSize="11" />
+                            <Button Content="{l:T TwoFactor.Lan.Read}" Command="{Binding ReadLanCommand}" HorizontalAlignment="Left" Margin="0,8,0,0" />
+                        </StackPanel>
+                    </Expander>
+
+                    <TextBlock Text="{l:T TwoFactor.Options}" Style="{StaticResource SectionTitle}" />
+                    <TextBlock Text="{l:T TwoFactor.Domain}" Style="{StaticResource FieldLabel}" />
+                    <TextBox Text="{Binding DefaultDomain, UpdateSourceTrigger=PropertyChanged, Delay=400}" AutomationProperties.Name="{l:T TwoFactor.Domain}" />
+                    <TextBlock Text="{l:T TwoFactor.Template}" Style="{StaticResource FieldLabel}" />
+                    <TextBox Text="{Binding EmailTemplate, UpdateSourceTrigger=PropertyChanged, Delay=400}" AutomationProperties.Name="{l:T TwoFactor.Template}" />
+                    <TextBlock Text="{l:T TwoFactor.TemplateHelp}" Style="{StaticResource Muted}" FontSize="11" />
+                    <CheckBox Content="{l:T TwoFactor.CreateMissing}" IsChecked="{Binding CreateMissingUsers}" Margin="0,8,0,0" />
+                    <TextBlock Text="{l:T TwoFactor.BatchSize}" Style="{StaticResource FieldLabel}" />
+                    <TextBox Text="{Binding BatchSize, UpdateSourceTrigger=PropertyChanged}" Width="80" HorizontalAlignment="Left" AutomationProperties.Name="{l:T TwoFactor.BatchSize}" />
+                    <TextBlock Text="{l:T TwoFactor.BatchHelp}" Style="{StaticResource Muted}" FontSize="11" />
+                    <CheckBox Margin="0,8,0,0" IsChecked="{Binding IncludeTimers}">
+                        <TextBlock Text="{l:T TwoFactor.Timers}" TextWrapping="Wrap" />
+                    </CheckBox>
+
+                    <StackPanel Visibility="{Binding HasTokenConfirmations, Converter={StaticResource BoolToVisibility}}">
+                        <TextBlock Text="{l:T TwoFactor.TokenTitle}" Style="{StaticResource SectionTitle}" />
+                        <TextBlock Text="{l:T TwoFactor.TokenHelp}" Style="{StaticResource Muted}" FontSize="11" />
+                        <ItemsControl ItemsSource="{Binding TokenConfirmations}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <CheckBox IsChecked="{Binding Confirmed}" Margin="0,3">
+                                        <TextBlock Text="{Binding Text}" TextWrapping="Wrap" />
+                                    </CheckBox>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+
+                    <StackPanel Visibility="{Binding TouchesAdmins, Converter={StaticResource BoolToVisibility}}">
+                        <TextBlock Text="{l:T TwoFactor.AdminTitle}" Style="{StaticResource SectionTitle}" />
+                        <CheckBox IsChecked="{Binding AdminConfirm1}" Margin="0,3"><TextBlock Text="{l:T TwoFactor.AdminConfirm1}" TextWrapping="Wrap" /></CheckBox>
+                        <CheckBox IsChecked="{Binding AdminConfirm2}" Margin="0,3"><TextBlock Text="{l:T TwoFactor.AdminConfirm2}" TextWrapping="Wrap" /></CheckBox>
+                    </StackPanel>
+
+                    <StackPanel Visibility="{Binding NeedsVaultPassword, Converter={StaticResource BoolToVisibility}}">
+                        <TextBlock Text="{l:T TwoFactor.VaultTitle}" Style="{StaticResource SectionTitle}" />
+                        <TextBlock Text="{l:T TwoFactor.VaultHelp}" Style="{StaticResource Muted}" FontSize="11" />
+                        <TextBlock Text="{l:T TwoFactor.VaultPassword}" Style="{StaticResource FieldLabel}" />
+                        <PasswordBox x:Name="Vault" PasswordChanged="OnVaultChanged" AutomationProperties.Name="{l:T TwoFactor.VaultPassword}" />
+                        <TextBlock Text="{l:T TwoFactor.VaultConfirm}" Style="{StaticResource FieldLabel}" />
+                        <PasswordBox x:Name="VaultConfirm" PasswordChanged="OnVaultChanged" AutomationProperties.Name="{l:T TwoFactor.VaultConfirm}" />
+                        <TextBlock Text="{Binding VaultHint}" Foreground="#C42B1C" FontSize="11" TextWrapping="Wrap" />
+                    </StackPanel>
+
+                    <Button Content="{l:T TwoFactor.Generate}" Command="{Binding GenerateCommand}" HorizontalAlignment="Left" Margin="0,16,0,0" FontWeight="SemiBold" />
+                    <TextBlock Text="{l:T TwoFactor.GenerateHelp}" Style="{StaticResource Muted}" FontSize="11" />
+                    <Button Content="{l:T TwoFactor.ExportInventory}" Command="{Binding ExportInventoryCommand}" HorizontalAlignment="Left" Margin="0,8,0,0" />
+                    <TextBlock Text="{Binding Status}" TextWrapping="Wrap" Margin="0,8,0,0" />
+                    <TextBlock Text="{l:T TwoFactor.Sources}" Style="{StaticResource Muted}" FontSize="11" Margin="0,12,0,0" />
+                </StackPanel>
+            </ScrollViewer>
+
+            <!-- Right: accounts and changes -->
+            <TabControl Grid.Column="2">
+                <TabItem Header="{l:T TwoFactor.Accounts}">
+                    <DockPanel Margin="0,8,0,0">
+                        <WrapPanel DockPanel.Dock="Top">
+                            <TextBlock Text="{l:T TwoFactor.FilterLabel}" VerticalAlignment="Center" Margin="0,0,6,0" />
+                            <ComboBox ItemsSource="{Binding Filters}" SelectedValuePath="Value" SelectedValue="{Binding Filter}" DisplayMemberPath="Label" Width="170" Margin="0,0,12,0" AutomationProperties.Name="{l:T TwoFactor.FilterLabel}" />
+                            <TextBlock Text="{l:T TwoFactor.Search}" VerticalAlignment="Center" Margin="0,0,6,0" />
+                            <TextBox Text="{Binding Search, UpdateSourceTrigger=PropertyChanged, Delay=300}" Width="180" AutomationProperties.Name="{l:T TwoFactor.Search}" />
+                            <Button Content="{l:T TwoFactor.SelectAll}" Command="{Binding SelectAllCommand}" Margin="12,0,0,0" />
+                            <Button Content="{l:T TwoFactor.SelectNone}" Command="{Binding SelectNoneCommand}" Margin="6,0,0,0" />
+                        </WrapPanel>
+                        <WrapPanel DockPanel.Dock="Top" Margin="0,8,0,8">
+                            <TextBlock Text="{l:T TwoFactor.Edit.Action}" VerticalAlignment="Center" Margin="0,0,6,0" />
+                            <ComboBox ItemsSource="{Binding ActionChoices}" SelectedValuePath="Value" SelectedValue="{Binding EditAction}" DisplayMemberPath="Label" Width="230" Margin="0,0,12,0" AutomationProperties.Name="{l:T TwoFactor.Edit.Action}" />
+                            <TextBlock Text="{l:T TwoFactor.Edit.Email}" VerticalAlignment="Center" Margin="0,0,6,0" />
+                            <TextBox Text="{Binding EditEmail, UpdateSourceTrigger=PropertyChanged}" Width="220" AutomationProperties.Name="{l:T TwoFactor.Edit.Email}" />
+                            <Button Content="{l:T TwoFactor.AddSelected}" Command="{Binding AddSelectedCommand}" Margin="12,0,0,0" />
+                        </WrapPanel>
+                        <DataGrid ItemsSource="{Binding Visible}" AutoGenerateColumns="False" HeadersVisibility="Column" GridLinesVisibility="Horizontal"
+                                  CanUserAddRows="False" CanUserDeleteRows="False" EnableRowVirtualization="True" AutomationProperties.Name="{l:T TwoFactor.Accounts}">
+                            <DataGrid.Columns>
+                                <DataGridCheckBoxColumn Binding="{Binding IsSelected, UpdateSourceTrigger=PropertyChanged}" Width="34" />
+                                <DataGridTextColumn Header="{l:T TwoFactor.Col.Account}" Binding="{Binding Entry.Name}" IsReadOnly="True" Width="*" />
+                                <DataGridTextColumn Header="{l:T TwoFactor.Col.Kind}" Binding="{Binding Kind}" IsReadOnly="True" Width="110" />
+                                <DataGridTextColumn Header="VDOM" Binding="{Binding Entry.Vdom}" IsReadOnly="True" Width="80" />
+                                <DataGridTextColumn Header="{l:T TwoFactor.Col.Type}" Binding="{Binding Entry.Type}" IsReadOnly="True" Width="90" />
+                                <DataGridTextColumn Header="{l:T TwoFactor.Col.Server}" Binding="{Binding Entry.RemoteServer}" IsReadOnly="True" Width="110" />
+                                <DataGridTextColumn Header="{l:T TwoFactor.Col.TwoFactor}" Binding="{Binding Entry.EffectiveTwoFactor}" IsReadOnly="True" Width="90" />
+                                <DataGridTextColumn Header="{l:T TwoFactor.Col.Email}" Binding="{Binding Entry.EmailTo}" IsReadOnly="True" Width="*" />
+                                <DataGridTextColumn Header="{l:T TwoFactor.Col.Token}" Binding="{Binding Entry.FortiToken}" IsReadOnly="True" Width="130" />
+                                <DataGridTextColumn Header="{l:T TwoFactor.Col.Profile}" Binding="{Binding Entry.AccProfile}" IsReadOnly="True" Width="100" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </DockPanel>
+                </TabItem>
+                <TabItem Header="{l:T TwoFactor.DryRun}">
+                    <Grid Margin="0,8,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <StackPanel>
+                            <WrapPanel>
+                                <Button Content="{l:T TwoFactor.Import}" Command="{Binding ImportCommand}" Margin="0,0,6,0" />
+                                <Button Content="{l:T TwoFactor.SaveTemplate}" Command="{Binding SaveTemplateCommand}" Margin="0,0,6,0" />
+                                <Button Content="{l:T TwoFactor.ClearRequests}" Command="{Binding ClearRequestsCommand}" />
+                            </WrapPanel>
+                            <TextBlock Text="{Binding RequestSummary}" Margin="0,8,0,8" FontWeight="SemiBold" />
+                        </StackPanel>
+                        <DataGrid Grid.Row="1" ItemsSource="{Binding DryRun}" AutoGenerateColumns="False" IsReadOnly="True" HeadersVisibility="Column"
+                                  GridLinesVisibility="Horizontal" EnableRowVirtualization="True" AutomationProperties.Name="{l:T TwoFactor.DryRun}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="{l:T TwoFactor.Col.Account}" Binding="{Binding Account}" Width="*" />
+                                <DataGridTextColumn Header="{l:T TwoFactor.Col.Kind}" Binding="{Binding Kind}" Width="110" />
+                                <DataGridTextColumn Header="{l:T TwoFactor.Col.Action}" Binding="{Binding Action}" Width="80" />
+                                <DataGridTextColumn Header="{l:T TwoFactor.Col.EmailBefore}" Binding="{Binding EmailBefore}" Width="*" />
+                                <DataGridTextColumn Header="{l:T TwoFactor.Col.EmailAfter}" Binding="{Binding EmailAfter}" Width="*" />
+                                <DataGridTextColumn Header="{l:T TwoFactor.Col.TwoFactorBefore}" Binding="{Binding TwoFactorBefore}" Width="90" />
+                                <DataGridTextColumn Header="{l:T TwoFactor.Col.TwoFactorAfter}" Binding="{Binding TwoFactorAfter}" Width="90" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <TextBlock Grid.Row="2" Text="{l:T TwoFactor.Findings}" Style="{StaticResource SectionTitle}" />
+                        <ListBox Grid.Row="3" ItemsSource="{Binding Findings}" ItemTemplate="{StaticResource MessageTemplate}" AutomationProperties.Name="{l:T TwoFactor.Findings}"
+                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" />
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </Grid>
+    </DockPanel>
+</UserControl>

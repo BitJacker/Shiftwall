@@ -110,6 +110,7 @@
             <DataTemplate DataType="{x:Type tb:ImportViewModel}"><views:ImportView /></DataTemplate>
             <DataTemplate DataType="{x:Type tb:VpnViewModel}"><views:VpnView /></DataTemplate>
             <DataTemplate DataType="{x:Type tb:AnonymizeViewModel}"><views:AnonymizeView /></DataTemplate>
+            <DataTemplate DataType="{x:Type tb:TwoFactorViewModel}"><views:TwoFactorView /></DataTemplate>
             <DataTemplate DataType="{x:Type tb:SnippetsViewModel}"><views:SnippetsView /></DataTemplate>
             <DataTemplate DataType="{x:Type tb:UpgradeViewModel}"><views:UpgradeView /></DataTemplate>
             <DataTemplate DataType="{x:Type tb:LanViewModel}"><views:LanView /></DataTemplate>

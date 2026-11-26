@@ -357,4 +357,92 @@ Compare the fingerprint with the one shown by the FortiGate (System › Certific
   <data name="Error.FileTooLarge" xml:space="preserve"><value>"{0}" is {1} MB: larger than the {2} MB accepted for this kind of file. Check that it is the right file.</value></data>
   <data name="Error.PathTooLong" xml:space="preserve"><value>The path is too long for Windows. Move the file to a shorter folder path.</value></data>
   <data name="Error.Crypto" xml:space="preserve"><value>Encryption error: the file is damaged or the password is wrong.</value></data>
+  <data name="Nav.TwoFactor" xml:space="preserve"><value>Email 2FA</value></data>
+  <data name="TwoFactor.Title" xml:space="preserve"><value>Email two-factor authentication</value></data>
+  <data name="TwoFactor.Intro" xml:space="preserve"><value>Set the email and email two-factor authentication (two-factor email, email-to) on local users and administrators in bulk. Shiftwall reads a backup and writes CLI scripts in batches, each with its rollback: nothing is sent to the FortiGate.</value></data>
+  <data name="TwoFactor.Pick" xml:space="preserve"><value>Open the backup of the FortiGate</value></data>
+  <data name="TwoFactor.LoadFirst" xml:space="preserve"><value>Load a backup (or read the list from the LAN) to see the accounts.</value></data>
+  <data name="TwoFactor.Summary" xml:space="preserve"><value>{0} local users, {1} administrators. Without email: {2}. With email 2FA: {3}. With FortiToken: {4}.</value></data>
+  <data name="TwoFactor.EmailServer.Title" xml:space="preserve"><value>Email server</value></data>
+  <data name="TwoFactor.EmailServer.Ok" xml:space="preserve"><value>Configured: {0}, port {1}, security {2}.</value></data>
+  <data name="TwoFactor.EmailServer.Missing" xml:space="preserve"><value>Missing: the backup has no config system email-server with a server. Generation is blocked: configure the server (address, port, authentication, SMTPS or STARTTLS), export the backup again and reload it. Example:</value></data>
+  <data name="TwoFactor.EmailServer.FromLan" xml:space="preserve"><value>Not read through the LAN: load the backup to check it.</value></data>
+  <data name="TwoFactor.CopySnippet" xml:space="preserve"><value>Copy example</value></data>
+  <data name="TwoFactor.Accounts" xml:space="preserve"><value>Accounts</value></data>
+  <data name="TwoFactor.Search" xml:space="preserve"><value>Search</value></data>
+  <data name="TwoFactor.FilterLabel" xml:space="preserve"><value>Show</value></data>
+  <data name="TwoFactor.Filter.All" xml:space="preserve"><value>All</value></data>
+  <data name="TwoFactor.Filter.NoEmail" xml:space="preserve"><value>Without email</value></data>
+  <data name="TwoFactor.Filter.NoTwoFactor" xml:space="preserve"><value>Without 2FA</value></data>
+  <data name="TwoFactor.Filter.WithFortiToken" xml:space="preserve"><value>With FortiToken</value></data>
+  <data name="TwoFactor.Filter.AdminsOnly" xml:space="preserve"><value>Administrators only</value></data>
+  <data name="TwoFactor.Filter.UsersOnly" xml:space="preserve"><value>Local users only</value></data>
+  <data name="TwoFactor.Filter.Ldap" xml:space="preserve"><value>LDAP only</value></data>
+  <data name="TwoFactor.Filter.Radius" xml:space="preserve"><value>RADIUS only</value></data>
+  <data name="TwoFactor.SelectAll" xml:space="preserve"><value>Select shown</value></data>
+  <data name="TwoFactor.SelectNone" xml:space="preserve"><value>Clear selection</value></data>
+  <data name="TwoFactor.Edit.Email" xml:space="preserve"><value>Email (or part before @ with the default domain)</value></data>
+  <data name="TwoFactor.Edit.Action" xml:space="preserve"><value>Action</value></data>
+  <data name="TwoFactor.Action.Set" xml:space="preserve"><value>Set email and enable email 2FA</value></data>
+  <data name="TwoFactor.Action.Modify" xml:space="preserve"><value>Change email</value></data>
+  <data name="TwoFactor.Action.Remove" xml:space="preserve"><value>Remove email</value></data>
+  <data name="TwoFactor.Action.EnableTwoFactor" xml:space="preserve"><value>Enable email 2FA</value></data>
+  <data name="TwoFactor.Action.DisableTwoFactor" xml:space="preserve"><value>Disable 2FA</value></data>
+  <data name="TwoFactor.AddSelected" xml:space="preserve"><value>Apply to selected</value></data>
+  <data name="TwoFactor.Import" xml:space="preserve"><value>Import CSV / Excel…</value></data>
+  <data name="TwoFactor.ImportPick" xml:space="preserve"><value>Open the list of changes (CSV or Excel)</value></data>
+  <data name="TwoFactor.ImportFailed" xml:space="preserve"><value>The file could not be read: save it as CSV (UTF-8) or .xlsx and try again.</value></data>
+  <data name="TwoFactor.SaveTemplate" xml:space="preserve"><value>Save CSV template…</value></data>
+  <data name="TwoFactor.ClearRequests" xml:space="preserve"><value>Clear changes</value></data>
+  <data name="TwoFactor.Requests" xml:space="preserve"><value>Changes requested: {0}. Accounts that will change: {1}. Rows skipped: {2}.</value></data>
+  <data name="TwoFactor.Options" xml:space="preserve"><value>Options</value></data>
+  <data name="TwoFactor.Domain" xml:space="preserve"><value>Default domain (e.g. company.com)</value></data>
+  <data name="TwoFactor.Template" xml:space="preserve"><value>Email rule (optional)</value></data>
+  <data name="TwoFactor.TemplateHelp" xml:space="preserve"><value>Used when the email is empty: {name}.{surname}@company.com splits the user name on . _ - (first part = name, last = surname); {username} is the whole name.</value></data>
+  <data name="TwoFactor.CreateMissing" xml:space="preserve"><value>Create missing local users (e.g. directory users as local users of type ldap)</value></data>
+  <data name="TwoFactor.BatchSize" xml:space="preserve"><value>Accounts per script</value></data>
+  <data name="TwoFactor.BatchHelp" xml:space="preserve"><value>No documented size limit was found for configuration scripts: 500 by default.</value></data>
+  <data name="TwoFactor.Timers" xml:space="preserve"><value>Add two-factor-email-expiry and remoteauthtimeout at 300 seconds (Fortinet KB) to every script</value></data>
+  <data name="TwoFactor.TokenTitle" xml:space="preserve"><value>Accounts with FortiToken</value></data>
+  <data name="TwoFactor.TokenHelp" xml:space="preserve"><value>These accounts stop using their token. Confirm them one by one.</value></data>
+  <data name="TwoFactor.AdminTitle" xml:space="preserve"><value>Administrators</value></data>
+  <data name="TwoFactor.AdminConfirm1" xml:space="preserve"><value>I have read the warnings about administrators</value></data>
+  <data name="TwoFactor.AdminConfirm2" xml:space="preserve"><value>I keep a break-glass administrator and I will test one administrator first, checking that the email arrives</value></data>
+  <data name="TwoFactor.AdminFinalConfirm" xml:space="preserve"><value>The scripts change {0} administrator(s). Generate them?</value></data>
+  <data name="TwoFactor.VaultTitle" xml:space="preserve"><value>Passwords of new users</value></data>
+  <data name="TwoFactor.VaultHelp" xml:space="preserve"><value>New local users of type password get a random password, saved only in an encrypted file (same protection as the anonymization map). Choose its password.</value></data>
+  <data name="TwoFactor.VaultPassword" xml:space="preserve"><value>File password</value></data>
+  <data name="TwoFactor.VaultConfirm" xml:space="preserve"><value>Repeat the password</value></data>
+  <data name="TwoFactor.Generate" xml:space="preserve"><value>Generate scripts…</value></data>
+  <data name="TwoFactor.GenerateHelp" xml:space="preserve"><value>Writes the batches, a rollback for each one, and the HTML/CSV report into a folder.</value></data>
+  <data name="TwoFactor.PickFolder" xml:space="preserve"><value>Folder for the scripts and the report</value></data>
+  <data name="TwoFactor.Generated" xml:space="preserve"><value>{0} scripts and {1} rollbacks written to {2}.</value></data>
+  <data name="TwoFactor.ExportInventory" xml:space="preserve"><value>Export list (Excel/CSV)…</value></data>
+  <data name="TwoFactor.ExportPick" xml:space="preserve"><value>Save the list of accounts</value></data>
+  <data name="TwoFactor.Findings" xml:space="preserve"><value>Checks</value></data>
+  <data name="TwoFactor.DryRun" xml:space="preserve"><value>Simulation (nothing is written)</value></data>
+  <data name="TwoFactor.Col.Account" xml:space="preserve"><value>Account</value></data>
+  <data name="TwoFactor.Col.Kind" xml:space="preserve"><value>Kind</value></data>
+  <data name="TwoFactor.Col.Type" xml:space="preserve"><value>Authentication</value></data>
+  <data name="TwoFactor.Col.Server" xml:space="preserve"><value>Remote server</value></data>
+  <data name="TwoFactor.Col.TwoFactor" xml:space="preserve"><value>2FA</value></data>
+  <data name="TwoFactor.Col.Email" xml:space="preserve"><value>Email</value></data>
+  <data name="TwoFactor.Col.Token" xml:space="preserve"><value>FortiToken</value></data>
+  <data name="TwoFactor.Col.Action" xml:space="preserve"><value>Action</value></data>
+  <data name="TwoFactor.Col.EmailBefore" xml:space="preserve"><value>Email before</value></data>
+  <data name="TwoFactor.Col.EmailAfter" xml:space="preserve"><value>Email after</value></data>
+  <data name="TwoFactor.Col.TwoFactorBefore" xml:space="preserve"><value>2FA before</value></data>
+  <data name="TwoFactor.Col.TwoFactorAfter" xml:space="preserve"><value>2FA after</value></data>
+  <data name="TwoFactor.Col.Profile" xml:space="preserve"><value>Profile</value></data>
+  <data name="TwoFactor.Create" xml:space="preserve"><value>create</value></data>
+  <data name="TwoFactor.Modify" xml:space="preserve"><value>modify</value></data>
+  <data name="TwoFactor.Lan.Title" xml:space="preserve"><value>Read the list from the LAN (optional, read only)</value></data>
+  <data name="TwoFactor.Lan.Help" xml:space="preserve"><value>GET on /api/v2/cmdb/user/local and /api/v2/cmdb/system/admin with a REST API token. Nothing is written to the FortiGate. Enable the LAN function in the Backup from LAN page first.</value></data>
+  <data name="TwoFactor.Lan.Vdoms" xml:space="preserve"><value>VDOMs (comma separated, empty = single VDOM)</value></data>
+  <data name="TwoFactor.Lan.Read" xml:space="preserve"><value>Read accounts</value></data>
+  <data name="TwoFactor.Lan.ReadOk" xml:space="preserve"><value>{0} accounts read.</value></data>
+  <data name="TwoFactor.Lan.AdminsEmpty" xml:space="preserve"><value>The administrator list is empty: Fortinet notes that a REST API administrator gets it only with the super_admin profile.</value></data>
+  <data name="TwoFactor.Lan.BackupNeeded" xml:space="preserve"><value>List read through the LAN: you can filter and export it, but the scripts need the backup (rollback values and email server come from it). Download it from the Backup from LAN page.</value></data>
+  <data name="TwoFactor.Lan.Disabled" xml:space="preserve"><value>The LAN function is disabled.</value></data>
+  <data name="TwoFactor.Sources" xml:space="preserve"><value>Syntax: FortiOS CLI Reference 6.2 – 8.0 (config user local, config system admin, config system global). Timers: Fortinet Community, "Technical Tip: Email Two-Factor Authentication on FortiGate". Upload: FortiOS Administration Guide, "Configuration scripts".</value></data>
 </root>
