@@ -46,7 +46,7 @@
                     </Expander>
 
                     <TextBlock Text="{l:T TwoFactor.Options}" Style="{StaticResource SectionTitle}" />
-                    <TextBlock Text="{l:T TwoFactor.Domain}" Style="{StaticResource FieldLabel}" />
+                    <TextBlock Text="{l:T TwoFactor.Domain}" Style="{StaticResource FieldLabel}" TextWrapping="Wrap" />
                     <TextBox Text="{Binding DefaultDomain, UpdateSourceTrigger=PropertyChanged, Delay=400}" AutomationProperties.Name="{l:T TwoFactor.Domain}" />
                     <TextBlock Text="{l:T TwoFactor.Template}" Style="{StaticResource FieldLabel}" />
                     <TextBox Text="{Binding EmailTemplate, UpdateSourceTrigger=PropertyChanged, Delay=400}" AutomationProperties.Name="{l:T TwoFactor.Template}" />
