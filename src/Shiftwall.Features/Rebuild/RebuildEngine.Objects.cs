@@ -277,7 +277,11 @@ public sealed partial class RebuildEngine
         }
 
         put("defaultgw", [gw], false);
-        if (gw != "enable") return;
+        if (gw != "enable")
+        {
+            _noDefaultRoute.Add(_ifMap.GetValueOrDefault(e.Key, e.Key));
+            return;
+        }
         var distance = e.Field("distance")?.Values;
         if (distance is null)
         {
@@ -412,7 +416,9 @@ public sealed partial class RebuildEngine
             var t = Translate(path, [], e, node, e.Key, e.Key, hook);
             if (t.Fatal is null && t.Entry.Sets.Any(s => ProfileParams.Contains(s.Param) && s.Param is not ("profile-protocol-options" or "ssl-ssh-profile")))
             {
-                t.Entry.Sets.Add(new CliSet("utm-status", ["enable"], false));
+                // FortiOS lists utm-status before the profiles: written right before the first profile kept.
+                var first = t.Entry.Sets.FindIndex(x => ProfileParams.Contains(x.Param));
+                t.Entry.Sets.Insert(first, new CliSet("utm-status", ["enable"], false));
             }
 
             if (profiles.Count > 0 && t.Fatal is null)
@@ -422,6 +428,20 @@ public sealed partial class RebuildEngine
 
             if (Emit("policies", path, t, e.Key, e)) Count(path, rebuilt: 1);
             else Count(path, manual: 1);
+        }
+    }
+
+    /// <summary>Policies towards a DHCP/PPPoE port that has no route: FortiOS picks the egress port from the routing table first.</summary>
+    private void CheckPolicyRoutes()
+    {
+        var routed = _sections["routes"].Blocks.SelectMany(b => b.Entries).SelectMany(e => e.Sets).Where(x => x.Param == "device").SelectMany(x => x.Values).ToHashSet(StringComparer.Ordinal);
+        foreach (var p in _sections["policies"].Blocks.SelectMany(b => b.Entries))
+        {
+            var dst = p.Sets.FirstOrDefault(x => x.Param == "dstintf")?.Values ?? [];
+            foreach (var d in dst.Where(d => _noDefaultRoute.Contains(d) && !routed.Contains(d)))
+            {
+                _findings.Add(MigrationFinding.Warning(RebuildCodes.PolicyWithoutRoute, p.Key ?? "", d));
+            }
         }
     }
 

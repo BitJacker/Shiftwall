@@ -32,6 +32,7 @@ Every difference between the two schemas on the paths Shiftwall rebuilds has a r
 | D009 | LDAPS/STARTTLS servers: `server-identity-check disable` written explicitly (5.2 has no such setting; 8.0 checks the certificate name by default; to confirm in the lab); enable it once the certificate matches | CLI Reference 5.2 pp. 723–725 (user ldap), 8.0 CLI Reference |
 | D010 | DHCP/PPPoE interfaces: `defaultgw disable` written explicitly (5.2 default disable, 8.0 enable with distance 5) | CLI Reference 5.2 p. 552, 8.0 CLI Reference |
 | D011 | When the source takes the gateway from DHCP/PPPoE: `distance 1` (5.2 default 1, 8.0 default 5) | CLI Reference 5.2 p. 553, 8.0 CLI Reference |
+| D012 | phase1-interface with NAT traversal: `keepalive 5` written explicitly (5.2 default 5, 8.0 default 10) | CLI Reference 5.2 p. 789, 8.0 CLI Reference |
 | F001 | Tunnel `remote-ip` gets the host mask `255.255.255.255` (5.2 bare address, 8.0 `ipv4-classnet-host`) | CLI Reference 5.2 p. 561, 8.0 CLI Reference |
 | R007 | `icmp-redirect` (5.2) absent in 8.0; `icmp-send-redirect` looks equivalent but no official page maps them: manual | CLI Reference 5.2 pp. 546/555, 8.0 CLI Reference |
 | S001–S003 | Not copied: object UUIDs (assigned automatically, 8.0 CLI Reference), `snmp-index`, `macaddr` (device-specific: a design choice) | 8.0 CLI Reference |

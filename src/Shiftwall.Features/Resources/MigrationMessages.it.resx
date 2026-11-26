@@ -126,7 +126,7 @@
     <value>Dopo lo script l'interfaccia di gestione '{0}' non avrebbe né HTTPS né SSH: resteresti chiuso fuori.</value>
   </data>
   <data name="RB-021" xml:space="preserve">
-    <value>Le modifiche all'interfaccia di gestione '{0}' sono nell'ultima parte: dopo, la connessione cade. Il server DHCP di fabbrica viene sostituito solo dall'ultimissima parte, quindi dai al PC un indirizzo statico nella nuova subnet di '{0}', ricollegati al nuovo indirizzo ed esegui l'ultima parte.</value>
+    <value>Le modifiche all'interfaccia di gestione '{0}' sono nella penultima parte: dopo, la connessione cade. Dai al PC un indirizzo statico nella nuova subnet di '{0}' (il suo server DHCP viene sostituito solo dall'ultima parte), ricollegati al nuovo indirizzo ed esegui l'ultima parte (server DHCP di '{0}').</value>
   </data>
   <data name="RB-022" xml:space="preserve">
     <value>'{0}' è una VPN IPsec policy-based: ricostruiscila a mano come VPN route-based (interfaccia).</value>
@@ -283,5 +283,8 @@
   </data>
   <data name="RB-051" xml:space="preserve">
     <value>Il nome '{0}' non si può scrivere in uno script (vuoto, oppure con ?, tab o a capo): rinominalo a mano.</value>
+  </data>
+  <data name="RB-052" xml:space="preserve">
+    <value>La policy {0} manda il traffico verso '{1}', che non prende la rotta di default dal DHCP/PPPoE (defaultgw disable, come sulla 5.2) e non ha rotte statiche: FortiOS sceglie l'interfaccia di uscita dalla tabella di routing, quindi la policy potrebbe non essere mai usata. Se serve aggiungi una rotta o una policy route verso '{1}' (la sorgente si comportava allo stesso modo).</value>
   </data>
 </root>

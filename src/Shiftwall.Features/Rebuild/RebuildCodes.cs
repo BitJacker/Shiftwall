@@ -54,4 +54,5 @@ public static class RebuildCodes
     public const string ProvidedPasswordInvalid = "RB-049";
     public const string DuplicateKey = "RB-050";
     public const string InvalidKey = "RB-051";
+    public const string PolicyWithoutRoute = "RB-052";
 }

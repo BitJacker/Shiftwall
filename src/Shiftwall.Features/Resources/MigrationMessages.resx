@@ -126,7 +126,7 @@
     <value>The management interface '{0}' would have neither HTTPS nor SSH access after the script: you would lock yourself out.</value>
   </data>
   <data name="RB-021" xml:space="preserve">
-    <value>The changes to the management interface '{0}' are in the last part: after it the connection drops. The factory DHCP server is replaced only by the very last part, so give your PC a static address in the new subnet of '{0}', reconnect to the new address and run the last part.</value>
+    <value>The changes to the management interface '{0}' are in the next-to-last part: after it the connection drops. Give your PC a static address in the new subnet of '{0}' (its DHCP server is replaced only by the last part), reconnect to the new address and run the last part (DHCP server of '{0}').</value>
   </data>
   <data name="RB-022" xml:space="preserve">
     <value>'{0}' is a policy-based IPsec VPN: rebuild it as a route-based (interface) VPN by hand.</value>
@@ -283,5 +283,8 @@
   </data>
   <data name="RB-051" xml:space="preserve">
     <value>The name '{0}' cannot be written in a script (empty, or with ?, tab or a line break): rename it by hand.</value>
+  </data>
+  <data name="RB-052" xml:space="preserve">
+    <value>Policy {0} sends traffic out of '{1}', which takes no default route from DHCP/PPPoE (defaultgw disable, as on 5.2) and has no static route: FortiOS chooses the outgoing interface from the routing table, so the policy may never match. Add a route or a policy route through '{1}' if needed (the source had the same behaviour).</value>
   </data>
 </root>

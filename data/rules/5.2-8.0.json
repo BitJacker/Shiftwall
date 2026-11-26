@@ -1050,6 +1050,23 @@
     "cli-5.2",
     "cli-8.0"
    ]
+  },
+  {
+   "id": "D012",
+   "kind": "default-change",
+   "path": "vpn ipsec phase1-interface",
+   "param": "keepalive",
+   "value": "5",
+   "when": {
+    "nattraversal": [
+     "enable"
+    ]
+   },
+   "note": "NAT traversal keepalive: 5 seconds in 5.2 (CLI Reference 5.2 p. 789), 10 in 8.0. Written explicitly when NAT traversal is enabled.",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ]
   }
  ]
 }

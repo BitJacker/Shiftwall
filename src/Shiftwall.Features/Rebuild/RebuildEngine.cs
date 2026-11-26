@@ -113,6 +113,7 @@ public sealed partial class RebuildEngine
     private readonly Dictionary<string, ScriptSection> _sections = [];
     private readonly HashSet<string> _readdressed = new(StringComparer.Ordinal);
     private readonly HashSet<(string Path, string Key)> _emittedKeys = [];
+    private readonly HashSet<string> _noDefaultRoute = new(StringComparer.Ordinal);
 
     private RebuildEngine(RebuildRequest req, CliSchema target, RuleSet rules)
     {
@@ -235,6 +236,7 @@ public sealed partial class RebuildEngine
         if (ssl.Present) ConvertSslVpn(doc, ssl);
         RebuildRoutes(doc);
         RebuildPolicies(doc, ssl);
+        CheckPolicyRoutes();
         RebuildAdmins(doc);
         RebuildDhcp(doc);
         ReportOtherSections(doc, ssl);
