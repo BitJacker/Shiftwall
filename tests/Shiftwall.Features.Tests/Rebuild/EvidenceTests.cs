@@ -195,14 +195,15 @@ public sealed class EvidenceTests
         var rules = RuleSet.Load("5.2", "8.0");
         var testDir = Path.Combine(RepoRoot(), "tests", "Shiftwall.Features.Tests");
         var tests = Directory.GetFiles(Path.Combine(testDir, "Rebuild"), "*.cs").Where(f => !f.EndsWith("EvidenceTests.cs", StringComparison.Ordinal))
-            .ToDictionary(f => Path.GetFileName(f), File.ReadAllText);
-        var goldens = Directory.GetFiles(Path.Combine(testDir, "Golden", "Rebuild")).ToDictionary(f => Path.GetFileName(f), File.ReadAllText);
+            .OrderBy(f => Path.GetFileName(f), StringComparer.Ordinal).Select(f => (Name: Path.GetFileName(f), Text: File.ReadAllText(f))).ToList();
+        var goldens = Directory.GetFiles(Path.Combine(testDir, "Golden", "Rebuild"))
+            .OrderBy(f => Path.GetFileName(f), StringComparer.Ordinal).Select(f => (Name: Path.GetFileName(f), Text: File.ReadAllText(f).ReplaceLineEndings("\n"))).ToList();
         var sb = new StringBuilder("# Regole di traduzione usate negli script di prova\n\nOgni regola applicata almeno una volta nelle varianti della fixture 110C → 40F, con la fonte ufficiale e i test che la coprono. Il golden test confronta riga per riga l'uscita completa, comprese le regole applicate (sezione `#### RULES`).\n\n| Regola | Tipo | Dove | Cosa fa | Fonti | Varianti | Test |\n|---|---|---|---|---|---|---|\n");
         foreach (var (id, variants) in applied)
         {
             var r = rules.Rules.First(x => x.Id == id);
-            var covered = tests.Where(kv => kv.Value.Contains('"' + id + '"', StringComparison.Ordinal)).Select(kv => kv.Key)
-                .Concat(goldens.Where(kv => kv.Value.Contains("\n" + id + " ", StringComparison.Ordinal)).Select(kv => "golden " + kv.Key)).ToList();
+            var covered = tests.Where(t => t.Text.Contains('"' + id + '"', StringComparison.Ordinal)).Select(t => t.Name)
+                .Concat(goldens.Where(g => g.Text.Contains("\n" + id + " ", StringComparison.Ordinal)).Select(g => "golden " + g.Name)).ToList();
             Assert.NotEmpty(covered);
             var src = string.Join("<br>", r.Sources.Select(s => $"[{s.Title}]({s.Url})"));
             sb.Append(CultureInfo.InvariantCulture, $"| {id} | {r.Kind} | `{r.Path}` {r.Param} | {Cell(r.Note)} | {Cell(src)} | {string.Join(", ", variants)} | {string.Join("<br>", covered)} |\n");
