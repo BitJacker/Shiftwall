@@ -6,6 +6,7 @@ using System.Text;
 using Shiftwall.Core.Config;
 using Shiftwall.Core.Data;
 using Shiftwall.Features.Migration;
+using Shiftwall.Features.Rebuild;
 using Shiftwall.Presentation.Localization;
 using Shiftwall.Presentation.Mvvm;
 using Shiftwall.Presentation.Services;
@@ -24,7 +25,7 @@ public enum WizardStep
 /// <summary>
 /// The 5-step migration wizard. Nothing is written to disk until the user saves (steps 1-4 are a simulation).
 /// </summary>
-public sealed class MigrationWizardViewModel : ObservableObject
+public sealed partial class MigrationWizardViewModel : ObservableObject
 {
     public const string ConfigFilter = "FortiOS configuration (*.conf;*.cfg;*.txt)|*.conf;*.cfg;*.txt|All files (*.*)|*.*";
     public const string TemplateFilter = "Shiftwall mapping template (*.swmap.json)|*.swmap.json|JSON (*.json)|*.json";
@@ -72,7 +73,22 @@ public sealed class MigrationWizardViewModel : ObservableObject
         PrintPdfCommand = new RelayCommand(PrintPdf, () => _result is not null);
         OpenFolderCommand = new RelayCommand(() => { if (_savedPath is not null) _shell.OpenFolder(Path.GetDirectoryName(_savedPath)!); }, () => _savedPath is not null);
         NewCommand = new RelayCommand(Reset);
+        SaveGuiCommand = new RelayCommand(() => SaveScripts(forGui: true), () => CanSaveRebuild);
+        SaveTerminalCommand = new RelayCommand(() => SaveScripts(forGui: false), () => CanSaveRebuild);
+        SaveSecretsCommand = new RelayCommand(SaveSecrets, () => _rebuild is { Secrets.Count: > 0 });
+        ExportRebuildHtmlCommand = new RelayCommand(ExportRebuildHtml, () => _rebuild is not null);
+        HidePasswordsCommand = new RelayCommand(HidePasswords, () => PasswordSummary is not null);
     }
+
+    public RelayCommand SaveGuiCommand { get; }
+
+    public RelayCommand SaveTerminalCommand { get; }
+
+    public RelayCommand SaveSecretsCommand { get; }
+
+    public RelayCommand ExportRebuildHtmlCommand { get; }
+
+    public RelayCommand HidePasswordsCommand { get; }
 
     public TargetSelectorViewModel Target { get; }
 
@@ -160,8 +176,11 @@ public sealed class MigrationWizardViewModel : ObservableObject
     public bool CanGoNext => !IsBusy && Step switch
     {
         WizardStep.Load => IsSourceReady && Target.IsReady,
+        WizardStep.PreChecks when IsRebuild => _source is not null && RebuildSupported && !_source.Document.IsMultiVdom,
         WizardStep.PreChecks => _analysis is not null && !_analysis.PreChecks.Any(f => f.Severity == FindingSeverity.Error),
+        WizardStep.Mapping when IsRebuild => _source is not null && SecretsValid,
         WizardStep.Mapping => _analysis is { IsBlocked: false },
+        WizardStep.Transform when IsRebuild => CanSaveRebuild,
         WizardStep.Transform => _result?.IsValid == true,
         _ => false,
     };
@@ -242,7 +261,7 @@ public sealed class MigrationWizardViewModel : ObservableObject
 
     private void AutoMap()
     {
-        var suggested = InterfaceMapping.Suggest(SourcePorts.Select(s => (s.Name, s.Uses)), TargetPorts.Select(t => t.Name));
+        var suggested = InterfaceMapping.Suggest(SourcePorts.Select(s => (s.Name, s.Uses)), TargetPorts.Select(t => t.Name), lanFallback: !IsRebuild);
         _suppressRowEvents = true;
         foreach (var s in SourcePorts) s.Target = suggested[s.Name];
         _suppressRowEvents = false;
@@ -295,6 +314,8 @@ public sealed class MigrationWizardViewModel : ObservableObject
     {
         _result = null;
         _analysis = null;
+        _rebuild = null;
+        RaiseModeProperties();
         RebuildPorts();
         Reanalyze();
     }
@@ -308,9 +329,10 @@ public sealed class MigrationWizardViewModel : ObservableObject
         if (_source is null || target is null) return;
 
         var probe = MigrationEngine.Analyze(new MigrationRequest(_source, target, new InterfaceMapping()));
-        foreach (var t in target.PhysicalInterfaces) TargetPorts.Add(new TargetPortItem(t));
-        var targetNames = target.PhysicalInterfaces.ToHashSet(StringComparer.Ordinal);
-        var suggested = InterfaceMapping.Suggest(_source.PhysicalInterfaces.Select(p => (p.Name, probe.UsageCount.GetValueOrDefault(p.Name))), target.PhysicalInterfaces);
+        var names = TargetInterfaceNames(target);
+        foreach (var t in names) TargetPorts.Add(new TargetPortItem(t));
+        var targetNames = names.ToHashSet(StringComparer.Ordinal);
+        var suggested = InterfaceMapping.Suggest(_source.PhysicalInterfaces.Select(p => (p.Name, probe.UsageCount.GetValueOrDefault(p.Name))), names, lanFallback: !IsRebuild);
         var keepPrevious = previous.Count > 0 && previous.Values.All(v => v is null || targetNames.Contains(v));
         foreach (var p in _source.PhysicalInterfaces)
         {
@@ -319,6 +341,8 @@ public sealed class MigrationWizardViewModel : ObservableObject
             row.PropertyChanged += OnSourcePortChanged;
             SourcePorts.Add(row);
         }
+
+        SuggestManagement();
     }
 
     /// <summary>Target port names offered in each row's combo box (empty entry = not mapped).</summary>
@@ -351,7 +375,21 @@ public sealed class MigrationWizardViewModel : ObservableObject
     {
         PreChecks.Clear();
         MappingFindings.Clear();
-        if (_analysis is not null)
+        foreach (var m in ModeMessages) PreChecks.Add(m);
+        if (IsRebuild)
+        {
+            if (_source?.Document.IsMultiVdom == true) PreChecks.Add(MessageItem.From(MigrationFinding.Error(RebuildCodes.MultiVdomNotSupported)));
+            if (!Target.IsBackupMode) PreChecks.Add(MessageItem.From(MigrationFinding.Warning(RebuildCodes.NoDefaultBackup)));
+            foreach (var s in SourcePorts)
+            {
+                s.IsBlocking = false;
+                if (s.IsUsed && !s.IsMapped) MappingFindings.Add(MessageItem.From(MigrationFinding.Warning(RebuildCodes.InterfaceNotMapped, s.Name)));
+                if (s.Target is { } t && TargetPorts.All(p => p.Name != t)) MappingFindings.Add(new MessageItem(ItemSeverity.Warning, "RB-TYPED", () => Loc.F("Rebuild.TypedTarget", t)));
+            }
+
+            foreach (var t in TargetPorts) t.AssignedFrom = SourcePorts.FirstOrDefault(s => s.Target == t.Name)?.Name;
+        }
+        else if (_analysis is not null)
         {
             foreach (var f in _analysis.PreChecks) PreChecks.Add(MessageItem.From(f));
             foreach (var f in _analysis.MappingFindings) MappingFindings.Add(MessageItem.From(f));
@@ -370,8 +408,16 @@ public sealed class MigrationWizardViewModel : ObservableObject
         if (!CanGoNext) return;
         if (Step == WizardStep.Mapping)
         {
-            await RunMigrationAsync();
-            if (_result is null) return;
+            if (IsRebuild)
+            {
+                await RunRebuildAsync();
+                if (_rebuild is null) return;
+            }
+            else
+            {
+                await RunMigrationAsync();
+                if (_result is null) return;
+            }
         }
 
         Step = (WizardStep)((int)Step + 1);
@@ -478,6 +524,7 @@ public sealed class MigrationWizardViewModel : ObservableObject
         Changes.Clear();
         Validation.Clear();
         Checklist.Clear();
+        ResetRebuild();
         OnPropertyChanged(nameof(SourcePath));
         OnPropertyChanged(nameof(SourceSummary));
         OnPropertyChanged(nameof(IsSourceReady));
@@ -498,6 +545,11 @@ public sealed class MigrationWizardViewModel : ObservableObject
         ExportHtmlCommand.RaiseCanExecuteChanged();
         PrintPdfCommand.RaiseCanExecuteChanged();
         OpenFolderCommand.RaiseCanExecuteChanged();
+        SaveGuiCommand.RaiseCanExecuteChanged();
+        SaveTerminalCommand.RaiseCanExecuteChanged();
+        SaveSecretsCommand.RaiseCanExecuteChanged();
+        ExportRebuildHtmlCommand.RaiseCanExecuteChanged();
+        HidePasswordsCommand.RaiseCanExecuteChanged();
     }
 
     internal static CultureInfo Culture => Loc.Instance.Culture;

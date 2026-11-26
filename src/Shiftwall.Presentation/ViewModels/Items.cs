@@ -67,6 +67,9 @@ public sealed class SourcePortItem(string name, int uses) : ObservableObject
 
     /// <summary>Used but not mapped: blocks the next step.</summary>
     public bool IsBlocking { get => _blocking; set => Set(ref _blocking, value); }
+
+    /// <summary>Addressing on the target (rebuild mode only).</summary>
+    public AddressingItem Addressing { get; } = new();
 }
 
 /// <summary>A target physical port in the mapping step.</summary>
@@ -101,3 +104,93 @@ public sealed class BatchRow(BatchItemResult result, string summary) : Observabl
 
     public string? ReportPath { get; } = result.ReportPath;
 }
+
+/// <summary>A choice shown in a combo box with a translated label.</summary>
+public sealed class Choice<T>(T value, string key) : ObservableObject
+{
+    public T Value { get; } = value;
+
+    public string Text => Loc.T(key);
+}
+
+/// <summary>Addressing of a source interface in the rebuild mode (kept, static, DHCP).</summary>
+public sealed class AddressingItem : ObservableObject
+{
+    private Features.Rebuild.AddressingMode _mode;
+    private string _address = "";
+    private string _gateway = "";
+    private string _nameServers = "";
+
+    public Features.Rebuild.AddressingMode Mode
+    {
+        get => _mode;
+        set
+        {
+            if (Set(ref _mode, value)) OnPropertyChanged(nameof(IsStatic));
+        }
+    }
+
+    public bool IsStatic => _mode == Features.Rebuild.AddressingMode.Static;
+
+    public string Address { get => _address; set => Set(ref _address, value ?? ""); }
+
+    public string Gateway { get => _gateway; set => Set(ref _gateway, value ?? ""); }
+
+    public string NameServers { get => _nameServers; set => Set(ref _nameServers, value ?? ""); }
+}
+
+/// <summary>A password category of the rebuild: typed twice, never shown, never logged.</summary>
+public sealed class SecretRow(Features.Rebuild.SecretCategory category) : ObservableObject
+{
+    private string _password = "";
+    private string _confirm = "";
+
+    public Features.Rebuild.SecretCategory Category { get; } = category;
+
+    public string Label => Loc.T("Rebuild.Secret." + Category);
+
+    public bool CanGenerate => Features.Rebuild.SecretPlan.CanGenerate(Category);
+
+    public bool HasPassword => _password.Length > 0;
+
+    public void SetPassword(string value)
+    {
+        _password = value ?? "";
+        Raise();
+    }
+
+    public void SetConfirm(string value)
+    {
+        _confirm = value ?? "";
+        Raise();
+    }
+
+    internal string Password => _password;
+
+    /// <summary>Empty, or the reasons why the typed password cannot be used.</summary>
+    public string Problem
+    {
+        get
+        {
+            if (_password.Length == 0) return "";
+            if (_password != _confirm) return Loc.T("Rebuild.Secret.Mismatch");
+            var problems = Features.Rebuild.CliPassword.Check(_password);
+            return problems.Count == 0 ? "" : string.Join("; ", problems.Select(p => Loc.T("Rebuild.Secret.Problem." + p)));
+        }
+    }
+
+    public bool IsValid => _password.Length > 0 && Problem.Length == 0;
+
+    private void Raise()
+    {
+        OnPropertyChanged(nameof(Problem));
+        OnPropertyChanged(nameof(IsValid));
+        OnPropertyChanged(nameof(HasPassword));
+    }
+}
+
+/// <summary>A row of the rebuild counts table ("policy: 48 → 48").</summary>
+public sealed record CountRow(string Path, int Source, int Rebuilt, int Converted, int Manual);
+
+/// <summary>A row of the manual work list.</summary>
+public sealed record ManualRow(string Path, string Object, string Reason, string Original);

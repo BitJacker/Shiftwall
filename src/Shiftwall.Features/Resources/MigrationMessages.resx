@@ -200,4 +200,70 @@
   <data name="RB-045" xml:space="preserve">
     <value>Broken reference in the script: {0} '{1}', {2} = '{3}' does not exist. The script is not exported (please report this as a Shiftwall bug).</value>
   </data>
+  <data name="RBC-001" xml:space="preserve">
+    <value>Start from the factory configuration, on the firmware of the target version (check System &gt; Firmware).</value>
+  </data>
+  <data name="RBC-002" xml:space="preserve">
+    <value>Make a backup of the factory configuration first: it is your way back.</value>
+  </data>
+  <data name="RBC-003" xml:space="preserve">
+    <value>Run the GUI parts in order (admin menu &gt; Configuration &gt; Scripts &gt; Run Script) or paste the terminal blocks one at a time; read every error before going on (see docs/LAB-TEST.md).</value>
+  </data>
+  <data name="RBC-004" xml:space="preserve">
+    <value>Run the management part last; then reconnect to the new address and run the last part.</value>
+  </data>
+  <data name="RBC-005" xml:space="preserve">
+    <value>Test internet access from the LAN and the main policies (one per direction).</value>
+  </data>
+  <data name="RBC-006" xml:space="preserve">
+    <value>Test every VPN: site-to-site tunnels with the new keys on the other side, dial-up with FortiClient.</value>
+  </data>
+  <data name="RBC-007" xml:space="preserve">
+    <value>Change the passwords at the first login and set the password of the administrator you used, by hand.</value>
+  </data>
+  <data name="RBC-008" xml:space="preserve">
+    <value>Do the manual work listed in the report, then make a backup of the new configuration.</value>
+  </data>
+  <data name="RBR.Title" xml:space="preserve">
+    <value>Shiftwall rebuild report</value>
+  </data>
+  <data name="RBR.Disclaimer" xml:space="preserve">
+    <value>Shiftwall is not affiliated with Fortinet. Modified configurations are not supported by Fortinet TAC: always test in a lab before production.</value>
+  </data>
+  <data name="RBR.Findings" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="RBR.Counts" xml:space="preserve">
+    <value>Objects, source → target</value>
+  </data>
+  <data name="RBR.Object" xml:space="preserve">
+    <value>Object</value>
+  </data>
+  <data name="RBR.Source" xml:space="preserve">
+    <value>Source</value>
+  </data>
+  <data name="RBR.Rebuilt" xml:space="preserve">
+    <value>In the script</value>
+  </data>
+  <data name="RBR.Converted" xml:space="preserve">
+    <value>Converted</value>
+  </data>
+  <data name="RBR.Manual" xml:space="preserve">
+    <value>Manual</value>
+  </data>
+  <data name="RBR.ManualWork" xml:space="preserve">
+    <value>Manual work (not in the script)</value>
+  </data>
+  <data name="RBR.Rules" xml:space="preserve">
+    <value>Translation rules applied</value>
+  </data>
+  <data name="RBR.Param" xml:space="preserve">
+    <value>Parameter</value>
+  </data>
+  <data name="RBR.Checklist" xml:space="preserve">
+    <value>Checklist on the real FortiGate</value>
+  </data>
+  <data name="RBR.Script" xml:space="preserve">
+    <value>Script (passwords hidden)</value>
+  </data>
 </root>

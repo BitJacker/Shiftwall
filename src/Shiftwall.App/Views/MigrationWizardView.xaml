@@ -88,8 +88,65 @@
             <TabItem>
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel>
-                        <TextBlock Text="{l:T Wizard.PreChecks.Intro}" Style="{StaticResource Muted}" Margin="0,0,0,10" />
+                        <Border Style="{StaticResource Card}" Margin="0,0,0,12">
+                            <StackPanel>
+                                <TextBlock Text="{l:T Rebuild.Mode.Title}" Style="{StaticResource SectionTitle}" Margin="0,0,0,6" />
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
+                                    <TextBlock Text="{l:T Rebuild.Mode.Label}" VerticalAlignment="Center" Margin="0,0,8,0" />
+                                    <ComboBox ItemsSource="{Binding ModeChoices}" DisplayMemberPath="Text" SelectedValuePath="Value" SelectedValue="{Binding Mode}"
+                                              Width="300" AutomationProperties.Name="{l:T Rebuild.Mode.Label}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <TextBlock Text="{l:T Wizard.PreChecks.Intro}" Style="{StaticResource Muted}" Margin="0,0,0,10" TextWrapping="Wrap" />
                         <ItemsControl ItemsSource="{Binding PreChecks}" ItemTemplate="{StaticResource MessageTemplate}" />
+                        <Border Style="{StaticResource Card}" Margin="0,12,0,0" Visibility="{Binding IsRebuild, Converter={StaticResource BoolToVisibility}}">
+                            <StackPanel>
+                                <TextBlock Text="{l:T Rebuild.Settings}" Style="{StaticResource SectionTitle}" Margin="0,0,0,8" />
+                                <Grid Margin="0,0,0,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="220" />
+                                        <ColumnDefinition Width="200" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="{l:T Rebuild.Management}" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                    <ComboBox Grid.Column="1" IsEditable="True" ItemsSource="{Binding TargetChoices}" Text="{Binding ManagementInterface, UpdateSourceTrigger=LostFocus}"
+                                              AutomationProperties.Name="{l:T Rebuild.Management}" Margin="0,2" />
+                                    <TextBlock Grid.Column="2" Text="{l:T Rebuild.Management.Hint}" Style="{StaticResource Muted}" FontSize="12" TextWrapping="Wrap" Margin="10,0,0,0" VerticalAlignment="Center" />
+                                    <TextBlock Grid.Row="1" Text="{l:T Rebuild.CurrentAdmin}" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding CurrentAdmin, UpdateSourceTrigger=PropertyChanged}" Margin="0,2"
+                                             AutomationProperties.Name="{l:T Rebuild.CurrentAdmin}" />
+                                    <TextBlock Grid.Row="1" Grid.Column="2" Text="{l:T Rebuild.CurrentAdmin.Hint}" Style="{StaticResource Muted}" FontSize="12" TextWrapping="Wrap" Margin="10,0,0,0" VerticalAlignment="Center" />
+                                </Grid>
+                                <TextBlock Text="{l:T Rebuild.Passwords}" Style="{StaticResource SectionTitle}" Margin="0,4,0,4" />
+                                <TextBlock Text="{l:T Rebuild.Passwords.Hint}" Style="{StaticResource Muted}" FontSize="12" TextWrapping="Wrap" Margin="0,0,0,6" />
+                                <CheckBox Content="{l:T Rebuild.Generate}" IsChecked="{Binding GeneratePasswords}" Margin="0,0,0,8" />
+                                <ItemsControl ItemsSource="{Binding Secrets}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate DataType="{x:Type vm:SecretRow}">
+                                            <Grid Margin="0,2">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="220" />
+                                                    <ColumnDefinition Width="170" />
+                                                    <ColumnDefinition Width="170" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Text="{Binding Label}" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                                <PasswordBox Grid.Column="1" Tag="password" PasswordChanged="OnSecretChanged" Margin="0,0,6,0"
+                                                             ToolTip="{l:T Rebuild.Secret.Password}" AutomationProperties.Name="{Binding Label}" />
+                                                <PasswordBox Grid.Column="2" Tag="confirm" PasswordChanged="OnSecretChanged" Margin="0,0,6,0"
+                                                             ToolTip="{l:T Rebuild.Secret.Confirm}" AutomationProperties.Name="{l:T Rebuild.Secret.Confirm}" />
+                                                <TextBlock Grid.Column="3" Text="{Binding Problem}" Foreground="#D13438" FontSize="12" TextWrapping="Wrap" VerticalAlignment="Center" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </Border>
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>
@@ -127,18 +184,36 @@
                                                     <ColumnDefinition Width="*" />
                                                     <ColumnDefinition Width="Auto" />
                                                 </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
                                                 <TextBlock VerticalAlignment="Center" FontFamily="{StaticResource MonoFont}">
                                                     <Run Text="{Binding Name, Mode=OneWay}" />
                                                 </TextBlock>
                                                 <TextBlock Grid.Column="1" VerticalAlignment="Center" FontSize="12" Style="{StaticResource Muted}">
                                                     <Run Text="{Binding Uses, Mode=OneWay}" /> <Run Text="{l:T Wizard.Mapping.Uses}" />
                                                 </TextBlock>
-                                                <ComboBox Grid.Column="2" Margin="6,0"
+                                                <ComboBox Grid.Column="2" Margin="6,0" IsEditable="True"
                                                           ItemsSource="{Binding DataContext.TargetChoices, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                                          SelectedItem="{Binding Target}" AutomationProperties.Name="{Binding Name}" />
+                                                          Text="{Binding Target, UpdateSourceTrigger=LostFocus}" AutomationProperties.Name="{Binding Name}" />
                                                 <Button Grid.Column="3" Command="{Binding DataContext.UnmapCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                                         CommandParameter="{Binding}" ToolTip="{l:T Wizard.Mapping.Unmap}" Padding="6,2"
                                                         FontFamily="{StaticResource IconFont}" Content="&#xE711;" AutomationProperties.Name="{l:T Wizard.Mapping.Unmap}" />
+                                                <WrapPanel Grid.Row="1" Grid.ColumnSpan="4" Margin="0,4,0,2"
+                                                           Visibility="{Binding DataContext.IsRebuild, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BoolToVisibility}}">
+                                                    <ComboBox Width="150" Margin="0,0,6,0" DisplayMemberPath="Text" SelectedValuePath="Value" SelectedValue="{Binding Addressing.Mode}"
+                                                              ItemsSource="{Binding DataContext.AddressingChoices, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                              ToolTip="{l:T Rebuild.Addressing}" AutomationProperties.Name="{l:T Rebuild.Addressing}" />
+                                                    <StackPanel Orientation="Horizontal" Visibility="{Binding Addressing.IsStatic, Converter={StaticResource BoolToVisibility}}">
+                                                        <TextBlock Text="{l:T Rebuild.Address}" VerticalAlignment="Center" FontSize="12" Margin="0,0,4,0" />
+                                                        <TextBox Width="140" Text="{Binding Addressing.Address, UpdateSourceTrigger=LostFocus}" Margin="0,0,6,0" AutomationProperties.Name="{l:T Rebuild.Address}" />
+                                                        <TextBlock Text="{l:T Rebuild.Gateway}" VerticalAlignment="Center" FontSize="12" Margin="0,0,4,0" />
+                                                        <TextBox Width="110" Text="{Binding Addressing.Gateway, UpdateSourceTrigger=LostFocus}" Margin="0,0,6,0" AutomationProperties.Name="{l:T Rebuild.Gateway}" />
+                                                        <TextBlock Text="{l:T Rebuild.Dns}" VerticalAlignment="Center" FontSize="12" Margin="0,0,4,0" />
+                                                        <TextBox Width="140" Text="{Binding Addressing.NameServers, UpdateSourceTrigger=LostFocus}" AutomationProperties.Name="{l:T Rebuild.Dns}" />
+                                                    </StackPanel>
+                                                </WrapPanel>
                                             </Grid>
                                         </Border>
                                         <DataTemplate.Triggers>
@@ -178,6 +253,7 @@
             <!-- 4. Transform -->
             <TabItem>
                 <Grid>
+                <Grid Visibility="{Binding IsRebuild, Converter={StaticResource InverseBoolToVisibility}}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" MaxHeight="220" />
                         <RowDefinition Height="Auto" />
@@ -225,13 +301,92 @@
                         </ListBox>
                     </Border>
                 </Grid>
+                <Grid Visibility="{Binding IsRebuild, Converter={StaticResource BoolToVisibility}}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" MaxHeight="170" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <ItemsControl ItemsSource="{Binding RebuildFindings}" ItemTemplate="{StaticResource MessageTemplate}" />
+                    </ScrollViewer>
+                    <TabControl Grid.Row="1" Margin="0,8,0,0">
+                        <TabItem Header="{l:T Rebuild.Counts}">
+                            <DataGrid ItemsSource="{Binding Counts}" AutoGenerateColumns="False" IsReadOnly="True" HeadersVisibility="Column"
+                                      AutomationProperties.Name="{l:T Rebuild.Counts}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="{l:T Rebuild.Col.Object}" Binding="{Binding Path}" Width="260" />
+                                    <DataGridTextColumn Header="{l:T Rebuild.Col.Source}" Binding="{Binding Source}" Width="90" />
+                                    <DataGridTextColumn Header="{l:T Rebuild.Col.Rebuilt}" Binding="{Binding Rebuilt}" Width="110" />
+                                    <DataGridTextColumn Header="{l:T Rebuild.Col.Converted}" Binding="{Binding Converted}" Width="110" />
+                                    <DataGridTextColumn Header="{l:T Rebuild.Col.Manual}" Binding="{Binding Manual}" Width="90" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </TabItem>
+                        <TabItem Header="{l:T Rebuild.Manual}">
+                            <DataGrid ItemsSource="{Binding ManualRows}" AutoGenerateColumns="False" IsReadOnly="True" HeadersVisibility="Column"
+                                      RowDetailsVisibilityMode="VisibleWhenSelected" AutomationProperties.Name="{l:T Rebuild.Manual}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="{l:T Rebuild.Col.Object}" Binding="{Binding Path}" Width="190" />
+                                    <DataGridTextColumn Header="{l:T Rebuild.Col.Name}" Binding="{Binding Object}" Width="150" />
+                                    <DataGridTemplateColumn Header="{l:T Rebuild.Col.Reason}" Width="*">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Reason}" TextWrapping="Wrap" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                                <DataGrid.RowDetailsTemplate>
+                                    <DataTemplate>
+                                        <TextBox Text="{Binding Original, Mode=OneWay}" IsReadOnly="True" FontFamily="{StaticResource MonoFont}" FontSize="12"
+                                                 MaxHeight="200" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Margin="8,4" />
+                                    </DataTemplate>
+                                </DataGrid.RowDetailsTemplate>
+                            </DataGrid>
+                        </TabItem>
+                        <TabItem Header="{l:T Rebuild.Script}">
+                            <TextBox Text="{Binding ScriptPreview, Mode=OneWay}" IsReadOnly="True" FontFamily="{StaticResource MonoFont}" FontSize="12"
+                                     VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" AutomationProperties.Name="{l:T Rebuild.Script}" />
+                        </TabItem>
+                    </TabControl>
+                </Grid>
+                </Grid>
             </TabItem>
 
             <!-- 5. Report and save -->
             <TabItem>
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel>
-                        <Border Style="{StaticResource Card}">
+                        <Border Style="{StaticResource Card}" Visibility="{Binding IsRebuild, Converter={StaticResource BoolToVisibility}}">
+                            <StackPanel>
+                                <TextBlock Text="{l:T Rebuild.Save.Title}" Style="{StaticResource SectionTitle}" Margin="0,0,0,6" />
+                                <TextBlock Text="{l:T Rebuild.Save.Hint}" Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,0,0,10" />
+                                <WrapPanel>
+                                    <Button Content="{l:T Rebuild.Save.Gui}" Command="{Binding SaveGuiCommand}" Margin="0,0,8,8" />
+                                    <Button Content="{l:T Rebuild.Save.Terminal}" Command="{Binding SaveTerminalCommand}" Margin="0,0,8,8" />
+                                    <Button Content="{l:T Wizard.Report.ExportHtml}" Command="{Binding ExportRebuildHtmlCommand}" Margin="0,0,8,8" />
+                                    <Button Content="{l:T Wizard.Report.OpenFolder}" Command="{Binding OpenFolderCommand}" Margin="0,0,8,8" />
+                                    <Button Content="{l:T Wizard.Report.New}" Command="{Binding NewCommand}" Margin="0,0,8,8" />
+                                </WrapPanel>
+                                <TextBlock Text="{Binding SavedPath}" FontSize="12" Visibility="{Binding SavedPath, Converter={StaticResource NullToVisibility}}" />
+                                <TextBlock Text="{l:T Rebuild.Guide}" Style="{StaticResource Muted}" FontSize="12" TextWrapping="Wrap" Margin="0,6,0,0" />
+                            </StackPanel>
+                        </Border>
+                        <Border Style="{StaticResource Card}" Margin="0,12,0,0" Visibility="{Binding PasswordSummary, Converter={StaticResource NullToVisibility}}">
+                            <StackPanel>
+                                <TextBlock Text="{l:T Rebuild.PasswordsOnce}" Style="{StaticResource SectionTitle}" Margin="0,0,0,6" />
+                                <TextBlock Text="{l:T Rebuild.PasswordsOnce.Hint}" TextWrapping="Wrap" Margin="0,0,0,8" />
+                                <TextBox Text="{Binding PasswordSummary, Mode=OneWay}" IsReadOnly="True" FontFamily="{StaticResource MonoFont}" FontSize="12"
+                                         MaxHeight="220" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" AutomationProperties.Name="{l:T Rebuild.PasswordsOnce}" />
+                                <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                                    <TextBlock Text="{l:T Rebuild.Vault.Label}" VerticalAlignment="Center" Margin="0,0,8,0" />
+                                    <PasswordBox Width="200" PasswordChanged="OnVaultPasswordChanged" AutomationProperties.Name="{l:T Rebuild.Vault.Label}" Margin="0,0,8,0" />
+                                    <Button Content="{l:T Rebuild.Save.Secrets}" Command="{Binding SaveSecretsCommand}" Margin="0,0,8,0" />
+                                    <Button Content="{l:T Rebuild.Hide}" Command="{Binding HidePasswordsCommand}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border Style="{StaticResource Card}" Visibility="{Binding IsRebuild, Converter={StaticResource InverseBoolToVisibility}}">
                             <StackPanel>
                                 <TextBlock Text="{l:T Wizard.Report.SaveTitle}" Style="{StaticResource SectionTitle}" Margin="0,0,0,6" />
                                 <TextBlock Text="{l:T Wizard.Report.SaveHint}" Style="{StaticResource Muted}" Margin="0,0,0,10" />

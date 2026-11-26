@@ -200,4 +200,70 @@
   <data name="RB-045" xml:space="preserve">
     <value>Riferimento rotto nello script: {0} '{1}', {2} = '{3}' non esiste. Lo script non viene esportato (segnalalo come bug di Shiftwall).</value>
   </data>
+  <data name="RBC-001" xml:space="preserve">
+    <value>Parti dalla configurazione di fabbrica, con il firmware della versione di destinazione (controlla Sistema &gt; Firmware).</value>
+  </data>
+  <data name="RBC-002" xml:space="preserve">
+    <value>Prima fai un backup della configurazione di fabbrica: è la tua strada per tornare indietro.</value>
+  </data>
+  <data name="RBC-003" xml:space="preserve">
+    <value>Esegui le parti GUI in ordine (menu admin &gt; Configuration &gt; Scripts &gt; Run Script) oppure incolla i blocchi per il terminale uno alla volta; leggi ogni errore prima di andare avanti (vedi docs/LAB-TEST.md).</value>
+  </data>
+  <data name="RBC-004" xml:space="preserve">
+    <value>Esegui per ultima la parte di gestione; poi ricollegati al nuovo indirizzo ed esegui l'ultima parte.</value>
+  </data>
+  <data name="RBC-005" xml:space="preserve">
+    <value>Prova la navigazione dalla LAN e le policy principali (una per direzione).</value>
+  </data>
+  <data name="RBC-006" xml:space="preserve">
+    <value>Prova ogni VPN: i site-to-site con le nuove chiavi sull'altro lato, i dial-up con FortiClient.</value>
+  </data>
+  <data name="RBC-007" xml:space="preserve">
+    <value>Cambia le password al primo accesso e imposta a mano la password dell'amministratore che hai usato.</value>
+  </data>
+  <data name="RBC-008" xml:space="preserve">
+    <value>Fai il lavoro manuale elencato nel report, poi un backup della nuova configurazione.</value>
+  </data>
+  <data name="RBR.Title" xml:space="preserve">
+    <value>Report di ricostruzione Shiftwall</value>
+  </data>
+  <data name="RBR.Disclaimer" xml:space="preserve">
+    <value>Shiftwall non è affiliato a Fortinet. Le config modificate non sono supportate dal TAC Fortinet: testare sempre in laboratorio prima della produzione.</value>
+  </data>
+  <data name="RBR.Findings" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="RBR.Counts" xml:space="preserve">
+    <value>Oggetti, sorgente → destinazione</value>
+  </data>
+  <data name="RBR.Object" xml:space="preserve">
+    <value>Oggetto</value>
+  </data>
+  <data name="RBR.Source" xml:space="preserve">
+    <value>Sorgente</value>
+  </data>
+  <data name="RBR.Rebuilt" xml:space="preserve">
+    <value>Nello script</value>
+  </data>
+  <data name="RBR.Converted" xml:space="preserve">
+    <value>Convertiti</value>
+  </data>
+  <data name="RBR.Manual" xml:space="preserve">
+    <value>A mano</value>
+  </data>
+  <data name="RBR.ManualWork" xml:space="preserve">
+    <value>Da fare a mano (non nello script)</value>
+  </data>
+  <data name="RBR.Rules" xml:space="preserve">
+    <value>Regole di traduzione applicate</value>
+  </data>
+  <data name="RBR.Param" xml:space="preserve">
+    <value>Parametro</value>
+  </data>
+  <data name="RBR.Checklist" xml:space="preserve">
+    <value>Checklist sul FortiGate vero</value>
+  </data>
+  <data name="RBR.Script" xml:space="preserve">
+    <value>Script (password nascoste)</value>
+  </data>
 </root>

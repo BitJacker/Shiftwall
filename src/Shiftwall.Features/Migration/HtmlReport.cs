@@ -141,7 +141,7 @@ public static class HtmlReport
         return sb.ToString();
     }
 
-    private const string Css = """
+    internal const string Css = """
         :root{--bg:#fff;--fg:#14212b;--muted:#5b6b75;--line:#d7e0e4;--accent:#0f766e;--err:#b42318;--warn:#a15c07;--info:#1f6474;
         --add-bg:#e6f6ef;--add-fg:#0b5d3b;--del-bg:#fdecea;--del-fg:#8a1c12;--code-bg:#f3f6f7}
         @media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--muted:#8b98a5;--line:#2a3640;--accent:#5eead4;--err:#ff7b72;

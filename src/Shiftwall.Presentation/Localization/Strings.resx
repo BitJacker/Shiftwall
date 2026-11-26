@@ -445,4 +445,193 @@ Compare the fingerprint with the one shown by the FortiGate (System › Certific
   <data name="TwoFactor.Lan.BackupNeeded" xml:space="preserve"><value>List read through the LAN: you can filter and export it, but the scripts need the backup (rollback values and email server come from it). Download it from the Backup from LAN page.</value></data>
   <data name="TwoFactor.Lan.Disabled" xml:space="preserve"><value>The LAN function is disabled.</value></data>
   <data name="TwoFactor.Sources" xml:space="preserve"><value>Syntax: FortiOS CLI Reference 6.2 – 8.0 (config user local, config system admin, config system global). Timers: Fortinet Community, "Technical Tip: Email Two-Factor Authentication on FortiGate". Upload: FortiOS Administration Guide, "Configuration scripts".</value></data>
+  <data name="Rebuild.Mode.Title" xml:space="preserve">
+    <value>Migration mode</value>
+  </data>
+  <data name="Rebuild.Mode.Label" xml:space="preserve">
+    <value>Mode</value>
+  </data>
+  <data name="Rebuild.Mode.Auto" xml:space="preserve">
+    <value>Automatic (recommended)</value>
+  </data>
+  <data name="Rebuild.Mode.Restore" xml:space="preserve">
+    <value>Restore: same backup, interfaces renamed</value>
+  </data>
+  <data name="Rebuild.Mode.Rebuild" xml:space="preserve">
+    <value>Rebuild: clean script in the target syntax</value>
+  </data>
+  <data name="Rebuild.NoRules" xml:space="preserve">
+    <value>Shiftwall has no verified translation rules from FortiOS {0} to {1} yet: the rebuild is not available for this pair.</value>
+  </data>
+  <data name="Rebuild.Settings" xml:space="preserve">
+    <value>Rebuild settings</value>
+  </data>
+  <data name="Rebuild.Management" xml:space="preserve">
+    <value>Interface you connect to</value>
+  </data>
+  <data name="Rebuild.Management.Hint" xml:space="preserve">
+    <value>Its changes go in the last part of the script, so the connection drops only at the end.</value>
+  </data>
+  <data name="Rebuild.CurrentAdmin" xml:space="preserve">
+    <value>Administrator running the script</value>
+  </data>
+  <data name="Rebuild.CurrentAdmin.Hint" xml:space="preserve">
+    <value>Not changed by the script: the CLI asks for its current password. Change it by hand at the end.</value>
+  </data>
+  <data name="Rebuild.Passwords" xml:space="preserve">
+    <value>Passwords (ENC values are never copied)</value>
+  </data>
+  <data name="Rebuild.Passwords.Hint" xml:space="preserve">
+    <value>Type a password twice for a category, or let Shiftwall generate a new random one for this migration (administrators, local users, VPN keys). LDAP/RADIUS secrets and PPPoE passwords must match the real ones: type them, or set them by hand later.</value>
+  </data>
+  <data name="Rebuild.Generate" xml:space="preserve">
+    <value>Generate the passwords I leave empty</value>
+  </data>
+  <data name="Rebuild.Secret.Admin" xml:space="preserve">
+    <value>Administrators</value>
+  </data>
+  <data name="Rebuild.Secret.LocalUser" xml:space="preserve">
+    <value>Local users</value>
+  </data>
+  <data name="Rebuild.Secret.VpnPsk" xml:space="preserve">
+    <value>VPN pre-shared keys</value>
+  </data>
+  <data name="Rebuild.Secret.Server" xml:space="preserve">
+    <value>LDAP / RADIUS servers</value>
+  </data>
+  <data name="Rebuild.Secret.Pppoe" xml:space="preserve">
+    <value>PPPoE (provider)</value>
+  </data>
+  <data name="Rebuild.Secret.Other" xml:space="preserve">
+    <value>Other secrets</value>
+  </data>
+  <data name="Rebuild.Secret.Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Rebuild.Secret.Confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="Rebuild.Secret.Mismatch" xml:space="preserve">
+    <value>The two passwords are different.</value>
+  </data>
+  <data name="Rebuild.Secret.Invalid" xml:space="preserve">
+    <value>Fix the passwords marked in red, or leave them empty.</value>
+  </data>
+  <data name="Rebuild.Secret.Problem.TooShort" xml:space="preserve">
+    <value>at least 12 characters</value>
+  </data>
+  <data name="Rebuild.Secret.Problem.MissingUpper" xml:space="preserve">
+    <value>an upper-case letter</value>
+  </data>
+  <data name="Rebuild.Secret.Problem.MissingLower" xml:space="preserve">
+    <value>a lower-case letter</value>
+  </data>
+  <data name="Rebuild.Secret.Problem.MissingDigit" xml:space="preserve">
+    <value>a number</value>
+  </data>
+  <data name="Rebuild.Secret.Problem.MissingSymbol" xml:space="preserve">
+    <value>a symbol among ! $ % &amp; * + - = @ ^ _ ~</value>
+  </data>
+  <data name="Rebuild.Secret.Problem.ForbiddenCharacter" xml:space="preserve">
+    <value>no ? # ' " \ &lt; &gt; ( ), spaces or tabs (CLI special characters)</value>
+  </data>
+  <data name="Rebuild.Secret.Problem.NotAscii" xml:space="preserve">
+    <value>only plain ASCII characters</value>
+  </data>
+  <data name="Rebuild.Addressing" xml:space="preserve">
+    <value>Addressing on the target</value>
+  </data>
+  <data name="Rebuild.Addressing.Keep" xml:space="preserve">
+    <value>As on the source</value>
+  </data>
+  <data name="Rebuild.Addressing.Static" xml:space="preserve">
+    <value>Static</value>
+  </data>
+  <data name="Rebuild.Addressing.Dhcp" xml:space="preserve">
+    <value>DHCP</value>
+  </data>
+  <data name="Rebuild.Address" xml:space="preserve">
+    <value>IP/mask</value>
+  </data>
+  <data name="Rebuild.Gateway" xml:space="preserve">
+    <value>Gateway</value>
+  </data>
+  <data name="Rebuild.Dns" xml:space="preserve">
+    <value>DNS</value>
+  </data>
+  <data name="Rebuild.TypedTarget" xml:space="preserve">
+    <value>'{0}' is not an interface of the target: load the factory-default backup of the new FortiGate, or pick a name from the list.</value>
+  </data>
+  <data name="Rebuild.Counts" xml:space="preserve">
+    <value>Objects</value>
+  </data>
+  <data name="Rebuild.Manual" xml:space="preserve">
+    <value>To do by hand</value>
+  </data>
+  <data name="Rebuild.Script" xml:space="preserve">
+    <value>Script (passwords hidden)</value>
+  </data>
+  <data name="Rebuild.Col.Object" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="Rebuild.Col.Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Rebuild.Col.Source" xml:space="preserve">
+    <value>Source</value>
+  </data>
+  <data name="Rebuild.Col.Rebuilt" xml:space="preserve">
+    <value>In the script</value>
+  </data>
+  <data name="Rebuild.Col.Converted" xml:space="preserve">
+    <value>Converted</value>
+  </data>
+  <data name="Rebuild.Col.Manual" xml:space="preserve">
+    <value>By hand</value>
+  </data>
+  <data name="Rebuild.Col.Reason" xml:space="preserve">
+    <value>Why and what to do</value>
+  </data>
+  <data name="Rebuild.LintError" xml:space="preserve">
+    <value>Final check failed at line {0}: {1} {2}</value>
+  </data>
+  <data name="Rebuild.LintBlocked" xml:space="preserve">
+    <value>{0} did not pass the final check and was not saved: {1}</value>
+  </data>
+  <data name="Rebuild.Save.Title" xml:space="preserve">
+    <value>Save the scripts</value>
+  </data>
+  <data name="Rebuild.Save.Hint" xml:space="preserve">
+    <value>Two versions with the same commands: one for the GUI (admin menu &gt; Configuration &gt; Scripts &gt; Run Script, parts in order) and one for the terminal (CLI Console or SSH, small blocks to paste one at a time). Run them on the new FortiGate with its factory configuration.</value>
+  </data>
+  <data name="Rebuild.Save.Gui" xml:space="preserve">
+    <value>Save for GUI</value>
+  </data>
+  <data name="Rebuild.Save.Terminal" xml:space="preserve">
+    <value>Save for terminal</value>
+  </data>
+  <data name="Rebuild.Save.Secrets" xml:space="preserve">
+    <value>Save encrypted</value>
+  </data>
+  <data name="Rebuild.Saved" xml:space="preserve">
+    <value>{0} files saved in {1}.</value>
+  </data>
+  <data name="Rebuild.Guide" xml:space="preserve">
+    <value>Step-by-step guide and how to read the errors: docs/load-scripts.md and docs/LAB-TEST.md in the Shiftwall repository.</value>
+  </data>
+  <data name="Rebuild.PasswordsOnce" xml:space="preserve">
+    <value>New passwords (shown only now)</value>
+  </data>
+  <data name="Rebuild.PasswordsOnce.Hint" xml:space="preserve">
+    <value>These accounts and keys get these passwords. Change them at the first login and give the new VPN keys to whoever manages the other side. They are not in the report or in the logs: save them encrypted if you need them later.</value>
+  </data>
+  <data name="Rebuild.Vault.Label" xml:space="preserve">
+    <value>File password (12+ characters)</value>
+  </data>
+  <data name="Rebuild.Vault.TooShort" xml:space="preserve">
+    <value>The file password must have at least 12 characters.</value>
+  </data>
+  <data name="Rebuild.Hide" xml:space="preserve">
+    <value>I saved them: hide</value>
+  </data>
 </root>

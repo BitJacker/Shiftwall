@@ -50,4 +50,18 @@ public partial class MigrationWizardView : UserControl
             vm.Map(row.Name, target);
         }
     }
+
+    /// <summary>Password boxes cannot be bound: their content goes to the row and is never stored elsewhere.</summary>
+    private void OnSecretChanged(object sender, RoutedEventArgs e)
+    {
+        if (sender is not PasswordBox { DataContext: SecretRow row } box) return;
+        if (Equals(box.Tag, "confirm")) row.SetConfirm(box.Password);
+        else row.SetPassword(box.Password);
+        Vm?.NextCommand.RaiseCanExecuteChanged();
+    }
+
+    private void OnVaultPasswordChanged(object sender, RoutedEventArgs e)
+    {
+        if (sender is PasswordBox box) Vm?.SetVaultPassword(box.Password);
+    }
 }

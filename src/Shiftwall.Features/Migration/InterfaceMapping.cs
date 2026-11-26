@@ -43,7 +43,8 @@ public sealed class InterfaceMapping
     /// </summary>
     /// <param name="source">Source physical interfaces with their usage count (references in the configuration).</param>
     /// <param name="targetInterfaces">Target physical interfaces.</param>
-    public static InterfaceMapping Suggest(IEnumerable<(string Name, int Usage)> source, IEnumerable<string> targetInterfaces)
+    /// <param name="lanFallback">When false (rebuild mode), WAN and DMZ ports without a counterpart stay unmapped instead of taking LAN ports.</param>
+    public static InterfaceMapping Suggest(IEnumerable<(string Name, int Usage)> source, IEnumerable<string> targetInterfaces, bool lanFallback = true)
     {
         var src = source.ToList();
         var free = targetInterfaces.Distinct(StringComparer.Ordinal).ToList();
@@ -75,13 +76,20 @@ public sealed class InterfaceMapping
         Assign(PortRole.Dmz, r => r == PortRole.Dmz);
         Assign(PortRole.Fiber, r => r == PortRole.Fiber);
         Assign(PortRole.Lan, r => r == PortRole.Lan);
+        // A switch-mode "internal" goes to a target switch called "lan"/"internal" when the target list has one
+        // (rebuild mode lists the logical interfaces of a factory-default backup), else to the first LAN port left.
+        Assign(PortRole.SwitchModeLan, r => r == PortRole.SwitchModeLan);
         Assign(PortRole.SwitchModeLan, r => r == PortRole.Lan);
+        if (!lanFallback) return m;
         Assign(PortRole.Wan, r => r == PortRole.Lan);
         Assign(PortRole.Dmz, r => r == PortRole.Lan);
         return m;
     }
 
     internal enum PortRole { Other, Wan, Dmz, Lan, Fiber, SwitchModeLan }
+
+    /// <summary>True for LAN ports and for the built-in switch of older models (internal, lan).</summary>
+    public static bool IsLanLike(string name) => RoleOf(name) is PortRole.Lan or PortRole.SwitchModeLan;
 
     internal static PortRole RoleOf(string name)
     {
