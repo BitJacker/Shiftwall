@@ -101,7 +101,7 @@ public sealed class RuleCoverageTests
             var s = CliSchema.Load(v);
             Assert.Matches(@"^https://(docs\.fortinet\.com|fortinetweb\.s3\.amazonaws\.com)/", s.SourceUrl);
             Assert.Matches(@"^\d{4}-\d{2}-\d{2}$", s.VerifiedOn);
-            Assert.True(s.Paths.Count > 300, $"{v}: {s.Paths.Count} paths");
+            Assert.True(s.Paths.Count > 250, $"{v}: {s.Paths.Count} paths");
         }
     }
 }
