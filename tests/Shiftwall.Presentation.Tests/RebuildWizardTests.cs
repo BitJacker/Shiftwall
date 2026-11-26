@@ -106,6 +106,23 @@ public sealed class RebuildWizardTests : IDisposable
     }
 
     [Fact]
+    public async Task Profiles_DefaultOrDisabled_AreShownPerPolicy()
+    {
+        await LoadAsync();
+        _vm.Row("wan2")!.Target = "lan3";
+        await _vm.RunRebuildAsync();
+        var row = Assert.Single(_vm.ProfileRows);
+        Assert.Equal("1", row.Policy);
+        Assert.Contains("webfilter-profile default", row.Applied, StringComparison.Ordinal);
+        Assert.Equal("attiva", row.Status);
+
+        _vm.ProfileHandling = ProfileHandling.DisablePolicy;
+        await _vm.RunRebuildAsync();
+        Assert.Equal("disattivata", Assert.Single(_vm.ProfileRows).Status);
+        Assert.Contains("set status disable", _vm.RebuildResult!.FullScript());
+    }
+
+    [Fact]
     public async Task TypedName_OffersToCreateIt_AsAVlan()
     {
         await LoadAsync();

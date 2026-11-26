@@ -74,6 +74,22 @@ The interface names actually used are always read from the source backup.
 Models with a hardware-switch chip table in Shiftwall: only FG-40F (the only one with a source above). For any other model a
 new switch is a software switch, with a warning (RB-061).
 
+## Security profiles of the policies (rule P001)
+
+| Fact | Source |
+|---|---|
+| Preloaded antivirus profiles: `default`, `wifi-default` | [8.0.1 Administration Guide: Antivirus introduction](https://docs.fortinet.com/document/fortigate/8.0.1/administration-guide/723287/antivirus-introduction) |
+| Preloaded web filter profiles: `default`, `monitor-all`, `wifi-default` | [8.0.0 Administration Guide: Web filter introduction](https://docs.fortinet.com/document/fortigate/8.0.0/administration-guide/155426/web-filter-introduction) |
+| Preloaded application sensors: `default`, `wifi-default`, `block-high-risk` | [8.0.0 Administration Guide: Application control](https://docs.fortinet.com/document/fortigate/8.0.0/administration-guide/302748/application-control) |
+| Predefined IPS sensors: `all_default`, `all_default_pass`, `default`, `high_security`, `protect_client`, `protect_email_server`, `protect_http_server`, `wifi-default` | [8.0.0 Administration Guide: Intrusion prevention](https://docs.fortinet.com/document/fortigate/8.0.0/administration-guide/565562/intrusion-prevention) |
+| Preloaded SSL/SSH inspection profiles: `certificate-inspection`, `deep-inspection`, `no-inspection` (read-only), `custom-deep-inspection` | [8.0.0 Administration Guide: SSL & SSH Inspection](https://docs.fortinet.com/document/fortigate/8.0.0/administration-guide/929997/ssl-ssh-inspection) |
+| Policy defaults: `profile-protocol-options` `default`, `ssl-ssh-profile` `no-inspection`, `inspection-mode` `flow`, `status` `enable` | 8.0 CLI Reference, `config firewall policy` (data/schemas/8.0.json) |
+| 5.2: `ssl-ssh-profile` of a policy has no default | FortiOS 5.2 CLI Reference PDF (firewall policy, ssl-ssh-profile: "No default") |
+| DNS filter, email filter, DLP, ICAP, VoIP, WAF, profile groups | **No preloaded name found in the 8.0 documentation**: never replaced; the policy is written with `set status disable` (RB-070) |
+
+With a factory-default backup the replacement profile must exist in it; without the backup the names come only from the
+pages above and the report says they are not checked on the device (RB-071).
+
 ## SSL VPN → IPsec dial-up
 
 | What | Source |

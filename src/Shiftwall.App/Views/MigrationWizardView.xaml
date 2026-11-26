@@ -112,6 +112,7 @@
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
                                     <TextBlock Text="{l:T Rebuild.Management}" VerticalAlignment="Center" TextWrapping="Wrap" />
                                     <ComboBox Grid.Column="1" IsEditable="True" ItemsSource="{Binding TargetChoices}" Text="{Binding ManagementInterface, UpdateSourceTrigger=LostFocus}"
@@ -121,6 +122,10 @@
                                     <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding CurrentAdmin, UpdateSourceTrigger=PropertyChanged}" Margin="0,2"
                                              AutomationProperties.Name="{l:T Rebuild.CurrentAdmin}" />
                                     <TextBlock Grid.Row="1" Grid.Column="2" Text="{l:T Rebuild.CurrentAdmin.Hint}" Style="{StaticResource Muted}" FontSize="12" TextWrapping="Wrap" Margin="10,0,0,0" VerticalAlignment="Center" />
+                                    <TextBlock Grid.Row="2" Text="{l:T Rebuild.Profiles}" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                    <ComboBox Grid.Row="2" Grid.Column="1" DisplayMemberPath="Text" SelectedValuePath="Value" SelectedValue="{Binding ProfileHandling}"
+                                              ItemsSource="{Binding ProfileChoices}" AutomationProperties.Name="{l:T Rebuild.Profiles}" Margin="0,2" />
+                                    <TextBlock Grid.Row="2" Grid.Column="2" Text="{l:T Rebuild.Profiles.Hint}" Style="{StaticResource Muted}" FontSize="12" TextWrapping="Wrap" Margin="10,0,0,0" VerticalAlignment="Center" />
                                 </Grid>
                                 <TextBlock Text="{l:T Rebuild.Passwords}" Style="{StaticResource SectionTitle}" Margin="0,4,0,4" />
                                 <TextBlock Text="{l:T Rebuild.Passwords.Hint}" Style="{StaticResource Muted}" FontSize="12" TextWrapping="Wrap" Margin="0,0,0,6" />
@@ -375,6 +380,29 @@
                                     <DataGridTextColumn Header="{l:T Rebuild.Col.Rebuilt}" Binding="{Binding Rebuilt}" Width="110" />
                                     <DataGridTextColumn Header="{l:T Rebuild.Col.Converted}" Binding="{Binding Converted}" Width="110" />
                                     <DataGridTextColumn Header="{l:T Rebuild.Col.Manual}" Binding="{Binding Manual}" Width="90" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </TabItem>
+                        <TabItem Header="{l:T Rebuild.Profiles.Tab}">
+                            <DataGrid ItemsSource="{Binding ProfileRows}" AutoGenerateColumns="False" IsReadOnly="True" HeadersVisibility="Column"
+                                      AutomationProperties.Name="{l:T Rebuild.Profiles.Tab}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="{l:T Rebuild.Col.Policy}" Binding="{Binding Policy}" Width="80" />
+                                    <DataGridTemplateColumn Header="{l:T Rebuild.Col.OriginalProfiles}" Width="*">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Original}" TextWrapping="Wrap" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTemplateColumn Header="{l:T Rebuild.Col.AppliedProfiles}" Width="*">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Applied}" TextWrapping="Wrap" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTextColumn Header="{l:T Rebuild.Col.Status}" Binding="{Binding Status}" Width="120" />
                                 </DataGrid.Columns>
                             </DataGrid>
                         </TabItem>

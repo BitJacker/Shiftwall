@@ -29,6 +29,7 @@ public sealed partial class MigrationWizardViewModel
     private bool _generatePasswords = true;
     private string _currentAdmin = "admin";
     private string? _managementInterface;
+    private ProfileHandling _profileHandling = ProfileHandling.ApplyDefaults;
     private string? _passwordSummary;
     private string _vaultPassword = "";
     private string _scriptPreview = "";
@@ -56,6 +57,17 @@ public sealed partial class MigrationWizardViewModel
     public ObservableCollection<CountRow> Counts { get; } = [];
 
     public ObservableCollection<ManualRow> ManualRows { get; } = [];
+
+    public ObservableCollection<ProfileRow> ProfileRows { get; } = [];
+
+    public IReadOnlyList<Choice<ProfileHandling>> ProfileChoices { get; } =
+    [
+        new(ProfileHandling.ApplyDefaults, "Rebuild.Profiles.Defaults"),
+        new(ProfileHandling.DisablePolicy, "Rebuild.Profiles.Disable"),
+    ];
+
+    /// <summary>Policies whose profiles do not exist on the target: preloaded default profiles, or written disabled.</summary>
+    public ProfileHandling ProfileHandling { get => _profileHandling; set => Set(ref _profileHandling, value); }
 
     public ObservableCollection<MessageItem> RebuildFindings { get; } = [];
 
@@ -190,7 +202,7 @@ public sealed partial class MigrationWizardViewModel
                 RebuildTargets.From(target, Target.IsBackupMode ? Target.Backup?.Document : null),
                 plans,
                 secrets,
-                new RebuildOptions(string.IsNullOrEmpty(_currentAdmin) ? "admin" : _currentAdmin, _managementInterface),
+                new RebuildOptions(string.IsNullOrEmpty(_currentAdmin) ? "admin" : _currentAdmin, _managementInterface, Profiles: _profileHandling),
                 created);
             _rebuild = await Task.Run(() => RebuildEngine.Run(request));
             PublishRebuild();
@@ -206,11 +218,16 @@ public sealed partial class MigrationWizardViewModel
     {
         Counts.Clear();
         ManualRows.Clear();
+        ProfileRows.Clear();
         RebuildFindings.Clear();
         Checklist.Clear();
         if (_rebuild is null) return;
         foreach (var c in _rebuild.Counts) Counts.Add(new CountRow(c.Path, c.Source, c.Rebuilt, c.Converted, c.Manual));
         foreach (var m in _rebuild.Manual) ManualRows.Add(new ManualRow(m.Path, m.Object, m.Format(Loc.Instance.Culture), m.Original));
+        foreach (var p in _rebuild.Profiles)
+        {
+            ProfileRows.Add(new ProfileRow(p.Policy, string.Join("; ", p.Original), string.Join("; ", p.Applied), Loc.T(p.Disabled ? "Rebuild.Profiles.Disabled" : "Rebuild.Profiles.Enabled")));
+        }
         foreach (var f in _rebuild.Findings) RebuildFindings.Add(MessageItem.From(f));
         foreach (var l in _rebuild.Lint.Where(l => l.Severity == LintSeverity.Error))
         {
@@ -316,6 +333,7 @@ public sealed partial class MigrationWizardViewModel
         _rebuild = null;
         Counts.Clear();
         ManualRows.Clear();
+        ProfileRows.Clear();
         RebuildFindings.Clear();
         ScriptPreview = "";
         PasswordSummary = null;

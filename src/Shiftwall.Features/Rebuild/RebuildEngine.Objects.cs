@@ -509,13 +509,30 @@ public sealed partial class RebuildEngine
                 continue;
             }
 
-            var profiles = new List<string>();
+            var original = new List<string>();
+            var applied = new List<string>();
+            var lost = new List<string>();
             ValueHook hook = (param, values, t) =>
             {
                 if (param == "utm-status") return null; // written below only if a profile is kept
                 if (!ProfileParams.Contains(param)) return DefaultHook(path)!(param, values, t);
-                if (ProfileTables.TryGetValue(param, out var table) && values.Count == 1 && ExistsOnTarget(table, values[0])) return values;
-                profiles.Add($"{param} {string.Join(' ', values)}");
+                var text = $"{param} {string.Join(' ', values)}";
+                original.Add(text);
+                if (ProfileTables.TryGetValue(param, out var table) && values.Count == 1
+                    && (ExistsOnTarget(table, values[0]) || (_req.Target.DefaultBackup is null && PreloadedNames.GetValueOrDefault(param)?.Contains(values[0]) == true)))
+                {
+                    applied.Add(text);
+                    return values;
+                }
+
+                if (_opt.Profiles == ProfileHandling.ApplyDefaults && DefaultProfile(param) is { } d)
+                {
+                    applied.Add($"{param} {d}");
+                    _applied.Add(new AppliedRule("P001", path, e.Key, param));
+                    return [d];
+                }
+
+                lost.Add(text);
                 return null;
             };
             var t = Translate(path, [], e, node, e.Key, e.Key, hook);
@@ -526,9 +543,26 @@ public sealed partial class RebuildEngine
                 t.Entry.Sets.Insert(first, new CliSet("utm-status", ["enable"], false));
             }
 
-            if (profiles.Count > 0 && t.Fatal is null)
+            // No policy that had protection on the source leaves without it: what cannot be protected is disabled.
+            var replaced = applied.Except(original).ToList();
+            var disable = t.Fatal is null && (lost.Count > 0 || (_opt.Profiles == ProfileHandling.DisablePolicy && original.Count > 0 && replaced.Count > 0));
+            if (disable && !t.Entry.Sets.Any(x => x.Param == "status" && x.Values.SequenceEqual(["disable"])))
             {
-                t.FieldItems.Add(Item(path, e.Key, RebuildCodes.ProfilesNotMigrated, [string.Join("; ", profiles)], Mask(e.ToText()), _rules.Rules.First(r => r.Id == "E002")));
+                t.Entry.Sets.RemoveAll(x => x.Param == "status");
+                t.Entry.Sets.Insert(0, new CliSet("status", ["disable"], false));
+            }
+
+            if (original.Count > 0 && t.Fatal is null)
+            {
+                _profiles.Add(new PolicyProfiles(e.Key, original, applied, disable));
+                var custom = original.Where(o => !applied.Contains(o)).ToList();
+                if (custom.Count > 0)
+                {
+                    t.FieldItems.Add(Item(path, e.Key, RebuildCodes.ProfilesNotMigrated, [string.Join("; ", custom)], Mask(e.ToText()), _rules.Rules.First(r => r.Id == "E002")));
+                }
+
+                if (disable) _findings.Add(MigrationFinding.Warning(RebuildCodes.PolicyDisabledForProfiles, e.Key, string.Join("; ", lost.Count > 0 ? lost : custom)));
+                else if (replaced.Count > 0) _findings.Add(MigrationFinding.Warning(RebuildCodes.DefaultProfilesApplied, e.Key, string.Join("; ", custom), string.Join("; ", replaced)));
             }
 
             if (Emit("policies", path, t, e.Key, e)) Count(path, rebuilt: 1);
@@ -548,6 +582,16 @@ public sealed partial class RebuildEngine
                 _findings.Add(MigrationFinding.Warning(RebuildCodes.PolicyWithoutRoute, p.Key ?? "", d));
             }
         }
+    }
+
+    /// <summary>
+    /// The preloaded profile of FortiOS 8.0 that replaces a custom profile of the source, when its name is documented
+    /// (rule P001) and, with a factory-default backup, it exists there. Null when there is no documented equivalent.
+    /// </summary>
+    private string? DefaultProfile(string param)
+    {
+        if (!PreloadedProfiles.TryGetValue(param, out var name) || !ProfileTables.TryGetValue(param, out var table)) return null;
+        return _req.Target.DefaultBackup is null || ExistsOnTarget(table, name) ? name : null;
     }
 
     private bool ExistsOnTarget(string table, string name) =>

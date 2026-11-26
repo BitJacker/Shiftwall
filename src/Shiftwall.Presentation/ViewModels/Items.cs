@@ -298,3 +298,6 @@ public sealed record CountRow(string Path, int Source, int Rebuilt, int Converte
 
 /// <summary>A row of the manual work list.</summary>
 public sealed record ManualRow(string Path, string Object, string Reason, string Original);
+
+/// <summary>Security profiles of one policy: as on the source, as written, and whether the policy is disabled.</summary>
+public sealed record ProfileRow(string Policy, string Original, string Applied, string Status);

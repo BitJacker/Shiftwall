@@ -700,4 +700,37 @@ Compare the fingerprint with the one shown by the FortiGate (System › Certific
   <data name="Rebuild.Port.Switch" xml:space="preserve">
     <value>switch: {0}</value>
   </data>
+  <data name="Rebuild.Profiles" xml:space="preserve">
+    <value>Security profiles not on the target</value>
+  </data>
+  <data name="Rebuild.Profiles.Defaults" xml:space="preserve">
+    <value>Apply the FortiOS 8.0 default profiles</value>
+  </data>
+  <data name="Rebuild.Profiles.Disable" xml:space="preserve">
+    <value>Write the policy disabled</value>
+  </data>
+  <data name="Rebuild.Profiles.Hint" xml:space="preserve">
+    <value>No policy leaves without protection: with the defaults, a profile with no documented default disables the policy anyway.</value>
+  </data>
+  <data name="Rebuild.Profiles.Tab" xml:space="preserve">
+    <value>Profiles</value>
+  </data>
+  <data name="Rebuild.Profiles.Disabled" xml:space="preserve">
+    <value>disabled</value>
+  </data>
+  <data name="Rebuild.Profiles.Enabled" xml:space="preserve">
+    <value>enabled</value>
+  </data>
+  <data name="Rebuild.Col.Policy" xml:space="preserve">
+    <value>Policy</value>
+  </data>
+  <data name="Rebuild.Col.OriginalProfiles" xml:space="preserve">
+    <value>Profiles on the source</value>
+  </data>
+  <data name="Rebuild.Col.AppliedProfiles" xml:space="preserve">
+    <value>Profiles written</value>
+  </data>
+  <data name="Rebuild.Col.Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
 </root>

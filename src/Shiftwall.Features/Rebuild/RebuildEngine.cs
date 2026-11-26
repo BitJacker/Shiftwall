@@ -91,6 +91,31 @@ public sealed partial class RebuildEngine
         ["ssl-ssh-profile"] = "firewall ssl-ssh-profile",
     };
 
+    /// <summary>
+    /// Preloaded profiles of FortiOS 8.0 (Administration Guide 8.0: Antivirus introduction, Web filter introduction,
+    /// Application control, Intrusion prevention; SSL/SSH inspection; CLI Reference: profile-protocol-options default).
+    /// </summary>
+    internal static readonly Dictionary<string, string> PreloadedProfiles = new()
+    {
+        ["av-profile"] = "default",
+        ["webfilter-profile"] = "default",
+        ["application-list"] = "default",
+        ["ips-sensor"] = "default",
+        ["profile-protocol-options"] = "default",
+        ["ssl-ssh-profile"] = "certificate-inspection",
+    };
+
+    /// <summary>All the preloaded profile names documented for FortiOS 8.0 (same sources): kept as they are.</summary>
+    internal static readonly Dictionary<string, string[]> PreloadedNames = new()
+    {
+        ["av-profile"] = ["default", "wifi-default"],
+        ["webfilter-profile"] = ["default", "monitor-all", "wifi-default"],
+        ["application-list"] = ["default", "wifi-default", "block-high-risk"],
+        ["ips-sensor"] = ["all_default", "all_default_pass", "default", "high_security", "protect_client", "protect_email_server", "protect_http_server", "wifi-default"],
+        ["profile-protocol-options"] = ["default"],
+        ["ssl-ssh-profile"] = ["certificate-inspection", "deep-inspection", "no-inspection", "custom-deep-inspection"],
+    };
+
     /// <summary>Parameter names that hold secrets: masked in every report even when not ENC.</summary>
     internal static readonly HashSet<string> SecretParams = new(StringComparer.Ordinal)
     {
@@ -115,6 +140,7 @@ public sealed partial class RebuildEngine
     private readonly HashSet<(string Path, string Key)> _emittedKeys = [];
     private readonly HashSet<string> _noDefaultRoute = new(StringComparer.Ordinal);
     private SwitchLayout _layout = new();
+    private readonly List<PolicyProfiles> _profiles = [];
 
     private RebuildEngine(RebuildRequest req, CliSchema target, RuleSet rules)
     {
@@ -153,7 +179,7 @@ public sealed partial class RebuildEngine
         var script = CliRenderer.Render(sections.Where(s => !s.IsEmpty).SelectMany(s => s.Blocks));
         var lint = CliLint.Check(script, target, allowComments: false);
         var counts = e._counts.Select(kv => new ObjectCount(kv.Key, kv.Value.Source, kv.Value.Rebuilt, kv.Value.Converted, kv.Value.Manual)).ToList();
-        return new RebuildResult(sections, e._manual, counts, e._applied, e._secrets, e._findings, lint, target);
+        return new RebuildResult(sections, e._manual, counts, e._applied, e._secrets, e._findings, lint, target) { Profiles = e._profiles };
     }
 
     // ------------------------------------------------------------------ build
@@ -244,6 +270,11 @@ public sealed partial class RebuildEngine
         RebuildDhcp(doc);
         ReportOtherSections(doc, ssl);
         AddFindings(ssl);
+        if (_profiles.Count > 0 && _req.Target.DefaultBackup is null && _opt.Profiles == ProfileHandling.ApplyDefaults)
+        {
+            _findings.Add(MigrationFinding.Warning(RebuildCodes.DefaultProfilesUnverified));
+        }
+
         if (!_sections["factory-management"].IsEmpty) _findings.Add(MigrationFinding.Warning(RebuildCodes.FactoryManagementChanged, FactoryManagement!, _opt.ManagementInterface ?? "-"));
     }
 

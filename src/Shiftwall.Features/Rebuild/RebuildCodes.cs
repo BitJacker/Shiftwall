@@ -71,4 +71,7 @@ public static class RebuildCodes
     public const string SwitchNoPhysicalSwitch = "RB-066";
     public const string SoftwareSwitchUsed = "RB-067";
     public const string FactoryManagementChanged = "RB-068";
+    public const string DefaultProfilesApplied = "RB-069";
+    public const string PolicyDisabledForProfiles = "RB-070";
+    public const string DefaultProfilesUnverified = "RB-071";
 }

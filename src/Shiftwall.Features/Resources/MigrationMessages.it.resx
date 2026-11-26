@@ -335,4 +335,34 @@
   <data name="RB-068" xml:space="preserve">
     <value>Il PC è collegato a '{0}' (gestione della configurazione di fabbrica) e lo script modifica anche '{0}': queste modifiche sono nella parte 'factory-management', dopo quella della nuova interfaccia di gestione '{1}'. Collega il PC a una porta che resta in '{0}' (non a una di quelle tolte dallo switch). Dopo quella parte la connessione cade: sposta il cavo su una porta di '{1}', dai al PC un indirizzo statico nella subnet di '{1}', ricollegati ed esegui l'ultima parte.</value>
   </data>
+  <data name="RB-069" xml:space="preserve">
+    <value>Policy {0}: i profili personalizzati {1} non esistono sulla destinazione e sono sostituiti dai profili predefiniti di FortiOS 8.0 {2}, così la policy mantiene una protezione dello stesso tipo. Ricrea i profili personalizzati se ti servono le loro impostazioni esatte.</value>
+  </data>
+  <data name="RB-070" xml:space="preserve">
+    <value>La policy {0} è scritta disattivata (set status disable): i suoi profili di sicurezza {1} non vengono riportati e la policy non deve funzionare senza protezione. Controllala, assegna i profili e attivala.</value>
+  </data>
+  <data name="RB-071" xml:space="preserve">
+    <value>I nomi dei profili predefiniti ('default' per antivirus, web filter, application control e IPS, 'certificate-inspection' per SSL/SSH) vengono dall'Administration Guide di FortiOS 8.0 e senza il backup di fabbrica non sono verificati sul dispositivo.</value>
+  </data>
+  <data name="RBR.Profiles" xml:space="preserve">
+    <value>Profili di sicurezza per policy</value>
+  </data>
+  <data name="RBR.Policy" xml:space="preserve">
+    <value>Policy</value>
+  </data>
+  <data name="RBR.ProfilesOriginal" xml:space="preserve">
+    <value>Profili sulla sorgente</value>
+  </data>
+  <data name="RBR.ProfilesApplied" xml:space="preserve">
+    <value>Profili scritti</value>
+  </data>
+  <data name="RBR.Status" xml:space="preserve">
+    <value>Stato</value>
+  </data>
+  <data name="RBR.Disabled" xml:space="preserve">
+    <value>disattivata (set status disable): da controllare</value>
+  </data>
+  <data name="RBR.Enabled" xml:space="preserve">
+    <value>attiva</value>
+  </data>
 </root>

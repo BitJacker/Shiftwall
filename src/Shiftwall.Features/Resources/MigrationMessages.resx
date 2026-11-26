@@ -335,4 +335,34 @@
   <data name="RB-068" xml:space="preserve">
     <value>Your PC is connected to '{0}' (management on the factory configuration), and the script changes '{0}' too: those changes are in the part 'factory-management', after the part of the new management interface '{1}'. Connect the PC to a port that stays in '{0}' (not one taken out of the switch). After that part the connection drops: move the cable to a port of '{1}', give the PC a static address in the subnet of '{1}', reconnect and run the last part.</value>
   </data>
+  <data name="RB-069" xml:space="preserve">
+    <value>Policy {0}: the custom profiles {1} do not exist on the target and are replaced by the preloaded FortiOS 8.0 profiles {2}, so the policy keeps a protection of the same kind. Recreate the custom profiles if you need their exact settings.</value>
+  </data>
+  <data name="RB-070" xml:space="preserve">
+    <value>Policy {0} is written disabled (set status disable): its security profiles {1} are not carried over and the policy must not run without protection. Check it, assign the profiles and enable it.</value>
+  </data>
+  <data name="RB-071" xml:space="preserve">
+    <value>The preloaded profile names (antivirus, web filter, application control and IPS 'default', SSL/SSH 'certificate-inspection') come from the FortiOS 8.0 Administration Guide and are not checked on the device without its factory-default backup.</value>
+  </data>
+  <data name="RBR.Profiles" xml:space="preserve">
+    <value>Security profiles per policy</value>
+  </data>
+  <data name="RBR.Policy" xml:space="preserve">
+    <value>Policy</value>
+  </data>
+  <data name="RBR.ProfilesOriginal" xml:space="preserve">
+    <value>Profiles on the source</value>
+  </data>
+  <data name="RBR.ProfilesApplied" xml:space="preserve">
+    <value>Profiles written</value>
+  </data>
+  <data name="RBR.Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="RBR.Disabled" xml:space="preserve">
+    <value>disabled (set status disable): check it</value>
+  </data>
+  <data name="RBR.Enabled" xml:space="preserve">
+    <value>enabled</value>
+  </data>
 </root>

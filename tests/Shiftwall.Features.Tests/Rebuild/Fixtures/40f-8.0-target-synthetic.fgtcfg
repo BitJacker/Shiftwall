@@ -69,7 +69,28 @@ config system dhcp server
         end
     next
 end
+#shiftwall-fixture: the profiles below are the preloaded names documented in the FortiOS 8.0 Administration Guide (antivirus, web filter, application control, IPS, SSL/SSH inspection); their settings are not reproduced.
 config antivirus profile
+    edit "default"
+    next
+end
+config webfilter profile
+    edit "default"
+    next
+end
+config application list
+    edit "default"
+    next
+end
+config ips sensor
+    edit "default"
+    next
+end
+config firewall ssl-ssh-profile
+    edit "certificate-inspection"
+    next
+end
+config firewall profile-protocol-options
     edit "default"
     next
 end

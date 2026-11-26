@@ -700,4 +700,37 @@ Confronta l'impronta con quella mostrata dal FortiGate (Sistema › Certificati)
   <data name="Rebuild.Port.Switch" xml:space="preserve">
     <value>switch: {0}</value>
   </data>
+  <data name="Rebuild.Profiles" xml:space="preserve">
+    <value>Profili di sicurezza assenti sulla destinazione</value>
+  </data>
+  <data name="Rebuild.Profiles.Defaults" xml:space="preserve">
+    <value>Applica i profili predefiniti di FortiOS 8.0</value>
+  </data>
+  <data name="Rebuild.Profiles.Disable" xml:space="preserve">
+    <value>Crea la policy disattivata</value>
+  </data>
+  <data name="Rebuild.Profiles.Hint" xml:space="preserve">
+    <value>Nessuna policy resta senza protezione: anche con i predefiniti, un profilo senza predefinito documentato disattiva la policy.</value>
+  </data>
+  <data name="Rebuild.Profiles.Tab" xml:space="preserve">
+    <value>Profili</value>
+  </data>
+  <data name="Rebuild.Profiles.Disabled" xml:space="preserve">
+    <value>disattivata</value>
+  </data>
+  <data name="Rebuild.Profiles.Enabled" xml:space="preserve">
+    <value>attiva</value>
+  </data>
+  <data name="Rebuild.Col.Policy" xml:space="preserve">
+    <value>Policy</value>
+  </data>
+  <data name="Rebuild.Col.OriginalProfiles" xml:space="preserve">
+    <value>Profili sulla sorgente</value>
+  </data>
+  <data name="Rebuild.Col.AppliedProfiles" xml:space="preserve">
+    <value>Profili scritti</value>
+  </data>
+  <data name="Rebuild.Col.Status" xml:space="preserve">
+    <value>Stato</value>
+  </data>
 </root>

@@ -48,6 +48,21 @@ public static class RebuildReport
             sb.Append("</details>");
         }
 
+        sb.Append("<h2>").Append(E(T("RBR.Profiles"))).Append("</h2>");
+        if (result.Profiles.Count == 0) sb.Append("<p>—</p>");
+        else
+        {
+            sb.Append("<table><tr><th>").Append(E(T("RBR.Policy"))).Append("</th><th>").Append(E(T("RBR.ProfilesOriginal"))).Append("</th><th>")
+              .Append(E(T("RBR.ProfilesApplied"))).Append("</th><th>").Append(E(T("RBR.Status"))).Append("</th></tr>");
+            foreach (var p in result.Profiles)
+            {
+                sb.Append("<tr><td>").Append(E(p.Policy)).Append("</td><td><code>").Append(E(string.Join("; ", p.Original))).Append("</code></td><td><code>")
+                  .Append(E(string.Join("; ", p.Applied))).Append("</code></td><td>").Append(E(T(p.Disabled ? "RBR.Disabled" : "RBR.Enabled"))).Append("</td></tr>");
+            }
+
+            sb.Append("</table>");
+        }
+
         sb.Append("<h2>").Append(E(T("RBR.Rules"))).Append("</h2><table><tr><th>ID</th><th>").Append(E(T("RBR.Object"))).Append("</th><th>").Append(E(T("RBR.Param"))).Append("</th></tr>");
         foreach (var a in result.Applied) sb.Append(CultureInfo.InvariantCulture, $"<tr><td>{E(a.RuleId)}</td><td><code>{E(a.Path)}</code> {E(a.Object)}</td><td>{E(a.Param)}</td></tr>");
         sb.Append("</table>");

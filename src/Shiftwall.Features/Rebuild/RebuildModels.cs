@@ -68,11 +68,25 @@ public sealed record RebuildTarget(
     ConfigDocument? DefaultBackup,
     bool LowMemory);
 
+/// <summary>What happens to a policy whose security profiles do not exist on the target.</summary>
+public enum ProfileHandling
+{
+    /// <summary>The preloaded profile of the same kind on the target ("default"); without one the policy is disabled.</summary>
+    ApplyDefaults,
+
+    /// <summary>The policy is written with "set status disable" until it is checked by hand.</summary>
+    DisablePolicy,
+}
+
 public sealed record RebuildOptions(
     string CurrentAdmin = "admin",
     string? ManagementInterface = null,
     bool ConvertSslVpn = true,
-    string DialupTunnelName = "dialup_vpn");
+    string DialupTunnelName = "dialup_vpn",
+    ProfileHandling Profiles = ProfileHandling.ApplyDefaults);
+
+/// <summary>Security profiles of one policy: as on the source and as written on the target.</summary>
+public sealed record PolicyProfiles(string Policy, IReadOnlyList<string> Original, IReadOnlyList<string> Applied, bool Disabled);
 
 public sealed record RebuildRequest(
     ConfigDocument Source,
@@ -108,6 +122,9 @@ public sealed record RebuildResult(
     IReadOnlyList<LintIssue> Lint,
     CliSchema TargetSchema)
 {
+    /// <summary>One row per policy that had security profiles: original → applied, and whether it is disabled.</summary>
+    public IReadOnlyList<PolicyProfiles> Profiles { get; init; } = [];
+
     public bool IsBlocked => Findings.Any(f => f.Severity == FindingSeverity.Error);
 
     public bool LintPassed => Lint.All(l => l.Severity != LintSeverity.Error);
