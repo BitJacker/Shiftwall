@@ -129,6 +129,8 @@ def parse_param_table(table):
         name = squash(cells[0].text())
         if not name or name == "Parameter":
             continue
+        some_models = name.endswith("*")
+        name = name.rstrip("* ").strip()
         typ = squash(cells[2].text())
         d = {"t": typ}
         d.update(size_of(squash(cells[3].text())))
@@ -139,6 +141,8 @@ def parse_param_table(table):
             opts = option_names(cells[1])
             if opts:
                 d["o"] = opts
+        if some_models:
+            d["some_models"] = True  # "This parameter may not exist in some models."
         params[name] = d
         last = d
     return params

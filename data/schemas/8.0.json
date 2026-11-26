@@ -227,6 +227,8 @@
     },
     "sslvpn-authentication-errors-logs": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -251,14 +253,6 @@
      "d": "10"
     },
     "webfilter-logs": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "sslvpn-authentication-errors-logs *": {
      "t": "option",
      "d": "disable",
      "o": [
@@ -400,16 +394,22 @@
     },
     "fortindr-error-action": {
      "t": "option",
+     "d": "log-only",
+     "some_models": true,
      "o": [
       "log-only",
-      "block"
+      "block",
+      "ignore"
      ]
     },
     "fortindr-timeout-action": {
      "t": "option",
+     "d": "log-only",
+     "some_models": true,
      "o": [
       "log-only",
-      "block"
+      "block",
+      "ignore"
      ]
     },
     "fortisandbox-destination": {
@@ -423,9 +423,12 @@
     },
     "fortisandbox-error-action": {
      "t": "option",
+     "d": "log-only",
+     "some_models": true,
      "o": [
       "log-only",
-      "block"
+      "block",
+      "ignore"
      ]
     },
     "fortisandbox-max-upload": {
@@ -444,13 +447,20 @@
      ]
     },
     "fortisandbox-scan-timeout": {
-     "t": "integer"
+     "t": "integer",
+     "min": 30,
+     "max": 180,
+     "d": "60",
+     "some_models": true
     },
     "fortisandbox-timeout-action": {
      "t": "option",
+     "d": "log-only",
+     "some_models": true,
      "o": [
       "log-only",
-      "block"
+      "block",
+      "ignore"
      ]
     },
     "mobile-malware-db": {
@@ -506,48 +516,6 @@
     "external-blocklist <name>": {
      "t": "string",
      "len": 79
-    },
-    "fortindr-error-action *": {
-     "t": "option",
-     "d": "log-only",
-     "o": [
-      "log-only",
-      "block",
-      "ignore"
-     ]
-    },
-    "fortindr-timeout-action *": {
-     "t": "option",
-     "d": "log-only",
-     "o": [
-      "log-only",
-      "block",
-      "ignore"
-     ]
-    },
-    "fortisandbox-error-action *": {
-     "t": "option",
-     "d": "log-only",
-     "o": [
-      "log-only",
-      "block",
-      "ignore"
-     ]
-    },
-    "fortisandbox-scan-timeout *": {
-     "t": "integer",
-     "min": 30,
-     "max": 180,
-     "d": "60"
-    },
-    "fortisandbox-timeout-action *": {
-     "t": "option",
-     "d": "log-only",
-     "o": [
-      "log-only",
-      "block",
-      "ignore"
-     ]
     },
     "name": {
      "t": "string",
@@ -614,9 +582,12 @@
       },
       "fortindr": {
        "t": "option",
+       "d": "disable",
+       "some_models": true,
        "o": [
         "disable",
-        "block"
+        "block",
+        "monitor"
        ]
       },
       "fortisandbox": {
@@ -652,15 +623,6 @@
        "o": [
         "disable",
         "enable"
-       ]
-      },
-      "fortindr *": {
-       "t": "option",
-       "d": "disable",
-       "o": [
-        "disable",
-        "block",
-        "monitor"
        ]
       }
      },
@@ -893,9 +855,12 @@
       },
       "fortindr": {
        "t": "option",
+       "d": "disable",
+       "some_models": true,
        "o": [
         "disable",
-        "block"
+        "block",
+        "monitor"
        ]
       },
       "fortisandbox": {
@@ -931,15 +896,6 @@
        "o": [
         "disable",
         "enable"
-       ]
-      },
-      "fortindr *": {
-       "t": "option",
-       "d": "disable",
-       "o": [
-        "disable",
-        "block",
-        "monitor"
        ]
       }
      },
@@ -1012,9 +968,12 @@
       },
       "fortindr": {
        "t": "option",
+       "d": "disable",
+       "some_models": true,
        "o": [
         "disable",
-        "block"
+        "block",
+        "monitor"
        ]
       },
       "fortisandbox": {
@@ -1050,15 +1009,6 @@
        "o": [
         "disable",
         "enable"
-       ]
-      },
-      "fortindr *": {
-       "t": "option",
-       "d": "disable",
-       "o": [
-        "disable",
-        "block",
-        "monitor"
        ]
       }
      },
@@ -1139,9 +1089,12 @@
       },
       "fortindr": {
        "t": "option",
+       "d": "disable",
+       "some_models": true,
        "o": [
         "disable",
-        "block"
+        "block",
+        "monitor"
        ]
       },
       "fortisandbox": {
@@ -1177,15 +1130,6 @@
        "o": [
         "disable",
         "enable"
-       ]
-      },
-      "fortindr *": {
-       "t": "option",
-       "d": "disable",
-       "o": [
-        "disable",
-        "block",
-        "monitor"
        ]
       }
      },
@@ -1258,9 +1202,12 @@
       },
       "fortindr": {
        "t": "option",
+       "d": "disable",
+       "some_models": true,
        "o": [
         "disable",
-        "block"
+        "block",
+        "monitor"
        ]
       },
       "fortisandbox": {
@@ -1296,15 +1243,6 @@
        "o": [
         "disable",
         "enable"
-       ]
-      },
-      "fortindr *": {
-       "t": "option",
-       "d": "disable",
-       "o": [
-        "disable",
-        "block",
-        "monitor"
        ]
       }
      },
@@ -1395,9 +1333,12 @@
       },
       "fortindr": {
        "t": "option",
+       "d": "disable",
+       "some_models": true,
        "o": [
         "disable",
-        "block"
+        "block",
+        "monitor"
        ]
       },
       "fortisandbox": {
@@ -1433,15 +1374,6 @@
        "o": [
         "disable",
         "enable"
-       ]
-      },
-      "fortindr *": {
-       "t": "option",
-       "d": "disable",
-       "o": [
-        "disable",
-        "block",
-        "monitor"
        ]
       }
      },
@@ -1522,9 +1454,12 @@
       },
       "fortindr": {
        "t": "option",
+       "d": "disable",
+       "some_models": true,
        "o": [
         "disable",
-        "block"
+        "block",
+        "monitor"
        ]
       },
       "fortisandbox": {
@@ -1560,15 +1495,6 @@
        "o": [
         "disable",
         "enable"
-       ]
-      },
-      "fortindr *": {
-       "t": "option",
-       "d": "disable",
-       "o": [
-        "disable",
-        "block",
-        "monitor"
        ]
       }
      },
@@ -1649,9 +1575,12 @@
       },
       "fortindr": {
        "t": "option",
+       "d": "disable",
+       "some_models": true,
        "o": [
         "disable",
-        "block"
+        "block",
+        "monitor"
        ]
       },
       "fortisandbox": {
@@ -1687,15 +1616,6 @@
        "o": [
         "disable",
         "enable"
-       ]
-      },
-      "fortindr *": {
-       "t": "option",
-       "d": "disable",
-       "o": [
-        "disable",
-        "block",
-        "monitor"
        ]
       }
      },
@@ -1760,9 +1680,12 @@
       },
       "fortindr": {
        "t": "option",
+       "d": "disable",
+       "some_models": true,
        "o": [
         "disable",
-        "block"
+        "block",
+        "monitor"
        ]
       },
       "fortisandbox": {
@@ -1798,15 +1721,6 @@
        "o": [
         "disable",
         "enable"
-       ]
-      },
-      "fortindr *": {
-       "t": "option",
-       "d": "disable",
-       "o": [
-        "disable",
-        "block",
-        "monitor"
        ]
       }
      },
@@ -1871,9 +1785,12 @@
       },
       "fortindr": {
        "t": "option",
+       "d": "disable",
+       "some_models": true,
        "o": [
         "disable",
-        "block"
+        "block",
+        "monitor"
        ]
       },
       "fortisandbox": {
@@ -1909,15 +1826,6 @@
        "o": [
         "disable",
         "enable"
-       ]
-      },
-      "fortindr *": {
-       "t": "option",
-       "d": "disable",
-       "o": [
-        "disable",
-        "block",
-        "monitor"
        ]
       }
      },
@@ -5807,7 +5715,11 @@
        "len": 35
       },
       "match-percentage": {
-       "t": "integer"
+       "t": "integer",
+       "min": 1,
+       "max": 100,
+       "d": "10",
+       "some_models": true
       },
       "name": {
        "t": "string",
@@ -5863,15 +5775,10 @@
        "max": 4294967295,
        "d": "0"
       },
-      "match-percentage *": {
-       "t": "integer",
-       "min": 1,
-       "max": 100,
-       "d": "10"
-      },
-      "sensitivity <name> *": {
+      "sensitivity <name>": {
        "t": "string",
-       "len": 35
+       "len": 35,
+       "some_models": true
       },
       "sensor <name>": {
        "t": "string",
@@ -5982,10 +5889,18 @@
    "edit": false,
    "params": {
     "cache-mem-percent": {
-     "t": "integer"
+     "t": "integer",
+     "min": 1,
+     "max": 15,
+     "d": "2",
+     "some_models": true
     },
     "chunk-size": {
-     "t": "integer"
+     "t": "integer",
+     "min": 100,
+     "max": 100000,
+     "d": "2800",
+     "some_models": true
     },
     "config-builder-timeout": {
      "t": "integer",
@@ -5995,47 +5910,25 @@
     },
     "db-mode": {
      "t": "option",
-     "o": [
-      "stop-adding",
-      "remove-modified-then-oldest"
-     ]
-    },
-    "size": {
-     "t": "integer"
-    },
-    "storage-device": {
-     "t": "string"
-    },
-    "cache-mem-percent *": {
-     "t": "integer",
-     "min": 1,
-     "max": 15,
-     "d": "2"
-    },
-    "chunk-size *": {
-     "t": "integer",
-     "min": 100,
-     "max": 100000,
-     "d": "2800"
-    },
-    "db-mode *": {
-     "t": "option",
      "d": "stop-adding",
+     "some_models": true,
      "o": [
       "stop-adding",
       "remove-modified-then-oldest",
       "remove-oldest"
      ]
     },
-    "size *": {
+    "size": {
      "t": "integer",
      "min": 16,
      "max": 4294967295,
-     "d": "16"
+     "d": "16",
+     "some_models": true
     },
-    "storage-device *": {
+    "storage-device": {
      "t": "string",
-     "len": 35
+     "len": 35,
+     "some_models": true
     }
    },
    "sub": {
@@ -9927,72 +9820,8 @@
       },
       "synproxy-tcp-mss": {
        "t": "option",
-       "o": [
-        "0",
-        "256"
-       ]
-      },
-      "synproxy-tcp-sack": {
-       "t": "option",
-       "o": [
-        "enable",
-        "disable"
-       ]
-      },
-      "synproxy-tcp-timestamp": {
-       "t": "option",
-       "o": [
-        "enable",
-        "disable"
-       ]
-      },
-      "synproxy-tcp-window": {
-       "t": "option",
-       "o": [
-        "4096",
-        "8192"
-       ]
-      },
-      "synproxy-tcp-windowscale": {
-       "t": "option",
-       "o": [
-        "0",
-        "1"
-       ]
-      },
-      "synproxy-tos": {
-       "t": "option",
-       "o": [
-        "0",
-        "10"
-       ]
-      },
-      "synproxy-ttl": {
-       "t": "option",
-       "o": [
-        "32",
-        "64"
-       ]
-      },
-      "threshold": {
-       "t": "integer",
-       "min": 1,
-       "max": 2147483647,
-       "d": "0"
-      },
-      "threshold(default)": {
-       "t": "integer",
-       "min": 0,
-       "max": 4294967295,
-       "d": "0"
-      },
-      "name": {
-       "t": "string",
-       "len": 63
-      },
-      "synproxy-tcp-mss *": {
-       "t": "option",
        "d": "1460",
+       "some_models": true,
        "o": [
         "0",
         "256",
@@ -10004,25 +9833,28 @@
         "1500"
        ]
       },
-      "synproxy-tcp-sack *": {
+      "synproxy-tcp-sack": {
        "t": "option",
        "d": "disable",
+       "some_models": true,
        "o": [
         "enable",
         "disable"
        ]
       },
-      "synproxy-tcp-timestamp *": {
+      "synproxy-tcp-timestamp": {
        "t": "option",
        "d": "disable",
+       "some_models": true,
        "o": [
         "enable",
         "disable"
        ]
       },
-      "synproxy-tcp-window *": {
+      "synproxy-tcp-window": {
        "t": "option",
        "d": "32768",
+       "some_models": true,
        "o": [
         "4096",
         "8192",
@@ -10030,9 +9862,10 @@
         "32768"
        ]
       },
-      "synproxy-tcp-windowscale *": {
+      "synproxy-tcp-windowscale": {
        "t": "option",
        "d": "0",
+       "some_models": true,
        "o": [
         "0",
         "1",
@@ -10051,9 +9884,10 @@
         "14"
        ]
       },
-      "synproxy-tos *": {
+      "synproxy-tos": {
        "t": "option",
        "d": "255",
+       "some_models": true,
        "o": [
         "0",
         "10",
@@ -10073,15 +9907,32 @@
         "255"
        ]
       },
-      "synproxy-ttl *": {
+      "synproxy-ttl": {
        "t": "option",
        "d": "128",
+       "some_models": true,
        "o": [
         "32",
         "64",
         "128",
         "255"
        ]
+      },
+      "threshold": {
+       "t": "integer",
+       "min": 1,
+       "max": 2147483647,
+       "d": "0"
+      },
+      "threshold(default)": {
+       "t": "integer",
+       "min": 0,
+       "max": 4294967295,
+       "d": "0"
+      },
+      "name": {
+       "t": "string",
+       "len": 63
       }
      },
      "sub": {},
@@ -10204,72 +10055,8 @@
       },
       "synproxy-tcp-mss": {
        "t": "option",
-       "o": [
-        "0",
-        "256"
-       ]
-      },
-      "synproxy-tcp-sack": {
-       "t": "option",
-       "o": [
-        "enable",
-        "disable"
-       ]
-      },
-      "synproxy-tcp-timestamp": {
-       "t": "option",
-       "o": [
-        "enable",
-        "disable"
-       ]
-      },
-      "synproxy-tcp-window": {
-       "t": "option",
-       "o": [
-        "4096",
-        "8192"
-       ]
-      },
-      "synproxy-tcp-windowscale": {
-       "t": "option",
-       "o": [
-        "0",
-        "1"
-       ]
-      },
-      "synproxy-tos": {
-       "t": "option",
-       "o": [
-        "0",
-        "10"
-       ]
-      },
-      "synproxy-ttl": {
-       "t": "option",
-       "o": [
-        "32",
-        "64"
-       ]
-      },
-      "threshold": {
-       "t": "integer",
-       "min": 1,
-       "max": 2147483647,
-       "d": "0"
-      },
-      "threshold(default)": {
-       "t": "integer",
-       "min": 0,
-       "max": 4294967295,
-       "d": "0"
-      },
-      "name": {
-       "t": "string",
-       "len": 63
-      },
-      "synproxy-tcp-mss *": {
-       "t": "option",
        "d": "1460",
+       "some_models": true,
        "o": [
         "0",
         "256",
@@ -10281,25 +10068,28 @@
         "1500"
        ]
       },
-      "synproxy-tcp-sack *": {
+      "synproxy-tcp-sack": {
        "t": "option",
        "d": "disable",
+       "some_models": true,
        "o": [
         "enable",
         "disable"
        ]
       },
-      "synproxy-tcp-timestamp *": {
+      "synproxy-tcp-timestamp": {
        "t": "option",
        "d": "disable",
+       "some_models": true,
        "o": [
         "enable",
         "disable"
        ]
       },
-      "synproxy-tcp-window *": {
+      "synproxy-tcp-window": {
        "t": "option",
        "d": "32768",
+       "some_models": true,
        "o": [
         "4096",
         "8192",
@@ -10307,9 +10097,10 @@
         "32768"
        ]
       },
-      "synproxy-tcp-windowscale *": {
+      "synproxy-tcp-windowscale": {
        "t": "option",
        "d": "0",
+       "some_models": true,
        "o": [
         "0",
         "1",
@@ -10328,9 +10119,10 @@
         "14"
        ]
       },
-      "synproxy-tos *": {
+      "synproxy-tos": {
        "t": "option",
        "d": "255",
+       "some_models": true,
        "o": [
         "0",
         "10",
@@ -10350,15 +10142,32 @@
         "255"
        ]
       },
-      "synproxy-ttl *": {
+      "synproxy-ttl": {
        "t": "option",
        "d": "128",
+       "some_models": true,
        "o": [
         "32",
         "64",
         "128",
         "255"
        ]
+      },
+      "threshold": {
+       "t": "integer",
+       "min": 1,
+       "max": 2147483647,
+       "d": "0"
+      },
+      "threshold(default)": {
+       "t": "integer",
+       "min": 0,
+       "max": 4294967295,
+       "d": "0"
+      },
+      "name": {
+       "t": "string",
+       "len": 63
       }
      },
      "sub": {},
@@ -10662,7 +10471,9 @@
    "edit": true,
    "params": {
     "agent-id": {
-     "t": "string"
+     "t": "string",
+     "len": 19,
+     "some_models": true
     },
     "allow-routing": {
      "t": "option",
@@ -10970,10 +10781,6 @@
     "wildcard-fqdn": {
      "t": "string",
      "len": 255
-    },
-    "agent-id *": {
-     "t": "string",
-     "len": 19
     },
     "custom-tags <name>": {
      "t": "string",
@@ -13552,19 +13359,33 @@
      "d": "128"
     },
     "cgn-block-size": {
-     "t": "integer"
+     "t": "integer",
+     "min": 64,
+     "max": 4096,
+     "d": "128",
+     "some_models": true
     },
     "cgn-client-endip": {
-     "t": "var-string"
+     "t": "var-string",
+     "len": 255,
+     "some_models": true
     },
     "cgn-client-ipv6shift": {
-     "t": "integer"
+     "t": "integer",
+     "min": 0,
+     "max": 127,
+     "d": "0",
+     "some_models": true
     },
     "cgn-client-startip": {
-     "t": "var-string"
+     "t": "var-string",
+     "len": 255,
+     "some_models": true
     },
     "cgn-fixedalloc": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "disable",
       "enable"
@@ -13572,19 +13393,31 @@
     },
     "cgn-overload": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "disable",
       "enable"
      ]
     },
     "cgn-port-end": {
-     "t": "integer"
+     "t": "integer",
+     "min": 1024,
+     "max": 65535,
+     "d": "65530",
+     "some_models": true
     },
     "cgn-port-start": {
-     "t": "integer"
+     "t": "integer",
+     "min": 1024,
+     "max": 65535,
+     "d": "5117",
+     "some_models": true
     },
     "cgn-spa": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "disable",
       "enable"
@@ -13736,90 +13569,31 @@
      "d": "0"
     },
     "utilization-alarm-clear": {
-     "t": "integer"
+     "t": "integer",
+     "min": 40,
+     "max": 100,
+     "d": "80",
+     "some_models": true
     },
     "utilization-alarm-raise": {
-     "t": "integer"
+     "t": "integer",
+     "min": 50,
+     "max": 100,
+     "d": "100",
+     "some_models": true
     },
     "uuid": {
      "t": "uuid",
      "d": "00000000-0000-0000-0000-000000000000"
     },
-    "cgn-block-size *": {
-     "t": "integer",
-     "min": 64,
-     "max": 4096,
-     "d": "128"
-    },
-    "cgn-client-endip *": {
-     "t": "var-string",
-     "len": 255
-    },
-    "cgn-client-ipv6shift *": {
-     "t": "integer",
-     "min": 0,
-     "max": 127,
-     "d": "0"
-    },
-    "cgn-client-startip *": {
-     "t": "var-string",
-     "len": 255
-    },
-    "cgn-fixedalloc *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "disable",
-      "enable"
-     ]
-    },
-    "cgn-overload *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "disable",
-      "enable"
-     ]
-    },
-    "cgn-port-end *": {
-     "t": "integer",
-     "min": 1024,
-     "max": 65535,
-     "d": "65530"
-    },
-    "cgn-port-start *": {
-     "t": "integer",
-     "min": 1024,
-     "max": 65535,
-     "d": "5117"
-    },
-    "cgn-spa *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "disable",
-      "enable"
-     ]
-    },
-    "exclude-ip <ip> *": {
+    "exclude-ip <ip>": {
      "t": "string",
-     "len": 79
+     "len": 79,
+     "some_models": true
     },
     "name": {
      "t": "string",
      "len": 79
-    },
-    "utilization-alarm-clear *": {
-     "t": "integer",
-     "min": 40,
-     "max": 100,
-     "d": "80"
-    },
-    "utilization-alarm-raise *": {
-     "t": "integer",
-     "min": 50,
-     "max": 100,
-     "d": "100"
     }
    },
    "sub": {},
@@ -15016,13 +14790,17 @@
     },
     "capture-packet": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
      ]
     },
     "casb-profile": {
-     "t": "string"
+     "t": "string",
+     "len": 47,
+     "some_models": true
     },
     "comments": {
      "t": "var-string",
@@ -15236,7 +15014,9 @@
      ]
     },
     "icap-profile": {
-     "t": "string"
+     "t": "string",
+     "len": 47,
+     "some_models": true
     },
     "identity-based-route": {
      "t": "string",
@@ -15517,6 +15297,8 @@
     },
     "np-acceleration": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -15810,7 +15592,9 @@
      "multi": true
     },
     "ssh-filter-profile": {
-     "t": "string"
+     "t": "string",
+     "len": 47,
+     "some_models": true
     },
     "ssh-policy-redirect": {
      "t": "option",
@@ -15855,7 +15639,9 @@
      ]
     },
     "telemetry-profile": {
-     "t": "string"
+     "t": "string",
+     "len": 47,
+     "some_models": true
     },
     "timeout-send-rst": {
      "t": "option",
@@ -15904,7 +15690,9 @@
      "d": "00000000-0000-0000-0000-000000000000"
     },
     "videofilter-profile": {
-     "t": "string"
+     "t": "string",
+     "len": 47,
+     "some_models": true
     },
     "virtual-patch-profile": {
      "t": "string",
@@ -15934,10 +15722,14 @@
      "len": 35
     },
     "waf-profile": {
-     "t": "string"
+     "t": "string",
+     "len": 47,
+     "some_models": true
     },
     "wanopt": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -15945,23 +15737,33 @@
     },
     "wanopt-detection": {
      "t": "option",
+     "d": "active",
+     "some_models": true,
      "o": [
       "active",
-      "passive"
+      "passive",
+      "off"
      ]
     },
     "wanopt-passive-opt": {
      "t": "option",
+     "d": "default",
+     "some_models": true,
      "o": [
       "default",
-      "transparent"
+      "transparent",
+      "non-transparent"
      ]
     },
     "wanopt-peer": {
-     "t": "string"
+     "t": "string",
+     "len": 35,
+     "some_models": true
     },
     "wanopt-profile": {
-     "t": "string"
+     "t": "string",
+     "len": 35,
+     "some_models": true
     },
     "wccp": {
      "t": "option",
@@ -15973,6 +15775,8 @@
     },
     "webcache": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -15980,6 +15784,8 @@
     },
     "webcache-https": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "disable",
       "enable"
@@ -16065,18 +15871,6 @@
       "and"
      ]
     },
-    "capture-packet *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "casb-profile *": {
-     "t": "string",
-     "len": 47
-    },
     "custom-log-fields <field-id>": {
      "t": "string",
      "len": 35
@@ -16104,10 +15898,6 @@
     "groups <name>": {
      "t": "string",
      "len": 79
-    },
-    "icap-profile *": {
-     "t": "string",
-     "len": 47
     },
     "internet-service-custom <name>": {
      "t": "string",
@@ -16197,14 +15987,6 @@
      "t": "string",
      "len": 79
     },
-    "np-acceleration *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
     "ntlm-enabled-browsers <user-agent-string>": {
      "t": "string",
      "len": 79
@@ -16257,75 +16039,9 @@
      "t": "string",
      "len": 79
     },
-    "ssh-filter-profile *": {
-     "t": "string",
-     "len": 47
-    },
-    "telemetry-profile *": {
-     "t": "string",
-     "len": 47
-    },
     "users <name>": {
      "t": "string",
      "len": 79
-    },
-    "videofilter-profile *": {
-     "t": "string",
-     "len": 47
-    },
-    "waf-profile *": {
-     "t": "string",
-     "len": 47
-    },
-    "wanopt *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "wanopt-detection *": {
-     "t": "option",
-     "d": "active",
-     "o": [
-      "active",
-      "passive",
-      "off"
-     ]
-    },
-    "wanopt-passive-opt *": {
-     "t": "option",
-     "d": "default",
-     "o": [
-      "default",
-      "transparent",
-      "non-transparent"
-     ]
-    },
-    "wanopt-peer *": {
-     "t": "string",
-     "len": 35
-    },
-    "wanopt-profile *": {
-     "t": "string",
-     "len": 35
-    },
-    "webcache *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "webcache-https *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "disable",
-      "enable"
-     ]
     },
     "ztna-destination <name>": {
      "t": "string",
@@ -16379,7 +16095,9 @@
      "len": 47
     },
     "casb-profile": {
-     "t": "string"
+     "t": "string",
+     "len": 47,
+     "some_models": true
     },
     "diameter-filter-profile": {
      "t": "string",
@@ -16418,7 +16136,9 @@
      "len": 47
     },
     "icap-profile": {
-     "t": "string"
+     "t": "string",
+     "len": 47,
+     "some_models": true
     },
     "ips-sensor": {
      "t": "string",
@@ -16438,7 +16158,9 @@
      "len": 47
     },
     "ssh-filter-profile": {
-     "t": "string"
+     "t": "string",
+     "len": 47,
+     "some_models": true
     },
     "ssl-ssh-profile": {
      "t": "string",
@@ -16446,14 +16168,18 @@
      "d": "certificate-inspection"
     },
     "telemetry-profile": {
-     "t": "string"
+     "t": "string",
+     "len": 47,
+     "some_models": true
     },
     "uuid": {
      "t": "uuid",
      "d": "00000000-0000-0000-0000-000000000000"
     },
     "videofilter-profile": {
-     "t": "string"
+     "t": "string",
+     "len": 47,
+     "some_models": true
     },
     "virtual-patch-profile": {
      "t": "string",
@@ -16464,37 +16190,15 @@
      "len": 47
     },
     "waf-profile": {
-     "t": "string"
+     "t": "string",
+     "len": 47,
+     "some_models": true
     },
     "webfilter-profile": {
      "t": "string",
      "len": 47
     },
-    "casb-profile *": {
-     "t": "string",
-     "len": 47
-    },
-    "icap-profile *": {
-     "t": "string",
-     "len": 47
-    },
     "name": {
-     "t": "string",
-     "len": 47
-    },
-    "ssh-filter-profile *": {
-     "t": "string",
-     "len": 47
-    },
-    "telemetry-profile *": {
-     "t": "string",
-     "len": 47
-    },
-    "videofilter-profile *": {
-     "t": "string",
-     "len": 47
-    },
-    "waf-profile *": {
      "t": "string",
      "len": 47
     }
@@ -16849,9 +16553,13 @@
       },
       "domain-fronting": {
        "t": "option",
+       "d": "block",
+       "some_models": true,
        "o": [
         "allow",
-        "monitor"
+        "monitor",
+        "block",
+        "strict"
        ]
       },
       "h2c": {
@@ -17097,16 +16805,6 @@
        "o": [
         "enable",
         "disable"
-       ]
-      },
-      "domain-fronting *": {
-       "t": "option",
-       "d": "block",
-       "o": [
-        "allow",
-        "monitor",
-        "block",
-        "strict"
        ]
       },
       "http-0 9": {
@@ -18318,7 +18016,9 @@
      ]
     },
     "casb-profile": {
-     "t": "string"
+     "t": "string",
+     "len": 47,
+     "some_models": true
     },
     "comments": {
      "t": "var-string",
@@ -18419,7 +18119,9 @@
      ]
     },
     "icap-profile": {
-     "t": "string"
+     "t": "string",
+     "len": 47,
+     "some_models": true
     },
     "internet-service": {
      "t": "option",
@@ -18623,7 +18325,9 @@
      "multi": true
     },
     "ssh-filter-profile": {
-     "t": "string"
+     "t": "string",
+     "len": 47,
+     "some_models": true
     },
     "ssh-policy-redirect": {
      "t": "option",
@@ -18675,13 +18379,19 @@
      "d": "00000000-0000-0000-0000-000000000000"
     },
     "videofilter-profile": {
-     "t": "string"
+     "t": "string",
+     "len": 47,
+     "some_models": true
     },
     "waf-profile": {
-     "t": "string"
+     "t": "string",
+     "len": 47,
+     "some_models": true
     },
     "webcache": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -18689,6 +18399,8 @@
     },
     "webcache-https": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "disable",
       "enable"
@@ -18740,10 +18452,6 @@
     "access-proxy6 <name>": {
      "t": "string"
     },
-    "casb-profile *": {
-     "t": "string",
-     "len": 47
-    },
     "custom-tags <name>": {
      "t": "string",
      "len": 35
@@ -18767,10 +18475,6 @@
     "groups <name>": {
      "t": "string",
      "len": 79
-    },
-    "icap-profile *": {
-     "t": "string",
-     "len": 47
     },
     "internet-service-custom <name>": {
      "t": "string",
@@ -18842,10 +18546,6 @@
      "t": "string",
      "len": 79
     },
-    "ssh-filter-profile *": {
-     "t": "string",
-     "len": 47
-    },
     "url-risk <name>": {
      "t": "string",
      "len": 79
@@ -18853,30 +18553,6 @@
     "users <name>": {
      "t": "string",
      "len": 79
-    },
-    "videofilter-profile *": {
-     "t": "string",
-     "len": 47
-    },
-    "waf-profile *": {
-     "t": "string",
-     "len": 47
-    },
-    "webcache *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "webcache-https *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "disable",
-      "enable"
-     ]
     },
     "ztna-destination <name>": {
      "t": "string",
@@ -19115,7 +18791,9 @@
      "len": 47
     },
     "casb-profile": {
-     "t": "string"
+     "t": "string",
+     "len": 47,
+     "some_models": true
     },
     "comments": {
      "t": "var-string",
@@ -19190,7 +18868,9 @@
      "multi": true
     },
     "icap-profile": {
-     "t": "string"
+     "t": "string",
+     "len": 47,
+     "some_models": true
     },
     "internet-service": {
      "t": "option",
@@ -19455,7 +19135,9 @@
      "multi": true
     },
     "ssh-filter-profile": {
-     "t": "string"
+     "t": "string",
+     "len": 47,
+     "some_models": true
     },
     "ssl-ssh-profile": {
      "t": "string",
@@ -19471,7 +19153,9 @@
      ]
     },
     "telemetry-profile": {
-     "t": "string"
+     "t": "string",
+     "len": 47,
+     "some_models": true
     },
     "url-category": {
      "t": "user"
@@ -19485,7 +19169,9 @@
      "d": "00000000-0000-0000-0000-000000000000"
     },
     "videofilter-profile": {
-     "t": "string"
+     "t": "string",
+     "len": 47,
+     "some_models": true
     },
     "virtual-patch-profile": {
      "t": "string",
@@ -19513,10 +19199,6 @@
      "min": 0,
      "max": 4294967295
     },
-    "casb-profile *": {
-     "t": "string",
-     "len": 47
-    },
     "custom-tags <name>": {
      "t": "string",
      "len": 35
@@ -19540,10 +19222,6 @@
     "groups <name>": {
      "t": "string",
      "len": 79
-    },
-    "icap-profile *": {
-     "t": "string",
-     "len": 47
     },
     "internet-service-custom <name>": {
      "t": "string",
@@ -19647,21 +19325,9 @@
      "t": "string",
      "len": 79
     },
-    "ssh-filter-profile *": {
-     "t": "string",
-     "len": 47
-    },
-    "telemetry-profile *": {
-     "t": "string",
-     "len": 47
-    },
     "users <name>": {
      "t": "string",
      "len": 79
-    },
-    "videofilter-profile *": {
-     "t": "string",
-     "len": 47
     }
    },
    "sub": {},
@@ -20853,72 +20519,8 @@
       },
       "synproxy-tcp-mss": {
        "t": "option",
-       "o": [
-        "0",
-        "256"
-       ]
-      },
-      "synproxy-tcp-sack": {
-       "t": "option",
-       "o": [
-        "enable",
-        "disable"
-       ]
-      },
-      "synproxy-tcp-timestamp": {
-       "t": "option",
-       "o": [
-        "enable",
-        "disable"
-       ]
-      },
-      "synproxy-tcp-window": {
-       "t": "option",
-       "o": [
-        "4096",
-        "8192"
-       ]
-      },
-      "synproxy-tcp-windowscale": {
-       "t": "option",
-       "o": [
-        "0",
-        "1"
-       ]
-      },
-      "synproxy-tos": {
-       "t": "option",
-       "o": [
-        "0",
-        "10"
-       ]
-      },
-      "synproxy-ttl": {
-       "t": "option",
-       "o": [
-        "32",
-        "64"
-       ]
-      },
-      "threshold": {
-       "t": "integer",
-       "min": 1,
-       "max": 2147483647,
-       "d": "0"
-      },
-      "threshold(default)": {
-       "t": "integer",
-       "min": 0,
-       "max": 4294967295,
-       "d": "0"
-      },
-      "name": {
-       "t": "string",
-       "len": 63
-      },
-      "synproxy-tcp-mss *": {
-       "t": "option",
        "d": "1460",
+       "some_models": true,
        "o": [
         "0",
         "256",
@@ -20930,25 +20532,28 @@
         "1500"
        ]
       },
-      "synproxy-tcp-sack *": {
+      "synproxy-tcp-sack": {
        "t": "option",
        "d": "disable",
+       "some_models": true,
        "o": [
         "enable",
         "disable"
        ]
       },
-      "synproxy-tcp-timestamp *": {
+      "synproxy-tcp-timestamp": {
        "t": "option",
        "d": "disable",
+       "some_models": true,
        "o": [
         "enable",
         "disable"
        ]
       },
-      "synproxy-tcp-window *": {
+      "synproxy-tcp-window": {
        "t": "option",
        "d": "32768",
+       "some_models": true,
        "o": [
         "4096",
         "8192",
@@ -20956,9 +20561,10 @@
         "32768"
        ]
       },
-      "synproxy-tcp-windowscale *": {
+      "synproxy-tcp-windowscale": {
        "t": "option",
        "d": "0",
+       "some_models": true,
        "o": [
         "0",
         "1",
@@ -20977,9 +20583,10 @@
         "14"
        ]
       },
-      "synproxy-tos *": {
+      "synproxy-tos": {
        "t": "option",
        "d": "255",
+       "some_models": true,
        "o": [
         "0",
         "10",
@@ -20999,15 +20606,32 @@
         "255"
        ]
       },
-      "synproxy-ttl *": {
+      "synproxy-ttl": {
        "t": "option",
        "d": "128",
+       "some_models": true,
        "o": [
         "32",
         "64",
         "128",
         "255"
        ]
+      },
+      "threshold": {
+       "t": "integer",
+       "min": 1,
+       "max": 2147483647,
+       "d": "0"
+      },
+      "threshold(default)": {
+       "t": "integer",
+       "min": 0,
+       "max": 4294967295,
+       "d": "0"
+      },
+      "name": {
+       "t": "string",
+       "len": 63
       }
      },
      "sub": {},
@@ -21221,7 +20845,11 @@
      "d": "72"
     },
     "kxp-queue-threshold": {
-     "t": "integer"
+     "t": "integer",
+     "min": 0,
+     "max": 512,
+     "d": "16",
+     "some_models": true
     },
     "no-matching-cipher-action": {
      "t": "option",
@@ -21268,7 +20896,11 @@
      ]
     },
     "ssl-queue-threshold": {
-     "t": "integer"
+     "t": "integer",
+     "min": 0,
+     "max": 512,
+     "d": "32",
+     "some_models": true
     },
     "ssl-send-empty-frags": {
      "t": "option",
@@ -21277,18 +20909,6 @@
       "enable",
       "disable"
      ]
-    },
-    "kxp-queue-threshold *": {
-     "t": "integer",
-     "min": 0,
-     "max": 512,
-     "d": "16"
-    },
-    "ssl-queue-threshold *": {
-     "t": "integer",
-     "min": 0,
-     "max": 512,
-     "d": "32"
     }
    },
    "sub": {},
@@ -22886,6 +22506,8 @@
     },
     "h2-support": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -22893,6 +22515,8 @@
     },
     "h3-support": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -23487,22 +23111,6 @@
      "t": "string",
      "len": 79
     },
-    "h2-support *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "h3-support *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
     "mappedip <range>": {
      "t": "string",
      "len": 79
@@ -23973,6 +23581,8 @@
     },
     "h2-support": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -23980,6 +23590,8 @@
     },
     "h3-support": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -24509,22 +24121,6 @@
      "o": [
       "disable",
       "enable"
-     ]
-    },
-    "h2-support *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "h3-support *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
      ]
     },
     "monitor <name>": {
@@ -25876,9 +25472,12 @@
     },
     "cp-accel-mode": {
      "t": "option",
+     "d": "advanced **",
+     "some_models": true,
      "o": [
       "none",
-      "basic"
+      "basic",
+      "advanced"
      ]
     },
     "database": {
@@ -25925,6 +25524,8 @@
     },
     "ips-reserve-cpu": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "disable",
       "enable"
@@ -25946,6 +25547,8 @@
     },
     "np-accel-mode": {
      "t": "option",
+     "d": "basic",
+     "some_models": true,
      "o": [
       "none",
       "basic"
@@ -25985,31 +25588,6 @@
      "o": [
       "enable",
       "disable"
-     ]
-    },
-    "cp-accel-mode *": {
-     "t": "option",
-     "d": "advanced **",
-     "o": [
-      "none",
-      "basic",
-      "advanced"
-     ]
-    },
-    "ips-reserve-cpu *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "disable",
-      "enable"
-     ]
-    },
-    "np-accel-mode *": {
-     "t": "option",
-     "d": "basic",
-     "o": [
-      "none",
-      "basic"
      ]
     }
    },
@@ -27408,6 +26986,8 @@
    "params": {
     "anomaly": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -27415,6 +26995,8 @@
     },
     "debug": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -27422,6 +27004,8 @@
     },
     "dlp-archive": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -27429,6 +27013,8 @@
     },
     "forti-switch": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -27436,6 +27022,8 @@
     },
     "forward-traffic": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -27443,6 +27031,8 @@
     },
     "gtp": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -27450,6 +27040,8 @@
     },
     "http-transaction": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -27457,6 +27049,8 @@
     },
     "local-traffic": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -27464,6 +27058,8 @@
     },
     "multicast-traffic": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -27485,6 +27081,8 @@
     },
     "sniffer-traffic": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -27492,6 +27090,8 @@
     },
     "voip": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -27499,102 +27099,8 @@
     },
     "ztna-traffic": {
      "t": "option",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "anomaly *": {
-     "t": "option",
      "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "debug *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "dlp-archive *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "forti-switch *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "forward-traffic *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "gtp *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "http-transaction *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "local-traffic *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "multicast-traffic *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "sniffer-traffic *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "voip *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "ztna-traffic *": {
-     "t": "option",
-     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -27671,7 +27177,11 @@
      ]
     },
     "dlp-archive-quota": {
-     "t": "integer"
+     "t": "integer",
+     "min": 0,
+     "max": 4294967295,
+     "d": "0",
+     "some_models": true
     },
     "full-final-warning-threshold": {
      "t": "integer",
@@ -27706,6 +27216,8 @@
     },
     "ips-archive": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -27736,7 +27248,11 @@
      "d": "7"
     },
     "report-quota": {
-     "t": "integer"
+     "t": "integer",
+     "min": 0,
+     "max": 4294967295,
+     "d": "0",
+     "some_models": true
     },
     "roll-day": {
      "t": "option",
@@ -27884,26 +27400,6 @@
      "min": 0,
      "max": 511,
      "d": "0"
-    },
-    "dlp-archive-quota *": {
-     "t": "integer",
-     "min": 0,
-     "max": 4294967295,
-     "d": "0"
-    },
-    "ips-archive *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "report-quota *": {
-     "t": "integer",
-     "min": 0,
-     "max": 4294967295,
-     "d": "0"
     }
    },
    "sub": {},
@@ -28018,6 +27514,8 @@
     },
     "telemetry": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -28033,6 +27531,8 @@
     },
     "voice-controller": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -28064,36 +27564,14 @@
     },
     "webproxy": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
      ]
     },
     "wireless-activity": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "telemetry *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "voice-controller *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "webproxy *": {
      "t": "option",
      "d": "enable",
      "o": [
@@ -28142,6 +27620,8 @@
     },
     "gtp": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -28202,14 +27682,6 @@
      ]
     },
     "ztna-traffic": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "gtp *": {
      "t": "option",
      "d": "enable",
      "o": [
@@ -28313,6 +27785,8 @@
     },
     "gtp": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -28373,14 +27847,6 @@
      ]
     },
     "ztna-traffic": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "gtp *": {
      "t": "option",
      "d": "enable",
      "o": [
@@ -28872,6 +28338,8 @@
     },
     "gtp": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -28932,14 +28400,6 @@
      ]
     },
     "ztna-traffic": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "gtp *": {
      "t": "option",
      "d": "enable",
      "o": [
@@ -29043,6 +28503,8 @@
     },
     "gtp": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -29103,14 +28565,6 @@
      ]
     },
     "ztna-traffic": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "gtp *": {
      "t": "option",
      "d": "enable",
      "o": [
@@ -29391,6 +28845,8 @@
     },
     "gtp": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -29451,14 +28907,6 @@
      ]
     },
     "ztna-traffic": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "gtp *": {
      "t": "option",
      "d": "enable",
      "o": [
@@ -29562,6 +29010,8 @@
     },
     "gtp": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -29622,14 +29072,6 @@
      ]
     },
     "ztna-traffic": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "gtp *": {
      "t": "option",
      "d": "enable",
      "o": [
@@ -30121,6 +29563,8 @@
     },
     "gtp": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -30181,14 +29625,6 @@
      ]
     },
     "ztna-traffic": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "gtp *": {
      "t": "option",
      "d": "enable",
      "o": [
@@ -30292,6 +29728,8 @@
     },
     "gtp": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -30352,14 +29790,6 @@
      ]
     },
     "ztna-traffic": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "gtp *": {
      "t": "option",
      "d": "enable",
      "o": [
@@ -30843,6 +30273,8 @@
     },
     "gtp": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -30903,14 +30335,6 @@
      ]
     },
     "ztna-traffic": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "gtp *": {
      "t": "option",
      "d": "enable",
      "o": [
@@ -31006,6 +30430,8 @@
     },
     "gtp": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -31066,14 +30492,6 @@
      ]
     },
     "ztna-traffic": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "gtp *": {
      "t": "option",
      "d": "enable",
      "o": [
@@ -31390,6 +30808,8 @@
     },
     "gtp": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -31450,14 +30870,6 @@
      ]
     },
     "ztna-traffic": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "gtp *": {
      "t": "option",
      "d": "enable",
      "o": [
@@ -31607,6 +31019,8 @@
     },
     "gtp": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -31667,14 +31081,6 @@
      ]
     },
     "ztna-traffic": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "gtp *": {
      "t": "option",
      "d": "enable",
      "o": [
@@ -31825,6 +31231,8 @@
     },
     "fortiview-weekly-data": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -32009,14 +31417,6 @@
     "custom-log-fields <field-id>": {
      "t": "string",
      "len": 35
-    },
-    "fortiview-weekly-data *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
     }
    },
    "sub": {},
@@ -32059,6 +31459,8 @@
     },
     "gtp": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -32119,14 +31521,6 @@
      ]
     },
     "ztna-traffic": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "gtp *": {
      "t": "option",
      "d": "enable",
      "o": [
@@ -32230,6 +31624,8 @@
     },
     "gtp": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -32290,14 +31686,6 @@
      ]
     },
     "ztna-traffic": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "gtp *": {
      "t": "option",
      "d": "enable",
      "o": [
@@ -32747,6 +32135,8 @@
     },
     "gtp": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -32807,14 +32197,6 @@
      ]
     },
     "ztna-traffic": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "gtp *": {
      "t": "option",
      "d": "enable",
      "o": [
@@ -32918,6 +32300,8 @@
     },
     "gtp": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -32978,14 +32362,6 @@
      ]
     },
     "ztna-traffic": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "gtp *": {
      "t": "option",
      "d": "enable",
      "o": [
@@ -33435,6 +32811,8 @@
     },
     "gtp": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -33495,14 +32873,6 @@
      ]
     },
     "ztna-traffic": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "gtp *": {
      "t": "option",
      "d": "enable",
      "o": [
@@ -33606,6 +32976,8 @@
     },
     "gtp": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -33666,14 +33038,6 @@
      ]
     },
     "ztna-traffic": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "gtp *": {
      "t": "option",
      "d": "enable",
      "o": [
@@ -34123,6 +33487,8 @@
     },
     "gtp": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -34183,14 +33549,6 @@
      ]
     },
     "ztna-traffic": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "gtp *": {
      "t": "option",
      "d": "enable",
      "o": [
@@ -34294,6 +33652,8 @@
     },
     "gtp": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -34354,14 +33714,6 @@
      ]
     },
     "ztna-traffic": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "gtp *": {
      "t": "option",
      "d": "enable",
      "o": [
@@ -35496,6 +34848,8 @@
     },
     "gtp": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -35556,14 +34910,6 @@
      ]
     },
     "ztna-traffic": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "gtp *": {
      "t": "option",
      "d": "enable",
      "o": [
@@ -47459,7 +46805,10 @@
        ]
       },
       "dsl-profile": {
-       "t": "string"
+       "t": "string",
+       "len": 63,
+       "d": "default",
+       "some_models": true
       },
       "edge-port": {
        "t": "option",
@@ -48069,11 +47418,6 @@
       "allowed-vlans <vlan-name>": {
        "t": "string",
        "len": 79
-      },
-      "dsl-profile *": {
-       "t": "string",
-       "len": 63,
-       "d": "default"
       },
       "fortiswitch-acls <id>": {
        "t": "integer",
@@ -51004,9 +50348,12 @@
     },
     "wanoptgrp": {
      "t": "option",
+     "d": "none",
+     "some_models": true,
      "o": [
       "none",
-      "read"
+      "read",
+      "read-write"
      ]
     },
     "wifi": {
@@ -51021,15 +50368,6 @@
     "name": {
      "t": "string",
      "len": 35
-    },
-    "wanoptgrp *": {
-     "t": "option",
-     "d": "none",
-     "o": [
-      "none",
-      "read",
-      "read-write"
-     ]
     }
    },
    "sub": {
@@ -52600,10 +51938,16 @@
      "len": 255
     },
     "input-id": {
-     "t": "integer"
+     "t": "integer",
+     "min": 0,
+     "max": 4294967295,
+     "d": "0",
+     "some_models": true
     },
     "input-state": {
      "t": "option",
+     "d": "close",
+     "some_models": true,
      "o": [
       "open",
       "close"
@@ -52630,20 +51974,6 @@
      "o": [
       "tunnel-up",
       "tunnel-down"
-     ]
-    },
-    "input-id *": {
-     "t": "integer",
-     "min": 0,
-     "max": 4294967295,
-     "d": "0"
-    },
-    "input-state *": {
-     "t": "option",
-     "d": "close",
-     "o": [
-      "open",
-      "close"
      ]
     },
     "name": {
@@ -53006,6 +52336,8 @@
    "params": {
     "auto-recover": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -53013,9 +52345,16 @@
     },
     "bypass-timeout": {
      "t": "option",
+     "d": "10",
+     "some_models": true,
      "o": [
       "2",
-      "4"
+      "4",
+      "6",
+      "8",
+      "10",
+      "12",
+      "14"
      ]
     },
     "bypass-watchdog": {
@@ -53028,35 +52367,8 @@
     },
     "poweroff-bypass": {
      "t": "option",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "auto-recover *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "bypass-timeout *": {
-     "t": "option",
-     "d": "10",
-     "o": [
-      "2",
-      "4",
-      "6",
-      "8",
-      "10",
-      "12",
-      "14"
-     ]
-    },
-    "poweroff-bypass *": {
-     "t": "option",
      "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -53162,6 +52474,8 @@
       },
       "esim": {
        "t": "option",
+       "d": "disable",
+       "some_models": true,
        "o": [
         "enable",
         "disable"
@@ -53169,6 +52483,8 @@
       },
       "gps-antenna-type": {
        "t": "option",
+       "d": "passive",
+       "some_models": true,
        "o": [
         "passive",
         "active"
@@ -53196,22 +52512,31 @@
        ]
       },
       "sim-data-plan": {
-       "t": "string"
+       "t": "string",
+       "len": 35,
+       "some_models": true
       },
       "sim-pin": {
-       "t": "password"
+       "t": "password",
+       "some_models": true
       },
       "sim1-data-plan": {
-       "t": "string"
+       "t": "string",
+       "len": 35,
+       "some_models": true
       },
       "sim1-pin": {
-       "t": "password"
+       "t": "password",
+       "some_models": true
       },
       "sim2-data-plan": {
-       "t": "string"
+       "t": "string",
+       "len": 35,
+       "some_models": true
       },
       "sim2-pin": {
-       "t": "password"
+       "t": "password",
+       "some_models": true
       },
       "status": {
        "t": "option",
@@ -53220,43 +52545,6 @@
         "online",
         "low-power"
        ]
-      },
-      "esim *": {
-       "t": "option",
-       "d": "disable",
-       "o": [
-        "enable",
-        "disable"
-       ]
-      },
-      "gps-antenna-type *": {
-       "t": "option",
-       "d": "passive",
-       "o": [
-        "passive",
-        "active"
-       ]
-      },
-      "sim-data-plan *": {
-       "t": "string",
-       "len": 35
-      },
-      "sim-pin *": {
-       "t": "password"
-      },
-      "sim1-data-plan *": {
-       "t": "string",
-       "len": 35
-      },
-      "sim1-pin *": {
-       "t": "password"
-      },
-      "sim2-data-plan *": {
-       "t": "string",
-       "len": 35
-      },
-      "sim2-pin *": {
-       "t": "password"
       }
      },
      "sub": {
@@ -53441,6 +52729,8 @@
     },
     "allow-remote-lte-firmware-upgrade": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -53448,6 +52738,8 @@
     },
     "allow-remote-modem-firmware-upgrade": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -53523,13 +52815,18 @@
     },
     "ltefw-upgrade-frequency": {
      "t": "option",
+     "some_models": true,
      "o": [
       "everyHour",
-      "every12hour"
+      "every12hour",
+      "everyDay",
+      "everyWeek"
      ]
     },
     "ltefw-upgrade-time": {
-     "t": "string"
+     "t": "string",
+     "len": 35,
+     "some_models": true
     },
     "mode": {
      "t": "option",
@@ -53541,13 +52838,18 @@
     },
     "modem-upgrade-frequency": {
      "t": "option",
+     "some_models": true,
      "o": [
       "everyHour",
-      "every12hour"
+      "every12hour",
+      "everyDay",
+      "everyWeek"
      ]
     },
     "modem-upgrade-time": {
-     "t": "string"
+     "t": "string",
+     "len": 35,
+     "some_models": true
     },
     "schedule-config-restore": {
      "t": "option",
@@ -53595,48 +52897,6 @@
      "min": 0,
      "max": 511,
      "d": "0"
-    },
-    "allow-remote-lte-firmware-upgrade *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "allow-remote-modem-firmware-upgrade *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "ltefw-upgrade-frequency *": {
-     "t": "option",
-     "o": [
-      "everyHour",
-      "every12hour",
-      "everyDay",
-      "everyWeek"
-     ]
-    },
-    "ltefw-upgrade-time *": {
-     "t": "string",
-     "len": 35
-    },
-    "modem-upgrade-frequency *": {
-     "t": "option",
-     "o": [
-      "everyHour",
-      "every12hour",
-      "everyDay",
-      "everyWeek"
-     ]
-    },
-    "modem-upgrade-time *": {
-     "t": "string",
-     "len": 35
     }
    },
    "sub": {
@@ -53735,6 +52995,8 @@
    "params": {
     "fortiexplorer": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -53754,14 +53016,6 @@
      "o": [
       "standard",
       "more"
-     ]
-    },
-    "fortiexplorer *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
      ]
     }
    },
@@ -57495,6 +56749,8 @@
     },
     "auto-join-forticloud": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -57659,6 +56915,8 @@
     },
     "sandbox-inline-scan": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -57793,22 +57051,6 @@
      "min": 1,
      "max": 30,
      "d": "15"
-    },
-    "auto-join-forticloud *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "sandbox-inline-scan *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
     }
    },
    "sub": {},
@@ -57923,6 +57165,8 @@
     },
     "inline-scan": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -57982,14 +57226,6 @@
     "device": {
      "t": "string",
      "len": 35
-    },
-    "inline-scan *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
     }
    },
    "sub": {},
@@ -58194,6 +57430,8 @@
    "params": {
     "admin-ble-button": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -58365,6 +57603,8 @@
     },
     "admin-reset-button": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -58448,6 +57688,8 @@
     },
     "airplane-mode": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -58563,7 +57805,10 @@
      ]
     },
     "av-affinity": {
-     "t": "string"
+     "t": "string",
+     "len": 79,
+     "d": "0",
+     "some_models": true
     },
     "av-failopen": {
      "t": "option",
@@ -58592,13 +57837,19 @@
     },
     "black-box": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "disable",
       "enable"
      ]
     },
     "black-box-interval": {
-     "t": "integer"
+     "t": "integer",
+     "min": 20,
+     "max": 86400,
+     "d": "20",
+     "some_models": true
     },
     "block-session-timer": {
      "t": "integer",
@@ -58705,6 +57956,8 @@
     },
     "delay-tcp-npu-session": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -58757,6 +58010,8 @@
     },
     "edit-vdom-prompt": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -58850,6 +58105,8 @@
     },
     "fortiextender-vlan-mode": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -58905,6 +58162,8 @@
     },
     "gtpu-dynamic-source-port": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -59058,6 +58317,8 @@
     },
     "gui-rest-api-cache": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -59149,7 +58410,11 @@
      "d": "0"
     },
     "hyper-scale-vdom-num": {
-     "t": "integer"
+     "t": "integer",
+     "min": 1,
+     "max": 250,
+     "d": "250",
+     "some_models": true
     },
     "igmp-state-limit": {
      "t": "integer",
@@ -59209,10 +58474,15 @@
      "d": "1024-25000"
     },
     "ips-affinity": {
-     "t": "string"
+     "t": "string",
+     "len": 79,
+     "d": "0",
+     "some_models": true
     },
     "ipsec-asic-offload": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -59226,6 +58496,8 @@
     },
     "ipsec-hmac-offload": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -59233,6 +58505,8 @@
     },
     "ipsec-qat-offload": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -59320,6 +58594,8 @@
     },
     "legacy-poe-device-support": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -59387,6 +58663,8 @@
     },
     "long-vdom-name": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -59440,7 +58718,10 @@
      "d": "88"
     },
     "miglog-affinity": {
-     "t": "string"
+     "t": "string",
+     "len": 79,
+     "d": "0",
+     "some_models": true
     },
     "miglogd-children": {
      "t": "integer",
@@ -59464,6 +58745,8 @@
     },
     "npu-neighbor-update": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -59471,6 +58754,8 @@
     },
     "per-user-bal": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -59544,6 +58829,8 @@
     },
     "proxy-hardware-acceleration": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "disable",
       "enable"
@@ -59691,7 +58978,10 @@
      ]
     },
     "router-affinity": {
-     "t": "string"
+     "t": "string",
+     "len": 79,
+     "d": "0",
+     "some_models": true
     },
     "scanunit-cache-entry-ttl": {
      "t": "integer",
@@ -59738,6 +59028,8 @@
     },
     "single-vdom-npuvlink": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -59780,29 +59072,55 @@
      "d": "5201"
     },
     "split-port": {
-     "t": "string"
+     "t": "string",
+     "len": 15,
+     "some_models": true
     },
     "ssd-trim-date": {
-     "t": "integer"
+     "t": "integer",
+     "min": 1,
+     "max": 31,
+     "d": "1",
+     "some_models": true
     },
     "ssd-trim-freq": {
      "t": "option",
+     "d": "weekly",
+     "some_models": true,
      "o": [
       "never",
-      "hourly"
+      "hourly",
+      "daily",
+      "weekly",
+      "monthly"
      ]
     },
     "ssd-trim-hour": {
-     "t": "integer"
+     "t": "integer",
+     "min": 0,
+     "max": 23,
+     "d": "1",
+     "some_models": true
     },
     "ssd-trim-min": {
-     "t": "integer"
+     "t": "integer",
+     "min": 0,
+     "max": 60,
+     "d": "60",
+     "some_models": true
     },
     "ssd-trim-weekday": {
      "t": "option",
+     "d": "sunday",
+     "some_models": true,
      "o": [
       "sunday",
-      "monday"
+      "monday",
+      "tuesday",
+      "wednesday",
+      "thursday",
+      "friday",
+      "saturday"
      ]
     },
     "ssl-min-proto-version": {
@@ -59825,13 +59143,22 @@
      ]
     },
     "sslvpn-affinity": {
-     "t": "string"
+     "t": "string",
+     "len": 79,
+     "d": "0",
+     "some_models": true
     },
     "sslvpn-max-worker-count": {
-     "t": "integer"
+     "t": "integer",
+     "min": 0,
+     "max": 7,
+     "d": "0",
+     "some_models": true
     },
     "sslvpn-web-mode": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -59872,10 +59199,15 @@
      "d": "5"
     },
     "syslog-affinity": {
-     "t": "string"
+     "t": "string",
+     "len": 79,
+     "d": "0",
+     "some_models": true
     },
     "tcp-congestion-control": {
      "t": "option",
+     "d": "cubic",
+     "some_models": true,
      "o": [
       "cubic",
       "bbr"
@@ -59915,13 +59247,19 @@
     },
     "telemetry-controller": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
      ]
     },
     "telemetry-data-port": {
-     "t": "integer"
+     "t": "integer",
+     "min": 1024,
+     "max": 49150,
+     "d": "35246",
+     "some_models": true
     },
     "tftp": {
      "t": "option",
@@ -60005,7 +59343,10 @@
      ]
     },
     "url-filter-affinity": {
-     "t": "string"
+     "t": "string",
+     "len": 79,
+     "d": "0",
+     "some_models": true
     },
     "url-filter-count": {
      "t": "integer",
@@ -60045,6 +59386,8 @@
     },
     "vdom-mode": {
      "t": "option",
+     "d": "no-vdom",
+     "some_models": true,
      "o": [
       "no-vdom",
       "multi-vdom"
@@ -60060,13 +59403,18 @@
     },
     "virtual-switch-vlan": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
      ]
     },
     "wad-affinity": {
-     "t": "string"
+     "t": "string",
+     "len": 79,
+     "d": "0",
+     "some_models": true
     },
     "wad-csvc-cs-count": {
      "t": "integer",
@@ -60081,7 +59429,11 @@
      "d": "0"
     },
     "wad-memory-change-granularity": {
-     "t": "integer"
+     "t": "integer",
+     "min": 5,
+     "max": 25,
+     "d": "10",
+     "some_models": true
     },
     "wad-p2s-max-body-size": {
      "t": "integer",
@@ -60090,20 +59442,27 @@
      "d": "4"
     },
     "wad-restart-end-time": {
-     "t": "user"
+     "t": "user",
+     "some_models": true
     },
     "wad-restart-mode": {
      "t": "option",
+     "d": "none",
+     "some_models": true,
      "o": [
       "none",
-      "time"
+      "time",
+      "memory"
      ]
     },
     "wad-restart-start-time": {
-     "t": "user"
+     "t": "user",
+     "some_models": true
     },
     "wad-source-affinity": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "disable",
       "enable"
@@ -60155,347 +59514,18 @@
     },
     "wireless-mode": {
      "t": "option",
-     "o": [
-      "ac",
-      "client"
-     ]
-    },
-    "admin-ble-button *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "admin-reset-button *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "airplane-mode *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "av-affinity *": {
-     "t": "string",
-     "len": 79,
-     "d": "0"
-    },
-    "black-box *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "disable",
-      "enable"
-     ]
-    },
-    "black-box-interval *": {
-     "t": "integer",
-     "min": 20,
-     "max": 86400,
-     "d": "20"
-    },
-    "delay-tcp-npu-session *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "edit-vdom-prompt *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "fortiextender-vlan-mode *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "gtpu-dynamic-source-port *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "gui-rest-api-cache *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "hyper-scale-vdom-num *": {
-     "t": "integer",
-     "min": 1,
-     "max": 250,
-     "d": "250"
-    },
-    "internet-service-download-list <id>": {
-     "t": "integer",
-     "min": 0,
-     "max": 4294967295
-    },
-    "ips-affinity *": {
-     "t": "string",
-     "len": 79,
-     "d": "0"
-    },
-    "ipsec-asic-offload *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "ipsec-hmac-offload *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "ipsec-qat-offload *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "legacy-poe-device-support *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "long-vdom-name *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "miglog-affinity *": {
-     "t": "string",
-     "len": 79,
-     "d": "0"
-    },
-    "npu-neighbor-update *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "per-user-bal *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "proxy-hardware-acceleration *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "disable",
-      "enable"
-     ]
-    },
-    "router-affinity *": {
-     "t": "string",
-     "len": 79,
-     "d": "0"
-    },
-    "single-vdom-npuvlink *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "split-port *": {
-     "t": "string",
-     "len": 15
-    },
-    "ssd-trim-date *": {
-     "t": "integer",
-     "min": 1,
-     "max": 31,
-     "d": "1"
-    },
-    "ssd-trim-freq *": {
-     "t": "option",
-     "d": "weekly",
-     "o": [
-      "never",
-      "hourly",
-      "daily",
-      "weekly",
-      "monthly"
-     ]
-    },
-    "ssd-trim-hour *": {
-     "t": "integer",
-     "min": 0,
-     "max": 23,
-     "d": "1"
-    },
-    "ssd-trim-min *": {
-     "t": "integer",
-     "min": 0,
-     "max": 60,
-     "d": "60"
-    },
-    "ssd-trim-weekday *": {
-     "t": "option",
-     "d": "sunday",
-     "o": [
-      "sunday",
-      "monday",
-      "tuesday",
-      "wednesday",
-      "thursday",
-      "friday",
-      "saturday"
-     ]
-    },
-    "sslvpn-affinity *": {
-     "t": "string",
-     "len": 79,
-     "d": "0"
-    },
-    "sslvpn-max-worker-count *": {
-     "t": "integer",
-     "min": 0,
-     "max": 7,
-     "d": "0"
-    },
-    "sslvpn-web-mode *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "syslog-affinity *": {
-     "t": "string",
-     "len": 79,
-     "d": "0"
-    },
-    "tcp-congestion-control *": {
-     "t": "option",
-     "d": "cubic",
-     "o": [
-      "cubic",
-      "bbr"
-     ]
-    },
-    "telemetry-controller *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "telemetry-data-port *": {
-     "t": "integer",
-     "min": 1024,
-     "max": 49150,
-     "d": "35246"
-    },
-    "url-filter-affinity *": {
-     "t": "string",
-     "len": 79,
-     "d": "0"
-    },
-    "vdom-mode *": {
-     "t": "option",
-     "d": "no-vdom",
-     "o": [
-      "no-vdom",
-      "multi-vdom"
-     ]
-    },
-    "virtual-switch-vlan *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "wad-affinity *": {
-     "t": "string",
-     "len": 79,
-     "d": "0"
-    },
-    "wad-memory-change-granularity *": {
-     "t": "integer",
-     "min": 5,
-     "max": 25,
-     "d": "10"
-    },
-    "wad-restart-end-time *": {
-     "t": "user"
-    },
-    "wad-restart-mode *": {
-     "t": "option",
-     "d": "none",
-     "o": [
-      "none",
-      "time",
-      "memory"
-     ]
-    },
-    "wad-restart-start-time *": {
-     "t": "user"
-    },
-    "wad-source-affinity *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "disable",
-      "enable"
-     ]
-    },
-    "wireless-mode *": {
-     "t": "option",
      "d": "ac",
+     "some_models": true,
      "o": [
       "ac",
       "client",
       "fwfap"
      ]
+    },
+    "internet-service-download-list <id>": {
+     "t": "integer",
+     "min": 0,
+     "max": 4294967295
     }
    },
    "sub": {
@@ -60531,6 +59561,8 @@
    "params": {
     "auto-asic-offload": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -60538,6 +59570,8 @@
     },
     "checksum-reception": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "disable",
       "enable"
@@ -60545,6 +59579,8 @@
     },
     "checksum-transmission": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "disable",
       "enable"
@@ -60586,10 +59622,18 @@
      "d": "0"
     },
     "key-inbound": {
-     "t": "integer"
+     "t": "integer",
+     "min": 0,
+     "max": 4294967295,
+     "d": "0",
+     "some_models": true
     },
     "key-outbound": {
-     "t": "integer"
+     "t": "integer",
+     "min": 0,
+     "max": 4294967295,
+     "d": "0",
+     "some_models": true
     },
     "local-gw": {
      "t": "ipv4-address-any",
@@ -60601,6 +59645,8 @@
     },
     "loopback-ecmp-offload": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "disable",
       "enable"
@@ -60616,6 +59662,8 @@
     },
     "sequence-number-reception": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "disable",
       "enable"
@@ -60623,6 +59671,8 @@
     },
     "sequence-number-transmission": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "disable",
       "enable"
@@ -60636,69 +59686,9 @@
       "enable"
      ]
     },
-    "auto-asic-offload *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "checksum-reception *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "disable",
-      "enable"
-     ]
-    },
-    "checksum-transmission *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "disable",
-      "enable"
-     ]
-    },
-    "key-inbound *": {
-     "t": "integer",
-     "min": 0,
-     "max": 4294967295,
-     "d": "0"
-    },
-    "key-outbound *": {
-     "t": "integer",
-     "min": 0,
-     "max": 4294967295,
-     "d": "0"
-    },
-    "loopback-ecmp-offload *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "disable",
-      "enable"
-     ]
-    },
     "name": {
      "t": "string",
      "len": 15
-    },
-    "sequence-number-reception *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "disable",
-      "enable"
-     ]
-    },
-    "sequence-number-transmission *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "disable",
-      "enable"
-     ]
     }
    },
    "sub": {},
@@ -60913,6 +59903,8 @@
     },
     "logical-sn": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -61110,6 +60102,8 @@
     },
     "ssd-failover": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -61148,23 +60142,33 @@
      ]
     },
     "unicast-gateway": {
-     "t": "ipv4-address"
+     "t": "ipv4-address",
+     "d": "0.0.0.0",
+     "some_models": true
     },
     "unicast-hb": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
      ]
     },
     "unicast-hb-netmask": {
-     "t": "ipv4-netmask"
+     "t": "ipv4-netmask",
+     "d": "0.0.0.0",
+     "some_models": true
     },
     "unicast-hb-peerip": {
-     "t": "ipv4-address"
+     "t": "ipv4-address",
+     "d": "0.0.0.0",
+     "some_models": true
     },
     "unicast-status": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -61205,50 +60209,6 @@
     "backup-hbdev <name>": {
      "t": "string",
      "len": 79
-    },
-    "logical-sn *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "ssd-failover *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "unicast-gateway *": {
-     "t": "ipv4-address",
-     "d": "0.0.0.0"
-    },
-    "unicast-hb *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "unicast-hb-netmask *": {
-     "t": "ipv4-netmask",
-     "d": "0.0.0.0"
-    },
-    "unicast-hb-peerip *": {
-     "t": "ipv4-address",
-     "d": "0.0.0.0"
-    },
-    "unicast-status *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
     }
    },
    "sub": {
@@ -62265,9 +61225,17 @@
     },
     "annex": {
      "t": "option",
+     "d": "a",
+     "some_models": true,
      "o": [
       "a",
-      "b"
+      "b",
+      "i",
+      "j",
+      "m",
+      "al",
+      "bj",
+      "aijlm"
      ]
     },
     "ap-discover": {
@@ -62302,6 +61270,8 @@
     },
     "atm-protocol": {
      "t": "option",
+     "d": "none",
+     "some_models": true,
      "o": [
       "none",
       "ipoa"
@@ -62663,9 +61633,18 @@
     },
     "egress-cos": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "disable",
-      "cos0"
+      "cos0",
+      "cos1",
+      "cos2",
+      "cos3",
+      "cos4",
+      "cos5",
+      "cos6",
+      "cos7"
      ]
     },
     "egress-shaping-profile": {
@@ -62673,7 +61652,9 @@
      "len": 35
     },
     "eip": {
-     "t": "ipv4-address-any"
+     "t": "ipv4-address-any",
+     "d": "0.0.0.0",
+     "some_models": true
     },
     "estimated-downstream-bandwidth": {
      "t": "integer",
@@ -62795,16 +61776,26 @@
     },
     "forward-error-correction": {
      "t": "option",
+     "d": "none",
+     "some_models": true,
      "o": [
       "none",
-      "disable"
+      "disable",
+      "cl91-rs-fec",
+      "cl74-fc-fec",
+      "rs-fec544",
+      "auto"
      ]
     },
     "gateway-address": {
-     "t": "ipv4-address"
+     "t": "ipv4-address",
+     "d": "0.0.0.0",
+     "some_models": true
     },
     "gwaddr": {
-     "t": "ipv4-address"
+     "t": "ipv4-address",
+     "d": "0.0.0.0",
+     "some_models": true
     },
     "gwdetect": {
      "t": "option",
@@ -62870,9 +61861,18 @@
     },
     "ingress-cos": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "disable",
-      "cos0"
+      "cos0",
+      "cos1",
+      "cos2",
+      "cos3",
+      "cos4",
+      "cos5",
+      "cos6",
+      "cos7"
      ]
     },
     "ingress-shaping-profile": {
@@ -62887,9 +61887,12 @@
     },
     "interconnect-profile": {
      "t": "option",
+     "d": "default",
+     "some_models": true,
      "o": [
       "default",
-      "profile1"
+      "profile1",
+      "profile2"
      ]
     },
     "interface": {
@@ -62953,6 +61956,8 @@
     },
     "l2tp-client": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -63074,9 +62079,31 @@
     },
     "mediatype": {
      "t": "option",
+     "d": "serdes-sfp **",
+     "some_models": true,
      "o": [
       "serdes-sfp",
-      "sgmii-sfp"
+      "sgmii-sfp",
+      "serdes-copper-sfp",
+      "none",
+      "gmii",
+      "sgmii",
+      "sr",
+      "lr",
+      "cr",
+      "sr-lr",
+      "kr",
+      "sr2",
+      "lr2",
+      "cr2",
+      "sr4",
+      "lr4",
+      "cr4",
+      "caui4",
+      "sr4-long-dac",
+      "sr8",
+      "lr8",
+      "cr8"
      ]
     },
     "member": {
@@ -63098,10 +62125,16 @@
      ]
     },
     "mirroring-direction": {
-     "t": "option"
+     "t": "option",
+     "some_models": true,
+     "o": [
+      "rx"
+     ]
     },
     "mirroring-port": {
-     "t": "string"
+     "t": "string",
+     "len": 15,
+     "some_models": true
     },
     "mode": {
      "t": "option",
@@ -63151,6 +62184,8 @@
     },
     "mux-type": {
      "t": "option",
+     "d": "llc-encaps",
+     "some_models": true,
      "o": [
       "llc-encaps",
       "vc-encaps"
@@ -63195,7 +62230,11 @@
      "d": "0"
     },
     "np-qos-profile": {
-     "t": "integer"
+     "t": "integer",
+     "min": 0,
+     "max": 15,
+     "d": "0",
+     "some_models": true
     },
     "outbandwidth": {
      "t": "integer",
@@ -63222,9 +62261,18 @@
     },
     "phy-mode": {
      "t": "option",
+     "d": "vdsl",
+     "some_models": true,
      "o": [
       "vdsl",
-      "auto"
+      "auto",
+      "adsl-auto",
+      "vdsl2",
+      "adsl2+",
+      "adsl2",
+      "g-dmt",
+      "t1-413",
+      "g-lite"
      ]
     },
     "ping-serv-status": {
@@ -63235,6 +62283,8 @@
     },
     "poe": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -63248,6 +62298,8 @@
     },
     "port-mirroring": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "disable",
       "enable"
@@ -63335,6 +62387,19 @@
     },
     "profiles": {
      "t": "option",
+     "d": "17a 30a",
+     "some_models": true,
+     "o": [
+      "8a",
+      "8b",
+      "8c",
+      "8d",
+      "12a",
+      "12b",
+      "17a",
+      "30a",
+      "35b"
+     ],
      "multi": true
     },
     "proxy-captive-portal": {
@@ -63347,44 +62412,82 @@
     },
     "pvc-atm-qos": {
      "t": "option",
+     "d": "ubr",
+     "some_models": true,
      "o": [
       "cbr",
-      "rt-vbr"
+      "rt-vbr",
+      "nrt-vbr",
+      "ubr"
      ]
     },
     "pvc-chan": {
-     "t": "integer"
+     "t": "integer",
+     "min": 0,
+     "max": 7,
+     "d": "0",
+     "some_models": true
     },
     "pvc-crc": {
-     "t": "integer"
+     "t": "integer",
+     "min": 0,
+     "max": 7,
+     "d": "2",
+     "some_models": true
     },
     "pvc-pcr": {
-     "t": "integer"
+     "t": "integer",
+     "min": 0,
+     "max": 5500,
+     "d": "0",
+     "some_models": true
     },
     "pvc-scr": {
-     "t": "integer"
+     "t": "integer",
+     "min": 0,
+     "max": 5500,
+     "d": "0",
+     "some_models": true
     },
     "pvc-vlan-id": {
-     "t": "integer"
+     "t": "integer",
+     "min": 1,
+     "max": 4094,
+     "d": "7",
+     "some_models": true
     },
     "pvc-vlan-rx-id": {
-     "t": "integer"
+     "t": "integer",
+     "min": 1,
+     "max": 4094,
+     "d": "7",
+     "some_models": true
     },
     "pvc-vlan-rx-op": {
      "t": "option",
+     "d": "pass-through",
+     "some_models": true,
      "o": [
       "pass-through",
-      "replace"
+      "replace",
+      "remove"
      ]
     },
     "pvc-vlan-tx-id": {
-     "t": "integer"
+     "t": "integer",
+     "min": 1,
+     "max": 4094,
+     "d": "7",
+     "some_models": true
     },
     "pvc-vlan-tx-op": {
      "t": "option",
+     "d": "remove",
+     "some_models": true,
      "o": [
       "pass-through",
-      "replace"
+      "replace",
+      "remove"
      ]
     },
     "reachable-time": {
@@ -63411,16 +62514,26 @@
     },
     "retransmission": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "disable",
       "enable"
      ]
     },
     "ring-rx": {
-     "t": "integer"
+     "t": "integer",
+     "min": 0,
+     "max": 4294967295,
+     "d": "0",
+     "some_models": true
     },
     "ring-tx": {
-     "t": "integer"
+     "t": "integer",
+     "min": 0,
+     "max": 4294967295,
+     "d": "0",
+     "some_models": true
     },
     "role": {
      "t": "option",
@@ -63531,6 +62644,8 @@
     },
     "select-profile-30a-35b": {
      "t": "option",
+     "d": "35b",
+     "some_models": true,
      "o": [
       "30a",
       "35b"
@@ -63550,6 +62665,8 @@
     },
     "sfp-dsl": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "disable",
       "enable"
@@ -63557,6 +62674,8 @@
     },
     "sfp-dsl-adsl-fallback": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "disable",
       "enable"
@@ -63564,13 +62683,17 @@
     },
     "sfp-dsl-autodetect": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "disable",
       "enable"
      ]
     },
     "sfp-dsl-mac": {
-     "t": "mac-address"
+     "t": "mac-address",
+     "d": "00:00:00:00:00:00",
+     "some_models": true
     },
     "snmp-index": {
      "t": "integer",
@@ -63634,6 +62757,8 @@
     },
     "stp": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "disable",
       "enable"
@@ -63641,6 +62766,8 @@
     },
     "stp-edge": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "disable",
       "enable"
@@ -63648,13 +62775,18 @@
     },
     "stp-ha-secondary": {
      "t": "option",
+     "d": "priority-adjust",
+     "some_models": true,
      "o": [
       "disable",
-      "enable"
+      "enable",
+      "priority-adjust"
      ]
     },
     "stp-root-guard": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "disable",
       "enable"
@@ -63691,9 +62823,13 @@
     },
     "sw-algorithm": {
      "t": "option",
+     "d": "default",
+     "some_models": true,
      "o": [
       "l2",
-      "l3"
+      "l3",
+      "eh",
+      "default"
      ]
     },
     "swc-first-create": {
@@ -63885,6 +63021,8 @@
     },
     "tc-mode": {
      "t": "option",
+     "d": "ptm",
+     "some_models": true,
      "o": [
       "ptm",
       "atm"
@@ -63898,6 +63036,8 @@
     },
     "telemetry-discover": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -63905,6 +63045,8 @@
     },
     "trunk": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -63935,7 +63077,11 @@
      "d": "::/0"
     },
     "tx-queue-len": {
-     "t": "integer"
+     "t": "integer",
+     "min": 0,
+     "max": 65536,
+     "d": "0",
+     "some_models": true
     },
     "type": {
      "t": "option",
@@ -63966,7 +63112,11 @@
      "len": 64
     },
     "vci": {
-     "t": "integer"
+     "t": "integer",
+     "min": 0,
+     "max": 65535,
+     "d": "35",
+     "some_models": true
     },
     "vdom": {
      "t": "string",
@@ -63974,6 +63124,8 @@
     },
     "vectoring": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "disable",
       "enable"
@@ -63990,13 +63142,20 @@
      "d": "00:00:00:00:00:00"
     },
     "vlan-id": {
-     "t": "integer"
+     "t": "integer",
+     "min": 0,
+     "max": 4095,
+     "d": "1",
+     "some_models": true
     },
     "vlan-op-mode": {
      "t": "option",
+     "d": "passthrough",
+     "some_models": true,
      "o": [
       "tag",
-      "untag"
+      "untag",
+      "passthrough"
      ]
     },
     "vlan-protocol": {
@@ -64022,7 +63181,11 @@
      "d": "0"
     },
     "vpi": {
-     "t": "integer"
+     "t": "integer",
+     "min": 0,
+     "max": 255,
+     "d": "0",
+     "some_models": true
     },
     "vrf": {
      "t": "integer",
@@ -64053,10 +63216,15 @@
      "d": "0"
     },
     "wifi-5g-threshold": {
-     "t": "string"
+     "t": "string",
+     "len": 7,
+     "d": "-78",
+     "some_models": true
     },
     "wifi-acl": {
      "t": "option",
+     "d": "deny",
+     "some_models": true,
      "o": [
       "allow",
       "deny"
@@ -64064,20 +63232,28 @@
     },
     "wifi-ap-band": {
      "t": "option",
+     "d": "any",
+     "some_models": true,
      "o": [
       "any",
-      "5g-preferred"
+      "5g-preferred",
+      "5g-only"
      ]
     },
     "wifi-auth": {
      "t": "option",
+     "d": "PSK",
+     "some_models": true,
      "o": [
       "PSK",
-      "radius"
+      "radius",
+      "usergroup"
      ]
     },
     "wifi-auto-connect": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -64085,6 +63261,8 @@
     },
     "wifi-auto-save": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -64092,624 +63270,84 @@
     },
     "wifi-broadcast-ssid": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
      ]
     },
     "wifi-dns-server1": {
-     "t": "ipv4-address"
+     "t": "ipv4-address",
+     "d": "0.0.0.0",
+     "some_models": true
     },
     "wifi-dns-server2": {
-     "t": "ipv4-address"
+     "t": "ipv4-address",
+     "d": "0.0.0.0",
+     "some_models": true
     },
     "wifi-encrypt": {
      "t": "option",
+     "d": "AES",
+     "some_models": true,
      "o": [
       "TKIP",
       "AES"
      ]
     },
     "wifi-fragment-threshold": {
-     "t": "integer"
+     "t": "integer",
+     "min": 800,
+     "max": 2346,
+     "d": "2346",
+     "some_models": true
     },
     "wifi-gateway": {
-     "t": "ipv4-address"
+     "t": "ipv4-address",
+     "d": "0.0.0.0",
+     "some_models": true
     },
     "wifi-key": {
-     "t": "password"
+     "t": "password",
+     "some_models": true
     },
     "wifi-keyindex": {
-     "t": "integer"
+     "t": "integer",
+     "min": 1,
+     "max": 4,
+     "d": "1",
+     "some_models": true
     },
     "wifi-mac-filter": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
      ]
     },
     "wifi-passphrase": {
-     "t": "password"
+     "t": "password",
+     "some_models": true
     },
     "wifi-radius-server": {
-     "t": "string"
+     "t": "string",
+     "len": 35,
+     "some_models": true
     },
     "wifi-rts-threshold": {
-     "t": "integer"
-    },
-    "wifi-security": {
-     "t": "option",
-     "o": [
-      "open",
-      "wep64"
-     ]
-    },
-    "wifi-ssid": {
-     "t": "string"
-    },
-    "wifi-usergroup": {
-     "t": "string"
-    },
-    "wins-ip": {
-     "t": "ipv4-address",
-     "d": "0.0.0.0"
-    },
-    "annex *": {
-     "t": "option",
-     "d": "a",
-     "o": [
-      "a",
-      "b",
-      "i",
-      "j",
-      "m",
-      "al",
-      "bj",
-      "aijlm"
-     ]
-    },
-    "atm-protocol *": {
-     "t": "option",
-     "d": "none",
-     "o": [
-      "none",
-      "ipoa"
-     ]
-    },
-    "egress-cos *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "disable",
-      "cos0",
-      "cos1",
-      "cos2",
-      "cos3",
-      "cos4",
-      "cos5",
-      "cos6",
-      "cos7"
-     ]
-    },
-    "eip *": {
-     "t": "ipv4-address-any",
-     "d": "0.0.0.0"
-    },
-    "fail-alert-interfaces <name>": {
-     "t": "string",
-     "len": 15
-    },
-    "forward-error-correction *": {
-     "t": "option",
-     "d": "none",
-     "o": [
-      "none",
-      "disable",
-      "cl91-rs-fec",
-      "cl74-fc-fec",
-      "rs-fec544",
-      "auto"
-     ]
-    },
-    "gateway-address *": {
-     "t": "ipv4-address",
-     "d": "0.0.0.0"
-    },
-    "gwaddr *": {
-     "t": "ipv4-address",
-     "d": "0.0.0.0"
-    },
-    "ingress-cos *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "disable",
-      "cos0",
-      "cos1",
-      "cos2",
-      "cos3",
-      "cos4",
-      "cos5",
-      "cos6",
-      "cos7"
-     ]
-    },
-    "interconnect-profile *": {
-     "t": "option",
-     "d": "default",
-     "o": [
-      "default",
-      "profile1",
-      "profile2"
-     ]
-    },
-    "l2tp-client *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "mediatype *": {
-     "t": "option",
-     "d": "serdes-sfp **",
-     "o": [
-      "serdes-sfp",
-      "sgmii-sfp",
-      "serdes-copper-sfp",
-      "none",
-      "gmii",
-      "sgmii",
-      "sr",
-      "lr",
-      "cr",
-      "sr-lr",
-      "kr",
-      "sr2",
-      "lr2",
-      "cr2",
-      "sr4",
-      "lr4",
-      "cr4",
-      "caui4",
-      "sr4-long-dac",
-      "sr8",
-      "lr8",
-      "cr8"
-     ]
-    },
-    "member <interface-name>": {
-     "t": "string",
-     "len": 79
-    },
-    "mirroring-direction *": {
-     "t": "option",
-     "o": [
-      "rx"
-     ]
-    },
-    "mirroring-port *": {
-     "t": "string",
-     "len": 15
-    },
-    "mux-type *": {
-     "t": "option",
-     "d": "llc-encaps",
-     "o": [
-      "llc-encaps",
-      "vc-encaps"
-     ]
-    },
-    "name": {
-     "t": "string",
-     "len": 15
-    },
-    "np-qos-profile *": {
-     "t": "integer",
-     "min": 0,
-     "max": 15,
-     "d": "0"
-    },
-    "phy-mode *": {
-     "t": "option",
-     "d": "vdsl",
-     "o": [
-      "vdsl",
-      "auto",
-      "adsl-auto",
-      "vdsl2",
-      "adsl2+",
-      "adsl2",
-      "g-dmt",
-      "t1-413",
-      "g-lite"
-     ]
-    },
-    "poe *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "port-mirroring *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "disable",
-      "enable"
-     ]
-    },
-    "profiles *": {
-     "t": "option",
-     "d": "17a 30a",
-     "o": [
-      "8a",
-      "8b",
-      "8c",
-      "8d",
-      "12a",
-      "12b",
-      "17a",
-      "30a",
-      "35b"
-     ]
-    },
-    "pvc-atm-qos *": {
-     "t": "option",
-     "d": "ubr",
-     "o": [
-      "cbr",
-      "rt-vbr",
-      "nrt-vbr",
-      "ubr"
-     ]
-    },
-    "pvc-chan *": {
-     "t": "integer",
-     "min": 0,
-     "max": 7,
-     "d": "0"
-    },
-    "pvc-crc *": {
-     "t": "integer",
-     "min": 0,
-     "max": 7,
-     "d": "2"
-    },
-    "pvc-pcr *": {
-     "t": "integer",
-     "min": 0,
-     "max": 5500,
-     "d": "0"
-    },
-    "pvc-scr *": {
-     "t": "integer",
-     "min": 0,
-     "max": 5500,
-     "d": "0"
-    },
-    "pvc-vlan-id *": {
-     "t": "integer",
-     "min": 1,
-     "max": 4094,
-     "d": "7"
-    },
-    "pvc-vlan-rx-id *": {
-     "t": "integer",
-     "min": 1,
-     "max": 4094,
-     "d": "7"
-    },
-    "pvc-vlan-rx-op *": {
-     "t": "option",
-     "d": "pass-through",
-     "o": [
-      "pass-through",
-      "replace",
-      "remove"
-     ]
-    },
-    "pvc-vlan-tx-id *": {
-     "t": "integer",
-     "min": 1,
-     "max": 4094,
-     "d": "7"
-    },
-    "pvc-vlan-tx-op *": {
-     "t": "option",
-     "d": "remove",
-     "o": [
-      "pass-through",
-      "replace",
-      "remove"
-     ]
-    },
-    "retransmission *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "disable",
-      "enable"
-     ]
-    },
-    "ring-rx *": {
-     "t": "integer",
-     "min": 0,
-     "max": 4294967295,
-     "d": "0"
-    },
-    "ring-tx *": {
-     "t": "integer",
-     "min": 0,
-     "max": 4294967295,
-     "d": "0"
-    },
-    "security-groups <name>": {
-     "t": "string",
-     "len": 79
-    },
-    "select-profile-30a-35b *": {
-     "t": "option",
-     "d": "35b",
-     "o": [
-      "30a",
-      "35b"
-     ]
-    },
-    "sfp-dsl *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "disable",
-      "enable"
-     ]
-    },
-    "sfp-dsl-adsl-fallback *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "disable",
-      "enable"
-     ]
-    },
-    "sfp-dsl-autodetect *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "disable",
-      "enable"
-     ]
-    },
-    "sfp-dsl-mac *": {
-     "t": "mac-address",
-     "d": "00:00:00:00:00:00"
-    },
-    "stp *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "disable",
-      "enable"
-     ]
-    },
-    "stp-edge *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "disable",
-      "enable"
-     ]
-    },
-    "stp-ha-secondary *": {
-     "t": "option",
-     "d": "priority-adjust",
-     "o": [
-      "disable",
-      "enable",
-      "priority-adjust"
-     ]
-    },
-    "stp-root-guard *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "disable",
-      "enable"
-     ]
-    },
-    "sw-algorithm *": {
-     "t": "option",
-     "d": "default",
-     "o": [
-      "l2",
-      "l3",
-      "eh",
-      "default"
-     ]
-    },
-    "tc-mode *": {
-     "t": "option",
-     "d": "ptm",
-     "o": [
-      "ptm",
-      "atm"
-     ]
-    },
-    "telemetry-discover *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "trunk *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "tx-queue-len *": {
-     "t": "integer",
-     "min": 0,
-     "max": 65536,
-     "d": "0"
-    },
-    "vci *": {
-     "t": "integer",
-     "min": 0,
-     "max": 65535,
-     "d": "35"
-    },
-    "vectoring *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "disable",
-      "enable"
-     ]
-    },
-    "vlan-id *": {
-     "t": "integer",
-     "min": 0,
-     "max": 4095,
-     "d": "1"
-    },
-    "vlan-op-mode *": {
-     "t": "option",
-     "d": "passthrough",
-     "o": [
-      "tag",
-      "untag",
-      "passthrough"
-     ]
-    },
-    "vpi *": {
-     "t": "integer",
-     "min": 0,
-     "max": 255,
-     "d": "0"
-    },
-    "wifi-5g-threshold *": {
-     "t": "string",
-     "len": 7,
-     "d": "-78"
-    },
-    "wifi-acl *": {
-     "t": "option",
-     "d": "deny",
-     "o": [
-      "allow",
-      "deny"
-     ]
-    },
-    "wifi-ap-band *": {
-     "t": "option",
-     "d": "any",
-     "o": [
-      "any",
-      "5g-preferred",
-      "5g-only"
-     ]
-    },
-    "wifi-auth *": {
-     "t": "option",
-     "d": "PSK",
-     "o": [
-      "PSK",
-      "radius",
-      "usergroup"
-     ]
-    },
-    "wifi-auto-connect *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "wifi-auto-save *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "wifi-broadcast-ssid *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "wifi-dns-server1 *": {
-     "t": "ipv4-address",
-     "d": "0.0.0.0"
-    },
-    "wifi-dns-server2 *": {
-     "t": "ipv4-address",
-     "d": "0.0.0.0"
-    },
-    "wifi-encrypt *": {
-     "t": "option",
-     "d": "AES",
-     "o": [
-      "TKIP",
-      "AES"
-     ]
-    },
-    "wifi-fragment-threshold *": {
-     "t": "integer",
-     "min": 800,
-     "max": 2346,
-     "d": "2346"
-    },
-    "wifi-gateway *": {
-     "t": "ipv4-address",
-     "d": "0.0.0.0"
-    },
-    "wifi-key *": {
-     "t": "password"
-    },
-    "wifi-keyindex *": {
-     "t": "integer",
-     "min": 1,
-     "max": 4,
-     "d": "1"
-    },
-    "wifi-mac-filter *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "wifi-passphrase *": {
-     "t": "password"
-    },
-    "wifi-radius-server *": {
-     "t": "string",
-     "len": 35
-    },
-    "wifi-rts-threshold *": {
      "t": "integer",
      "min": 256,
      "max": 2346,
-     "d": "2346"
+     "d": "2346",
+     "some_models": true
     },
-    "wifi-security *": {
+    "wifi-security": {
      "t": "option",
      "d": "wpa-personal",
+     "some_models": true,
      "o": [
       "open",
       "wep64",
@@ -64722,14 +63360,36 @@
       "wpa2-only-enterprise"
      ]
     },
-    "wifi-ssid *": {
+    "wifi-ssid": {
      "t": "string",
      "len": 32,
-     "d": "fortinet"
+     "d": "fortinet",
+     "some_models": true
     },
-    "wifi-usergroup *": {
+    "wifi-usergroup": {
      "t": "string",
-     "len": 35
+     "len": 35,
+     "some_models": true
+    },
+    "wins-ip": {
+     "t": "ipv4-address",
+     "d": "0.0.0.0"
+    },
+    "fail-alert-interfaces <name>": {
+     "t": "string",
+     "len": 15
+    },
+    "member <interface-name>": {
+     "t": "string",
+     "len": 79
+    },
+    "name": {
+     "t": "string",
+     "len": 15
+    },
+    "security-groups <name>": {
+     "t": "string",
+     "len": 79
     }
    },
    "sub": {
@@ -66125,6 +64785,8 @@
    "params": {
     "auto-asic-offload": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -66148,14 +64810,6 @@
      "o": [
       "disable",
       "enable"
-     ]
-    },
-    "auto-asic-offload *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
      ]
     },
     "name": {
@@ -66296,6 +64950,8 @@
    "params": {
     "auto-asic-offload": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -66319,14 +64975,6 @@
      "o": [
       "disable",
       "enable"
-     ]
-    },
-    "auto-asic-offload *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
      ]
     },
     "name": {
@@ -67050,6 +65698,8 @@
    "params": {
     "allow-modify-mtu-size": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -67057,6 +65707,8 @@
     },
     "allow-modify-wireless-profile-table": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -67078,16 +65730,22 @@
     },
     "auto-connect": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
      ]
     },
     "band-restrictions": {
-     "t": "string"
+     "t": "string",
+     "len": 35,
+     "some_models": true
     },
     "data-usage-tracking": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -67095,6 +65753,8 @@
     },
     "dhcp-relay": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -67105,13 +65765,23 @@
      "len": 127
     },
     "force-wireless-profile": {
-     "t": "integer"
+     "t": "integer",
+     "min": 0,
+     "max": 16,
+     "d": "0",
+     "some_models": true
     },
     "gps-port": {
-     "t": "integer"
+     "t": "integer",
+     "min": 0,
+     "max": 20,
+     "d": "255",
+     "some_models": true
     },
     "gps-service": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -67125,9 +65795,18 @@
     },
     "image-preference": {
      "t": "option",
+     "d": "auto-sim",
+     "some_models": true,
      "o": [
       "generic",
-      "att"
+      "att",
+      "verizon",
+      "telus",
+      "docomo",
+      "softbank",
+      "sprint",
+      "auto-sim",
+      "no-change"
      ]
     },
     "interface": {
@@ -67136,6 +65815,8 @@
     },
     "manual-handover": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -67157,13 +65838,18 @@
     },
     "network-type": {
      "t": "option",
+     "d": "auto",
+     "some_models": true,
      "o": [
       "auto",
-      "umts-3g"
+      "umts-3g",
+      "lte"
      ]
     },
     "override-gateway": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -67182,10 +65868,12 @@
      ]
     },
     "sim1-pin": {
-     "t": "password"
+     "t": "password",
+     "some_models": true
     },
     "sim2-pin": {
-     "t": "password"
+     "t": "password",
+     "some_models": true
     },
     "status": {
      "t": "option",
@@ -67198,116 +65886,6 @@
     "username": {
      "t": "string",
      "len": 63
-    },
-    "allow-modify-mtu-size *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "allow-modify-wireless-profile-table *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "auto-connect *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "band-restrictions *": {
-     "t": "string",
-     "len": 35
-    },
-    "data-usage-tracking *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "dhcp-relay *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "force-wireless-profile *": {
-     "t": "integer",
-     "min": 0,
-     "max": 16,
-     "d": "0"
-    },
-    "gps-port *": {
-     "t": "integer",
-     "min": 0,
-     "max": 20,
-     "d": "255"
-    },
-    "gps-service *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "image-preference *": {
-     "t": "option",
-     "d": "auto-sim",
-     "o": [
-      "generic",
-      "att",
-      "verizon",
-      "telus",
-      "docomo",
-      "softbank",
-      "sprint",
-      "auto-sim",
-      "no-change"
-     ]
-    },
-    "manual-handover *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "network-type *": {
-     "t": "option",
-     "d": "auto",
-     "o": [
-      "auto",
-      "umts-3g",
-      "lte"
-     ]
-    },
-    "override-gateway *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "sim1-pin *": {
-     "t": "password"
-    },
-    "sim2-pin *": {
-     "t": "password"
     }
    },
    "sub": {
@@ -68318,13 +66896,20 @@
     },
     "ipsec-ob-hash-function": {
      "t": "option",
+     "d": "switch-group-hash",
+     "some_models": true,
      "o": [
       "switch-group-hash",
-      "global-hash"
+      "global-hash",
+      "global-hash-weighted",
+      "round-robin-switch-group",
+      "round-robin-global"
      ]
     },
     "ipsec-outbound-hash": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "disable",
       "enable"
@@ -68372,25 +66957,6 @@
      "min": 0,
      "max": 1000,
      "d": "8"
-    },
-    "ipsec-ob-hash-function *": {
-     "t": "option",
-     "d": "switch-group-hash",
-     "o": [
-      "switch-group-hash",
-      "global-hash",
-      "global-hash-weighted",
-      "round-robin-switch-group",
-      "round-robin-global"
-     ]
-    },
-    "ipsec-outbound-hash *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "disable",
-      "enable"
-     ]
     },
     "name": {
      "t": "string",
@@ -68816,6 +67382,8 @@
    "params": {
     "congestion-handling-mode": {
      "t": "option",
+     "d": "head-of-line",
+     "some_models": true,
      "o": [
       "flow-control",
       "head-of-line"
@@ -68890,14 +67458,6 @@
      "min": 0,
      "max": 1000,
      "d": "40"
-    },
-    "congestion-handling-mode *": {
-     "t": "option",
-     "d": "head-of-line",
-     "o": [
-      "flow-control",
-      "head-of-line"
-     ]
     },
     "name": {
      "t": "string",
@@ -69323,16 +67883,23 @@
    "params": {
     "capwap-offload": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
      ]
     },
     "dedicated-management-affinity": {
-     "t": "string"
+     "t": "string",
+     "len": 79,
+     "d": "1",
+     "some_models": true
     },
     "dedicated-management-cpu": {
      "t": "option",
+     "d": "disable **",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -69340,6 +67907,8 @@
     },
     "default-ipsec-mcs-type": {
      "t": "option",
+     "d": "policing",
+     "some_models": true,
      "o": [
       "policing",
       "shaping"
@@ -69347,13 +67916,18 @@
     },
     "default-qos-type": {
      "t": "option",
+     "d": "policing",
+     "some_models": true,
      "o": [
       "policing",
-      "shaping"
+      "shaping",
+      "policing-enhanced"
      ]
     },
     "double-level-mcast-offload": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -69361,6 +67935,8 @@
     },
     "emac-vlan-mode": {
      "t": "option",
+     "d": "functionality",
+     "some_models": true,
      "o": [
       "functionality",
       "offloading"
@@ -69368,6 +67944,8 @@
     },
     "fastpath": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "disable",
       "enable"
@@ -69375,13 +67953,18 @@
     },
     "gtp-enhanced-cpu-range": {
      "t": "option",
+     "d": "0",
+     "some_models": true,
      "o": [
       "0",
-      "1"
+      "1",
+      "2"
      ]
     },
     "gtp-enhanced-mode": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -69389,6 +67972,8 @@
     },
     "gtp-support": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -69396,6 +67981,8 @@
     },
     "hash-tbl-spread": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -69403,6 +67990,8 @@
     },
     "hif-queue-customize": {
      "t": "option",
+     "d": "numa-affinity",
+     "some_models": true,
      "o": [
       "numa-affinity",
       "all-cpus"
@@ -69410,510 +67999,34 @@
     },
     "host-shortcut-mode": {
      "t": "option",
+     "d": "bi-directional",
+     "some_models": true,
      "o": [
       "bi-directional",
       "host-shortcut"
      ]
     },
     "htab-dedi-queue-nr": {
-     "t": "integer"
-    },
-    "htab-msg-queue": {
-     "t": "option",
-     "o": [
-      "data",
-      "idle"
-     ]
-    },
-    "htx-gtse-quota": {
-     "t": "option",
-     "o": [
-      "100Mbps",
-      "200Mbps"
-     ]
-    },
-    "htx-icmp-csum-chk": {
-     "t": "option",
-     "o": [
-      "drop",
-      "pass"
-     ]
-    },
-    "ike-port": {
-     "t": "string",
-     "multi": true
-    },
-    "inbound-dscp-copy-port": {
-     "t": "string",
-     "multi": true
-    },
-    "intf-shaping-offload": {
-     "t": "option",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "ip-fragment-offload": {
-     "t": "option",
-     "o": [
-      "disable",
-      "enable"
-     ]
-    },
-    "iph-rsvd-re-cksum": {
-     "t": "option",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "ipsec-STS-timeout": {
-     "t": "option",
-     "o": [
-      "1",
-      "2"
-     ]
-    },
-    "ipsec-dec-subengine-mask": {
-     "t": "user"
-    },
-    "ipsec-enc-subengine-mask": {
-     "t": "user"
-    },
-    "ipsec-inbound-cache": {
-     "t": "option",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "ipsec-mtu-override": {
-     "t": "option",
-     "o": [
-      "disable",
-      "enable"
-     ]
-    },
-    "ipsec-ob-np-sel": {
-     "t": "option",
-     "o": [
-      "rr",
-      "Packet"
-     ]
-    },
-    "ipsec-ordering": {
-     "t": "option",
-     "o": [
-      "disable",
-      "enable"
-     ]
-    },
-    "ipsec-over-vlink": {
-     "t": "option",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "ipsec-throughput-msg-frequency": {
-     "t": "option",
-     "o": [
-      "disable",
-      "32KB"
-     ]
-    },
-    "ipt-STS-timeout": {
-     "t": "option",
-     "o": [
-      "1",
-      "2"
-     ]
-    },
-    "ipt-throughput-msg-frequency": {
-     "t": "option",
-     "o": [
-      "disable",
-      "32KB"
-     ]
-    },
-    "lag-hash-gre": {
-     "t": "option",
-     "o": [
-      "disable",
-      "gre_inner_l3"
-     ]
-    },
-    "lag-out-port-select": {
-     "t": "option",
-     "o": [
-      "disable",
-      "enable"
-     ]
-    },
-    "max-receive-unit": {
-     "t": "integer"
-    },
-    "max-session-timeout": {
-     "t": "integer"
-    },
-    "mcast-denied-ses-offload": {
-     "t": "option",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "mcast-session-accounting": {
-     "t": "option",
-     "o": [
-      "tpe-based",
-      "session-based"
-     ]
-    },
-    "mcs-auto-start": {
-     "t": "option",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "mcs-host-packet-tpe-shaping": {
-     "t": "option",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "napi-break-interval": {
-     "t": "integer"
-    },
-    "np-linkscan-interval": {
-     "t": "integer"
-    },
-    "np6-cps-optimization-mode": {
-     "t": "option",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "per-policy-accounting": {
-     "t": "option",
-     "o": [
-      "disable",
-      "enable"
-     ]
-    },
-    "per-session-accounting": {
-     "t": "option",
-     "o": [
-      "traffic-log-only",
-      "disable"
-     ]
-    },
-    "qos-mode": {
-     "t": "option",
-     "o": [
-      "disable",
-      "priority"
-     ]
-    },
-    "qtm-buf-mode": {
-     "t": "option",
-     "o": [
-      "6ch",
-      "4ch"
-     ]
-    },
-    "rdp-offload": {
-     "t": "option",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "sctp-ctrlpkt-to-host": {
-     "t": "option",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "sctp-offload": {
-     "t": "option",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "session-acct-interval": {
-     "t": "integer"
-    },
-    "session-denied-offload": {
-     "t": "option",
-     "o": [
-      "disable",
-      "enable"
-     ]
-    },
-    "shadow-virtual-switch": {
-     "t": "option",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "shaping-stats": {
-     "t": "option",
-     "o": [
-      "disable",
-      "enable"
-     ]
-    },
-    "sse-backpressure": {
-     "t": "option",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "strip-clear-text-padding": {
-     "t": "option",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "strip-esp-padding": {
-     "t": "option",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "sw-np-bandwidth": {
-     "t": "option",
-     "o": [
-      "0G",
-      "2G"
-     ]
-    },
-    "sw-np-pause": {
-     "t": "option",
-     "o": [
-      "disable",
-      "enable"
-     ]
-    },
-    "sw-np-rate": {
-     "t": "integer"
-    },
-    "sw-np-rate-burst": {
-     "t": "integer"
-    },
-    "sw-np-rate-unit": {
-     "t": "option",
-     "o": [
-      "mbps",
-      "pps"
-     ]
-    },
-    "switch-np-hash": {
-     "t": "option",
-     "o": [
-      "src-ip",
-      "dst-ip"
-     ]
-    },
-    "tunnel-over-vlink": {
-     "t": "option",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "uesp-offload": {
-     "t": "option",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "ull-port-mode": {
-     "t": "option",
-     "o": [
-      "10G",
-      "25G"
-     ]
-    },
-    "use-mse-oft": {
-     "t": "option",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "vlan-accounting": {
-     "t": "option",
-     "o": [
-      "disable",
-      "enable"
-     ]
-    },
-    "vlan-acct-interval": {
-     "t": "integer"
-    },
-    "vlan-lookup-cache": {
-     "t": "option",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "vxlan-mac-flapping-guard": {
-     "t": "option",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "vxlan-offload": {
-     "t": "option",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "capwap-offload *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "dedicated-management-affinity *": {
-     "t": "string",
-     "len": 79,
-     "d": "1"
-    },
-    "dedicated-management-cpu *": {
-     "t": "option",
-     "d": "disable **",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "default-ipsec-mcs-type *": {
-     "t": "option",
-     "d": "policing",
-     "o": [
-      "policing",
-      "shaping"
-     ]
-    },
-    "default-qos-type *": {
-     "t": "option",
-     "d": "policing",
-     "o": [
-      "policing",
-      "shaping",
-      "policing-enhanced"
-     ]
-    },
-    "double-level-mcast-offload *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "emac-vlan-mode *": {
-     "t": "option",
-     "d": "functionality",
-     "o": [
-      "functionality",
-      "offloading"
-     ]
-    },
-    "fastpath *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "disable",
-      "enable"
-     ]
-    },
-    "gtp-enhanced-cpu-range *": {
-     "t": "option",
-     "d": "0",
-     "o": [
-      "0",
-      "1",
-      "2"
-     ]
-    },
-    "gtp-enhanced-mode *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "gtp-support *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "hash-tbl-spread *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "hif-queue-customize *": {
-     "t": "option",
-     "d": "numa-affinity",
-     "o": [
-      "numa-affinity",
-      "all-cpus"
-     ]
-    },
-    "host-shortcut-mode *": {
-     "t": "option",
-     "d": "bi-directional",
-     "o": [
-      "bi-directional",
-      "host-shortcut"
-     ]
-    },
-    "htab-dedi-queue-nr *": {
      "t": "integer",
      "min": 1,
      "max": 2,
-     "d": "1"
+     "d": "1",
+     "some_models": true
     },
-    "htab-msg-queue *": {
+    "htab-msg-queue": {
      "t": "option",
      "d": "dedicated",
+     "some_models": true,
      "o": [
       "data",
       "idle",
       "dedicated"
      ]
     },
-    "htx-gtse-quota *": {
+    "htx-gtse-quota": {
      "t": "option",
      "d": "1Gbps",
+     "some_models": true,
      "o": [
       "100Mbps",
       "200Mbps",
@@ -69931,50 +68044,54 @@
       "10Gbps"
      ]
     },
-    "htx-icmp-csum-chk *": {
+    "htx-icmp-csum-chk": {
      "t": "option",
      "d": "drop",
+     "some_models": true,
      "o": [
       "drop",
       "pass"
      ]
     },
-    "ike-port <port> *": {
-     "t": "integer",
-     "min": 1,
-     "max": 65535
-    },
-    "inbound-dscp-copy-port <interface> *": {
+    "ike-port": {
      "t": "string",
-     "len": 15
+     "multi": true
     },
-    "intf-shaping-offload *": {
+    "inbound-dscp-copy-port": {
+     "t": "string",
+     "multi": true
+    },
+    "intf-shaping-offload": {
      "t": "option",
      "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
      ]
     },
-    "ip-fragment-offload *": {
+    "ip-fragment-offload": {
      "t": "option",
      "d": "enable",
+     "some_models": true,
      "o": [
       "disable",
       "enable"
      ]
     },
-    "iph-rsvd-re-cksum *": {
+    "iph-rsvd-re-cksum": {
      "t": "option",
      "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
      ]
     },
-    "ipsec-STS-timeout *": {
+    "ipsec-STS-timeout": {
      "t": "option",
      "d": "5",
+     "some_models": true,
      "o": [
       "1",
       "2",
@@ -69988,56 +68105,64 @@
       "10"
      ]
     },
-    "ipsec-dec-subengine-mask *": {
-     "t": "user"
+    "ipsec-dec-subengine-mask": {
+     "t": "user",
+     "some_models": true
     },
-    "ipsec-enc-subengine-mask *": {
-     "t": "user"
+    "ipsec-enc-subengine-mask": {
+     "t": "user",
+     "some_models": true
     },
-    "ipsec-inbound-cache *": {
+    "ipsec-inbound-cache": {
      "t": "option",
      "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
      ]
     },
-    "ipsec-mtu-override *": {
+    "ipsec-mtu-override": {
      "t": "option",
      "d": "disable",
+     "some_models": true,
      "o": [
       "disable",
       "enable"
      ]
     },
-    "ipsec-ob-np-sel *": {
+    "ipsec-ob-np-sel": {
      "t": "option",
      "d": "rr",
+     "some_models": true,
      "o": [
       "rr",
       "Packet",
       "Hash"
      ]
     },
-    "ipsec-ordering *": {
+    "ipsec-ordering": {
      "t": "option",
      "d": "disable",
+     "some_models": true,
      "o": [
       "disable",
       "enable"
      ]
     },
-    "ipsec-over-vlink *": {
+    "ipsec-over-vlink": {
      "t": "option",
      "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
      ]
     },
-    "ipsec-throughput-msg-frequency *": {
+    "ipsec-throughput-msg-frequency": {
      "t": "option",
      "d": "disable",
+     "some_models": true,
      "o": [
       "disable",
       "32KB",
@@ -70058,9 +68183,10 @@
       "1GB"
      ]
     },
-    "ipt-STS-timeout *": {
+    "ipt-STS-timeout": {
      "t": "option",
      "d": "5",
+     "some_models": true,
      "o": [
       "1",
       "2",
@@ -70074,9 +68200,10 @@
       "10"
      ]
     },
-    "ipt-throughput-msg-frequency *": {
+    "ipt-throughput-msg-frequency": {
      "t": "option",
      "d": "disable",
+     "some_models": true,
      "o": [
       "disable",
       "32KB",
@@ -70097,9 +68224,10 @@
       "1GB"
      ]
     },
-    "lag-hash-gre *": {
+    "lag-hash-gre": {
      "t": "option",
      "d": "disable",
+     "some_models": true,
      "o": [
       "disable",
       "gre_inner_l3",
@@ -70107,194 +68235,219 @@
       "gre_inner_l3l4"
      ]
     },
-    "lag-out-port-select *": {
+    "lag-out-port-select": {
      "t": "option",
      "d": "disable",
+     "some_models": true,
      "o": [
       "disable",
       "enable"
      ]
     },
-    "max-receive-unit *": {
+    "max-receive-unit": {
      "t": "integer",
      "min": 64,
      "max": 10000,
-     "d": "10000"
+     "d": "10000",
+     "some_models": true
     },
-    "max-session-timeout *": {
+    "max-session-timeout": {
      "t": "integer",
      "min": 10,
      "max": 1000,
-     "d": "40"
+     "d": "40",
+     "some_models": true
     },
-    "mcast-denied-ses-offload *": {
+    "mcast-denied-ses-offload": {
      "t": "option",
      "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
      ]
     },
-    "mcast-session-accounting *": {
+    "mcast-session-accounting": {
      "t": "option",
      "d": "tpe-based",
+     "some_models": true,
      "o": [
       "tpe-based",
       "session-based",
       "disable"
      ]
     },
-    "mcs-auto-start *": {
+    "mcs-auto-start": {
      "t": "option",
      "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
      ]
     },
-    "mcs-host-packet-tpe-shaping *": {
+    "mcs-host-packet-tpe-shaping": {
      "t": "option",
      "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
      ]
     },
-    "napi-break-interval *": {
+    "napi-break-interval": {
      "t": "integer",
      "min": 0,
      "max": 65535,
-     "d": "0"
+     "d": "0",
+     "some_models": true
     },
-    "np-linkscan-interval *": {
+    "np-linkscan-interval": {
      "t": "integer",
      "min": 50,
      "max": 1000,
-     "d": "1000"
+     "d": "1000",
+     "some_models": true
     },
-    "np6-cps-optimization-mode *": {
+    "np6-cps-optimization-mode": {
      "t": "option",
      "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
      ]
     },
-    "per-policy-accounting *": {
+    "per-policy-accounting": {
      "t": "option",
      "d": "disable",
+     "some_models": true,
      "o": [
       "disable",
       "enable"
      ]
     },
-    "per-session-accounting *": {
+    "per-session-accounting": {
      "t": "option",
      "d": "traffic-log-only",
+     "some_models": true,
      "o": [
       "traffic-log-only",
       "disable",
       "enable"
      ]
     },
-    "qos-mode *": {
+    "qos-mode": {
      "t": "option",
      "d": "disable",
+     "some_models": true,
      "o": [
       "disable",
       "priority",
       "round-robin"
      ]
     },
-    "qtm-buf-mode *": {
+    "qtm-buf-mode": {
      "t": "option",
      "d": "6ch",
+     "some_models": true,
      "o": [
       "6ch",
       "4ch"
      ]
     },
-    "rdp-offload *": {
+    "rdp-offload": {
      "t": "option",
      "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
      ]
     },
-    "sctp-ctrlpkt-to-host *": {
+    "sctp-ctrlpkt-to-host": {
      "t": "option",
      "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
      ]
     },
-    "sctp-offload *": {
+    "sctp-offload": {
      "t": "option",
      "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
      ]
     },
-    "session-acct-interval *": {
+    "session-acct-interval": {
      "t": "integer",
      "min": 1,
      "max": 600,
-     "d": "5"
+     "d": "5",
+     "some_models": true
     },
-    "session-denied-offload *": {
+    "session-denied-offload": {
      "t": "option",
      "d": "disable",
+     "some_models": true,
      "o": [
       "disable",
       "enable"
      ]
     },
-    "shadow-virtual-switch *": {
+    "shadow-virtual-switch": {
      "t": "option",
      "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
      ]
     },
-    "shaping-stats *": {
+    "shaping-stats": {
      "t": "option",
      "d": "disable",
+     "some_models": true,
      "o": [
       "disable",
       "enable"
      ]
     },
-    "sse-backpressure *": {
+    "sse-backpressure": {
      "t": "option",
      "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
      ]
     },
-    "strip-clear-text-padding *": {
+    "strip-clear-text-padding": {
      "t": "option",
      "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
      ]
     },
-    "strip-esp-padding *": {
+    "strip-esp-padding": {
      "t": "option",
      "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
      ]
     },
-    "sw-np-bandwidth *": {
+    "sw-np-bandwidth": {
      "t": "option",
      "d": "0G",
+     "some_models": true,
      "o": [
       "0G",
       "2G",
@@ -70306,112 +68459,137 @@
       "9G"
      ]
     },
-    "sw-np-pause *": {
+    "sw-np-pause": {
      "t": "option",
      "d": "enable",
+     "some_models": true,
      "o": [
       "disable",
       "enable"
      ]
     },
-    "sw-np-rate *": {
+    "sw-np-rate": {
      "t": "integer",
      "min": 0,
      "max": 4294967295,
-     "d": "0"
+     "d": "0",
+     "some_models": true
     },
-    "sw-np-rate-burst *": {
+    "sw-np-rate-burst": {
      "t": "integer",
      "min": 0,
      "max": 4294967295,
-     "d": "16"
+     "d": "16",
+     "some_models": true
     },
-    "sw-np-rate-unit *": {
+    "sw-np-rate-unit": {
      "t": "option",
      "d": "mbps",
+     "some_models": true,
      "o": [
       "mbps",
       "pps"
      ]
     },
-    "switch-np-hash *": {
+    "switch-np-hash": {
      "t": "option",
      "d": "src-dst-ip",
+     "some_models": true,
      "o": [
       "src-ip",
       "dst-ip",
       "src-dst-ip"
      ]
     },
-    "tunnel-over-vlink *": {
+    "tunnel-over-vlink": {
      "t": "option",
      "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
      ]
     },
-    "uesp-offload *": {
+    "uesp-offload": {
      "t": "option",
      "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
      ]
     },
-    "ull-port-mode *": {
+    "ull-port-mode": {
      "t": "option",
      "d": "10G",
+     "some_models": true,
      "o": [
       "10G",
       "25G"
      ]
     },
-    "use-mse-oft *": {
+    "use-mse-oft": {
      "t": "option",
      "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
      ]
     },
-    "vlan-accounting *": {
+    "vlan-accounting": {
      "t": "option",
      "d": "enable",
+     "some_models": true,
      "o": [
       "disable",
       "enable"
      ]
     },
-    "vlan-acct-interval *": {
+    "vlan-acct-interval": {
      "t": "integer",
      "min": 100,
      "max": 10000,
-     "d": "200"
+     "d": "200",
+     "some_models": true
     },
-    "vlan-lookup-cache *": {
+    "vlan-lookup-cache": {
      "t": "option",
      "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
      ]
     },
-    "vxlan-mac-flapping-guard *": {
+    "vxlan-mac-flapping-guard": {
      "t": "option",
      "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
      ]
     },
-    "vxlan-offload *": {
+    "vxlan-offload": {
      "t": "option",
      "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
      ]
+    },
+    "ike-port <port>": {
+     "t": "integer",
+     "min": 1,
+     "max": 65535,
+     "some_models": true
+    },
+    "inbound-dscp-copy-port <interface>": {
+     "t": "string",
+     "len": 15,
+     "some_models": true
     }
    },
    "sub": {
@@ -70655,6 +68833,8 @@
      "params": {
       "esp-minlen-err": {
        "t": "option",
+       "d": "drop",
+       "some_models": true,
        "o": [
         "drop",
         "trap-to-host"
@@ -70662,9 +68842,12 @@
       },
       "gre-csum-err": {
        "t": "option",
+       "d": "drop",
+       "some_models": true,
        "o": [
         "allow",
-        "drop"
+        "drop",
+        "trap-to-host"
        ]
       },
       "icmp-csum-err": {
@@ -70678,20 +68861,28 @@
       },
       "icmp-frag": {
        "t": "option",
+       "d": "allow",
+       "some_models": true,
        "o": [
         "allow",
-        "drop"
+        "drop",
+        "trap-to-host"
        ]
       },
       "icmp-land": {
        "t": "option",
+       "d": "trap-to-host",
+       "some_models": true,
        "o": [
         "allow",
-        "drop"
+        "drop",
+        "trap-to-host"
        ]
       },
       "icmp-minlen-err": {
        "t": "option",
+       "d": "drop",
+       "some_models": true,
        "o": [
         "drop",
         "trap-to-host"
@@ -70707,6 +68898,8 @@
       },
       "ipv4-ihl-err": {
        "t": "option",
+       "d": "drop",
+       "some_models": true,
        "o": [
         "drop",
         "trap-to-host"
@@ -70714,13 +68907,18 @@
       },
       "ipv4-land": {
        "t": "option",
+       "d": "trap-to-host",
+       "some_models": true,
        "o": [
         "allow",
-        "drop"
+        "drop",
+        "trap-to-host"
        ]
       },
       "ipv4-len-err": {
        "t": "option",
+       "d": "drop",
+       "some_models": true,
        "o": [
         "drop",
         "trap-to-host"
@@ -70728,6 +68926,8 @@
       },
       "ipv4-opt-err": {
        "t": "option",
+       "d": "drop",
+       "some_models": true,
        "o": [
         "drop",
         "trap-to-host"
@@ -70735,6 +68935,8 @@
       },
       "ipv4-option": {
        "t": "option",
+       "d": "trap-to-host",
+       "some_models": true,
        "o": [
         "allow",
         "trap-to-host"
@@ -70742,55 +68944,78 @@
       },
       "ipv4-optlsrr": {
        "t": "option",
+       "d": "trap-to-host",
+       "some_models": true,
        "o": [
         "allow",
-        "drop"
+        "drop",
+        "trap-to-host"
        ]
       },
       "ipv4-optrr": {
        "t": "option",
+       "d": "trap-to-host",
+       "some_models": true,
        "o": [
         "allow",
-        "drop"
+        "drop",
+        "trap-to-host"
        ]
       },
       "ipv4-optsecurity": {
        "t": "option",
+       "d": "trap-to-host",
+       "some_models": true,
        "o": [
         "allow",
-        "drop"
+        "drop",
+        "trap-to-host"
        ]
       },
       "ipv4-optssrr": {
        "t": "option",
+       "d": "trap-to-host",
+       "some_models": true,
        "o": [
         "allow",
-        "drop"
+        "drop",
+        "trap-to-host"
        ]
       },
       "ipv4-optstream": {
        "t": "option",
+       "d": "trap-to-host",
+       "some_models": true,
        "o": [
         "allow",
-        "drop"
+        "drop",
+        "trap-to-host"
        ]
       },
       "ipv4-opttimestamp": {
        "t": "option",
+       "d": "trap-to-host",
+       "some_models": true,
        "o": [
         "allow",
-        "drop"
+        "drop",
+        "trap-to-host"
        ]
       },
       "ipv4-proto-err": {
        "t": "option",
+       "d": "trap-to-host",
+       "some_models": true,
        "o": [
         "allow",
-        "drop"
+        "drop",
+        "trap-to-host"
        ]
       },
       "ipv4-ttlzero-err": {
        "t": "option",
+       "d": "drop",
+       "some_models": true,
        "o": [
         "drop",
         "trap-to-host"
@@ -70798,13 +69023,18 @@
       },
       "ipv4-unknopt": {
        "t": "option",
+       "d": "trap-to-host",
+       "some_models": true,
        "o": [
         "allow",
-        "drop"
+        "drop",
+        "trap-to-host"
        ]
       },
       "ipv4-ver-err": {
        "t": "option",
+       "d": "drop",
+       "some_models": true,
        "o": [
         "drop",
         "trap-to-host"
@@ -70812,13 +69042,18 @@
       },
       "ipv6-daddr-err": {
        "t": "option",
+       "d": "trap-to-host",
+       "some_models": true,
        "o": [
         "allow",
-        "drop"
+        "drop",
+        "trap-to-host"
        ]
       },
       "ipv6-exthdr-len-err": {
        "t": "option",
+       "d": "drop",
+       "some_models": true,
        "o": [
         "drop",
         "trap-to-host"
@@ -70826,6 +69061,8 @@
       },
       "ipv6-exthdr-order-err": {
        "t": "option",
+       "d": "drop",
+       "some_models": true,
        "o": [
         "drop",
         "trap-to-host"
@@ -70833,6 +69070,8 @@
       },
       "ipv6-ihl-err": {
        "t": "option",
+       "d": "drop",
+       "some_models": true,
        "o": [
         "drop",
         "trap-to-host"
@@ -70840,62 +69079,88 @@
       },
       "ipv6-land": {
        "t": "option",
+       "d": "trap-to-host",
+       "some_models": true,
        "o": [
         "allow",
-        "drop"
+        "drop",
+        "trap-to-host"
        ]
       },
       "ipv6-optendpid": {
        "t": "option",
+       "d": "trap-to-host",
+       "some_models": true,
        "o": [
         "allow",
-        "drop"
+        "drop",
+        "trap-to-host"
        ]
       },
       "ipv6-opthomeaddr": {
        "t": "option",
+       "d": "trap-to-host",
+       "some_models": true,
        "o": [
         "allow",
-        "drop"
+        "drop",
+        "trap-to-host"
        ]
       },
       "ipv6-optinvld": {
        "t": "option",
+       "d": "trap-to-host",
+       "some_models": true,
        "o": [
         "allow",
-        "drop"
+        "drop",
+        "trap-to-host"
        ]
       },
       "ipv6-optjumbo": {
        "t": "option",
+       "d": "trap-to-host",
+       "some_models": true,
        "o": [
         "allow",
-        "drop"
+        "drop",
+        "trap-to-host"
        ]
       },
       "ipv6-optnsap": {
        "t": "option",
+       "d": "trap-to-host",
+       "some_models": true,
        "o": [
         "allow",
-        "drop"
+        "drop",
+        "trap-to-host"
        ]
       },
       "ipv6-optralert": {
        "t": "option",
+       "d": "trap-to-host",
+       "some_models": true,
        "o": [
         "allow",
-        "drop"
+        "drop",
+        "trap-to-host"
        ]
       },
       "ipv6-opttunnel": {
        "t": "option",
+       "d": "trap-to-host",
+       "some_models": true,
        "o": [
         "allow",
-        "drop"
+        "drop",
+        "trap-to-host"
        ]
       },
       "ipv6-plen-zero": {
        "t": "option",
+       "d": "drop",
+       "some_models": true,
        "o": [
         "drop",
         "trap-to-host"
@@ -70903,27 +69168,38 @@
       },
       "ipv6-proto-err": {
        "t": "option",
+       "d": "trap-to-host",
+       "some_models": true,
        "o": [
         "allow",
-        "drop"
+        "drop",
+        "trap-to-host"
        ]
       },
       "ipv6-saddr-err": {
        "t": "option",
+       "d": "trap-to-host",
+       "some_models": true,
        "o": [
         "allow",
-        "drop"
+        "drop",
+        "trap-to-host"
        ]
       },
       "ipv6-unknopt": {
        "t": "option",
+       "d": "trap-to-host",
+       "some_models": true,
        "o": [
         "allow",
-        "drop"
+        "drop",
+        "trap-to-host"
        ]
       },
       "ipv6-ver-err": {
        "t": "option",
+       "d": "drop",
+       "some_models": true,
        "o": [
         "drop",
         "trap-to-host"
@@ -70931,9 +69207,12 @@
       },
       "sctp-csum-err": {
        "t": "option",
+       "d": "drop",
+       "some_models": true,
        "o": [
         "allow",
-        "drop"
+        "drop",
+        "trap-to-host"
        ]
       },
       "tcp-csum-err": {
@@ -70947,20 +69226,28 @@
       },
       "tcp-fin-noack": {
        "t": "option",
+       "d": "trap-to-host",
+       "some_models": true,
        "o": [
         "allow",
-        "drop"
+        "drop",
+        "trap-to-host"
        ]
       },
       "tcp-fin-only": {
        "t": "option",
+       "d": "trap-to-host",
+       "some_models": true,
        "o": [
         "allow",
-        "drop"
+        "drop",
+        "trap-to-host"
        ]
       },
       "tcp-hlen-err": {
        "t": "option",
+       "d": "drop",
+       "some_models": true,
        "o": [
         "drop",
         "trap-to-host"
@@ -70968,20 +69255,28 @@
       },
       "tcp-land": {
        "t": "option",
+       "d": "trap-to-host",
+       "some_models": true,
        "o": [
         "allow",
-        "drop"
+        "drop",
+        "trap-to-host"
        ]
       },
       "tcp-no-flag": {
        "t": "option",
+       "d": "allow",
+       "some_models": true,
        "o": [
         "allow",
-        "drop"
+        "drop",
+        "trap-to-host"
        ]
       },
       "tcp-plen-err": {
        "t": "option",
+       "d": "drop",
+       "some_models": true,
        "o": [
         "drop",
         "trap-to-host"
@@ -70989,23 +69284,32 @@
       },
       "tcp-syn-data": {
        "t": "option",
+       "d": "allow",
+       "some_models": true,
        "o": [
         "allow",
-        "drop"
+        "drop",
+        "trap-to-host"
        ]
       },
       "tcp-syn-fin": {
        "t": "option",
+       "d": "allow",
+       "some_models": true,
        "o": [
         "allow",
-        "drop"
+        "drop",
+        "trap-to-host"
        ]
       },
       "tcp-winnuke": {
        "t": "option",
+       "d": "trap-to-host",
+       "some_models": true,
        "o": [
         "allow",
-        "drop"
+        "drop",
+        "trap-to-host"
        ]
       },
       "udp-csum-err": {
@@ -71019,6 +69323,8 @@
       },
       "udp-hlen-err": {
        "t": "option",
+       "d": "drop",
+       "some_models": true,
        "o": [
         "drop",
         "trap-to-host"
@@ -71026,13 +69332,18 @@
       },
       "udp-land": {
        "t": "option",
+       "d": "trap-to-host",
+       "some_models": true,
        "o": [
         "allow",
-        "drop"
+        "drop",
+        "trap-to-host"
        ]
       },
       "udp-len-err": {
        "t": "option",
+       "d": "drop",
+       "some_models": true,
        "o": [
         "drop",
         "trap-to-host"
@@ -71040,6 +69351,8 @@
       },
       "udp-plen-err": {
        "t": "option",
+       "d": "drop",
+       "some_models": true,
        "o": [
         "drop",
         "trap-to-host"
@@ -71047,6 +69360,8 @@
       },
       "udplite-cover-err": {
        "t": "option",
+       "d": "drop",
+       "some_models": true,
        "o": [
         "drop",
         "trap-to-host"
@@ -71054,479 +69369,18 @@
       },
       "udplite-csum-err": {
        "t": "option",
+       "d": "drop",
+       "some_models": true,
        "o": [
         "allow",
-        "drop"
+        "drop",
+        "trap-to-host"
        ]
       },
       "unknproto-minlen-err": {
        "t": "option",
-       "o": [
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "esp-minlen-err *": {
-       "t": "option",
        "d": "drop",
-       "o": [
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "gre-csum-err *": {
-       "t": "option",
-       "d": "drop",
-       "o": [
-        "allow",
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "icmp-frag *": {
-       "t": "option",
-       "d": "allow",
-       "o": [
-        "allow",
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "icmp-land *": {
-       "t": "option",
-       "d": "trap-to-host",
-       "o": [
-        "allow",
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "icmp-minlen-err *": {
-       "t": "option",
-       "d": "drop",
-       "o": [
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "ipv4-ihl-err *": {
-       "t": "option",
-       "d": "drop",
-       "o": [
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "ipv4-land *": {
-       "t": "option",
-       "d": "trap-to-host",
-       "o": [
-        "allow",
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "ipv4-len-err *": {
-       "t": "option",
-       "d": "drop",
-       "o": [
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "ipv4-opt-err *": {
-       "t": "option",
-       "d": "drop",
-       "o": [
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "ipv4-option *": {
-       "t": "option",
-       "d": "trap-to-host",
-       "o": [
-        "allow",
-        "trap-to-host"
-       ]
-      },
-      "ipv4-optlsrr *": {
-       "t": "option",
-       "d": "trap-to-host",
-       "o": [
-        "allow",
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "ipv4-optrr *": {
-       "t": "option",
-       "d": "trap-to-host",
-       "o": [
-        "allow",
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "ipv4-optsecurity *": {
-       "t": "option",
-       "d": "trap-to-host",
-       "o": [
-        "allow",
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "ipv4-optssrr *": {
-       "t": "option",
-       "d": "trap-to-host",
-       "o": [
-        "allow",
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "ipv4-optstream *": {
-       "t": "option",
-       "d": "trap-to-host",
-       "o": [
-        "allow",
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "ipv4-opttimestamp *": {
-       "t": "option",
-       "d": "trap-to-host",
-       "o": [
-        "allow",
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "ipv4-proto-err *": {
-       "t": "option",
-       "d": "trap-to-host",
-       "o": [
-        "allow",
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "ipv4-ttlzero-err *": {
-       "t": "option",
-       "d": "drop",
-       "o": [
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "ipv4-unknopt *": {
-       "t": "option",
-       "d": "trap-to-host",
-       "o": [
-        "allow",
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "ipv4-ver-err *": {
-       "t": "option",
-       "d": "drop",
-       "o": [
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "ipv6-daddr-err *": {
-       "t": "option",
-       "d": "trap-to-host",
-       "o": [
-        "allow",
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "ipv6-exthdr-len-err *": {
-       "t": "option",
-       "d": "drop",
-       "o": [
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "ipv6-exthdr-order-err *": {
-       "t": "option",
-       "d": "drop",
-       "o": [
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "ipv6-ihl-err *": {
-       "t": "option",
-       "d": "drop",
-       "o": [
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "ipv6-land *": {
-       "t": "option",
-       "d": "trap-to-host",
-       "o": [
-        "allow",
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "ipv6-optendpid *": {
-       "t": "option",
-       "d": "trap-to-host",
-       "o": [
-        "allow",
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "ipv6-opthomeaddr *": {
-       "t": "option",
-       "d": "trap-to-host",
-       "o": [
-        "allow",
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "ipv6-optinvld *": {
-       "t": "option",
-       "d": "trap-to-host",
-       "o": [
-        "allow",
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "ipv6-optjumbo *": {
-       "t": "option",
-       "d": "trap-to-host",
-       "o": [
-        "allow",
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "ipv6-optnsap *": {
-       "t": "option",
-       "d": "trap-to-host",
-       "o": [
-        "allow",
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "ipv6-optralert *": {
-       "t": "option",
-       "d": "trap-to-host",
-       "o": [
-        "allow",
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "ipv6-opttunnel *": {
-       "t": "option",
-       "d": "trap-to-host",
-       "o": [
-        "allow",
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "ipv6-plen-zero *": {
-       "t": "option",
-       "d": "drop",
-       "o": [
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "ipv6-proto-err *": {
-       "t": "option",
-       "d": "trap-to-host",
-       "o": [
-        "allow",
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "ipv6-saddr-err *": {
-       "t": "option",
-       "d": "trap-to-host",
-       "o": [
-        "allow",
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "ipv6-unknopt *": {
-       "t": "option",
-       "d": "trap-to-host",
-       "o": [
-        "allow",
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "ipv6-ver-err *": {
-       "t": "option",
-       "d": "drop",
-       "o": [
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "sctp-csum-err *": {
-       "t": "option",
-       "d": "drop",
-       "o": [
-        "allow",
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "tcp-fin-noack *": {
-       "t": "option",
-       "d": "trap-to-host",
-       "o": [
-        "allow",
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "tcp-fin-only *": {
-       "t": "option",
-       "d": "trap-to-host",
-       "o": [
-        "allow",
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "tcp-hlen-err *": {
-       "t": "option",
-       "d": "drop",
-       "o": [
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "tcp-land *": {
-       "t": "option",
-       "d": "trap-to-host",
-       "o": [
-        "allow",
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "tcp-no-flag *": {
-       "t": "option",
-       "d": "allow",
-       "o": [
-        "allow",
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "tcp-plen-err *": {
-       "t": "option",
-       "d": "drop",
-       "o": [
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "tcp-syn-data *": {
-       "t": "option",
-       "d": "allow",
-       "o": [
-        "allow",
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "tcp-syn-fin *": {
-       "t": "option",
-       "d": "allow",
-       "o": [
-        "allow",
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "tcp-winnuke *": {
-       "t": "option",
-       "d": "trap-to-host",
-       "o": [
-        "allow",
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "udp-hlen-err *": {
-       "t": "option",
-       "d": "drop",
-       "o": [
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "udp-land *": {
-       "t": "option",
-       "d": "trap-to-host",
-       "o": [
-        "allow",
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "udp-len-err *": {
-       "t": "option",
-       "d": "drop",
-       "o": [
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "udp-plen-err *": {
-       "t": "option",
-       "d": "drop",
-       "o": [
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "udplite-cover-err *": {
-       "t": "option",
-       "d": "drop",
-       "o": [
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "udplite-csum-err *": {
-       "t": "option",
-       "d": "drop",
-       "o": [
-        "allow",
-        "drop",
-        "trap-to-host"
-       ]
-      },
-      "unknproto-minlen-err *": {
-       "t": "option",
-       "d": "drop",
+       "some_models": true,
        "o": [
         "drop",
         "trap-to-host"
@@ -71539,7 +69393,11 @@
      "edit": false,
      "params": {
       "all-protocol": {
-       "t": "integer"
+       "t": "integer",
+       "min": 0,
+       "max": 32000000,
+       "d": "0",
+       "some_models": true
       },
       "arp-max": {
        "t": "integer",
@@ -71549,6 +69407,8 @@
       },
       "enable-queue-shaper": {
        "t": "option",
+       "d": "disable",
+       "some_models": true,
        "o": [
         "disable",
         "enable"
@@ -71569,13 +69429,25 @@
        "d": "5000"
       },
       "exception-code": {
-       "t": "integer"
+       "t": "integer",
+       "min": 1000,
+       "max": 32000000,
+       "d": "5000",
+       "some_models": true
       },
       "fragment-with-sess": {
-       "t": "integer"
+       "t": "integer",
+       "min": 1000,
+       "max": 32000000,
+       "d": "5000",
+       "some_models": true
       },
       "fragment-without-session": {
-       "t": "integer"
+       "t": "integer",
+       "min": 1000,
+       "max": 32000000,
+       "d": "5000",
+       "some_models": true
       },
       "high-priority": {
        "t": "integer",
@@ -71608,10 +69480,18 @@
        "d": "5000"
       },
       "pri-type-max": {
-       "t": "integer"
+       "t": "integer",
+       "min": 0,
+       "max": 32000000,
+       "d": "5000",
+       "some_models": true
       },
       "queue-shaper-max": {
-       "t": "integer"
+       "t": "integer",
+       "min": 1000,
+       "max": 32000000,
+       "d": "5000",
+       "some_models": true
       },
       "sctp-max": {
        "t": "integer",
@@ -71648,50 +69528,6 @@
        "min": 1000,
        "max": 32000000,
        "d": "40000"
-      },
-      "all-protocol *": {
-       "t": "integer",
-       "min": 0,
-       "max": 32000000,
-       "d": "0"
-      },
-      "enable-queue-shaper *": {
-       "t": "option",
-       "d": "disable",
-       "o": [
-        "disable",
-        "enable"
-       ]
-      },
-      "exception-code *": {
-       "t": "integer",
-       "min": 1000,
-       "max": 32000000,
-       "d": "5000"
-      },
-      "fragment-with-sess *": {
-       "t": "integer",
-       "min": 1000,
-       "max": 32000000,
-       "d": "5000"
-      },
-      "fragment-without-session *": {
-       "t": "integer",
-       "min": 1000,
-       "max": 32000000,
-       "d": "5000"
-      },
-      "pri-type-max *": {
-       "t": "integer",
-       "min": 0,
-       "max": 32000000,
-       "d": "5000"
-      },
-      "queue-shaper-max *": {
-       "t": "integer",
-       "min": 1000,
-       "max": 32000000,
-       "d": "5000"
       }
      },
      "sub": {}
@@ -74548,13 +72384,11 @@
    "edit": false,
    "params": {
     "npu-group-effective-scope": {
-     "t": "integer"
-    },
-    "npu-group-effective-scope *": {
      "t": "integer",
      "min": 0,
      "max": 255,
-     "d": "255"
+     "d": "255",
+     "some_models": true
     }
    },
    "sub": {
@@ -76715,7 +74549,10 @@
      "max": 4294967295
     },
     "proxy": {
-     "t": "integer"
+     "t": "integer",
+     "min": 0,
+     "max": 4294967295,
+     "some_models": true
     },
     "recurring-schedule": {
      "t": "integer",
@@ -76733,7 +74570,10 @@
      "max": 4294967295
     },
     "sslvpn": {
-     "t": "integer"
+     "t": "integer",
+     "min": 0,
+     "max": 4294967295,
+     "some_models": true
     },
     "user": {
      "t": "integer",
@@ -76741,16 +74581,6 @@
      "max": 4294967295
     },
     "user-group": {
-     "t": "integer",
-     "min": 0,
-     "max": 4294967295
-    },
-    "proxy *": {
-     "t": "integer",
-     "min": 0,
-     "max": 4294967295
-    },
-    "sslvpn *": {
      "t": "integer",
      "min": 0,
      "max": 4294967295
@@ -79630,6 +77460,8 @@
     },
     "gui-fortitelemetry": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -79637,6 +77469,8 @@
     },
     "gui-gtp": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -79780,6 +77614,8 @@
     },
     "gui-sslvpn": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -79787,6 +77623,8 @@
     },
     "gui-sslvpn-personal-bookmarks": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -79794,6 +77632,8 @@
     },
     "gui-sslvpn-realms": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -79873,6 +77713,8 @@
     },
     "gui-wanopt-cache": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -80156,6 +77998,8 @@
     },
     "policy-offload-level": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "disable",
       "dos-offload"
@@ -80336,62 +78180,6 @@
     "gui-default-policy-columns <name>": {
      "t": "string",
      "len": 79
-    },
-    "gui-fortitelemetry *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "gui-gtp *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "gui-sslvpn *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "gui-sslvpn-personal-bookmarks *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "gui-sslvpn-realms *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "gui-wanopt-cache *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "policy-offload-level *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "disable",
-      "dos-offload"
-     ]
     }
    },
    "sub": {},
@@ -80449,6 +78237,8 @@
    "params": {
     "auto-asic-offload": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -80476,14 +78266,6 @@
      "o": [
       "disable",
       "enable"
-     ]
-    },
-    "auto-asic-offload *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
      ]
     },
     "name": {
@@ -82055,40 +79837,28 @@
     },
     "usage": {
      "t": "option",
-     "o": [
-      "log",
-      "wanopt"
-     ]
-    },
-    "wanopt-mode": {
-     "t": "option",
-     "o": [
-      "mix",
-      "wanopt"
-     ]
-    },
-    "name": {
-     "t": "string",
-     "len": 35,
-     "d": "default_n"
-    },
-    "usage *": {
-     "t": "option",
      "d": "log **",
+     "some_models": true,
      "o": [
       "log",
       "wanopt",
       "mix"
      ]
     },
-    "wanopt-mode *": {
+    "wanopt-mode": {
      "t": "option",
      "d": "mix",
+     "some_models": true,
      "o": [
       "mix",
       "wanopt",
       "webcache"
      ]
+    },
+    "name": {
+     "t": "string",
+     "len": 35,
+     "d": "default_n"
     }
    },
    "sub": {},
@@ -82758,7 +80528,8 @@
      "t": "user"
     },
     "proxy": {
-     "t": "user"
+     "t": "user",
+     "some_models": true
     },
     "recurring-schedule": {
      "t": "user"
@@ -82776,7 +80547,8 @@
      "d": "0"
     },
     "sslvpn": {
-     "t": "user"
+     "t": "user",
+     "some_models": true
     },
     "user": {
      "t": "user"
@@ -82787,12 +80559,6 @@
     "name": {
      "t": "string",
      "len": 31
-    },
-    "proxy *": {
-     "t": "user"
-    },
-    "sslvpn *": {
-     "t": "user"
     }
    },
    "sub": {},
@@ -82927,61 +80693,43 @@
     },
     "span": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "disable",
       "enable"
      ]
     },
     "span-dest-port": {
-     "t": "string"
+     "t": "string",
+     "len": 15,
+     "some_models": true
     },
     "span-direction": {
      "t": "option",
-     "o": [
-      "rx",
-      "tx"
-     ]
-    },
-    "span-source-port": {
-     "t": "string"
-    },
-    "vlan": {
-     "t": "integer"
-    },
-    "name": {
-     "t": "string",
-     "len": 15
-    },
-    "span *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "disable",
-      "enable"
-     ]
-    },
-    "span-dest-port *": {
-     "t": "string",
-     "len": 15
-    },
-    "span-direction *": {
-     "t": "option",
      "d": "both",
+     "some_models": true,
      "o": [
       "rx",
       "tx",
       "both"
      ]
     },
-    "span-source-port *": {
+    "span-source-port": {
      "t": "string",
-     "len": 15
+     "len": 15,
+     "some_models": true
     },
-    "vlan *": {
+    "vlan": {
      "t": "integer",
      "min": 0,
      "max": 4294967295,
-     "d": "0"
+     "d": "0",
+     "some_models": true
+    },
+    "name": {
+     "t": "string",
+     "len": 15
     }
    },
    "sub": {
@@ -82994,6 +80742,8 @@
       },
       "poe": {
        "t": "option",
+       "d": "enable",
+       "some_models": true,
        "o": [
         "enable",
         "disable"
@@ -83002,14 +80752,6 @@
       "name": {
        "t": "string",
        "len": 15
-      },
-      "poe *": {
-       "t": "option",
-       "d": "enable",
-       "o": [
-        "enable",
-        "disable"
-       ]
       }
      },
      "sub": {},
@@ -83032,6 +80774,8 @@
     },
     "poweroff-bypass": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -83039,6 +80783,8 @@
     },
     "poweron-bypass": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -83063,26 +80809,11 @@
      "t": "string",
      "len": 11
     },
-    "outer-vlan-id <vlanid> *": {
+    "outer-vlan-id <vlanid>": {
      "t": "integer",
      "min": 1,
-     "max": 4094
-    },
-    "poweroff-bypass *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "poweron-bypass *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
+     "max": 4094,
+     "some_models": true
     }
    },
    "sub": {},
@@ -83094,6 +80825,8 @@
    "params": {
     "auto-asic-offload": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -83138,14 +80871,6 @@
     "update-url": {
      "t": "string",
      "len": 511
-    },
-    "auto-asic-offload *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
     },
     "name": {
      "t": "string",
@@ -83532,13 +81257,19 @@
     },
     "rogue-scan": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
      ]
     },
     "rogue-scan-mac-adjacency": {
-     "t": "integer"
+     "t": "integer",
+     "min": 0,
+     "max": 31,
+     "d": "7",
+     "some_models": true
     },
     "short-guard-interval": {
      "t": "option",
@@ -83547,20 +81278,6 @@
       "enable",
       "disable"
      ]
-    },
-    "rogue-scan *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "rogue-scan-mac-adjacency *": {
-     "t": "integer",
-     "min": 0,
-     "max": 31,
-     "d": "7"
     }
    },
    "sub": {},
@@ -90285,6 +88002,8 @@
     },
     "npu-offload": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -90300,14 +88019,6 @@
     "name": {
      "t": "string",
      "len": 35
-    },
-    "npu-offload *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
     }
    },
    "sub": {},
@@ -90384,6 +88095,8 @@
     },
     "npu-offload": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -90403,14 +88116,6 @@
     "name": {
      "t": "string",
      "len": 15
-    },
-    "npu-offload *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
     }
    },
    "sub": {},
@@ -90891,9 +88596,12 @@
     },
     "esn": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "require",
-      "allow"
+      "allow",
+      "disable"
      ]
     },
     "exchange-fgt-device-id": {
@@ -91273,6 +88981,8 @@
     },
     "npu-offload": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -91643,15 +89353,6 @@
      "t": "string",
      "len": 79
     },
-    "esn *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "require",
-      "allow",
-      "disable"
-     ]
-    },
     "internal-domain-list <domain-name>": {
      "t": "string",
      "len": 79
@@ -91659,14 +89360,6 @@
     "name": {
      "t": "string",
      "len": 35
-    },
-    "npu-offload *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
     },
     "remote-gw-ztna-tags <name>": {
      "t": "string",
@@ -92314,9 +90007,12 @@
     },
     "esn": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "require",
-      "allow"
+      "allow",
+      "disable"
      ]
     },
     "exchange-fgt-device-id": {
@@ -92788,6 +90484,8 @@
     },
     "npu-offload": {
      "t": "option",
+     "d": "enable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -92795,6 +90493,8 @@
     },
     "packet-redistribution": {
      "t": "option",
+     "d": "disable",
+     "some_models": true,
      "o": [
       "enable",
       "disable"
@@ -93191,15 +90891,6 @@
      "t": "string",
      "len": 79
     },
-    "esn *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "require",
-      "allow",
-      "disable"
-     ]
-    },
     "internal-domain-list <domain-name>": {
      "t": "string",
      "len": 79
@@ -93211,22 +90902,6 @@
     "name": {
      "t": "string",
      "len": 15
-    },
-    "npu-offload *": {
-     "t": "option",
-     "d": "enable",
-     "o": [
-      "enable",
-      "disable"
-     ]
-    },
-    "packet-redistribution *": {
-     "t": "option",
-     "d": "disable",
-     "o": [
-      "enable",
-      "disable"
-     ]
     },
     "remote-gw-ztna-tags <name>": {
      "t": "string",
@@ -101811,7 +99486,10 @@
      ]
     },
     "local-radio-vdom": {
-     "t": "string"
+     "t": "string",
+     "len": 31,
+     "d": "root",
+     "some_models": true
     },
     "location": {
      "t": "string",
@@ -101955,11 +99633,6 @@
       "enable",
       "disable"
      ]
-    },
-    "local-radio-vdom *": {
-     "t": "string",
-     "len": 31,
-     "d": "root"
     }
    },
    "sub": {},
