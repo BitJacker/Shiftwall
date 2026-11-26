@@ -26,3 +26,7 @@ TestResults/
 # Local-only data (anonymization maps, tokens, user templates)
 *.swmap
 *.swtoken
+
+# Python tools
+__pycache__/
+.cache/

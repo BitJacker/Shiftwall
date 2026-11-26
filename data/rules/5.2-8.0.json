@@ -1,0 +1,959 @@
+{
+ "from": "5.2",
+ "to": "8.0",
+ "verified_on": "2026-11-26",
+ "sources": {
+  "cli-5.2": {
+   "title": "FortiOS CLI Reference for FortiOS 5.2 (2018-03-05)",
+   "url": "https://fortinetweb.s3.amazonaws.com/docs.fortinet.com/v2/attachments/27300d29-1a11-11e9-9685-f8bc1258b856/fortigate-cli-52.pdf"
+  },
+  "cli-8.0": {
+   "title": "FortiOS 8.0.0 CLI Reference",
+   "url": "https://docs.fortinet.com/document/fortigate/8.0.0/cli-reference"
+  },
+  "cli-8.0-phase1": {
+   "title": "FortiOS 8.0.0 CLI Reference - config vpn ipsec phase1-interface",
+   "url": "https://docs.fortinet.com/document/fortigate/8.0.0/cli-reference"
+  },
+  "nf-7.6.0-udplite": {
+   "title": "FortiOS 7.6.0 New Features - Support UDP-Lite traffic",
+   "url": "https://docs.fortinet.com/document/fortigate/7.6.0/new-features/927041/support-udp-lite-traffic"
+  },
+  "rn-8.0.2-sslvpn": {
+   "title": "FortiOS 8.0.2 Release Notes - Agentless VPN (formerly SSL VPN web mode) not supported on some FortiGate series models",
+   "url": "https://docs.fortinet.com/document/fortigate/8.0.2/fortios-release-notes/877104/agentless-vpn-formerly-ssl-vpn-web-mode-not-supported-on-some-fortigate-series-models"
+  },
+  "rn-7.6.3-tunnel": {
+   "title": "FortiOS 7.6.3 Release Notes - SSL VPN tunnel mode replaced with IPsec VPN",
+   "url": "https://docs.fortinet.com/document/fortigate/7.6.3/fortios-release-notes/173430/ssl-vpn-tunnel-mode-replaced-with-ipsec-vpn"
+  },
+  "guide-ssl-to-ipsec": {
+   "title": "SSL VPN to IPsec VPN migration (FortiOS 7.6)",
+   "url": "https://docs.fortinet.com/document/fortigate/7.6.0/ssl-vpn-to-ipsec-vpn-migration/126460/introduction"
+  },
+  "ag-8.0.2-forticlient-dialup": {
+   "title": "FortiOS 8.0.2 Administration Guide - FortiClient as dialup client",
+   "url": "https://docs.fortinet.com/document/fortigate/8.0.2/administration-guide/785501/forticlient-as-dialup-client"
+  },
+  "rn-8.0.2-proxy-2gb": {
+   "title": "FortiOS 8.0.2 Release Notes - 2 GB RAM FortiGate models no longer support most FortiOS proxy-related features",
+   "url": "https://docs.fortinet.com/document/fortigate/8.0.2/fortios-release-notes/768039/2-gb-ram-fortigate-models-no-longer-support-most-fortios-proxy-related-features"
+  }
+ },
+ "paths": [
+  "system interface",
+  "system zone",
+  "system dns",
+  "system dhcp server",
+  "system admin",
+  "firewall address",
+  "firewall addrgrp",
+  "firewall service category",
+  "firewall service custom",
+  "firewall service group",
+  "firewall schedule onetime",
+  "firewall schedule recurring",
+  "firewall schedule group",
+  "firewall vip",
+  "firewall vipgrp",
+  "firewall ippool",
+  "user local",
+  "user group",
+  "user ldap",
+  "user radius",
+  "vpn ipsec phase1-interface",
+  "vpn ipsec phase2-interface",
+  "router static",
+  "firewall policy"
+ ],
+ "rules": [
+  {
+   "id": "V001",
+   "kind": "value-map",
+   "path": "firewall service custom",
+   "param": "protocol",
+   "map": {
+    "TCP/UDP/SCTP": "TCP/UDP/UDP-Lite/SCTP"
+   },
+   "note": "The TCP/UDP/SCTP protocol group is called TCP/UDP/UDP-Lite/SCTP since FortiOS 7.6.0; the TCP, UDP and SCTP port ranges keep their meaning.",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0",
+    "nf-7.6.0-udplite"
+   ]
+  },
+  {
+   "id": "D001",
+   "kind": "default-change",
+   "path": "vpn ipsec phase1-interface",
+   "param": "ike-version",
+   "value": "1",
+   "note": "Default 1 in 5.2 (CLI Reference 5.2 p. 788), 2 in 8.0. Written explicitly so that the tunnel keeps IKEv1.",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ]
+  },
+  {
+   "id": "D002",
+   "kind": "default-change",
+   "path": "vpn ipsec phase1-interface",
+   "param": "dhgrp",
+   "value": "14 5",
+   "note": "Default 14 5 in 5.2 (p. 787), 20 in 8.0.",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ]
+  },
+  {
+   "id": "D003",
+   "kind": "default-change",
+   "path": "vpn ipsec phase1-interface",
+   "param": "peertype",
+   "value": "any",
+   "note": "Default any in 5.2 (p. 792), peer in 8.0.",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ]
+  },
+  {
+   "id": "D004",
+   "kind": "default-change",
+   "path": "vpn ipsec phase1-interface",
+   "param": "proposal",
+   "value": "aes128-sha256 aes256-sha256 3des-sha256 aes128-sha1 aes256-sha1 3des-sha1",
+   "note": "5.2 default proposal list (p. 793). All six values are valid in 8.0.",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ]
+  },
+  {
+   "id": "D005",
+   "kind": "default-change",
+   "path": "vpn ipsec phase2-interface",
+   "param": "dhgrp",
+   "value": "14 5",
+   "note": "Default 14 5 in 5.2 (p. 798), 20 in 8.0.",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ]
+  },
+  {
+   "id": "D006",
+   "kind": "default-change",
+   "path": "vpn ipsec phase2-interface",
+   "param": "proposal",
+   "value": "aes128-sha1 aes256-sha1 3des-sha1 aes128-sha256 aes256-sha256 3des-sha256",
+   "note": "5.2 default proposal list (p. 800). All six values are valid in 8.0.",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ]
+  },
+  {
+   "id": "M001",
+   "kind": "remove-no-equivalent",
+   "path": "vpn ipsec phase1-interface",
+   "param": "dpd",
+   "values": [
+    "enable"
+   ],
+   "note": "5.2 accepts enable/disable, 8.0 disable/on-idle/on-demand. No official mapping found for 'enable': the line is left for manual review. When dpd is not set (5.2 default: enable), the 8.0 default (on-demand) applies.",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ]
+  },
+  {
+   "id": "S001",
+   "kind": "skip",
+   "path": "*",
+   "param": "uuid",
+   "note": "Object UUIDs are generated by the new FortiGate.",
+   "sources": [
+    "cli-8.0"
+   ]
+  },
+  {
+   "id": "S002",
+   "kind": "skip",
+   "path": "system interface",
+   "param": "snmp-index",
+   "note": "Device-specific index, assigned by the new FortiGate.",
+   "sources": [
+    "cli-8.0"
+   ]
+  },
+  {
+   "id": "S003",
+   "kind": "skip",
+   "path": "system interface",
+   "param": "macaddr",
+   "note": "MAC address of the old hardware: not copied.",
+   "sources": [
+    "cli-8.0"
+   ]
+  },
+  {
+   "id": "S004",
+   "kind": "skip",
+   "path": "system admin",
+   "table": "dashboard",
+   "note": "GUI dashboard layout of the old firmware.",
+   "sources": [
+    "cli-5.2"
+   ]
+  },
+  {
+   "id": "S005",
+   "kind": "skip",
+   "path": "system admin",
+   "table": "dashboard-tab",
+   "note": "GUI dashboard layout of the old firmware.",
+   "sources": [
+    "cli-5.2"
+   ]
+  },
+  {
+   "id": "E001",
+   "kind": "remove-with-equivalent",
+   "path": "user group",
+   "param": "sslvpn-portal",
+   "note": "SSL VPN is replaced by IPsec dial-up (see the SSL VPN conversion).",
+   "sources": [
+    "rn-8.0.2-sslvpn",
+    "rn-7.6.3-tunnel",
+    "guide-ssl-to-ipsec"
+   ]
+  },
+  {
+   "id": "E002",
+   "kind": "remove-with-equivalent",
+   "path": "firewall policy",
+   "param": "dlp-sensor",
+   "note": "UTM profiles are not migrated: the policy is created without the profile and the profile is listed for manual work.",
+   "sources": [
+    "cli-8.0",
+    "rn-8.0.2-proxy-2gb"
+   ]
+  },
+  {
+   "id": "E003",
+   "kind": "remove-with-equivalent",
+   "path": "firewall policy",
+   "param": "spamfilter-profile",
+   "note": "UTM profiles are not migrated: the policy is created without the profile and the profile is listed for manual work.",
+   "sources": [
+    "cli-8.0",
+    "rn-8.0.2-proxy-2gb"
+   ]
+  },
+  {
+   "id": "R001",
+   "kind": "remove-no-equivalent",
+   "path": "system interface",
+   "param": "device-access-list",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R002",
+   "kind": "remove-no-equivalent",
+   "path": "system interface",
+   "param": "device-netscan",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R003",
+   "kind": "remove-no-equivalent",
+   "path": "system interface",
+   "param": "drop-overlapped-fragment",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R004",
+   "kind": "remove-no-equivalent",
+   "path": "system interface",
+   "param": "elbc-default-gw",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R005",
+   "kind": "remove-no-equivalent",
+   "path": "system interface",
+   "param": "fp-anomaly",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R006",
+   "kind": "remove-no-equivalent",
+   "path": "system interface",
+   "param": "gi-gk",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R007",
+   "kind": "remove-no-equivalent",
+   "path": "system interface",
+   "param": "icmp-redirect",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R008",
+   "kind": "remove-no-equivalent",
+   "path": "system interface",
+   "param": "lacp-ha-slave",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R009",
+   "kind": "remove-no-equivalent",
+   "path": "system interface",
+   "param": "listen-forticlient-connection",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R010",
+   "kind": "remove-no-equivalent",
+   "path": "system interface",
+   "param": "nontp-web-proxy",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R011",
+   "kind": "remove-no-equivalent",
+   "path": "system interface",
+   "param": "pbx-user-portal",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R012",
+   "kind": "remove-no-equivalent",
+   "path": "system interface",
+   "param": "phone-auto-provision",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R013",
+   "kind": "remove-no-equivalent",
+   "path": "system interface",
+   "param": "voip",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R014",
+   "kind": "remove-no-equivalent",
+   "path": "system interface",
+   "param": "wifi-broadcast_ssid",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R015",
+   "kind": "remove-no-equivalent",
+   "path": "system interface",
+   "param": "wifi-fragment_threshold",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R016",
+   "kind": "remove-no-equivalent",
+   "path": "system interface",
+   "param": "wifi-rts_threshold",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R017",
+   "kind": "remove-no-equivalent",
+   "path": "system interface",
+   "sub": [
+    "ipv6"
+   ],
+   "param": "dhcp6-relay-server",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R018",
+   "kind": "remove-no-equivalent",
+   "path": "system interface",
+   "table": "ip6-extra-address",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R019",
+   "kind": "remove-no-equivalent",
+   "path": "system dhcp server",
+   "param": "option1",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R020",
+   "kind": "remove-no-equivalent",
+   "path": "system dhcp server",
+   "param": "option2",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R021",
+   "kind": "remove-no-equivalent",
+   "path": "system dhcp server",
+   "param": "option3",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R022",
+   "kind": "remove-no-equivalent",
+   "path": "system dhcp server",
+   "param": "option4",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R023",
+   "kind": "remove-no-equivalent",
+   "path": "system dhcp server",
+   "param": "option5",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R024",
+   "kind": "remove-no-equivalent",
+   "path": "system dhcp server",
+   "param": "option6",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R025",
+   "kind": "remove-no-equivalent",
+   "path": "system admin",
+   "param": "gui-log-display",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R026",
+   "kind": "remove-no-equivalent",
+   "path": "system admin",
+   "param": "radius-vdom-override",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R027",
+   "kind": "remove-no-equivalent",
+   "path": "system admin",
+   "param": "sms-provider",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R028",
+   "kind": "remove-no-equivalent",
+   "path": "firewall address",
+   "param": "tags",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R029",
+   "kind": "remove-no-equivalent",
+   "path": "firewall address",
+   "param": "url",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R030",
+   "kind": "remove-no-equivalent",
+   "path": "firewall address",
+   "param": "visibility",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R031",
+   "kind": "remove-no-equivalent",
+   "path": "firewall address",
+   "table": "service",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R032",
+   "kind": "remove-no-equivalent",
+   "path": "firewall addrgrp",
+   "param": "visibility",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R033",
+   "kind": "remove-no-equivalent",
+   "path": "firewall service custom",
+   "param": "explicit-proxy",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R034",
+   "kind": "remove-no-equivalent",
+   "path": "firewall service custom",
+   "param": "visibility",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R035",
+   "kind": "remove-no-equivalent",
+   "path": "firewall service group",
+   "param": "explicit-proxy",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R036",
+   "kind": "remove-no-equivalent",
+   "path": "user group",
+   "sub": [
+    "guest"
+   ],
+   "param": "sponser",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R037",
+   "kind": "remove-no-equivalent",
+   "path": "user group",
+   "sub": [
+    "match"
+   ],
+   "param": "rsso",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R038",
+   "kind": "remove-no-equivalent",
+   "path": "vpn ipsec phase1-interface",
+   "param": "assign-ip-type",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R039",
+   "kind": "remove-no-equivalent",
+   "path": "vpn ipsec phase1-interface",
+   "param": "forticlient-enforcement",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R040",
+   "kind": "remove-no-equivalent",
+   "path": "vpn ipsec phase1-interface",
+   "param": "mode-cfg-ip-version",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R041",
+   "kind": "remove-no-equivalent",
+   "path": "vpn ipsec phase1-interface",
+   "param": "xauthexpire",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R042",
+   "kind": "remove-no-equivalent",
+   "path": "firewall policy",
+   "param": "central-nat",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R043",
+   "kind": "remove-no-equivalent",
+   "path": "firewall policy",
+   "param": "devices",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R044",
+   "kind": "remove-no-equivalent",
+   "path": "firewall policy",
+   "param": "endpoint-compliance",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R045",
+   "kind": "remove-no-equivalent",
+   "path": "firewall policy",
+   "param": "fsso",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R046",
+   "kind": "remove-no-equivalent",
+   "path": "firewall policy",
+   "param": "fsso-server-for-ntlm",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R047",
+   "kind": "remove-no-equivalent",
+   "path": "firewall policy",
+   "param": "global-label",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R048",
+   "kind": "remove-no-equivalent",
+   "path": "firewall policy",
+   "param": "label",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R049",
+   "kind": "remove-no-equivalent",
+   "path": "firewall policy",
+   "param": "rsso",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "R050",
+   "kind": "remove-no-equivalent",
+   "path": "firewall policy",
+   "param": "tags",
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Documented in the old CLI Reference, absent from the new one."
+  },
+  {
+   "id": "X001",
+   "kind": "remove-no-equivalent",
+   "path": "system interface",
+   "param": "type",
+   "values": [
+    "hdlc",
+    "tdm"
+   ],
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Value documented in the old CLI Reference and not accepted by the new one: left for manual review."
+  },
+  {
+   "id": "X002",
+   "kind": "remove-no-equivalent",
+   "path": "system interface",
+   "param": "wifi-auth",
+   "values": [
+    "usergroup"
+   ],
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Value documented in the old CLI Reference and not accepted by the new one: left for manual review."
+  },
+  {
+   "id": "X003",
+   "kind": "remove-no-equivalent",
+   "path": "firewall address",
+   "param": "type",
+   "values": [
+    "network-service",
+    "url"
+   ],
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Value documented in the old CLI Reference and not accepted by the new one: left for manual review."
+  },
+  {
+   "id": "X004",
+   "kind": "remove-no-equivalent",
+   "path": "firewall vip",
+   "param": "ssl-client-session-state-type",
+   "values": [
+    "client"
+   ],
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Value documented in the old CLI Reference and not accepted by the new one: left for manual review."
+  },
+  {
+   "id": "X005",
+   "kind": "remove-no-equivalent",
+   "path": "user group",
+   "param": "password",
+   "values": [
+    "email"
+   ],
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Value documented in the old CLI Reference and not accepted by the new one: left for manual review."
+  },
+  {
+   "id": "X006",
+   "kind": "remove-no-equivalent",
+   "path": "user ldap",
+   "param": "search-type",
+   "values": [
+    "nested"
+   ],
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Value documented in the old CLI Reference and not accepted by the new one: left for manual review."
+  },
+  {
+   "id": "X007",
+   "kind": "remove-no-equivalent",
+   "path": "firewall policy",
+   "param": "wanopt-detection",
+   "values": [
+    "off"
+   ],
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Value documented in the old CLI Reference and not accepted by the new one: left for manual review."
+  },
+  {
+   "id": "X008",
+   "kind": "remove-no-equivalent",
+   "path": "firewall policy",
+   "param": "wanopt-passive-opt",
+   "values": [
+    "non-transparent"
+   ],
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Value documented in the old CLI Reference and not accepted by the new one: left for manual review."
+  },
+  {
+   "id": "X009",
+   "kind": "remove-no-equivalent",
+   "path": "system interface",
+   "sub": [
+    "ipv6"
+   ],
+   "param": "ip6-mode",
+   "values": [
+    "dhcp6"
+   ],
+   "sources": [
+    "cli-5.2",
+    "cli-8.0"
+   ],
+   "note": "Value documented in the old CLI Reference and not accepted by the new one: left for manual review."
+  },
+  {
+   "id": "A001",
+   "kind": "not-a-difference",
+   "path": "vpn ipsec phase2-interface",
+   "param": "route-overlap",
+   "values": [
+    "overlap_option"
+   ],
+   "sources": [
+    "cli-5.2"
+   ],
+   "note": "Placeholder text of the 5.2 PDF syntax block, not a real option."
+  }
+ ]
+}
